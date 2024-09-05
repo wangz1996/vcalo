@@ -1,0 +1,83 @@
+//
+// ********************************************************************
+// * License and Disclaimer                                           *
+// *                                                                  *
+// * The  Geant4 software  is  copyright of the Copyright Holders  of *
+// * the Geant4 Collaboration.  It is provided  under  the terms  and *
+// * conditions of the Geant4 Software License,  included in the file *
+// * LICENSE and available at  http://cern.ch/geant4/license .  These *
+// * include a list of copyright holders.                             *
+// *                                                                  *
+// * Neither the authors of this software system, nor their employing *
+// * institutes,nor the agencies providing financial support for this *
+// * work  make  any representation or  warranty, express or implied, *
+// * regarding  this  software system or assume any liability for its *
+// * use.  Please see the license in the file  LICENSE  and URL above *
+// * for the full disclaimer and the limitation of liability.         *
+// *                                                                  *
+// * This  code  implementation is the result of  the  scientific and *
+// * technical work of the GEANT4 collaboration.                      *
+// * By using,  copying,  modifying or  distributing the software (or *
+// * any work based  on the software)  you  agree  to acknowledge its *
+// * use  in  resulting  scientific  publications,  and indicate your *
+// * acceptance of all terms of the Geant4 Software license.          *
+// ********************************************************************
+//
+//
+// $Id: HistoManager.hh 68017 2013-03-13 13:29:53Z gcosmo $
+// 
+//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
+//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo...... 
+
+#ifndef HistoManager_h
+#define HistoManager_h
+
+#include "globals.hh"
+#include "TSystem.h"
+#include "TGeoManager.h"
+#include "TMath.h"
+#include "TRandom.h"
+#include "Config.hh"
+#include <vector>
+#include <G4ThreeVector.hh>
+#include <unordered_map>
+
+class TTree;
+class TFile;
+//const G4int kMAXTrack=5000;//should be checked!!!
+//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
+class HistoManager
+{
+	public:
+		static HistoManager& getInstance();
+		void save();
+		void clear();
+		void book(const std::string& foutname,const bool &savegeo);
+		void fill();
+		void fillEcalHit(const G4int &copyNo,const G4double &edep,const G4double &time,const G4int &pdgid,const G4int &trackid);
+	private:
+		//Singleton
+		HistoManager();
+		~HistoManager();
+		Double_t SiPMDigi(const Double_t &edep) const;
+		
+		HistoManager(const HistoManager&)=delete;
+
+		const HistoManager &operator=(const HistoManager&)=delete;
+
+		G4bool    fSaveGeo;
+		G4String fOutName;
+
+		TFile* vFile;
+		TTree* vTree;
+
+	private:
+		std::vector<int> ecal_cellid;
+		std::vector<float> ecal_celle;
+		std::unordered_map<int,float> ecal_mape;
+};
+
+//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
+
+#endif
+

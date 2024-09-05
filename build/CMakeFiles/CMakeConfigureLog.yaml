@@ -1,0 +1,826 @@
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/share/cmake-3.26/Modules/CMakeDetermineSystem.cmake:204 (message)"
+      - "CMakeLists.txt:4 (project)"
+    message: |
+      The system is: Linux - 3.10.0-1127.el7.x86_64 - x86_64
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/share/cmake-3.26/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/share/cmake-3.26/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/share/cmake-3.26/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:4 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+      Compiler: /cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/gcc 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
+      
+      The C compiler identification is GNU, found in:
+        /lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles/3.26.2/CompilerIdC/a.out
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/share/cmake-3.26/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/share/cmake-3.26/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/share/cmake-3.26/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:4 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler: /cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/g++ 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
+      
+      The CXX compiler identification is GNU, found in:
+        /lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles/3.26.2/CompilerIdCXX/a.out
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/share/cmake-3.26/Modules/CMakeDetermineCompilerABI.cmake:57 (try_compile)"
+      - "/cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/share/cmake-3.26/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:4 (project)"
+    checks:
+      - "Detecting C compiler ABI info"
+    directories:
+      source: "/lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles/CMakeScratch/TryCompile-qo7Uzy"
+      binary: "/lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles/CMakeScratch/TryCompile-qo7Uzy"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "CMAKE_C_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: /lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles/CMakeScratch/TryCompile-qo7Uzy
+        
+        Run Build Command(s):/cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_03e7a/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_03e7a.dir/build.make CMakeFiles/cmTC_03e7a.dir/build
+        gmake[1]: Entering directory `/lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles/CMakeScratch/TryCompile-qo7Uzy'
+        Building C object CMakeFiles/cmTC_03e7a.dir/CMakeCCompilerABI.c.o
+        /cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/gcc   -v -o CMakeFiles/cmTC_03e7a.dir/CMakeCCompilerABI.c.o -c /cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/share/cmake-3.26/Modules/CMakeCCompilerABI.c
+        Using built-in specs.
+        COLLECT_GCC=/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/gcc
+        Target: x86_64-pc-linux-gnu
+        Configured with: /workspace/build/contrib/gcc-12.1.0/src/gcc/12.1.0/configure --prefix=/workspace/lcgcmake-install/gcc/12.1.0/x86_64-centos7 --disable-nls --with-system-zlib --disable-multilib --enable-languages=all --with-gnu-ld --with-gnu-as --enable-__cxa_atexit --disable-libunwind-exceptions --enable-gnu-unique-object --enable-plugin --with-linker-hash-style=gnu --enable-linker-build-id --enable-libstdcxx-time=rt --enable-shared --disable-libgcj
+        Thread model: posix
+        Supported LTO compression algorithms: zlib
+        gcc version 12.1.0 (GCC) 
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_03e7a.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_03e7a.dir/'
+         /cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../libexec/gcc/x86_64-pc-linux-gnu/12.1.0/cc1 -quiet -v -iprefix /cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/ -isystem /cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/include /cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/share/cmake-3.26/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_03e7a.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=x86-64 -version -o /tmp/ccwWCcSE.s
+        GNU C17 (GCC) version 12.1.0 (x86_64-pc-linux-gnu)
+        	compiled by GNU C version 12.1.0, GMP version 6.2.1, MPFR version 4.1.0, MPC version 1.2.1, isl version isl-0.24-GMP
+        
+        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+        ignoring nonexistent directory "/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/../../../../x86_64-pc-linux-gnu/include"
+        ignoring duplicate directory "/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/../../lib/gcc/x86_64-pc-linux-gnu/12.1.0/include"
+        ignoring duplicate directory "/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/../../include"
+        ignoring duplicate directory "/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/../../lib/gcc/x86_64-pc-linux-gnu/12.1.0/include-fixed"
+        ignoring nonexistent directory "/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/../../lib/gcc/x86_64-pc-linux-gnu/12.1.0/../../../../x86_64-pc-linux-gnu/include"
+        #include "..." search starts here:
+        #include <...> search starts here:
+         /cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/include
+         /cvmfs/sft.cern.ch/lcg/views/LCG_105/x86_64-centos7-gcc12-opt/include
+         /cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/include
+         /cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/include-fixed
+         /usr/local/include
+         /usr/include
+        End of search list.
+        GNU C17 (GCC) version 12.1.0 (x86_64-pc-linux-gnu)
+        	compiled by GNU C version 12.1.0, GMP version 6.2.1, MPFR version 4.1.0, MPC version 1.2.1, isl version isl-0.24-GMP
+        
+        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+        Compiler executable checksum: 96af034a015cb8ec1cc901b1f6dd702c
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_03e7a.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_03e7a.dir/'
+         as -v --64 -o CMakeFiles/cmTC_03e7a.dir/CMakeCCompilerABI.c.o /tmp/ccwWCcSE.s
+        GNU assembler version 2.37 (x86_64-pc-linux-gnu) using BFD version (GNU Binutils) 2.37
+        COMPILER_PATH=/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../libexec/gcc/x86_64-pc-linux-gnu/12.1.0/:/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../libexec/gcc/:/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/
+        LIBRARY_PATH=/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/:/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/:/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/../../../:/lib/:/usr/lib/
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_03e7a.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_03e7a.dir/CMakeCCompilerABI.c.'
+        Linking C executable cmTC_03e7a
+        /cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/bin/cmake -E cmake_link_script CMakeFiles/cmTC_03e7a.dir/link.txt --verbose=1
+        /cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/gcc  -v CMakeFiles/cmTC_03e7a.dir/CMakeCCompilerABI.c.o -o cmTC_03e7a 
+        Using built-in specs.
+        COLLECT_GCC=/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/gcc
+        COLLECT_LTO_WRAPPER=/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../libexec/gcc/x86_64-pc-linux-gnu/12.1.0/lto-wrapper
+        Target: x86_64-pc-linux-gnu
+        Configured with: /workspace/build/contrib/gcc-12.1.0/src/gcc/12.1.0/configure --prefix=/workspace/lcgcmake-install/gcc/12.1.0/x86_64-centos7 --disable-nls --with-system-zlib --disable-multilib --enable-languages=all --with-gnu-ld --with-gnu-as --enable-__cxa_atexit --disable-libunwind-exceptions --enable-gnu-unique-object --enable-plugin --with-linker-hash-style=gnu --enable-linker-build-id --enable-libstdcxx-time=rt --enable-shared --disable-libgcj
+        Thread model: posix
+        Supported LTO compression algorithms: zlib
+        gcc version 12.1.0 (GCC) 
+        COMPILER_PATH=/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../libexec/gcc/x86_64-pc-linux-gnu/12.1.0/:/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../libexec/gcc/:/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/
+        LIBRARY_PATH=/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/:/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/:/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/../../../:/lib/:/usr/lib/
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_03e7a' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_03e7a.'
+         /cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../libexec/gcc/x86_64-pc-linux-gnu/12.1.0/collect2 -plugin /cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../libexec/gcc/x86_64-pc-linux-gnu/12.1.0/liblto_plugin.so -plugin-opt=/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../libexec/gcc/x86_64-pc-linux-gnu/12.1.0/lto-wrapper -plugin-opt=-fresolution=/tmp/ccJzqNDL.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_03e7a /lib/../lib64/crt1.o /lib/../lib64/crti.o /cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/crtbegin.o -L/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0 -L/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc -L/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/../../.. CMakeFiles/cmTC_03e7a.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/crtend.o /lib/../lib64/crtn.o
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_03e7a' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_03e7a.'
+        gmake[1]: Leaving directory `/lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles/CMakeScratch/TryCompile-qo7Uzy'
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/share/cmake-3.26/Modules/CMakeDetermineCompilerABI.cmake:127 (message)"
+      - "/cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/share/cmake-3.26/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:4 (project)"
+    message: |
+      Parsed C implicit include dir info: rv=done
+        found start of include info
+        found start of implicit include info
+          add: [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/include]
+          add: [/cvmfs/sft.cern.ch/lcg/views/LCG_105/x86_64-centos7-gcc12-opt/include]
+          add: [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/include]
+          add: [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/include-fixed]
+          add: [/usr/local/include]
+          add: [/usr/include]
+        end of search list found
+        collapse include dir [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/include] ==> [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/include]
+        collapse include dir [/cvmfs/sft.cern.ch/lcg/views/LCG_105/x86_64-centos7-gcc12-opt/include] ==> [/cvmfs/sft.cern.ch/lcg/views/LCG_105/x86_64-centos7-gcc12-opt/include]
+        collapse include dir [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/include] ==> [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/lib/gcc/x86_64-pc-linux-gnu/12.1.0/include]
+        collapse include dir [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/include-fixed] ==> [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/lib/gcc/x86_64-pc-linux-gnu/12.1.0/include-fixed]
+        collapse include dir [/usr/local/include] ==> [/usr/local/include]
+        collapse include dir [/usr/include] ==> [/usr/include]
+        implicit include dirs: [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/include;/cvmfs/sft.cern.ch/lcg/views/LCG_105/x86_64-centos7-gcc12-opt/include;/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/lib/gcc/x86_64-pc-linux-gnu/12.1.0/include;/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/lib/gcc/x86_64-pc-linux-gnu/12.1.0/include-fixed;/usr/local/include;/usr/include]
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/share/cmake-3.26/Modules/CMakeDetermineCompilerABI.cmake:152 (message)"
+      - "/cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/share/cmake-3.26/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:4 (project)"
+    message: |
+      Parsed C implicit link information:
+        link line regex: [^( *|.*[/\\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        ignore line: [Change Dir: /lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles/CMakeScratch/TryCompile-qo7Uzy]
+        ignore line: []
+        ignore line: [Run Build Command(s):/cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_03e7a/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_03e7a.dir/build.make CMakeFiles/cmTC_03e7a.dir/build]
+        ignore line: [gmake[1]: Entering directory `/lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles/CMakeScratch/TryCompile-qo7Uzy']
+        ignore line: [Building C object CMakeFiles/cmTC_03e7a.dir/CMakeCCompilerABI.c.o]
+        ignore line: [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/gcc   -v -o CMakeFiles/cmTC_03e7a.dir/CMakeCCompilerABI.c.o -c /cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/share/cmake-3.26/Modules/CMakeCCompilerABI.c]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/gcc]
+        ignore line: [Target: x86_64-pc-linux-gnu]
+        ignore line: [Configured with: /workspace/build/contrib/gcc-12.1.0/src/gcc/12.1.0/configure --prefix=/workspace/lcgcmake-install/gcc/12.1.0/x86_64-centos7 --disable-nls --with-system-zlib --disable-multilib --enable-languages=all --with-gnu-ld --with-gnu-as --enable-__cxa_atexit --disable-libunwind-exceptions --enable-gnu-unique-object --enable-plugin --with-linker-hash-style=gnu --enable-linker-build-id --enable-libstdcxx-time=rt --enable-shared --disable-libgcj]
+        ignore line: [Thread model: posix]
+        ignore line: [Supported LTO compression algorithms: zlib]
+        ignore line: [gcc version 12.1.0 (GCC) ]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_03e7a.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_03e7a.dir/']
+        ignore line: [ /cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../libexec/gcc/x86_64-pc-linux-gnu/12.1.0/cc1 -quiet -v -iprefix /cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/ -isystem /cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/include /cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/share/cmake-3.26/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_03e7a.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=x86-64 -version -o /tmp/ccwWCcSE.s]
+        ignore line: [GNU C17 (GCC) version 12.1.0 (x86_64-pc-linux-gnu)]
+        ignore line: [	compiled by GNU C version 12.1.0  GMP version 6.2.1  MPFR version 4.1.0  MPC version 1.2.1  isl version isl-0.24-GMP]
+        ignore line: []
+        ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+        ignore line: [ignoring nonexistent directory "/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/../../../../x86_64-pc-linux-gnu/include"]
+        ignore line: [ignoring duplicate directory "/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/../../lib/gcc/x86_64-pc-linux-gnu/12.1.0/include"]
+        ignore line: [ignoring duplicate directory "/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/../../include"]
+        ignore line: [ignoring duplicate directory "/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/../../lib/gcc/x86_64-pc-linux-gnu/12.1.0/include-fixed"]
+        ignore line: [ignoring nonexistent directory "/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/../../lib/gcc/x86_64-pc-linux-gnu/12.1.0/../../../../x86_64-pc-linux-gnu/include"]
+        ignore line: [#include "..." search starts here:]
+        ignore line: [#include <...> search starts here:]
+        ignore line: [ /cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/include]
+        ignore line: [ /cvmfs/sft.cern.ch/lcg/views/LCG_105/x86_64-centos7-gcc12-opt/include]
+        ignore line: [ /cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/include]
+        ignore line: [ /cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/include-fixed]
+        ignore line: [ /usr/local/include]
+        ignore line: [ /usr/include]
+        ignore line: [End of search list.]
+        ignore line: [GNU C17 (GCC) version 12.1.0 (x86_64-pc-linux-gnu)]
+        ignore line: [	compiled by GNU C version 12.1.0  GMP version 6.2.1  MPFR version 4.1.0  MPC version 1.2.1  isl version isl-0.24-GMP]
+        ignore line: []
+        ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+        ignore line: [Compiler executable checksum: 96af034a015cb8ec1cc901b1f6dd702c]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_03e7a.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_03e7a.dir/']
+        ignore line: [ as -v --64 -o CMakeFiles/cmTC_03e7a.dir/CMakeCCompilerABI.c.o /tmp/ccwWCcSE.s]
+        ignore line: [GNU assembler version 2.37 (x86_64-pc-linux-gnu) using BFD version (GNU Binutils) 2.37]
+        ignore line: [COMPILER_PATH=/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../libexec/gcc/x86_64-pc-linux-gnu/12.1.0/:/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../libexec/gcc/:/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/]
+        ignore line: [LIBRARY_PATH=/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/:/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/:/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/../../../:/lib/:/usr/lib/]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_03e7a.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_03e7a.dir/CMakeCCompilerABI.c.']
+        ignore line: [Linking C executable cmTC_03e7a]
+        ignore line: [/cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/bin/cmake -E cmake_link_script CMakeFiles/cmTC_03e7a.dir/link.txt --verbose=1]
+        ignore line: [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/gcc  -v CMakeFiles/cmTC_03e7a.dir/CMakeCCompilerABI.c.o -o cmTC_03e7a ]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/gcc]
+        ignore line: [COLLECT_LTO_WRAPPER=/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../libexec/gcc/x86_64-pc-linux-gnu/12.1.0/lto-wrapper]
+        ignore line: [Target: x86_64-pc-linux-gnu]
+        ignore line: [Configured with: /workspace/build/contrib/gcc-12.1.0/src/gcc/12.1.0/configure --prefix=/workspace/lcgcmake-install/gcc/12.1.0/x86_64-centos7 --disable-nls --with-system-zlib --disable-multilib --enable-languages=all --with-gnu-ld --with-gnu-as --enable-__cxa_atexit --disable-libunwind-exceptions --enable-gnu-unique-object --enable-plugin --with-linker-hash-style=gnu --enable-linker-build-id --enable-libstdcxx-time=rt --enable-shared --disable-libgcj]
+        ignore line: [Thread model: posix]
+        ignore line: [Supported LTO compression algorithms: zlib]
+        ignore line: [gcc version 12.1.0 (GCC) ]
+        ignore line: [COMPILER_PATH=/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../libexec/gcc/x86_64-pc-linux-gnu/12.1.0/:/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../libexec/gcc/:/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/]
+        ignore line: [LIBRARY_PATH=/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/:/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/:/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/../../../:/lib/:/usr/lib/]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_03e7a' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_03e7a.']
+        link line: [ /cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../libexec/gcc/x86_64-pc-linux-gnu/12.1.0/collect2 -plugin /cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../libexec/gcc/x86_64-pc-linux-gnu/12.1.0/liblto_plugin.so -plugin-opt=/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../libexec/gcc/x86_64-pc-linux-gnu/12.1.0/lto-wrapper -plugin-opt=-fresolution=/tmp/ccJzqNDL.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_03e7a /lib/../lib64/crt1.o /lib/../lib64/crti.o /cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/crtbegin.o -L/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0 -L/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc -L/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/../../.. CMakeFiles/cmTC_03e7a.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/crtend.o /lib/../lib64/crtn.o]
+          arg [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../libexec/gcc/x86_64-pc-linux-gnu/12.1.0/collect2] ==> ignore
+          arg [-plugin] ==> ignore
+          arg [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../libexec/gcc/x86_64-pc-linux-gnu/12.1.0/liblto_plugin.so] ==> ignore
+          arg [-plugin-opt=/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../libexec/gcc/x86_64-pc-linux-gnu/12.1.0/lto-wrapper] ==> ignore
+          arg [-plugin-opt=-fresolution=/tmp/ccJzqNDL.res] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+          arg [-plugin-opt=-pass-through=-lc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+          arg [--build-id] ==> ignore
+          arg [--eh-frame-hdr] ==> ignore
+          arg [--hash-style=gnu] ==> ignore
+          arg [-m] ==> ignore
+          arg [elf_x86_64] ==> ignore
+          arg [-dynamic-linker] ==> ignore
+          arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
+          arg [-o] ==> ignore
+          arg [cmTC_03e7a] ==> ignore
+          arg [/lib/../lib64/crt1.o] ==> obj [/lib/../lib64/crt1.o]
+          arg [/lib/../lib64/crti.o] ==> obj [/lib/../lib64/crti.o]
+          arg [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/crtbegin.o] ==> obj [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/crtbegin.o]
+          arg [-L/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0] ==> dir [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0]
+          arg [-L/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc] ==> dir [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc]
+          arg [-L/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/../../../../lib64] ==> dir [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/../../../../lib64]
+          arg [-L/lib/../lib64] ==> dir [/lib/../lib64]
+          arg [-L/usr/lib/../lib64] ==> dir [/usr/lib/../lib64]
+          arg [-L/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/../../..] ==> dir [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/../../..]
+          arg [CMakeFiles/cmTC_03e7a.dir/CMakeCCompilerABI.c.o] ==> ignore
+          arg [-lgcc] ==> lib [gcc]
+          arg [--push-state] ==> ignore
+          arg [--as-needed] ==> ignore
+          arg [-lgcc_s] ==> lib [gcc_s]
+          arg [--pop-state] ==> ignore
+          arg [-lc] ==> lib [c]
+          arg [-lgcc] ==> lib [gcc]
+          arg [--push-state] ==> ignore
+          arg [--as-needed] ==> ignore
+          arg [-lgcc_s] ==> lib [gcc_s]
+          arg [--pop-state] ==> ignore
+          arg [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/crtend.o] ==> obj [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/crtend.o]
+          arg [/lib/../lib64/crtn.o] ==> obj [/lib/../lib64/crtn.o]
+        collapse obj [/lib/../lib64/crt1.o] ==> [/lib64/crt1.o]
+        collapse obj [/lib/../lib64/crti.o] ==> [/lib64/crti.o]
+        collapse obj [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/crtbegin.o] ==> [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/lib/gcc/x86_64-pc-linux-gnu/12.1.0/crtbegin.o]
+        collapse obj [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/crtend.o] ==> [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/lib/gcc/x86_64-pc-linux-gnu/12.1.0/crtend.o]
+        collapse obj [/lib/../lib64/crtn.o] ==> [/lib64/crtn.o]
+        collapse library dir [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0] ==> [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/lib/gcc/x86_64-pc-linux-gnu/12.1.0]
+        collapse library dir [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc] ==> [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/lib/gcc]
+        collapse library dir [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/../../../../lib64] ==> [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/lib64]
+        collapse library dir [/lib/../lib64] ==> [/lib64]
+        collapse library dir [/usr/lib/../lib64] ==> [/usr/lib64]
+        collapse library dir [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/../../..] ==> [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/lib]
+        implicit libs: [gcc;gcc_s;c;gcc;gcc_s]
+        implicit objs: [/lib64/crt1.o;/lib64/crti.o;/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/lib/gcc/x86_64-pc-linux-gnu/12.1.0/crtbegin.o;/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/lib/gcc/x86_64-pc-linux-gnu/12.1.0/crtend.o;/lib64/crtn.o]
+        implicit dirs: [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/lib/gcc/x86_64-pc-linux-gnu/12.1.0;/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/lib/gcc;/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/lib64;/lib64;/usr/lib64;/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/lib]
+        implicit fwks: []
+      
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/share/cmake-3.26/Modules/CMakeDetermineCompilerABI.cmake:57 (try_compile)"
+      - "/cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/share/cmake-3.26/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:4 (project)"
+    checks:
+      - "Detecting CXX compiler ABI info"
+    directories:
+      source: "/lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles/CMakeScratch/TryCompile-zcNeHw"
+      binary: "/lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles/CMakeScratch/TryCompile-zcNeHw"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "CMAKE_CXX_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: /lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles/CMakeScratch/TryCompile-zcNeHw
+        
+        Run Build Command(s):/cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_17dbb/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_17dbb.dir/build.make CMakeFiles/cmTC_17dbb.dir/build
+        gmake[1]: Entering directory `/lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles/CMakeScratch/TryCompile-zcNeHw'
+        Building CXX object CMakeFiles/cmTC_17dbb.dir/CMakeCXXCompilerABI.cpp.o
+        /cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/g++   -v -o CMakeFiles/cmTC_17dbb.dir/CMakeCXXCompilerABI.cpp.o -c /cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/share/cmake-3.26/Modules/CMakeCXXCompilerABI.cpp
+        Using built-in specs.
+        COLLECT_GCC=/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/g++
+        Target: x86_64-pc-linux-gnu
+        Configured with: /workspace/build/contrib/gcc-12.1.0/src/gcc/12.1.0/configure --prefix=/workspace/lcgcmake-install/gcc/12.1.0/x86_64-centos7 --disable-nls --with-system-zlib --disable-multilib --enable-languages=all --with-gnu-ld --with-gnu-as --enable-__cxa_atexit --disable-libunwind-exceptions --enable-gnu-unique-object --enable-plugin --with-linker-hash-style=gnu --enable-linker-build-id --enable-libstdcxx-time=rt --enable-shared --disable-libgcj
+        Thread model: posix
+        Supported LTO compression algorithms: zlib
+        gcc version 12.1.0 (GCC) 
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_17dbb.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_17dbb.dir/'
+         /cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../libexec/gcc/x86_64-pc-linux-gnu/12.1.0/cc1plus -quiet -v -iprefix /cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/ -isystem /cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/include -D_GNU_SOURCE /cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/share/cmake-3.26/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_17dbb.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64 -version -o /tmp/ccJ9ys1f.s
+        GNU C++17 (GCC) version 12.1.0 (x86_64-pc-linux-gnu)
+        	compiled by GNU C version 12.1.0, GMP version 6.2.1, MPFR version 4.1.0, MPC version 1.2.1, isl version isl-0.24-GMP
+        
+        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+        ignoring nonexistent directory "/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/../../../../x86_64-pc-linux-gnu/include"
+        ignoring duplicate directory "/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/../../lib/gcc/x86_64-pc-linux-gnu/12.1.0/../../../../include/c++/12.1.0"
+        ignoring duplicate directory "/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/../../lib/gcc/x86_64-pc-linux-gnu/12.1.0/../../../../include/c++/12.1.0/x86_64-pc-linux-gnu"
+        ignoring duplicate directory "/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/../../lib/gcc/x86_64-pc-linux-gnu/12.1.0/../../../../include/c++/12.1.0/backward"
+        ignoring duplicate directory "/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/../../lib/gcc/x86_64-pc-linux-gnu/12.1.0/include"
+        ignoring duplicate directory "/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/../../include"
+        ignoring duplicate directory "/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/../../lib/gcc/x86_64-pc-linux-gnu/12.1.0/include-fixed"
+        ignoring nonexistent directory "/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/../../lib/gcc/x86_64-pc-linux-gnu/12.1.0/../../../../x86_64-pc-linux-gnu/include"
+        #include "..." search starts here:
+        #include <...> search starts here:
+         /cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/include
+         /cvmfs/sft.cern.ch/lcg/views/LCG_105/x86_64-centos7-gcc12-opt/include
+         /cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/../../../../include/c++/12.1.0
+         /cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/../../../../include/c++/12.1.0/x86_64-pc-linux-gnu
+         /cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/../../../../include/c++/12.1.0/backward
+         /cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/include
+         /cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/include-fixed
+         /usr/local/include
+         /usr/include
+        End of search list.
+        GNU C++17 (GCC) version 12.1.0 (x86_64-pc-linux-gnu)
+        	compiled by GNU C version 12.1.0, GMP version 6.2.1, MPFR version 4.1.0, MPC version 1.2.1, isl version isl-0.24-GMP
+        
+        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+        Compiler executable checksum: 12bddb1895adbbc3e385bdfebd53a7f1
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_17dbb.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_17dbb.dir/'
+         as -v --64 -o CMakeFiles/cmTC_17dbb.dir/CMakeCXXCompilerABI.cpp.o /tmp/ccJ9ys1f.s
+        GNU assembler version 2.37 (x86_64-pc-linux-gnu) using BFD version (GNU Binutils) 2.37
+        COMPILER_PATH=/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../libexec/gcc/x86_64-pc-linux-gnu/12.1.0/:/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../libexec/gcc/:/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/
+        LIBRARY_PATH=/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/:/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/:/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/../../../:/lib/:/usr/lib/
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_17dbb.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_17dbb.dir/CMakeCXXCompilerABI.cpp.'
+        Linking CXX executable cmTC_17dbb
+        /cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/bin/cmake -E cmake_link_script CMakeFiles/cmTC_17dbb.dir/link.txt --verbose=1
+        /cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/g++  -v CMakeFiles/cmTC_17dbb.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_17dbb 
+        Using built-in specs.
+        COLLECT_GCC=/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/g++
+        COLLECT_LTO_WRAPPER=/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../libexec/gcc/x86_64-pc-linux-gnu/12.1.0/lto-wrapper
+        Target: x86_64-pc-linux-gnu
+        Configured with: /workspace/build/contrib/gcc-12.1.0/src/gcc/12.1.0/configure --prefix=/workspace/lcgcmake-install/gcc/12.1.0/x86_64-centos7 --disable-nls --with-system-zlib --disable-multilib --enable-languages=all --with-gnu-ld --with-gnu-as --enable-__cxa_atexit --disable-libunwind-exceptions --enable-gnu-unique-object --enable-plugin --with-linker-hash-style=gnu --enable-linker-build-id --enable-libstdcxx-time=rt --enable-shared --disable-libgcj
+        Thread model: posix
+        Supported LTO compression algorithms: zlib
+        gcc version 12.1.0 (GCC) 
+        COMPILER_PATH=/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../libexec/gcc/x86_64-pc-linux-gnu/12.1.0/:/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../libexec/gcc/:/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/
+        LIBRARY_PATH=/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/:/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/:/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/../../../:/lib/:/usr/lib/
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_17dbb' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_17dbb.'
+         /cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../libexec/gcc/x86_64-pc-linux-gnu/12.1.0/collect2 -plugin /cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../libexec/gcc/x86_64-pc-linux-gnu/12.1.0/liblto_plugin.so -plugin-opt=/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../libexec/gcc/x86_64-pc-linux-gnu/12.1.0/lto-wrapper -plugin-opt=-fresolution=/tmp/cc3CQCsb.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_17dbb /lib/../lib64/crt1.o /lib/../lib64/crti.o /cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/crtbegin.o -L/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0 -L/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc -L/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/../../.. CMakeFiles/cmTC_17dbb.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/crtend.o /lib/../lib64/crtn.o
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_17dbb' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_17dbb.'
+        gmake[1]: Leaving directory `/lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles/CMakeScratch/TryCompile-zcNeHw'
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/share/cmake-3.26/Modules/CMakeDetermineCompilerABI.cmake:127 (message)"
+      - "/cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/share/cmake-3.26/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:4 (project)"
+    message: |
+      Parsed CXX implicit include dir info: rv=done
+        found start of include info
+        found start of implicit include info
+          add: [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/include]
+          add: [/cvmfs/sft.cern.ch/lcg/views/LCG_105/x86_64-centos7-gcc12-opt/include]
+          add: [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/../../../../include/c++/12.1.0]
+          add: [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/../../../../include/c++/12.1.0/x86_64-pc-linux-gnu]
+          add: [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/../../../../include/c++/12.1.0/backward]
+          add: [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/include]
+          add: [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/include-fixed]
+          add: [/usr/local/include]
+          add: [/usr/include]
+        end of search list found
+        collapse include dir [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/include] ==> [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/include]
+        collapse include dir [/cvmfs/sft.cern.ch/lcg/views/LCG_105/x86_64-centos7-gcc12-opt/include] ==> [/cvmfs/sft.cern.ch/lcg/views/LCG_105/x86_64-centos7-gcc12-opt/include]
+        collapse include dir [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/../../../../include/c++/12.1.0] ==> [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/include/c++/12.1.0]
+        collapse include dir [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/../../../../include/c++/12.1.0/x86_64-pc-linux-gnu] ==> [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/include/c++/12.1.0/x86_64-pc-linux-gnu]
+        collapse include dir [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/../../../../include/c++/12.1.0/backward] ==> [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/include/c++/12.1.0/backward]
+        collapse include dir [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/include] ==> [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/lib/gcc/x86_64-pc-linux-gnu/12.1.0/include]
+        collapse include dir [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/include-fixed] ==> [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/lib/gcc/x86_64-pc-linux-gnu/12.1.0/include-fixed]
+        collapse include dir [/usr/local/include] ==> [/usr/local/include]
+        collapse include dir [/usr/include] ==> [/usr/include]
+        implicit include dirs: [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/include;/cvmfs/sft.cern.ch/lcg/views/LCG_105/x86_64-centos7-gcc12-opt/include;/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/include/c++/12.1.0;/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/include/c++/12.1.0/x86_64-pc-linux-gnu;/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/include/c++/12.1.0/backward;/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/lib/gcc/x86_64-pc-linux-gnu/12.1.0/include;/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/lib/gcc/x86_64-pc-linux-gnu/12.1.0/include-fixed;/usr/local/include;/usr/include]
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/share/cmake-3.26/Modules/CMakeDetermineCompilerABI.cmake:152 (message)"
+      - "/cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/share/cmake-3.26/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:4 (project)"
+    message: |
+      Parsed CXX implicit link information:
+        link line regex: [^( *|.*[/\\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        ignore line: [Change Dir: /lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles/CMakeScratch/TryCompile-zcNeHw]
+        ignore line: []
+        ignore line: [Run Build Command(s):/cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_17dbb/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_17dbb.dir/build.make CMakeFiles/cmTC_17dbb.dir/build]
+        ignore line: [gmake[1]: Entering directory `/lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles/CMakeScratch/TryCompile-zcNeHw']
+        ignore line: [Building CXX object CMakeFiles/cmTC_17dbb.dir/CMakeCXXCompilerABI.cpp.o]
+        ignore line: [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/g++   -v -o CMakeFiles/cmTC_17dbb.dir/CMakeCXXCompilerABI.cpp.o -c /cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/share/cmake-3.26/Modules/CMakeCXXCompilerABI.cpp]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/g++]
+        ignore line: [Target: x86_64-pc-linux-gnu]
+        ignore line: [Configured with: /workspace/build/contrib/gcc-12.1.0/src/gcc/12.1.0/configure --prefix=/workspace/lcgcmake-install/gcc/12.1.0/x86_64-centos7 --disable-nls --with-system-zlib --disable-multilib --enable-languages=all --with-gnu-ld --with-gnu-as --enable-__cxa_atexit --disable-libunwind-exceptions --enable-gnu-unique-object --enable-plugin --with-linker-hash-style=gnu --enable-linker-build-id --enable-libstdcxx-time=rt --enable-shared --disable-libgcj]
+        ignore line: [Thread model: posix]
+        ignore line: [Supported LTO compression algorithms: zlib]
+        ignore line: [gcc version 12.1.0 (GCC) ]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_17dbb.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_17dbb.dir/']
+        ignore line: [ /cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../libexec/gcc/x86_64-pc-linux-gnu/12.1.0/cc1plus -quiet -v -iprefix /cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/ -isystem /cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/include -D_GNU_SOURCE /cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/share/cmake-3.26/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_17dbb.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64 -version -o /tmp/ccJ9ys1f.s]
+        ignore line: [GNU C++17 (GCC) version 12.1.0 (x86_64-pc-linux-gnu)]
+        ignore line: [	compiled by GNU C version 12.1.0  GMP version 6.2.1  MPFR version 4.1.0  MPC version 1.2.1  isl version isl-0.24-GMP]
+        ignore line: []
+        ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+        ignore line: [ignoring nonexistent directory "/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/../../../../x86_64-pc-linux-gnu/include"]
+        ignore line: [ignoring duplicate directory "/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/../../lib/gcc/x86_64-pc-linux-gnu/12.1.0/../../../../include/c++/12.1.0"]
+        ignore line: [ignoring duplicate directory "/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/../../lib/gcc/x86_64-pc-linux-gnu/12.1.0/../../../../include/c++/12.1.0/x86_64-pc-linux-gnu"]
+        ignore line: [ignoring duplicate directory "/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/../../lib/gcc/x86_64-pc-linux-gnu/12.1.0/../../../../include/c++/12.1.0/backward"]
+        ignore line: [ignoring duplicate directory "/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/../../lib/gcc/x86_64-pc-linux-gnu/12.1.0/include"]
+        ignore line: [ignoring duplicate directory "/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/../../include"]
+        ignore line: [ignoring duplicate directory "/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/../../lib/gcc/x86_64-pc-linux-gnu/12.1.0/include-fixed"]
+        ignore line: [ignoring nonexistent directory "/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/../../lib/gcc/x86_64-pc-linux-gnu/12.1.0/../../../../x86_64-pc-linux-gnu/include"]
+        ignore line: [#include "..." search starts here:]
+        ignore line: [#include <...> search starts here:]
+        ignore line: [ /cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/include]
+        ignore line: [ /cvmfs/sft.cern.ch/lcg/views/LCG_105/x86_64-centos7-gcc12-opt/include]
+        ignore line: [ /cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/../../../../include/c++/12.1.0]
+        ignore line: [ /cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/../../../../include/c++/12.1.0/x86_64-pc-linux-gnu]
+        ignore line: [ /cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/../../../../include/c++/12.1.0/backward]
+        ignore line: [ /cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/include]
+        ignore line: [ /cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/include-fixed]
+        ignore line: [ /usr/local/include]
+        ignore line: [ /usr/include]
+        ignore line: [End of search list.]
+        ignore line: [GNU C++17 (GCC) version 12.1.0 (x86_64-pc-linux-gnu)]
+        ignore line: [	compiled by GNU C version 12.1.0  GMP version 6.2.1  MPFR version 4.1.0  MPC version 1.2.1  isl version isl-0.24-GMP]
+        ignore line: []
+        ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+        ignore line: [Compiler executable checksum: 12bddb1895adbbc3e385bdfebd53a7f1]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_17dbb.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_17dbb.dir/']
+        ignore line: [ as -v --64 -o CMakeFiles/cmTC_17dbb.dir/CMakeCXXCompilerABI.cpp.o /tmp/ccJ9ys1f.s]
+        ignore line: [GNU assembler version 2.37 (x86_64-pc-linux-gnu) using BFD version (GNU Binutils) 2.37]
+        ignore line: [COMPILER_PATH=/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../libexec/gcc/x86_64-pc-linux-gnu/12.1.0/:/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../libexec/gcc/:/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/]
+        ignore line: [LIBRARY_PATH=/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/:/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/:/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/../../../:/lib/:/usr/lib/]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_17dbb.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_17dbb.dir/CMakeCXXCompilerABI.cpp.']
+        ignore line: [Linking CXX executable cmTC_17dbb]
+        ignore line: [/cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/bin/cmake -E cmake_link_script CMakeFiles/cmTC_17dbb.dir/link.txt --verbose=1]
+        ignore line: [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/g++  -v CMakeFiles/cmTC_17dbb.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_17dbb ]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/g++]
+        ignore line: [COLLECT_LTO_WRAPPER=/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../libexec/gcc/x86_64-pc-linux-gnu/12.1.0/lto-wrapper]
+        ignore line: [Target: x86_64-pc-linux-gnu]
+        ignore line: [Configured with: /workspace/build/contrib/gcc-12.1.0/src/gcc/12.1.0/configure --prefix=/workspace/lcgcmake-install/gcc/12.1.0/x86_64-centos7 --disable-nls --with-system-zlib --disable-multilib --enable-languages=all --with-gnu-ld --with-gnu-as --enable-__cxa_atexit --disable-libunwind-exceptions --enable-gnu-unique-object --enable-plugin --with-linker-hash-style=gnu --enable-linker-build-id --enable-libstdcxx-time=rt --enable-shared --disable-libgcj]
+        ignore line: [Thread model: posix]
+        ignore line: [Supported LTO compression algorithms: zlib]
+        ignore line: [gcc version 12.1.0 (GCC) ]
+        ignore line: [COMPILER_PATH=/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../libexec/gcc/x86_64-pc-linux-gnu/12.1.0/:/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../libexec/gcc/:/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/]
+        ignore line: [LIBRARY_PATH=/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/:/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/:/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/../../../:/lib/:/usr/lib/]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_17dbb' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_17dbb.']
+        link line: [ /cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../libexec/gcc/x86_64-pc-linux-gnu/12.1.0/collect2 -plugin /cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../libexec/gcc/x86_64-pc-linux-gnu/12.1.0/liblto_plugin.so -plugin-opt=/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../libexec/gcc/x86_64-pc-linux-gnu/12.1.0/lto-wrapper -plugin-opt=-fresolution=/tmp/cc3CQCsb.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_17dbb /lib/../lib64/crt1.o /lib/../lib64/crti.o /cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/crtbegin.o -L/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0 -L/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc -L/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/../../.. CMakeFiles/cmTC_17dbb.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/crtend.o /lib/../lib64/crtn.o]
+          arg [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../libexec/gcc/x86_64-pc-linux-gnu/12.1.0/collect2] ==> ignore
+          arg [-plugin] ==> ignore
+          arg [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../libexec/gcc/x86_64-pc-linux-gnu/12.1.0/liblto_plugin.so] ==> ignore
+          arg [-plugin-opt=/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../libexec/gcc/x86_64-pc-linux-gnu/12.1.0/lto-wrapper] ==> ignore
+          arg [-plugin-opt=-fresolution=/tmp/cc3CQCsb.res] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [--build-id] ==> ignore
+          arg [--eh-frame-hdr] ==> ignore
+          arg [--hash-style=gnu] ==> ignore
+          arg [-m] ==> ignore
+          arg [elf_x86_64] ==> ignore
+          arg [-dynamic-linker] ==> ignore
+          arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
+          arg [-o] ==> ignore
+          arg [cmTC_17dbb] ==> ignore
+          arg [/lib/../lib64/crt1.o] ==> obj [/lib/../lib64/crt1.o]
+          arg [/lib/../lib64/crti.o] ==> obj [/lib/../lib64/crti.o]
+          arg [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/crtbegin.o] ==> obj [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/crtbegin.o]
+          arg [-L/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0] ==> dir [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0]
+          arg [-L/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc] ==> dir [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc]
+          arg [-L/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/../../../../lib64] ==> dir [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/../../../../lib64]
+          arg [-L/lib/../lib64] ==> dir [/lib/../lib64]
+          arg [-L/usr/lib/../lib64] ==> dir [/usr/lib/../lib64]
+          arg [-L/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/../../..] ==> dir [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/../../..]
+          arg [CMakeFiles/cmTC_17dbb.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+          arg [-lstdc++] ==> lib [stdc++]
+          arg [-lm] ==> lib [m]
+          arg [-lgcc_s] ==> lib [gcc_s]
+          arg [-lgcc] ==> lib [gcc]
+          arg [-lc] ==> lib [c]
+          arg [-lgcc_s] ==> lib [gcc_s]
+          arg [-lgcc] ==> lib [gcc]
+          arg [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/crtend.o] ==> obj [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/crtend.o]
+          arg [/lib/../lib64/crtn.o] ==> obj [/lib/../lib64/crtn.o]
+        collapse obj [/lib/../lib64/crt1.o] ==> [/lib64/crt1.o]
+        collapse obj [/lib/../lib64/crti.o] ==> [/lib64/crti.o]
+        collapse obj [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/crtbegin.o] ==> [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/lib/gcc/x86_64-pc-linux-gnu/12.1.0/crtbegin.o]
+        collapse obj [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/crtend.o] ==> [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/lib/gcc/x86_64-pc-linux-gnu/12.1.0/crtend.o]
+        collapse obj [/lib/../lib64/crtn.o] ==> [/lib64/crtn.o]
+        collapse library dir [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0] ==> [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/lib/gcc/x86_64-pc-linux-gnu/12.1.0]
+        collapse library dir [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc] ==> [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/lib/gcc]
+        collapse library dir [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/../../../../lib64] ==> [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/lib64]
+        collapse library dir [/lib/../lib64] ==> [/lib64]
+        collapse library dir [/usr/lib/../lib64] ==> [/usr/lib64]
+        collapse library dir [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/12.1.0/../../..] ==> [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/lib]
+        implicit libs: [stdc++;m;gcc_s;gcc;c;gcc_s;gcc]
+        implicit objs: [/lib64/crt1.o;/lib64/crti.o;/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/lib/gcc/x86_64-pc-linux-gnu/12.1.0/crtbegin.o;/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/lib/gcc/x86_64-pc-linux-gnu/12.1.0/crtend.o;/lib64/crtn.o]
+        implicit dirs: [/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/lib/gcc/x86_64-pc-linux-gnu/12.1.0;/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/lib/gcc;/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/lib64;/lib64;/usr/lib64;/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/lib]
+        implicit fwks: []
+      
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/share/cmake-3.26/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "/cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/share/cmake-3.26/Modules/CheckCSourceCompiles.cmake:76 (cmake_check_source_compiles)"
+      - "/cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/share/cmake-3.26/Modules/FindThreads.cmake:97 (CHECK_C_SOURCE_COMPILES)"
+      - "/cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/share/cmake-3.26/Modules/FindThreads.cmake:163 (_threads_check_libc)"
+      - "/cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/share/cmake-3.26/Modules/CMakeFindDependencyMacro.cmake:76 (find_package)"
+      - "/cvmfs/sft.cern.ch/lcg/views/LCG_105/x86_64-centos7-gcc12-opt/lib64/cmake/Geant4/PTL/PTLConfig.cmake:56 (find_dependency)"
+      - "/cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/share/cmake-3.26/Modules/CMakeFindDependencyMacro.cmake:76 (find_package)"
+      - "/cvmfs/sft.cern.ch/lcg/views/LCG_105/x86_64-centos7-gcc12-opt/lib64/cmake/Geant4/Geant4Config.cmake:286 (find_dependency)"
+      - "CMakeLists.txt:8 (find_package)"
+    checks:
+      - "Performing Test CMAKE_HAVE_LIBC_PTHREAD"
+    directories:
+      source: "/lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles/CMakeScratch/TryCompile-k5t5Yx"
+      binary: "/lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles/CMakeScratch/TryCompile-k5t5Yx"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/cvmfs/sft.cern.ch/lcg/views/LCG_105/x86_64-centos7-gcc12-opt/lib64/cmake/Geant4/Modules"
+    buildResult:
+      variable: "CMAKE_HAVE_LIBC_PTHREAD"
+      cached: true
+      stdout: |
+        Change Dir: /lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles/CMakeScratch/TryCompile-k5t5Yx
+        
+        Run Build Command(s):/cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_fe067/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_fe067.dir/build.make CMakeFiles/cmTC_fe067.dir/build
+        gmake[1]: Entering directory `/lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles/CMakeScratch/TryCompile-k5t5Yx'
+        Building C object CMakeFiles/cmTC_fe067.dir/src.c.o
+        /cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/gcc -DCMAKE_HAVE_LIBC_PTHREAD   -o CMakeFiles/cmTC_fe067.dir/src.c.o -c /lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles/CMakeScratch/TryCompile-k5t5Yx/src.c
+        Linking C executable cmTC_fe067
+        /cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/bin/cmake -E cmake_link_script CMakeFiles/cmTC_fe067.dir/link.txt --verbose=1
+        /cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/gcc CMakeFiles/cmTC_fe067.dir/src.c.o -o cmTC_fe067 
+        /cvmfs/sft.cern.ch/lcg/releases/binutils/2.37-355ed/x86_64-centos7/bin/ld: CMakeFiles/cmTC_fe067.dir/src.c.o: in function `main':
+        src.c:(.text+0x2d): undefined reference to `pthread_create'
+        /cvmfs/sft.cern.ch/lcg/releases/binutils/2.37-355ed/x86_64-centos7/bin/ld: src.c:(.text+0x39): undefined reference to `pthread_detach'
+        /cvmfs/sft.cern.ch/lcg/releases/binutils/2.37-355ed/x86_64-centos7/bin/ld: src.c:(.text+0x45): undefined reference to `pthread_cancel'
+        /cvmfs/sft.cern.ch/lcg/releases/binutils/2.37-355ed/x86_64-centos7/bin/ld: src.c:(.text+0x56): undefined reference to `pthread_join'
+        /cvmfs/sft.cern.ch/lcg/releases/binutils/2.37-355ed/x86_64-centos7/bin/ld: src.c:(.text+0x6a): undefined reference to `pthread_atfork'
+        collect2: error: ld returned 1 exit status
+        gmake[1]: *** [cmTC_fe067] Error 1
+        gmake[1]: Leaving directory `/lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles/CMakeScratch/TryCompile-k5t5Yx'
+        gmake: *** [cmTC_fe067/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/share/cmake-3.26/Modules/FindThreads.cmake:136 (try_compile)"
+      - "/cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/share/cmake-3.26/Modules/FindThreads.cmake:169 (_threads_check_flag_pthread)"
+      - "/cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/share/cmake-3.26/Modules/CMakeFindDependencyMacro.cmake:76 (find_package)"
+      - "/cvmfs/sft.cern.ch/lcg/views/LCG_105/x86_64-centos7-gcc12-opt/lib64/cmake/Geant4/PTL/PTLConfig.cmake:56 (find_dependency)"
+      - "/cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/share/cmake-3.26/Modules/CMakeFindDependencyMacro.cmake:76 (find_package)"
+      - "/cvmfs/sft.cern.ch/lcg/views/LCG_105/x86_64-centos7-gcc12-opt/lib64/cmake/Geant4/Geant4Config.cmake:286 (find_dependency)"
+      - "CMakeLists.txt:8 (find_package)"
+    checks:
+      - "Check if compiler accepts -pthread"
+    directories:
+      source: "/lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles/CMakeScratch/TryCompile-VtjlaB"
+      binary: "/lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles/CMakeScratch/TryCompile-VtjlaB"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/cvmfs/sft.cern.ch/lcg/views/LCG_105/x86_64-centos7-gcc12-opt/lib64/cmake/Geant4/Modules"
+    buildResult:
+      variable: "THREADS_HAVE_PTHREAD_ARG"
+      cached: true
+      stdout: |
+        Change Dir: /lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles/CMakeScratch/TryCompile-VtjlaB
+        
+        Run Build Command(s):/cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_0ab4c/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_0ab4c.dir/build.make CMakeFiles/cmTC_0ab4c.dir/build
+        gmake[1]: Entering directory `/lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles/CMakeScratch/TryCompile-VtjlaB'
+        Building C object CMakeFiles/cmTC_0ab4c.dir/CheckForPthreads.c.o
+        /cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/gcc    -o CMakeFiles/cmTC_0ab4c.dir/CheckForPthreads.c.o -c /lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles/CMakeScratch/TryCompile-VtjlaB/CheckForPthreads.c
+        Linking C executable cmTC_0ab4c
+        /cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/bin/cmake -E cmake_link_script CMakeFiles/cmTC_0ab4c.dir/link.txt --verbose=1
+        /cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/gcc CMakeFiles/cmTC_0ab4c.dir/CheckForPthreads.c.o -o cmTC_0ab4c  -pthread 
+        gmake[1]: Leaving directory `/lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles/CMakeScratch/TryCompile-VtjlaB'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/share/cmake-3.26/Modules/CheckLibraryExists.cmake:71 (try_compile)"
+      - "/cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/share/cmake-3.26/Modules/FindX11.cmake:498 (check_library_exists)"
+      - "/cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/share/cmake-3.26/Modules/CMakeFindDependencyMacro.cmake:76 (find_package)"
+      - "/cvmfs/sft.cern.ch/lcg/views/LCG_105/x86_64-centos7-gcc12-opt/lib64/cmake/Geant4/Geant4Config.cmake:384 (find_dependency)"
+      - "CMakeLists.txt:8 (find_package)"
+    checks:
+      - "Looking for XOpenDisplay in /usr/lib64/libX11.so;/usr/lib64/libXext.so"
+    directories:
+      source: "/lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles/CMakeScratch/TryCompile-8bFGKG"
+      binary: "/lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles/CMakeScratch/TryCompile-8bFGKG"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/cvmfs/sft.cern.ch/lcg/views/LCG_105/x86_64-centos7-gcc12-opt/lib64/cmake/Geant4/Modules"
+    buildResult:
+      variable: "X11_LIB_X11_SOLO"
+      cached: true
+      stdout: |
+        Change Dir: /lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles/CMakeScratch/TryCompile-8bFGKG
+        
+        Run Build Command(s):/cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_a1748/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_a1748.dir/build.make CMakeFiles/cmTC_a1748.dir/build
+        gmake[1]: Entering directory `/lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles/CMakeScratch/TryCompile-8bFGKG'
+        Building C object CMakeFiles/cmTC_a1748.dir/CheckFunctionExists.c.o
+        /cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/gcc   -DCHECK_FUNCTION_EXISTS=XOpenDisplay -o CMakeFiles/cmTC_a1748.dir/CheckFunctionExists.c.o -c /lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles/CMakeScratch/TryCompile-8bFGKG/CheckFunctionExists.c
+        Linking C executable cmTC_a1748
+        /cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a1748.dir/link.txt --verbose=1
+        /cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/gcc  -DCHECK_FUNCTION_EXISTS=XOpenDisplay CMakeFiles/cmTC_a1748.dir/CheckFunctionExists.c.o -o cmTC_a1748  /usr/lib64/libX11.so /usr/lib64/libXext.so 
+        gmake[1]: Leaving directory `/lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles/CMakeScratch/TryCompile-8bFGKG'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/share/cmake-3.26/Modules/CheckFunctionExists.cmake:91 (try_compile)"
+      - "/cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/share/cmake-3.26/Modules/FindX11.cmake:513 (check_function_exists)"
+      - "/cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/share/cmake-3.26/Modules/CMakeFindDependencyMacro.cmake:76 (find_package)"
+      - "/cvmfs/sft.cern.ch/lcg/views/LCG_105/x86_64-centos7-gcc12-opt/lib64/cmake/Geant4/Geant4Config.cmake:384 (find_dependency)"
+      - "CMakeLists.txt:8 (find_package)"
+    checks:
+      - "Looking for gethostbyname"
+    directories:
+      source: "/lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles/CMakeScratch/TryCompile-lrr43M"
+      binary: "/lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles/CMakeScratch/TryCompile-lrr43M"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/cvmfs/sft.cern.ch/lcg/views/LCG_105/x86_64-centos7-gcc12-opt/lib64/cmake/Geant4/Modules"
+    buildResult:
+      variable: "CMAKE_HAVE_GETHOSTBYNAME"
+      cached: true
+      stdout: |
+        Change Dir: /lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles/CMakeScratch/TryCompile-lrr43M
+        
+        Run Build Command(s):/cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_f74b6/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_f74b6.dir/build.make CMakeFiles/cmTC_f74b6.dir/build
+        gmake[1]: Entering directory `/lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles/CMakeScratch/TryCompile-lrr43M'
+        Building C object CMakeFiles/cmTC_f74b6.dir/CheckFunctionExists.c.o
+        /cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/gcc   -DCHECK_FUNCTION_EXISTS=gethostbyname -o CMakeFiles/cmTC_f74b6.dir/CheckFunctionExists.c.o -c /lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles/CMakeScratch/TryCompile-lrr43M/CheckFunctionExists.c
+        Linking C executable cmTC_f74b6
+        /cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f74b6.dir/link.txt --verbose=1
+        /cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/gcc  -DCHECK_FUNCTION_EXISTS=gethostbyname CMakeFiles/cmTC_f74b6.dir/CheckFunctionExists.c.o -o cmTC_f74b6 
+        gmake[1]: Leaving directory `/lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles/CMakeScratch/TryCompile-lrr43M'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/share/cmake-3.26/Modules/CheckFunctionExists.cmake:91 (try_compile)"
+      - "/cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/share/cmake-3.26/Modules/FindX11.cmake:527 (check_function_exists)"
+      - "/cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/share/cmake-3.26/Modules/CMakeFindDependencyMacro.cmake:76 (find_package)"
+      - "/cvmfs/sft.cern.ch/lcg/views/LCG_105/x86_64-centos7-gcc12-opt/lib64/cmake/Geant4/Geant4Config.cmake:384 (find_dependency)"
+      - "CMakeLists.txt:8 (find_package)"
+    checks:
+      - "Looking for connect"
+    directories:
+      source: "/lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles/CMakeScratch/TryCompile-8fVgz3"
+      binary: "/lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles/CMakeScratch/TryCompile-8fVgz3"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/cvmfs/sft.cern.ch/lcg/views/LCG_105/x86_64-centos7-gcc12-opt/lib64/cmake/Geant4/Modules"
+    buildResult:
+      variable: "CMAKE_HAVE_CONNECT"
+      cached: true
+      stdout: |
+        Change Dir: /lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles/CMakeScratch/TryCompile-8fVgz3
+        
+        Run Build Command(s):/cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_43fa5/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_43fa5.dir/build.make CMakeFiles/cmTC_43fa5.dir/build
+        gmake[1]: Entering directory `/lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles/CMakeScratch/TryCompile-8fVgz3'
+        Building C object CMakeFiles/cmTC_43fa5.dir/CheckFunctionExists.c.o
+        /cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/gcc   -DCHECK_FUNCTION_EXISTS=connect -o CMakeFiles/cmTC_43fa5.dir/CheckFunctionExists.c.o -c /lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles/CMakeScratch/TryCompile-8fVgz3/CheckFunctionExists.c
+        Linking C executable cmTC_43fa5
+        /cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/bin/cmake -E cmake_link_script CMakeFiles/cmTC_43fa5.dir/link.txt --verbose=1
+        /cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/gcc  -DCHECK_FUNCTION_EXISTS=connect CMakeFiles/cmTC_43fa5.dir/CheckFunctionExists.c.o -o cmTC_43fa5 
+        gmake[1]: Leaving directory `/lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles/CMakeScratch/TryCompile-8fVgz3'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/share/cmake-3.26/Modules/CheckFunctionExists.cmake:91 (try_compile)"
+      - "/cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/share/cmake-3.26/Modules/FindX11.cmake:536 (check_function_exists)"
+      - "/cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/share/cmake-3.26/Modules/CMakeFindDependencyMacro.cmake:76 (find_package)"
+      - "/cvmfs/sft.cern.ch/lcg/views/LCG_105/x86_64-centos7-gcc12-opt/lib64/cmake/Geant4/Geant4Config.cmake:384 (find_dependency)"
+      - "CMakeLists.txt:8 (find_package)"
+    checks:
+      - "Looking for remove"
+    directories:
+      source: "/lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles/CMakeScratch/TryCompile-LE6obq"
+      binary: "/lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles/CMakeScratch/TryCompile-LE6obq"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/cvmfs/sft.cern.ch/lcg/views/LCG_105/x86_64-centos7-gcc12-opt/lib64/cmake/Geant4/Modules"
+    buildResult:
+      variable: "CMAKE_HAVE_REMOVE"
+      cached: true
+      stdout: |
+        Change Dir: /lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles/CMakeScratch/TryCompile-LE6obq
+        
+        Run Build Command(s):/cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_d4037/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_d4037.dir/build.make CMakeFiles/cmTC_d4037.dir/build
+        gmake[1]: Entering directory `/lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles/CMakeScratch/TryCompile-LE6obq'
+        Building C object CMakeFiles/cmTC_d4037.dir/CheckFunctionExists.c.o
+        /cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/gcc   -DCHECK_FUNCTION_EXISTS=remove -o CMakeFiles/cmTC_d4037.dir/CheckFunctionExists.c.o -c /lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles/CMakeScratch/TryCompile-LE6obq/CheckFunctionExists.c
+        Linking C executable cmTC_d4037
+        /cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d4037.dir/link.txt --verbose=1
+        /cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/gcc  -DCHECK_FUNCTION_EXISTS=remove CMakeFiles/cmTC_d4037.dir/CheckFunctionExists.c.o -o cmTC_d4037 
+        gmake[1]: Leaving directory `/lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles/CMakeScratch/TryCompile-LE6obq'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/share/cmake-3.26/Modules/CheckFunctionExists.cmake:91 (try_compile)"
+      - "/cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/share/cmake-3.26/Modules/FindX11.cmake:545 (check_function_exists)"
+      - "/cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/share/cmake-3.26/Modules/CMakeFindDependencyMacro.cmake:76 (find_package)"
+      - "/cvmfs/sft.cern.ch/lcg/views/LCG_105/x86_64-centos7-gcc12-opt/lib64/cmake/Geant4/Geant4Config.cmake:384 (find_dependency)"
+      - "CMakeLists.txt:8 (find_package)"
+    checks:
+      - "Looking for shmat"
+    directories:
+      source: "/lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles/CMakeScratch/TryCompile-CfjSFO"
+      binary: "/lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles/CMakeScratch/TryCompile-CfjSFO"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/cvmfs/sft.cern.ch/lcg/views/LCG_105/x86_64-centos7-gcc12-opt/lib64/cmake/Geant4/Modules"
+    buildResult:
+      variable: "CMAKE_HAVE_SHMAT"
+      cached: true
+      stdout: |
+        Change Dir: /lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles/CMakeScratch/TryCompile-CfjSFO
+        
+        Run Build Command(s):/cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_55677/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_55677.dir/build.make CMakeFiles/cmTC_55677.dir/build
+        gmake[1]: Entering directory `/lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles/CMakeScratch/TryCompile-CfjSFO'
+        Building C object CMakeFiles/cmTC_55677.dir/CheckFunctionExists.c.o
+        /cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/gcc   -DCHECK_FUNCTION_EXISTS=shmat -o CMakeFiles/cmTC_55677.dir/CheckFunctionExists.c.o -c /lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles/CMakeScratch/TryCompile-CfjSFO/CheckFunctionExists.c
+        Linking C executable cmTC_55677
+        /cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/bin/cmake -E cmake_link_script CMakeFiles/cmTC_55677.dir/link.txt --verbose=1
+        /cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/gcc  -DCHECK_FUNCTION_EXISTS=shmat CMakeFiles/cmTC_55677.dir/CheckFunctionExists.c.o -o cmTC_55677 
+        gmake[1]: Leaving directory `/lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles/CMakeScratch/TryCompile-CfjSFO'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/share/cmake-3.26/Modules/CheckLibraryExists.cmake:71 (try_compile)"
+      - "/cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/share/cmake-3.26/Modules/FindX11.cmake:555 (check_library_exists)"
+      - "/cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/share/cmake-3.26/Modules/CMakeFindDependencyMacro.cmake:76 (find_package)"
+      - "/cvmfs/sft.cern.ch/lcg/views/LCG_105/x86_64-centos7-gcc12-opt/lib64/cmake/Geant4/Geant4Config.cmake:384 (find_dependency)"
+      - "CMakeLists.txt:8 (find_package)"
+    checks:
+      - "Looking for IceConnectionNumber in ICE"
+    directories:
+      source: "/lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles/CMakeScratch/TryCompile-Xdrzzu"
+      binary: "/lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles/CMakeScratch/TryCompile-Xdrzzu"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/cvmfs/sft.cern.ch/lcg/views/LCG_105/x86_64-centos7-gcc12-opt/lib64/cmake/Geant4/Modules"
+    buildResult:
+      variable: "CMAKE_LIB_ICE_HAS_ICECONNECTIONNUMBER"
+      cached: true
+      stdout: |
+        Change Dir: /lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles/CMakeScratch/TryCompile-Xdrzzu
+        
+        Run Build Command(s):/cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_5edc9/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_5edc9.dir/build.make CMakeFiles/cmTC_5edc9.dir/build
+        gmake[1]: Entering directory `/lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles/CMakeScratch/TryCompile-Xdrzzu'
+        Building C object CMakeFiles/cmTC_5edc9.dir/CheckFunctionExists.c.o
+        /cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/gcc   -DCHECK_FUNCTION_EXISTS=IceConnectionNumber -o CMakeFiles/cmTC_5edc9.dir/CheckFunctionExists.c.o -c /lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles/CMakeScratch/TryCompile-Xdrzzu/CheckFunctionExists.c
+        Linking C executable cmTC_5edc9
+        /cvmfs/sft.cern.ch/lcg/releases/CMake/3.26.2-0664a/x86_64-centos7-gcc12-opt/bin/cmake -E cmake_link_script CMakeFiles/cmTC_5edc9.dir/link.txt --verbose=1
+        /cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/gcc  -DCHECK_FUNCTION_EXISTS=IceConnectionNumber CMakeFiles/cmTC_5edc9.dir/CheckFunctionExists.c.o -o cmTC_5edc9  -lICE 
+        gmake[1]: Leaving directory `/lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles/CMakeScratch/TryCompile-Xdrzzu'
+        
+      exitCode: 0
+...

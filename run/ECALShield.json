@@ -1,0 +1,2925 @@
+{
+  "_typename" : "TGeoManager",
+  "fUniqueID" : 0,
+  "fBits" : 0,
+  "fName" : "Default",
+  "fTitle" : "Geometry imported from GDML",
+  "fNNodes" : 52,
+  "fVisDensity" : 0,
+  "fExplodedView" : 0,
+  "fVisOption" : 1,
+  "fVisLevel" : 3,
+  "fNsegments" : 20,
+  "fNtracks" : 0,
+  "fMaxVisNodes" : 10000,
+  "fNpdg" : 0,
+  "fPdgId" : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  "fStreamVoxels" : false,
+  "fPhiCut" : false,
+  "fTimeCut" : false,
+  "fMatrices" : {
+    "_typename" : "TObjArray",
+    "name" : "TObjArray",
+    "arr" : [{
+      "_typename" : "TGeoIdentity",
+      "fUniqueID" : 0,
+      "fBits" : 2097152,
+      "fName" : "Identity",
+      "fTitle" : ""
+    }, {
+      "_typename" : "TGeoCombiTrans",
+      "fUniqueID" : 0,
+      "fBits" : 2097152,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [0, 0, 0],
+      "fRotation" : null
+    }, {
+      "_typename" : "TGeoCombiTrans",
+      "fUniqueID" : 0,
+      "fBits" : 2097152,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [0, 0, 0],
+      "fRotation" : null
+    }, {
+      "_typename" : "TGeoCombiTrans",
+      "fUniqueID" : 0,
+      "fBits" : 2097152,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [0, 0, 0],
+      "fRotation" : null
+    }, {
+      "_typename" : "TGeoCombiTrans",
+      "fUniqueID" : 0,
+      "fBits" : 2228224,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [0, 0, 10.03],
+      "fRotation" : null
+    }, {
+      "_typename" : "TGeoCombiTrans",
+      "fUniqueID" : 0,
+      "fBits" : 2097152,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [0, 0, 0],
+      "fRotation" : null
+    }, {
+      "_typename" : "TGeoCombiTrans",
+      "fUniqueID" : 0,
+      "fBits" : 2228224,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [-13.24, -13.24, 0],
+      "fRotation" : null
+    }, {
+      "_typename" : "TGeoCombiTrans",
+      "fUniqueID" : 0,
+      "fBits" : 2097152,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [0, 0, 0],
+      "fRotation" : null
+    }, {
+      "_typename" : "TGeoCombiTrans",
+      "fUniqueID" : 0,
+      "fBits" : 2228224,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [-13.24, -6.62, 0],
+      "fRotation" : null
+    }, {
+      "_typename" : "TGeoCombiTrans",
+      "fUniqueID" : 0,
+      "fBits" : 2097152,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [0, 0, 0],
+      "fRotation" : null
+    }, {
+      "_typename" : "TGeoCombiTrans",
+      "fUniqueID" : 0,
+      "fBits" : 2228224,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [-13.24, 0, 0],
+      "fRotation" : null
+    }, {
+      "_typename" : "TGeoCombiTrans",
+      "fUniqueID" : 0,
+      "fBits" : 2097152,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [0, 0, 0],
+      "fRotation" : null
+    }, {
+      "_typename" : "TGeoCombiTrans",
+      "fUniqueID" : 0,
+      "fBits" : 2228224,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [-13.24, 6.62, 0],
+      "fRotation" : null
+    }, {
+      "_typename" : "TGeoCombiTrans",
+      "fUniqueID" : 0,
+      "fBits" : 2097152,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [0, 0, 0],
+      "fRotation" : null
+    }, {
+      "_typename" : "TGeoCombiTrans",
+      "fUniqueID" : 0,
+      "fBits" : 2228224,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [-13.24, 13.24, 0],
+      "fRotation" : null
+    }, {
+      "_typename" : "TGeoCombiTrans",
+      "fUniqueID" : 0,
+      "fBits" : 2097152,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [0, 0, 0],
+      "fRotation" : null
+    }, {
+      "_typename" : "TGeoCombiTrans",
+      "fUniqueID" : 0,
+      "fBits" : 2228224,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [-6.62, -13.24, 0],
+      "fRotation" : null
+    }, {
+      "_typename" : "TGeoCombiTrans",
+      "fUniqueID" : 0,
+      "fBits" : 2097152,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [0, 0, 0],
+      "fRotation" : null
+    }, {
+      "_typename" : "TGeoCombiTrans",
+      "fUniqueID" : 0,
+      "fBits" : 2228224,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [-6.62, -6.62, 0],
+      "fRotation" : null
+    }, {
+      "_typename" : "TGeoCombiTrans",
+      "fUniqueID" : 0,
+      "fBits" : 2097152,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [0, 0, 0],
+      "fRotation" : null
+    }, {
+      "_typename" : "TGeoCombiTrans",
+      "fUniqueID" : 0,
+      "fBits" : 2228224,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [-6.62, 0, 0],
+      "fRotation" : null
+    }, {
+      "_typename" : "TGeoCombiTrans",
+      "fUniqueID" : 0,
+      "fBits" : 2097152,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [0, 0, 0],
+      "fRotation" : null
+    }, {
+      "_typename" : "TGeoCombiTrans",
+      "fUniqueID" : 0,
+      "fBits" : 2228224,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [-6.62, 6.62, 0],
+      "fRotation" : null
+    }, {
+      "_typename" : "TGeoCombiTrans",
+      "fUniqueID" : 0,
+      "fBits" : 2097152,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [0, 0, 0],
+      "fRotation" : null
+    }, {
+      "_typename" : "TGeoCombiTrans",
+      "fUniqueID" : 0,
+      "fBits" : 2228224,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [-6.62, 13.24, 0],
+      "fRotation" : null
+    }, {
+      "_typename" : "TGeoCombiTrans",
+      "fUniqueID" : 0,
+      "fBits" : 2097152,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [0, 0, 0],
+      "fRotation" : null
+    }, {
+      "_typename" : "TGeoCombiTrans",
+      "fUniqueID" : 0,
+      "fBits" : 2228224,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [0, -13.24, 0],
+      "fRotation" : null
+    }, {
+      "_typename" : "TGeoCombiTrans",
+      "fUniqueID" : 0,
+      "fBits" : 2097152,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [0, 0, 0],
+      "fRotation" : null
+    }, {
+      "_typename" : "TGeoCombiTrans",
+      "fUniqueID" : 0,
+      "fBits" : 2228224,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [0, -6.62, 0],
+      "fRotation" : null
+    }, {
+      "_typename" : "TGeoCombiTrans",
+      "fUniqueID" : 0,
+      "fBits" : 2097152,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [0, 0, 0],
+      "fRotation" : null
+    }, {
+      "_typename" : "TGeoCombiTrans",
+      "fUniqueID" : 0,
+      "fBits" : 2228224,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [0, 6.62, 0],
+      "fRotation" : null
+    }, {
+      "_typename" : "TGeoCombiTrans",
+      "fUniqueID" : 0,
+      "fBits" : 2097152,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [0, 0, 0],
+      "fRotation" : null
+    }, {
+      "_typename" : "TGeoCombiTrans",
+      "fUniqueID" : 0,
+      "fBits" : 2228224,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [0, 13.24, 0],
+      "fRotation" : null
+    }, {
+      "_typename" : "TGeoCombiTrans",
+      "fUniqueID" : 0,
+      "fBits" : 2097152,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [0, 0, 0],
+      "fRotation" : null
+    }, {
+      "_typename" : "TGeoCombiTrans",
+      "fUniqueID" : 0,
+      "fBits" : 2228224,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [6.62, -13.24, 0],
+      "fRotation" : null
+    }, {
+      "_typename" : "TGeoCombiTrans",
+      "fUniqueID" : 0,
+      "fBits" : 2097152,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [0, 0, 0],
+      "fRotation" : null
+    }, {
+      "_typename" : "TGeoCombiTrans",
+      "fUniqueID" : 0,
+      "fBits" : 2228224,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [6.62, -6.62, 0],
+      "fRotation" : null
+    }, {
+      "_typename" : "TGeoCombiTrans",
+      "fUniqueID" : 0,
+      "fBits" : 2097152,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [0, 0, 0],
+      "fRotation" : null
+    }, {
+      "_typename" : "TGeoCombiTrans",
+      "fUniqueID" : 0,
+      "fBits" : 2228224,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [6.62, 0, 0],
+      "fRotation" : null
+    }, {
+      "_typename" : "TGeoCombiTrans",
+      "fUniqueID" : 0,
+      "fBits" : 2097152,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [0, 0, 0],
+      "fRotation" : null
+    }, {
+      "_typename" : "TGeoCombiTrans",
+      "fUniqueID" : 0,
+      "fBits" : 2228224,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [6.62, 6.62, 0],
+      "fRotation" : null
+    }, {
+      "_typename" : "TGeoCombiTrans",
+      "fUniqueID" : 0,
+      "fBits" : 2097152,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [0, 0, 0],
+      "fRotation" : null
+    }, {
+      "_typename" : "TGeoCombiTrans",
+      "fUniqueID" : 0,
+      "fBits" : 2228224,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [6.62, 13.24, 0],
+      "fRotation" : null
+    }, {
+      "_typename" : "TGeoCombiTrans",
+      "fUniqueID" : 0,
+      "fBits" : 2097152,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [0, 0, 0],
+      "fRotation" : null
+    }, {
+      "_typename" : "TGeoCombiTrans",
+      "fUniqueID" : 0,
+      "fBits" : 2228224,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [13.24, -13.24, 0],
+      "fRotation" : null
+    }, {
+      "_typename" : "TGeoCombiTrans",
+      "fUniqueID" : 0,
+      "fBits" : 2097152,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [0, 0, 0],
+      "fRotation" : null
+    }, {
+      "_typename" : "TGeoCombiTrans",
+      "fUniqueID" : 0,
+      "fBits" : 2228224,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [13.24, -6.62, 0],
+      "fRotation" : null
+    }, {
+      "_typename" : "TGeoCombiTrans",
+      "fUniqueID" : 0,
+      "fBits" : 2097152,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [0, 0, 0],
+      "fRotation" : null
+    }, {
+      "_typename" : "TGeoCombiTrans",
+      "fUniqueID" : 0,
+      "fBits" : 2228224,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [13.24, 0, 0],
+      "fRotation" : null
+    }, {
+      "_typename" : "TGeoCombiTrans",
+      "fUniqueID" : 0,
+      "fBits" : 2097152,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [0, 0, 0],
+      "fRotation" : null
+    }, {
+      "_typename" : "TGeoCombiTrans",
+      "fUniqueID" : 0,
+      "fBits" : 2228224,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [13.24, 6.62, 0],
+      "fRotation" : null
+    }, {
+      "_typename" : "TGeoCombiTrans",
+      "fUniqueID" : 0,
+      "fBits" : 2097152,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [0, 0, 0],
+      "fRotation" : null
+    }, {
+      "_typename" : "TGeoCombiTrans",
+      "fUniqueID" : 0,
+      "fBits" : 2228224,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [13.24, 13.24, 0],
+      "fRotation" : null
+    }, {
+      "_typename" : "TGeoCombiTrans",
+      "fUniqueID" : 0,
+      "fBits" : 2097152,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [0, 0, 0],
+      "fRotation" : null
+    }, {
+      "_typename" : "TGeoCombiTrans",
+      "fUniqueID" : 0,
+      "fBits" : 2097152,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [0, 0, 0],
+      "fRotation" : null
+    }, {
+      "_typename" : "TGeoHMatrix",
+      "fUniqueID" : 0,
+      "fBits" : 2228224,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [-13.24, -13.24, 0],
+      "fRotationMatrix" : [1, 0, 0, 0, 1, 0, 0, 0, 1],
+      "fScale" : [1, 1, 1]
+    }, {
+      "_typename" : "TGeoHMatrix",
+      "fUniqueID" : 0,
+      "fBits" : 2228224,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [-13.24, -13.24, 0],
+      "fRotationMatrix" : [1, 0, 0, 0, 1, 0, 0, 0, 1],
+      "fScale" : [1, 1, 1]
+    }, {
+      "_typename" : "TGeoHMatrix",
+      "fUniqueID" : 0,
+      "fBits" : 2228224,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [-13.24, -6.62, 0],
+      "fRotationMatrix" : [1, 0, 0, 0, 1, 0, 0, 0, 1],
+      "fScale" : [1, 1, 1]
+    }, {
+      "_typename" : "TGeoHMatrix",
+      "fUniqueID" : 0,
+      "fBits" : 2228224,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [-13.24, -6.62, 0],
+      "fRotationMatrix" : [1, 0, 0, 0, 1, 0, 0, 0, 1],
+      "fScale" : [1, 1, 1]
+    }, {
+      "_typename" : "TGeoHMatrix",
+      "fUniqueID" : 0,
+      "fBits" : 2228224,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [-13.24, 0, 0],
+      "fRotationMatrix" : [1, 0, 0, 0, 1, 0, 0, 0, 1],
+      "fScale" : [1, 1, 1]
+    }, {
+      "_typename" : "TGeoHMatrix",
+      "fUniqueID" : 0,
+      "fBits" : 2228224,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [-13.24, 0, 0],
+      "fRotationMatrix" : [1, 0, 0, 0, 1, 0, 0, 0, 1],
+      "fScale" : [1, 1, 1]
+    }, {
+      "_typename" : "TGeoHMatrix",
+      "fUniqueID" : 0,
+      "fBits" : 2228224,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [-13.24, 6.62, 0],
+      "fRotationMatrix" : [1, 0, 0, 0, 1, 0, 0, 0, 1],
+      "fScale" : [1, 1, 1]
+    }, {
+      "_typename" : "TGeoHMatrix",
+      "fUniqueID" : 0,
+      "fBits" : 2228224,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [-13.24, 6.62, 0],
+      "fRotationMatrix" : [1, 0, 0, 0, 1, 0, 0, 0, 1],
+      "fScale" : [1, 1, 1]
+    }, {
+      "_typename" : "TGeoHMatrix",
+      "fUniqueID" : 0,
+      "fBits" : 2228224,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [-13.24, 13.24, 0],
+      "fRotationMatrix" : [1, 0, 0, 0, 1, 0, 0, 0, 1],
+      "fScale" : [1, 1, 1]
+    }, {
+      "_typename" : "TGeoHMatrix",
+      "fUniqueID" : 0,
+      "fBits" : 2228224,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [-13.24, 13.24, 0],
+      "fRotationMatrix" : [1, 0, 0, 0, 1, 0, 0, 0, 1],
+      "fScale" : [1, 1, 1]
+    }, {
+      "_typename" : "TGeoHMatrix",
+      "fUniqueID" : 0,
+      "fBits" : 2228224,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [-6.62, -13.24, 0],
+      "fRotationMatrix" : [1, 0, 0, 0, 1, 0, 0, 0, 1],
+      "fScale" : [1, 1, 1]
+    }, {
+      "_typename" : "TGeoHMatrix",
+      "fUniqueID" : 0,
+      "fBits" : 2228224,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [-6.62, -13.24, 0],
+      "fRotationMatrix" : [1, 0, 0, 0, 1, 0, 0, 0, 1],
+      "fScale" : [1, 1, 1]
+    }, {
+      "_typename" : "TGeoHMatrix",
+      "fUniqueID" : 0,
+      "fBits" : 2228224,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [-6.62, -6.62, 0],
+      "fRotationMatrix" : [1, 0, 0, 0, 1, 0, 0, 0, 1],
+      "fScale" : [1, 1, 1]
+    }, {
+      "_typename" : "TGeoHMatrix",
+      "fUniqueID" : 0,
+      "fBits" : 2228224,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [-6.62, -6.62, 0],
+      "fRotationMatrix" : [1, 0, 0, 0, 1, 0, 0, 0, 1],
+      "fScale" : [1, 1, 1]
+    }, {
+      "_typename" : "TGeoHMatrix",
+      "fUniqueID" : 0,
+      "fBits" : 2228224,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [-6.62, 0, 0],
+      "fRotationMatrix" : [1, 0, 0, 0, 1, 0, 0, 0, 1],
+      "fScale" : [1, 1, 1]
+    }, {
+      "_typename" : "TGeoHMatrix",
+      "fUniqueID" : 0,
+      "fBits" : 2228224,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [-6.62, 0, 0],
+      "fRotationMatrix" : [1, 0, 0, 0, 1, 0, 0, 0, 1],
+      "fScale" : [1, 1, 1]
+    }, {
+      "_typename" : "TGeoHMatrix",
+      "fUniqueID" : 0,
+      "fBits" : 2228224,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [-6.62, 6.62, 0],
+      "fRotationMatrix" : [1, 0, 0, 0, 1, 0, 0, 0, 1],
+      "fScale" : [1, 1, 1]
+    }, {
+      "_typename" : "TGeoHMatrix",
+      "fUniqueID" : 0,
+      "fBits" : 2228224,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [-6.62, 6.62, 0],
+      "fRotationMatrix" : [1, 0, 0, 0, 1, 0, 0, 0, 1],
+      "fScale" : [1, 1, 1]
+    }, {
+      "_typename" : "TGeoHMatrix",
+      "fUniqueID" : 0,
+      "fBits" : 2228224,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [-6.62, 13.24, 0],
+      "fRotationMatrix" : [1, 0, 0, 0, 1, 0, 0, 0, 1],
+      "fScale" : [1, 1, 1]
+    }, {
+      "_typename" : "TGeoHMatrix",
+      "fUniqueID" : 0,
+      "fBits" : 2228224,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [-6.62, 13.24, 0],
+      "fRotationMatrix" : [1, 0, 0, 0, 1, 0, 0, 0, 1],
+      "fScale" : [1, 1, 1]
+    }, {
+      "_typename" : "TGeoHMatrix",
+      "fUniqueID" : 0,
+      "fBits" : 2228224,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [0, -13.24, 0],
+      "fRotationMatrix" : [1, 0, 0, 0, 1, 0, 0, 0, 1],
+      "fScale" : [1, 1, 1]
+    }, {
+      "_typename" : "TGeoHMatrix",
+      "fUniqueID" : 0,
+      "fBits" : 2228224,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [0, -13.24, 0],
+      "fRotationMatrix" : [1, 0, 0, 0, 1, 0, 0, 0, 1],
+      "fScale" : [1, 1, 1]
+    }, {
+      "_typename" : "TGeoHMatrix",
+      "fUniqueID" : 0,
+      "fBits" : 2228224,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [0, -6.62, 0],
+      "fRotationMatrix" : [1, 0, 0, 0, 1, 0, 0, 0, 1],
+      "fScale" : [1, 1, 1]
+    }, {
+      "_typename" : "TGeoHMatrix",
+      "fUniqueID" : 0,
+      "fBits" : 2228224,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [0, -6.62, 0],
+      "fRotationMatrix" : [1, 0, 0, 0, 1, 0, 0, 0, 1],
+      "fScale" : [1, 1, 1]
+    }, {
+      "_typename" : "TGeoHMatrix",
+      "fUniqueID" : 0,
+      "fBits" : 2097152,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [0, 0, 0],
+      "fRotationMatrix" : [1, 0, 0, 0, 1, 0, 0, 0, 1],
+      "fScale" : [1, 1, 1]
+    }, {
+      "_typename" : "TGeoHMatrix",
+      "fUniqueID" : 0,
+      "fBits" : 2097152,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [0, 0, 0],
+      "fRotationMatrix" : [1, 0, 0, 0, 1, 0, 0, 0, 1],
+      "fScale" : [1, 1, 1]
+    }, {
+      "_typename" : "TGeoHMatrix",
+      "fUniqueID" : 0,
+      "fBits" : 2228224,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [0, 6.62, 0],
+      "fRotationMatrix" : [1, 0, 0, 0, 1, 0, 0, 0, 1],
+      "fScale" : [1, 1, 1]
+    }, {
+      "_typename" : "TGeoHMatrix",
+      "fUniqueID" : 0,
+      "fBits" : 2228224,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [0, 6.62, 0],
+      "fRotationMatrix" : [1, 0, 0, 0, 1, 0, 0, 0, 1],
+      "fScale" : [1, 1, 1]
+    }, {
+      "_typename" : "TGeoHMatrix",
+      "fUniqueID" : 0,
+      "fBits" : 2228224,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [0, 13.24, 0],
+      "fRotationMatrix" : [1, 0, 0, 0, 1, 0, 0, 0, 1],
+      "fScale" : [1, 1, 1]
+    }, {
+      "_typename" : "TGeoHMatrix",
+      "fUniqueID" : 0,
+      "fBits" : 2228224,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [0, 13.24, 0],
+      "fRotationMatrix" : [1, 0, 0, 0, 1, 0, 0, 0, 1],
+      "fScale" : [1, 1, 1]
+    }, {
+      "_typename" : "TGeoHMatrix",
+      "fUniqueID" : 0,
+      "fBits" : 2228224,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [6.62, -13.24, 0],
+      "fRotationMatrix" : [1, 0, 0, 0, 1, 0, 0, 0, 1],
+      "fScale" : [1, 1, 1]
+    }, {
+      "_typename" : "TGeoHMatrix",
+      "fUniqueID" : 0,
+      "fBits" : 2228224,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [6.62, -13.24, 0],
+      "fRotationMatrix" : [1, 0, 0, 0, 1, 0, 0, 0, 1],
+      "fScale" : [1, 1, 1]
+    }, {
+      "_typename" : "TGeoHMatrix",
+      "fUniqueID" : 0,
+      "fBits" : 2228224,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [6.62, -6.62, 0],
+      "fRotationMatrix" : [1, 0, 0, 0, 1, 0, 0, 0, 1],
+      "fScale" : [1, 1, 1]
+    }, {
+      "_typename" : "TGeoHMatrix",
+      "fUniqueID" : 0,
+      "fBits" : 2228224,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [6.62, -6.62, 0],
+      "fRotationMatrix" : [1, 0, 0, 0, 1, 0, 0, 0, 1],
+      "fScale" : [1, 1, 1]
+    }, {
+      "_typename" : "TGeoHMatrix",
+      "fUniqueID" : 0,
+      "fBits" : 2228224,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [6.62, 0, 0],
+      "fRotationMatrix" : [1, 0, 0, 0, 1, 0, 0, 0, 1],
+      "fScale" : [1, 1, 1]
+    }, {
+      "_typename" : "TGeoHMatrix",
+      "fUniqueID" : 0,
+      "fBits" : 2228224,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [6.62, 0, 0],
+      "fRotationMatrix" : [1, 0, 0, 0, 1, 0, 0, 0, 1],
+      "fScale" : [1, 1, 1]
+    }, {
+      "_typename" : "TGeoHMatrix",
+      "fUniqueID" : 0,
+      "fBits" : 2228224,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [6.62, 6.62, 0],
+      "fRotationMatrix" : [1, 0, 0, 0, 1, 0, 0, 0, 1],
+      "fScale" : [1, 1, 1]
+    }, {
+      "_typename" : "TGeoHMatrix",
+      "fUniqueID" : 0,
+      "fBits" : 2228224,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [6.62, 6.62, 0],
+      "fRotationMatrix" : [1, 0, 0, 0, 1, 0, 0, 0, 1],
+      "fScale" : [1, 1, 1]
+    }, {
+      "_typename" : "TGeoHMatrix",
+      "fUniqueID" : 0,
+      "fBits" : 2228224,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [6.62, 13.24, 0],
+      "fRotationMatrix" : [1, 0, 0, 0, 1, 0, 0, 0, 1],
+      "fScale" : [1, 1, 1]
+    }, {
+      "_typename" : "TGeoHMatrix",
+      "fUniqueID" : 0,
+      "fBits" : 2228224,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [6.62, 13.24, 0],
+      "fRotationMatrix" : [1, 0, 0, 0, 1, 0, 0, 0, 1],
+      "fScale" : [1, 1, 1]
+    }, {
+      "_typename" : "TGeoHMatrix",
+      "fUniqueID" : 0,
+      "fBits" : 2228224,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [13.24, -13.24, 0],
+      "fRotationMatrix" : [1, 0, 0, 0, 1, 0, 0, 0, 1],
+      "fScale" : [1, 1, 1]
+    }, {
+      "_typename" : "TGeoHMatrix",
+      "fUniqueID" : 0,
+      "fBits" : 2228224,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [13.24, -13.24, 0],
+      "fRotationMatrix" : [1, 0, 0, 0, 1, 0, 0, 0, 1],
+      "fScale" : [1, 1, 1]
+    }, {
+      "_typename" : "TGeoHMatrix",
+      "fUniqueID" : 0,
+      "fBits" : 2228224,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [13.24, -6.62, 0],
+      "fRotationMatrix" : [1, 0, 0, 0, 1, 0, 0, 0, 1],
+      "fScale" : [1, 1, 1]
+    }, {
+      "_typename" : "TGeoHMatrix",
+      "fUniqueID" : 0,
+      "fBits" : 2228224,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [13.24, -6.62, 0],
+      "fRotationMatrix" : [1, 0, 0, 0, 1, 0, 0, 0, 1],
+      "fScale" : [1, 1, 1]
+    }, {
+      "_typename" : "TGeoHMatrix",
+      "fUniqueID" : 0,
+      "fBits" : 2228224,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [13.24, 0, 0],
+      "fRotationMatrix" : [1, 0, 0, 0, 1, 0, 0, 0, 1],
+      "fScale" : [1, 1, 1]
+    }, {
+      "_typename" : "TGeoHMatrix",
+      "fUniqueID" : 0,
+      "fBits" : 2228224,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [13.24, 0, 0],
+      "fRotationMatrix" : [1, 0, 0, 0, 1, 0, 0, 0, 1],
+      "fScale" : [1, 1, 1]
+    }, {
+      "_typename" : "TGeoHMatrix",
+      "fUniqueID" : 0,
+      "fBits" : 2228224,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [13.24, 6.62, 0],
+      "fRotationMatrix" : [1, 0, 0, 0, 1, 0, 0, 0, 1],
+      "fScale" : [1, 1, 1]
+    }, {
+      "_typename" : "TGeoHMatrix",
+      "fUniqueID" : 0,
+      "fBits" : 2228224,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [13.24, 6.62, 0],
+      "fRotationMatrix" : [1, 0, 0, 0, 1, 0, 0, 0, 1],
+      "fScale" : [1, 1, 1]
+    }, {
+      "_typename" : "TGeoHMatrix",
+      "fUniqueID" : 0,
+      "fBits" : 2228224,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [13.24, 13.24, 0],
+      "fRotationMatrix" : [1, 0, 0, 0, 1, 0, 0, 0, 1],
+      "fScale" : [1, 1, 1]
+    }, {
+      "_typename" : "TGeoHMatrix",
+      "fUniqueID" : 0,
+      "fBits" : 2228224,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [13.24, 13.24, 0],
+      "fRotationMatrix" : [1, 0, 0, 0, 1, 0, 0, 0, 1],
+      "fScale" : [1, 1, 1]
+    }, {
+      "_typename" : "TGeoHMatrix",
+      "fUniqueID" : 0,
+      "fBits" : 2097152,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [0, 0, 0],
+      "fRotationMatrix" : [1, 0, 0, 0, 1, 0, 0, 0, 1],
+      "fScale" : [1, 1, 1]
+    }, {
+      "_typename" : "TGeoHMatrix",
+      "fUniqueID" : 0,
+      "fBits" : 2097152,
+      "fName" : "Identity",
+      "fTitle" : "",
+      "fTranslation" : [0, 0, 0],
+      "fRotationMatrix" : [1, 0, 0, 0, 1, 0, 0, 0, 1],
+      "fScale" : [1, 1, 1]
+    }, {
+      "_typename" : "TGeoHMatrix",
+      "fUniqueID" : 0,
+      "fBits" : 2097152,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [0, 0, 0],
+      "fRotationMatrix" : [1, 0, 0, 0, 1, 0, 0, 0, 1],
+      "fScale" : [1, 1, 1]
+    }, {
+      "_typename" : "TGeoHMatrix",
+      "fUniqueID" : 0,
+      "fBits" : 2097152,
+      "fName" : "Identity",
+      "fTitle" : "",
+      "fTranslation" : [0, 0, 0],
+      "fRotationMatrix" : [1, 0, 0, 0, 1, 0, 0, 0, 1],
+      "fScale" : [1, 1, 1]
+    }, {
+      "_typename" : "TGeoHMatrix",
+      "fUniqueID" : 0,
+      "fBits" : 2097152,
+      "fName" : "",
+      "fTitle" : "",
+      "fTranslation" : [0, 0, 0],
+      "fRotationMatrix" : [1, 0, 0, 0, 1, 0, 0, 0, 1],
+      "fScale" : [1, 1, 1]
+    }]
+  },
+  "fShapes" : {
+    "_typename" : "TObjArray",
+    "name" : "TObjArray",
+    "arr" : [{
+      "_typename" : "TGeoBBox",
+      "fUniqueID" : 0,
+      "fBits" : 0,
+      "fName" : "solidCsI",
+      "fTitle" : "",
+      "fShapeId" : 256,
+      "fShapeBits" : 1024,
+      "fDX" : 3,
+      "fDY" : 3,
+      "fDZ" : 10,
+      "fOrigin" : [0, 0, 0]
+    }, {
+      "_typename" : "TGeoBBox",
+      "fUniqueID" : 0,
+      "fBits" : 0,
+      "fName" : "TiO2",
+      "fTitle" : "",
+      "fShapeId" : 256,
+      "fShapeBits" : 1024,
+      "fDX" : 3.06,
+      "fDY" : 3.06,
+      "fDZ" : 10.06,
+      "fOrigin" : [0, 0, 0]
+    }, {
+      "_typename" : "TGeoBBox",
+      "fUniqueID" : 0,
+      "fBits" : 0,
+      "fName" : "CsI",
+      "fTitle" : "",
+      "fShapeId" : 256,
+      "fShapeBits" : 1024,
+      "fDX" : 3,
+      "fDY" : 3,
+      "fDZ" : 10,
+      "fOrigin" : [0, 0, 0]
+    }, {
+      "_typename" : "TGeoCompositeShape",
+      "fUniqueID" : 0,
+      "fBits" : 0,
+      "fName" : "sTiO2",
+      "fTitle" : "",
+      "fShapeId" : 256,
+      "fShapeBits" : 1024,
+      "fDX" : 3.06,
+      "fDY" : 3.06,
+      "fDZ" : 10.06,
+      "fOrigin" : [0, 0, 0],
+      "fNode" : {
+        "_typename" : "TGeoSubtraction",
+        "fUniqueID" : 0,
+        "fBits" : 0,
+        "fLeft" : {"$ref":114},
+        "fRight" : {"$ref":115},
+        "fLeftMat" : {"$ref":3},
+        "fRightMat" : {"$ref":4}
+      }
+    }, {
+      "_typename" : "TGeoBBox",
+      "fUniqueID" : 0,
+      "fBits" : 0,
+      "fName" : "Polish",
+      "fTitle" : "",
+      "fShapeId" : 256,
+      "fShapeBits" : 1024,
+      "fDX" : 1.75,
+      "fDY" : 1.75,
+      "fDZ" : 0.0299999999999997,
+      "fOrigin" : [0, 0, 0]
+    }, {
+      "_typename" : "TGeoCompositeShape",
+      "fUniqueID" : 0,
+      "fBits" : 0,
+      "fName" : "solidTiO2",
+      "fTitle" : "",
+      "fShapeId" : 256,
+      "fShapeBits" : 1024,
+      "fDX" : 3.06,
+      "fDY" : 3.06,
+      "fDZ" : 10.06,
+      "fOrigin" : [0, 0, 0],
+      "fNode" : {
+        "_typename" : "TGeoSubtraction",
+        "fUniqueID" : 0,
+        "fBits" : 0,
+        "fLeft" : {"$ref":116},
+        "fRight" : {"$ref":118},
+        "fLeftMat" : {"$ref":5},
+        "fRightMat" : {"$ref":6}
+      }
+    }, {
+      "_typename" : "TGeoBBox",
+      "fUniqueID" : 0,
+      "fBits" : 0,
+      "fName" : "ECALShield_box",
+      "fTitle" : "",
+      "fShapeId" : 256,
+      "fShapeBits" : 1024,
+      "fDX" : 16.8,
+      "fDY" : 16.8,
+      "fDZ" : 10.06,
+      "fOrigin" : [0, 0, 0]
+    }, {
+      "_typename" : "TGeoBBox",
+      "fUniqueID" : 0,
+      "fBits" : 0,
+      "fName" : "ES_TiO2_box",
+      "fTitle" : "",
+      "fShapeId" : 256,
+      "fShapeBits" : 1024,
+      "fDX" : 3.06,
+      "fDY" : 3.06,
+      "fDZ" : 10.06,
+      "fOrigin" : [0, 0, 0]
+    }, {
+      "_typename" : "TGeoCompositeShape",
+      "fUniqueID" : 0,
+      "fBits" : 0,
+      "fName" : "unionSolid",
+      "fTitle" : "",
+      "fShapeId" : 256,
+      "fShapeBits" : 1024,
+      "fDX" : 9.68,
+      "fDY" : 9.68,
+      "fDZ" : 10.06,
+      "fOrigin" : [-6.62, -6.62, 0],
+      "fNode" : {
+        "_typename" : "TGeoUnion",
+        "fUniqueID" : 0,
+        "fBits" : 0,
+        "fLeft" : {"$ref":122},
+        "fRight" : {"$ref":122},
+        "fLeftMat" : {"$ref":7},
+        "fRightMat" : {"$ref":8}
+      }
+    }, {
+      "_typename" : "TGeoCompositeShape",
+      "fUniqueID" : 0,
+      "fBits" : 0,
+      "fName" : "unionSolid",
+      "fTitle" : "",
+      "fShapeId" : 256,
+      "fShapeBits" : 1024,
+      "fDX" : 9.68,
+      "fDY" : 9.68,
+      "fDZ" : 10.06,
+      "fOrigin" : [-6.62, -6.62, 0],
+      "fNode" : {
+        "_typename" : "TGeoUnion",
+        "fUniqueID" : 0,
+        "fBits" : 0,
+        "fLeft" : {"$ref":123},
+        "fRight" : {"$ref":122},
+        "fLeftMat" : {"$ref":9},
+        "fRightMat" : {"$ref":10}
+      }
+    }, {
+      "_typename" : "TGeoCompositeShape",
+      "fUniqueID" : 0,
+      "fBits" : 0,
+      "fName" : "unionSolid",
+      "fTitle" : "",
+      "fShapeId" : 256,
+      "fShapeBits" : 1024,
+      "fDX" : 9.68,
+      "fDY" : 9.68,
+      "fDZ" : 10.06,
+      "fOrigin" : [-6.62, -6.62, 0],
+      "fNode" : {
+        "_typename" : "TGeoUnion",
+        "fUniqueID" : 0,
+        "fBits" : 0,
+        "fLeft" : {"$ref":125},
+        "fRight" : {"$ref":122},
+        "fLeftMat" : {"$ref":11},
+        "fRightMat" : {"$ref":12}
+      }
+    }, {
+      "_typename" : "TGeoCompositeShape",
+      "fUniqueID" : 0,
+      "fBits" : 0,
+      "fName" : "unionSolid",
+      "fTitle" : "",
+      "fShapeId" : 256,
+      "fShapeBits" : 1024,
+      "fDX" : 9.68,
+      "fDY" : 12.99,
+      "fDZ" : 10.06,
+      "fOrigin" : [-6.62, -3.31, 0],
+      "fNode" : {
+        "_typename" : "TGeoUnion",
+        "fUniqueID" : 0,
+        "fBits" : 0,
+        "fLeft" : {"$ref":127},
+        "fRight" : {"$ref":122},
+        "fLeftMat" : {"$ref":13},
+        "fRightMat" : {"$ref":14}
+      }
+    }, {
+      "_typename" : "TGeoCompositeShape",
+      "fUniqueID" : 0,
+      "fBits" : 0,
+      "fName" : "unionSolid",
+      "fTitle" : "",
+      "fShapeId" : 256,
+      "fShapeBits" : 1024,
+      "fDX" : 9.68,
+      "fDY" : 16.3,
+      "fDZ" : 10.06,
+      "fOrigin" : [-6.62, 0, 0],
+      "fNode" : {
+        "_typename" : "TGeoUnion",
+        "fUniqueID" : 0,
+        "fBits" : 0,
+        "fLeft" : {"$ref":129},
+        "fRight" : {"$ref":122},
+        "fLeftMat" : {"$ref":15},
+        "fRightMat" : {"$ref":16}
+      }
+    }, {
+      "_typename" : "TGeoCompositeShape",
+      "fUniqueID" : 0,
+      "fBits" : 0,
+      "fName" : "unionSolid",
+      "fTitle" : "",
+      "fShapeId" : 256,
+      "fShapeBits" : 1024,
+      "fDX" : 9.68,
+      "fDY" : 16.3,
+      "fDZ" : 10.06,
+      "fOrigin" : [-6.62, 0, 0],
+      "fNode" : {
+        "_typename" : "TGeoUnion",
+        "fUniqueID" : 0,
+        "fBits" : 0,
+        "fLeft" : {"$ref":131},
+        "fRight" : {"$ref":122},
+        "fLeftMat" : {"$ref":17},
+        "fRightMat" : {"$ref":18}
+      }
+    }, {
+      "_typename" : "TGeoCompositeShape",
+      "fUniqueID" : 0,
+      "fBits" : 0,
+      "fName" : "unionSolid",
+      "fTitle" : "",
+      "fShapeId" : 256,
+      "fShapeBits" : 1024,
+      "fDX" : 9.68,
+      "fDY" : 16.3,
+      "fDZ" : 10.06,
+      "fOrigin" : [-6.62, 0, 0],
+      "fNode" : {
+        "_typename" : "TGeoUnion",
+        "fUniqueID" : 0,
+        "fBits" : 0,
+        "fLeft" : {"$ref":133},
+        "fRight" : {"$ref":122},
+        "fLeftMat" : {"$ref":19},
+        "fRightMat" : {"$ref":20}
+      }
+    }, {
+      "_typename" : "TGeoCompositeShape",
+      "fUniqueID" : 0,
+      "fBits" : 0,
+      "fName" : "unionSolid",
+      "fTitle" : "",
+      "fShapeId" : 256,
+      "fShapeBits" : 1024,
+      "fDX" : 9.68,
+      "fDY" : 16.3,
+      "fDZ" : 10.06,
+      "fOrigin" : [-6.62, 0, 0],
+      "fNode" : {
+        "_typename" : "TGeoUnion",
+        "fUniqueID" : 0,
+        "fBits" : 0,
+        "fLeft" : {"$ref":135},
+        "fRight" : {"$ref":122},
+        "fLeftMat" : {"$ref":21},
+        "fRightMat" : {"$ref":22}
+      }
+    }, {
+      "_typename" : "TGeoCompositeShape",
+      "fUniqueID" : 0,
+      "fBits" : 0,
+      "fName" : "unionSolid",
+      "fTitle" : "",
+      "fShapeId" : 256,
+      "fShapeBits" : 1024,
+      "fDX" : 9.68,
+      "fDY" : 16.3,
+      "fDZ" : 10.06,
+      "fOrigin" : [-6.62, 0, 0],
+      "fNode" : {
+        "_typename" : "TGeoUnion",
+        "fUniqueID" : 0,
+        "fBits" : 0,
+        "fLeft" : {"$ref":137},
+        "fRight" : {"$ref":122},
+        "fLeftMat" : {"$ref":23},
+        "fRightMat" : {"$ref":24}
+      }
+    }, {
+      "_typename" : "TGeoCompositeShape",
+      "fUniqueID" : 0,
+      "fBits" : 0,
+      "fName" : "unionSolid",
+      "fTitle" : "",
+      "fShapeId" : 256,
+      "fShapeBits" : 1024,
+      "fDX" : 9.68,
+      "fDY" : 16.3,
+      "fDZ" : 10.06,
+      "fOrigin" : [-6.62, 0, 0],
+      "fNode" : {
+        "_typename" : "TGeoUnion",
+        "fUniqueID" : 0,
+        "fBits" : 0,
+        "fLeft" : {"$ref":139},
+        "fRight" : {"$ref":122},
+        "fLeftMat" : {"$ref":25},
+        "fRightMat" : {"$ref":26}
+      }
+    }, {
+      "_typename" : "TGeoCompositeShape",
+      "fUniqueID" : 0,
+      "fBits" : 0,
+      "fName" : "unionSolid",
+      "fTitle" : "",
+      "fShapeId" : 256,
+      "fShapeBits" : 1024,
+      "fDX" : 9.68,
+      "fDY" : 16.3,
+      "fDZ" : 10.06,
+      "fOrigin" : [-6.62, 0, 0],
+      "fNode" : {
+        "_typename" : "TGeoUnion",
+        "fUniqueID" : 0,
+        "fBits" : 0,
+        "fLeft" : {"$ref":141},
+        "fRight" : {"$ref":122},
+        "fLeftMat" : {"$ref":27},
+        "fRightMat" : {"$ref":28}
+      }
+    }, {
+      "_typename" : "TGeoCompositeShape",
+      "fUniqueID" : 0,
+      "fBits" : 0,
+      "fName" : "unionSolid",
+      "fTitle" : "",
+      "fShapeId" : 256,
+      "fShapeBits" : 1024,
+      "fDX" : 9.68,
+      "fDY" : 16.3,
+      "fDZ" : 10.06,
+      "fOrigin" : [-6.62, 0, 0],
+      "fNode" : {
+        "_typename" : "TGeoUnion",
+        "fUniqueID" : 0,
+        "fBits" : 0,
+        "fLeft" : {"$ref":143},
+        "fRight" : {"$ref":122},
+        "fLeftMat" : {"$ref":29},
+        "fRightMat" : {"$ref":30}
+      }
+    }, {
+      "_typename" : "TGeoCompositeShape",
+      "fUniqueID" : 0,
+      "fBits" : 0,
+      "fName" : "unionSolid",
+      "fTitle" : "",
+      "fShapeId" : 256,
+      "fShapeBits" : 1024,
+      "fDX" : 9.68,
+      "fDY" : 16.3,
+      "fDZ" : 10.06,
+      "fOrigin" : [-6.62, 0, 0],
+      "fNode" : {
+        "_typename" : "TGeoUnion",
+        "fUniqueID" : 0,
+        "fBits" : 0,
+        "fLeft" : {"$ref":145},
+        "fRight" : {"$ref":122},
+        "fLeftMat" : {"$ref":31},
+        "fRightMat" : {"$ref":32}
+      }
+    }, {
+      "_typename" : "TGeoCompositeShape",
+      "fUniqueID" : 0,
+      "fBits" : 0,
+      "fName" : "unionSolid",
+      "fTitle" : "",
+      "fShapeId" : 256,
+      "fShapeBits" : 1024,
+      "fDX" : 9.68,
+      "fDY" : 16.3,
+      "fDZ" : 10.06,
+      "fOrigin" : [-6.62, 0, 0],
+      "fNode" : {
+        "_typename" : "TGeoUnion",
+        "fUniqueID" : 0,
+        "fBits" : 0,
+        "fLeft" : {"$ref":147},
+        "fRight" : {"$ref":122},
+        "fLeftMat" : {"$ref":33},
+        "fRightMat" : {"$ref":34}
+      }
+    }, {
+      "_typename" : "TGeoCompositeShape",
+      "fUniqueID" : 0,
+      "fBits" : 0,
+      "fName" : "unionSolid",
+      "fTitle" : "",
+      "fShapeId" : 256,
+      "fShapeBits" : 1024,
+      "fDX" : 12.99,
+      "fDY" : 16.3,
+      "fDZ" : 10.06,
+      "fOrigin" : [-3.31, 0, 0],
+      "fNode" : {
+        "_typename" : "TGeoUnion",
+        "fUniqueID" : 0,
+        "fBits" : 0,
+        "fLeft" : {"$ref":149},
+        "fRight" : {"$ref":122},
+        "fLeftMat" : {"$ref":35},
+        "fRightMat" : {"$ref":36}
+      }
+    }, {
+      "_typename" : "TGeoCompositeShape",
+      "fUniqueID" : 0,
+      "fBits" : 0,
+      "fName" : "unionSolid",
+      "fTitle" : "",
+      "fShapeId" : 256,
+      "fShapeBits" : 1024,
+      "fDX" : 12.99,
+      "fDY" : 16.3,
+      "fDZ" : 10.06,
+      "fOrigin" : [-3.31, 0, 0],
+      "fNode" : {
+        "_typename" : "TGeoUnion",
+        "fUniqueID" : 0,
+        "fBits" : 0,
+        "fLeft" : {"$ref":151},
+        "fRight" : {"$ref":122},
+        "fLeftMat" : {"$ref":37},
+        "fRightMat" : {"$ref":38}
+      }
+    }, {
+      "_typename" : "TGeoCompositeShape",
+      "fUniqueID" : 0,
+      "fBits" : 0,
+      "fName" : "unionSolid",
+      "fTitle" : "",
+      "fShapeId" : 256,
+      "fShapeBits" : 1024,
+      "fDX" : 12.99,
+      "fDY" : 16.3,
+      "fDZ" : 10.06,
+      "fOrigin" : [-3.31, 0, 0],
+      "fNode" : {
+        "_typename" : "TGeoUnion",
+        "fUniqueID" : 0,
+        "fBits" : 0,
+        "fLeft" : {"$ref":153},
+        "fRight" : {"$ref":122},
+        "fLeftMat" : {"$ref":39},
+        "fRightMat" : {"$ref":40}
+      }
+    }, {
+      "_typename" : "TGeoCompositeShape",
+      "fUniqueID" : 0,
+      "fBits" : 0,
+      "fName" : "unionSolid",
+      "fTitle" : "",
+      "fShapeId" : 256,
+      "fShapeBits" : 1024,
+      "fDX" : 12.99,
+      "fDY" : 16.3,
+      "fDZ" : 10.06,
+      "fOrigin" : [-3.31, 0, 0],
+      "fNode" : {
+        "_typename" : "TGeoUnion",
+        "fUniqueID" : 0,
+        "fBits" : 0,
+        "fLeft" : {"$ref":155},
+        "fRight" : {"$ref":122},
+        "fLeftMat" : {"$ref":41},
+        "fRightMat" : {"$ref":42}
+      }
+    }, {
+      "_typename" : "TGeoCompositeShape",
+      "fUniqueID" : 0,
+      "fBits" : 0,
+      "fName" : "unionSolid",
+      "fTitle" : "",
+      "fShapeId" : 256,
+      "fShapeBits" : 1024,
+      "fDX" : 12.99,
+      "fDY" : 16.3,
+      "fDZ" : 10.06,
+      "fOrigin" : [-3.31, 0, 0],
+      "fNode" : {
+        "_typename" : "TGeoUnion",
+        "fUniqueID" : 0,
+        "fBits" : 0,
+        "fLeft" : {"$ref":157},
+        "fRight" : {"$ref":122},
+        "fLeftMat" : {"$ref":43},
+        "fRightMat" : {"$ref":44}
+      }
+    }, {
+      "_typename" : "TGeoCompositeShape",
+      "fUniqueID" : 0,
+      "fBits" : 0,
+      "fName" : "unionSolid",
+      "fTitle" : "",
+      "fShapeId" : 256,
+      "fShapeBits" : 1024,
+      "fDX" : 16.3,
+      "fDY" : 16.3,
+      "fDZ" : 10.06,
+      "fOrigin" : [0, 0, 0],
+      "fNode" : {
+        "_typename" : "TGeoUnion",
+        "fUniqueID" : 0,
+        "fBits" : 0,
+        "fLeft" : {"$ref":159},
+        "fRight" : {"$ref":122},
+        "fLeftMat" : {"$ref":45},
+        "fRightMat" : {"$ref":46}
+      }
+    }, {
+      "_typename" : "TGeoCompositeShape",
+      "fUniqueID" : 0,
+      "fBits" : 0,
+      "fName" : "unionSolid",
+      "fTitle" : "",
+      "fShapeId" : 256,
+      "fShapeBits" : 1024,
+      "fDX" : 16.3,
+      "fDY" : 16.3,
+      "fDZ" : 10.06,
+      "fOrigin" : [0, 0, 0],
+      "fNode" : {
+        "_typename" : "TGeoUnion",
+        "fUniqueID" : 0,
+        "fBits" : 0,
+        "fLeft" : {"$ref":161},
+        "fRight" : {"$ref":122},
+        "fLeftMat" : {"$ref":47},
+        "fRightMat" : {"$ref":48}
+      }
+    }, {
+      "_typename" : "TGeoCompositeShape",
+      "fUniqueID" : 0,
+      "fBits" : 0,
+      "fName" : "unionSolid",
+      "fTitle" : "",
+      "fShapeId" : 256,
+      "fShapeBits" : 1024,
+      "fDX" : 16.3,
+      "fDY" : 16.3,
+      "fDZ" : 10.06,
+      "fOrigin" : [0, 0, 0],
+      "fNode" : {
+        "_typename" : "TGeoUnion",
+        "fUniqueID" : 0,
+        "fBits" : 0,
+        "fLeft" : {"$ref":163},
+        "fRight" : {"$ref":122},
+        "fLeftMat" : {"$ref":49},
+        "fRightMat" : {"$ref":50}
+      }
+    }, {
+      "_typename" : "TGeoCompositeShape",
+      "fUniqueID" : 0,
+      "fBits" : 0,
+      "fName" : "unionSolid",
+      "fTitle" : "",
+      "fShapeId" : 256,
+      "fShapeBits" : 1024,
+      "fDX" : 16.3,
+      "fDY" : 16.3,
+      "fDZ" : 10.06,
+      "fOrigin" : [0, 0, 0],
+      "fNode" : {
+        "_typename" : "TGeoUnion",
+        "fUniqueID" : 0,
+        "fBits" : 0,
+        "fLeft" : {"$ref":165},
+        "fRight" : {"$ref":122},
+        "fLeftMat" : {"$ref":51},
+        "fRightMat" : {"$ref":52}
+      }
+    }, {
+      "_typename" : "TGeoCompositeShape",
+      "fUniqueID" : 0,
+      "fBits" : 0,
+      "fName" : "unionSolid",
+      "fTitle" : "",
+      "fShapeId" : 256,
+      "fShapeBits" : 1024,
+      "fDX" : 16.3,
+      "fDY" : 16.3,
+      "fDZ" : 10.06,
+      "fOrigin" : [0, 0, 0],
+      "fNode" : {
+        "_typename" : "TGeoUnion",
+        "fUniqueID" : 0,
+        "fBits" : 0,
+        "fLeft" : {"$ref":167},
+        "fRight" : {"$ref":122},
+        "fLeftMat" : {"$ref":53},
+        "fRightMat" : {"$ref":54}
+      }
+    }, {
+      "_typename" : "TGeoCompositeShape",
+      "fUniqueID" : 0,
+      "fBits" : 0,
+      "fName" : "solidECALShield",
+      "fTitle" : "",
+      "fShapeId" : 256,
+      "fShapeBits" : 1024,
+      "fDX" : 16.8,
+      "fDY" : 16.8,
+      "fDZ" : 10.06,
+      "fOrigin" : [0, 0, 0],
+      "fNode" : {
+        "_typename" : "TGeoSubtraction",
+        "fUniqueID" : 0,
+        "fBits" : 0,
+        "fLeft" : {"$ref":121},
+        "fRight" : {"$ref":169},
+        "fLeftMat" : {"$ref":55},
+        "fRightMat" : {"$ref":56}
+      }
+    }, {
+      "_typename" : "TGeoSphere",
+      "fUniqueID" : 0,
+      "fBits" : 0,
+      "fName" : "World",
+      "fTitle" : "",
+      "fShapeId" : 256,
+      "fShapeBits" : 5120,
+      "fDX" : 200,
+      "fDY" : 200,
+      "fDZ" : 200,
+      "fOrigin" : [0, 0, 0],
+      "fNz" : 11,
+      "fNseg" : 20,
+      "fRmin" : 0,
+      "fRmax" : 200,
+      "fTheta1" : 0,
+      "fTheta2" : 180,
+      "fPhi1" : 0,
+      "fPhi2" : 360
+    }]
+  },
+  "fVolumes" : {
+    "_typename" : "TObjArray",
+    "name" : "TObjArray",
+    "arr" : [{
+      "_typename" : "TGeoVolume",
+      "fUniqueID" : 0,
+      "fBits" : 8404992,
+      "fName" : "logicCsI",
+      "fTitle" : "",
+      "fGeoAtt" : 3084,
+      "fLineColor" : 920,
+      "fLineStyle" : 1,
+      "fLineWidth" : 1,
+      "fFillColor" : 19,
+      "fFillStyle" : 1001,
+      "fNodes" : null,
+      "fShape" : {"$ref":113},
+      "fMedium" : {
+        "_typename" : "TGeoMedium",
+        "fUniqueID" : 0,
+        "fBits" : 0,
+        "fName" : "G4_CESIUM_IODIDE",
+        "fTitle" : "",
+        "fId" : 2,
+        "fParams" : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        "fMaterial" : {
+          "_typename" : "TGeoMixture",
+          "fUniqueID" : 0,
+          "fBits" : 131072,
+          "fName" : "G4_CESIUM_IODIDE",
+          "fTitle" : "",
+          "fFillColor" : 19,
+          "fFillStyle" : 1001,
+          "fIndex" : 0,
+          "fA" : 129.97380476042,
+          "fZ" : 54.0230977371839,
+          "fDensity" : 4.51,
+          "fRadLen" : 1.86118495205828,
+          "fIntLen" : 39.2867191375201,
+          "fTemperature" : 273.15,
+          "fPressure" : 632420000,
+          "fState" : 0,
+          "fShader" : null,
+          "fCerenkov" : null,
+          "fElement" : null,
+          "fProperties" : {
+            "_typename" : "TList",
+            "name" : "TList",
+            "arr" : [],
+            "opt" : []
+          },
+          "fConstProperties" : {
+            "_typename" : "TList",
+            "name" : "TList",
+            "arr" : [],
+            "opt" : []
+          },
+          "fNelements" : 2,
+          "fZmixture" : [55, 53],
+          "fAmixture" : [132.905, 126.904],
+          "fWeights" : [0.511548868591927, 0.488451131408073],
+          "fNatoms" : [],
+          "fVecNbOfAtomsPerVolume" : [],
+          "fElements" : {
+            "_typename" : "TObjArray",
+            "name" : "TObjArray",
+            "arr" : [{
+              "_typename" : "TGeoElement",
+              "fUniqueID" : 0,
+              "fBits" : 262144,
+              "fName" : "CS",
+              "fTitle" : "CESIUM",
+              "fZ" : 55,
+              "fN" : 133,
+              "fNisotopes" : 1,
+              "fA" : 132.905,
+              "fIsotopes" : {
+                "_typename" : "TObjArray",
+                "name" : "TObjArray",
+                "arr" : [{
+                  "_typename" : "TGeoIsotope",
+                  "fUniqueID" : 0,
+                  "fBits" : 0,
+                  "fName" : "Cs133",
+                  "fTitle" : "",
+                  "fZ" : 55,
+                  "fN" : 133,
+                  "fA" : 132.905
+                }]
+              },
+              "fAbundances" : [1],
+              "fCoulomb" : 0.170361621860236,
+              "fRadTsai" : 2.65727855534818e-23
+            }, {
+              "_typename" : "TGeoElement",
+              "fUniqueID" : 0,
+              "fBits" : 262144,
+              "fName" : "I",
+              "fTitle" : "IODINE",
+              "fZ" : 53,
+              "fN" : 127,
+              "fNisotopes" : 1,
+              "fA" : 126.904,
+              "fIsotopes" : {
+                "_typename" : "TObjArray",
+                "name" : "TObjArray",
+                "arr" : [{
+                  "_typename" : "TGeoIsotope",
+                  "fUniqueID" : 0,
+                  "fBits" : 0,
+                  "fName" : "I127",
+                  "fTitle" : "",
+                  "fZ" : 53,
+                  "fN" : 127,
+                  "fA" : 126.904
+                }]
+              },
+              "fAbundances" : [1],
+              "fCoulomb" : 0.159545286059597,
+              "fRadTsai" : 2.48489209976212e-23
+            }]
+          }
+        }
+      },
+      "fFinder" : null,
+      "fVoxels" : null,
+      "fNumber" : 1,
+      "fNtotal" : 1,
+      "fRefCount" : 25,
+      "fTransparency" : -1
+    }, {
+      "_typename" : "TGeoVolume",
+      "fUniqueID" : 0,
+      "fBits" : 8404992,
+      "fName" : "logicTiO2",
+      "fTitle" : "",
+      "fGeoAtt" : 3084,
+      "fLineColor" : 401,
+      "fLineStyle" : 1,
+      "fLineWidth" : 1,
+      "fFillColor" : 19,
+      "fFillStyle" : 1001,
+      "fNodes" : null,
+      "fShape" : {"$ref":119},
+      "fMedium" : {
+        "_typename" : "TGeoMedium",
+        "fUniqueID" : 0,
+        "fBits" : 0,
+        "fName" : "G4_TITANIUM_DIOXIDE",
+        "fTitle" : "",
+        "fId" : 3,
+        "fParams" : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        "fMaterial" : {
+          "_typename" : "TGeoMixture",
+          "fUniqueID" : 0,
+          "fBits" : 131072,
+          "fName" : "G4_TITANIUM_DIOXIDE",
+          "fTitle" : "",
+          "fFillColor" : 19,
+          "fFillStyle" : 1001,
+          "fIndex" : 1,
+          "fA" : 35.0988058656105,
+          "fZ" : 16.390782730042,
+          "fDensity" : 4.26,
+          "fRadLen" : 4.80513036282544,
+          "fIntLen" : 25.3404011703592,
+          "fTemperature" : 273.15,
+          "fPressure" : 632420000,
+          "fState" : 0,
+          "fShader" : null,
+          "fCerenkov" : null,
+          "fElement" : null,
+          "fProperties" : {
+            "_typename" : "TList",
+            "name" : "TList",
+            "arr" : [],
+            "opt" : []
+          },
+          "fConstProperties" : {
+            "_typename" : "TList",
+            "name" : "TList",
+            "arr" : [],
+            "opt" : []
+          },
+          "fNelements" : 2,
+          "fZmixture" : [8, 22],
+          "fAmixture" : [15.999390411, 47.86671733],
+          "fWeights" : [0.400658376425574, 0.599341623574426],
+          "fNatoms" : [],
+          "fVecNbOfAtomsPerVolume" : [],
+          "fElements" : {
+            "_typename" : "TObjArray",
+            "name" : "TObjArray",
+            "arr" : [{
+              "_typename" : "TGeoElement",
+              "fUniqueID" : 0,
+              "fBits" : 262144,
+              "fName" : "O",
+              "fTitle" : "OXYGEN",
+              "fZ" : 8,
+              "fN" : 16,
+              "fNisotopes" : 3,
+              "fA" : 15.999390411,
+              "fIsotopes" : {
+                "_typename" : "TObjArray",
+                "name" : "TObjArray",
+                "arr" : [{
+                  "_typename" : "TGeoIsotope",
+                  "fUniqueID" : 0,
+                  "fBits" : 0,
+                  "fName" : "O16",
+                  "fTitle" : "",
+                  "fZ" : 8,
+                  "fN" : 16,
+                  "fA" : 15.9949
+                }, {
+                  "_typename" : "TGeoIsotope",
+                  "fUniqueID" : 0,
+                  "fBits" : 0,
+                  "fName" : "O17",
+                  "fTitle" : "",
+                  "fZ" : 8,
+                  "fN" : 17,
+                  "fA" : 16.9991
+                }, {
+                  "_typename" : "TGeoIsotope",
+                  "fUniqueID" : 0,
+                  "fBits" : 0,
+                  "fName" : "O18",
+                  "fTitle" : "",
+                  "fZ" : 8,
+                  "fN" : 18,
+                  "fA" : 17.9992
+                }]
+              },
+              "fAbundances" : [0.99757, 3.8e-4, 0.00205],
+              "fCoulomb" : 0.00408472077802822,
+              "fRadTsai" : 7.7596543324525e-25
+            }, {
+              "_typename" : "TGeoElement",
+              "fUniqueID" : 0,
+              "fBits" : 262144,
+              "fName" : "TI",
+              "fTitle" : "TITANIUM",
+              "fZ" : 22,
+              "fN" : 47,
+              "fNisotopes" : 5,
+              "fA" : 47.86671733,
+              "fIsotopes" : {
+                "_typename" : "TObjArray",
+                "name" : "TObjArray",
+                "arr" : [{
+                  "_typename" : "TGeoIsotope",
+                  "fUniqueID" : 0,
+                  "fBits" : 0,
+                  "fName" : "Ti46",
+                  "fTitle" : "",
+                  "fZ" : 22,
+                  "fN" : 46,
+                  "fA" : 45.9526
+                }, {
+                  "_typename" : "TGeoIsotope",
+                  "fUniqueID" : 0,
+                  "fBits" : 0,
+                  "fName" : "Ti47",
+                  "fTitle" : "",
+                  "fZ" : 22,
+                  "fN" : 47,
+                  "fA" : 46.9518
+                }, {
+                  "_typename" : "TGeoIsotope",
+                  "fUniqueID" : 0,
+                  "fBits" : 0,
+                  "fName" : "Ti48",
+                  "fTitle" : "",
+                  "fZ" : 22,
+                  "fN" : 48,
+                  "fA" : 47.9479
+                }, {
+                  "_typename" : "TGeoIsotope",
+                  "fUniqueID" : 0,
+                  "fBits" : 0,
+                  "fName" : "Ti49",
+                  "fTitle" : "",
+                  "fZ" : 22,
+                  "fN" : 49,
+                  "fA" : 48.9479
+                }, {
+                  "_typename" : "TGeoIsotope",
+                  "fUniqueID" : 0,
+                  "fBits" : 0,
+                  "fName" : "Ti50",
+                  "fTitle" : "",
+                  "fZ" : 22,
+                  "fN" : 50,
+                  "fA" : 49.9448
+                }]
+              },
+              "fAbundances" : [0.0825, 0.0744, 0.7372, 0.0541, 0.0518],
+              "fCoulomb" : 0.0303095188659085,
+              "fRadTsai" : 4.91759426699249e-24
+            }]
+          }
+        }
+      },
+      "fFinder" : null,
+      "fVoxels" : null,
+      "fNumber" : 2,
+      "fNtotal" : 1,
+      "fRefCount" : 25,
+      "fTransparency" : -1
+    }, {
+      "_typename" : "TGeoVolume",
+      "fUniqueID" : 0,
+      "fBits" : 8388608,
+      "fName" : "logicECALShield",
+      "fTitle" : "",
+      "fGeoAtt" : 3084,
+      "fLineColor" : 593,
+      "fLineStyle" : 1,
+      "fLineWidth" : 1,
+      "fFillColor" : 19,
+      "fFillStyle" : 1001,
+      "fNodes" : null,
+      "fShape" : {"$ref":171},
+      "fMedium" : {
+        "_typename" : "TGeoMedium",
+        "fUniqueID" : 0,
+        "fBits" : 0,
+        "fName" : "carbonFiber",
+        "fTitle" : "",
+        "fId" : 4,
+        "fParams" : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        "fMaterial" : {
+          "_typename" : "TGeoMixture",
+          "fUniqueID" : 0,
+          "fBits" : 131072,
+          "fName" : "carbonFiber",
+          "fTitle" : "",
+          "fFillColor" : 19,
+          "fFillStyle" : 1001,
+          "fIndex" : 2,
+          "fA" : 12.4096017831,
+          "fZ" : 6.2,
+          "fDensity" : 1.75,
+          "fRadLen" : 23.7017381714872,
+          "fIntLen" : 46.2227647853685,
+          "fTemperature" : 273.15,
+          "fPressure" : 632420000,
+          "fState" : 0,
+          "fShader" : null,
+          "fCerenkov" : null,
+          "fElement" : null,
+          "fProperties" : {
+            "_typename" : "TList",
+            "name" : "TList",
+            "arr" : [],
+            "opt" : []
+          },
+          "fConstProperties" : {
+            "_typename" : "TList",
+            "name" : "TList",
+            "arr" : [],
+            "opt" : []
+          },
+          "fNelements" : 2,
+          "fZmixture" : [6, 8],
+          "fAmixture" : [12.01073638, 15.999390411],
+          "fWeights" : [0.9, 0.1],
+          "fNatoms" : [],
+          "fVecNbOfAtomsPerVolume" : [],
+          "fElements" : {
+            "_typename" : "TObjArray",
+            "name" : "TObjArray",
+            "arr" : [{
+              "_typename" : "TGeoElement",
+              "fUniqueID" : 0,
+              "fBits" : 262144,
+              "fName" : "C",
+              "fTitle" : "CARBON",
+              "fZ" : 6,
+              "fN" : 12,
+              "fNisotopes" : 2,
+              "fA" : 12.01073638,
+              "fIsotopes" : {
+                "_typename" : "TObjArray",
+                "name" : "TObjArray",
+                "arr" : [{
+                  "_typename" : "TGeoIsotope",
+                  "fUniqueID" : 0,
+                  "fBits" : 0,
+                  "fName" : "C12",
+                  "fTitle" : "",
+                  "fZ" : 6,
+                  "fN" : 12,
+                  "fA" : 12
+                }, {
+                  "_typename" : "TGeoIsotope",
+                  "fUniqueID" : 0,
+                  "fBits" : 0,
+                  "fName" : "C13",
+                  "fTitle" : "",
+                  "fZ" : 6,
+                  "fN" : 13,
+                  "fA" : 13.0034
+                }]
+              },
+              "fAbundances" : [0.9893, 0.0107],
+              "fCoulomb" : 0.00230060401929032,
+              "fRadTsai" : 4.67111882001326e-25
+            }, {"$ref":193}]
+          }
+        }
+      },
+      "fFinder" : null,
+      "fVoxels" : null,
+      "fNumber" : 3,
+      "fNtotal" : 1,
+      "fRefCount" : 1,
+      "fTransparency" : -1
+    }, {
+      "_typename" : "TGeoVolume",
+      "fUniqueID" : 0,
+      "fBits" : 9453568,
+      "fName" : "World",
+      "fTitle" : "Top volume",
+      "fGeoAtt" : 3084,
+      "fLineColor" : 920,
+      "fLineStyle" : 1,
+      "fLineWidth" : 1,
+      "fFillColor" : 19,
+      "fFillStyle" : 1001,
+      "fNodes" : {
+        "_typename" : "TObjArray",
+        "name" : "TObjArray",
+        "arr" : [{
+          "_typename" : "TGeoNodeMatrix",
+          "fUniqueID" : 0,
+          "fBits" : 0,
+          "fName" : "physicCsI0x494a160",
+          "fTitle" : "",
+          "fGeoAtt" : 3084,
+          "fVolume" : {"$ref":175},
+          "fMother" : {"$ref":215},
+          "fNumber" : 0,
+          "fNovlp" : 0,
+          "fOverlaps" : [],
+          "fMatrix" : {"$ref":57}
+        }, {
+          "_typename" : "TGeoNodeMatrix",
+          "fUniqueID" : 0,
+          "fBits" : 0,
+          "fName" : "physicTiO20x494a220",
+          "fTitle" : "",
+          "fGeoAtt" : 3084,
+          "fVolume" : {"$ref":187},
+          "fMother" : {"$ref":215},
+          "fNumber" : 0,
+          "fNovlp" : 0,
+          "fOverlaps" : [],
+          "fMatrix" : {"$ref":58}
+        }, {
+          "_typename" : "TGeoNodeMatrix",
+          "fUniqueID" : 0,
+          "fBits" : 0,
+          "fName" : "physicCsI0x494a2e0",
+          "fTitle" : "",
+          "fGeoAtt" : 3084,
+          "fVolume" : {"$ref":175},
+          "fMother" : {"$ref":215},
+          "fNumber" : 1,
+          "fNovlp" : 0,
+          "fOverlaps" : [],
+          "fMatrix" : {"$ref":59}
+        }, {
+          "_typename" : "TGeoNodeMatrix",
+          "fUniqueID" : 0,
+          "fBits" : 0,
+          "fName" : "physicTiO20x494a370",
+          "fTitle" : "",
+          "fGeoAtt" : 3084,
+          "fVolume" : {"$ref":187},
+          "fMother" : {"$ref":215},
+          "fNumber" : 1,
+          "fNovlp" : 0,
+          "fOverlaps" : [],
+          "fMatrix" : {"$ref":60}
+        }, {
+          "_typename" : "TGeoNodeMatrix",
+          "fUniqueID" : 0,
+          "fBits" : 0,
+          "fName" : "physicCsI0x494a3d0",
+          "fTitle" : "",
+          "fGeoAtt" : 3084,
+          "fVolume" : {"$ref":175},
+          "fMother" : {"$ref":215},
+          "fNumber" : 2,
+          "fNovlp" : 0,
+          "fOverlaps" : [],
+          "fMatrix" : {"$ref":61}
+        }, {
+          "_typename" : "TGeoNodeMatrix",
+          "fUniqueID" : 0,
+          "fBits" : 0,
+          "fName" : "physicTiO20x494a660",
+          "fTitle" : "",
+          "fGeoAtt" : 3084,
+          "fVolume" : {"$ref":187},
+          "fMother" : {"$ref":215},
+          "fNumber" : 2,
+          "fNovlp" : 0,
+          "fOverlaps" : [],
+          "fMatrix" : {"$ref":62}
+        }, {
+          "_typename" : "TGeoNodeMatrix",
+          "fUniqueID" : 0,
+          "fBits" : 0,
+          "fName" : "physicCsI0x49504c0",
+          "fTitle" : "",
+          "fGeoAtt" : 3084,
+          "fVolume" : {"$ref":175},
+          "fMother" : {"$ref":215},
+          "fNumber" : 3,
+          "fNovlp" : 0,
+          "fOverlaps" : [],
+          "fMatrix" : {"$ref":63}
+        }, {
+          "_typename" : "TGeoNodeMatrix",
+          "fUniqueID" : 0,
+          "fBits" : 0,
+          "fName" : "physicTiO20x494a770",
+          "fTitle" : "",
+          "fGeoAtt" : 3084,
+          "fVolume" : {"$ref":187},
+          "fMother" : {"$ref":215},
+          "fNumber" : 3,
+          "fNovlp" : 0,
+          "fOverlaps" : [],
+          "fMatrix" : {"$ref":64}
+        }, {
+          "_typename" : "TGeoNodeMatrix",
+          "fUniqueID" : 0,
+          "fBits" : 0,
+          "fName" : "physicCsI0x494a800",
+          "fTitle" : "",
+          "fGeoAtt" : 3084,
+          "fVolume" : {"$ref":175},
+          "fMother" : {"$ref":215},
+          "fNumber" : 4,
+          "fNovlp" : 0,
+          "fOverlaps" : [],
+          "fMatrix" : {"$ref":65}
+        }, {
+          "_typename" : "TGeoNodeMatrix",
+          "fUniqueID" : 0,
+          "fBits" : 0,
+          "fName" : "physicTiO20x494a920",
+          "fTitle" : "",
+          "fGeoAtt" : 3084,
+          "fVolume" : {"$ref":187},
+          "fMother" : {"$ref":215},
+          "fNumber" : 4,
+          "fNovlp" : 0,
+          "fOverlaps" : [],
+          "fMatrix" : {"$ref":66}
+        }, {
+          "_typename" : "TGeoNodeMatrix",
+          "fUniqueID" : 0,
+          "fBits" : 0,
+          "fName" : "physicCsI0x494a980",
+          "fTitle" : "",
+          "fGeoAtt" : 3084,
+          "fVolume" : {"$ref":175},
+          "fMother" : {"$ref":215},
+          "fNumber" : 5,
+          "fNovlp" : 0,
+          "fOverlaps" : [],
+          "fMatrix" : {"$ref":67}
+        }, {
+          "_typename" : "TGeoNodeMatrix",
+          "fUniqueID" : 0,
+          "fBits" : 0,
+          "fName" : "physicTiO20x494aa30",
+          "fTitle" : "",
+          "fGeoAtt" : 3084,
+          "fVolume" : {"$ref":187},
+          "fMother" : {"$ref":215},
+          "fNumber" : 5,
+          "fNovlp" : 0,
+          "fOverlaps" : [],
+          "fMatrix" : {"$ref":68}
+        }, {
+          "_typename" : "TGeoNodeMatrix",
+          "fUniqueID" : 0,
+          "fBits" : 0,
+          "fName" : "physicCsI0x494aac0",
+          "fTitle" : "",
+          "fGeoAtt" : 3084,
+          "fVolume" : {"$ref":175},
+          "fMother" : {"$ref":215},
+          "fNumber" : 6,
+          "fNovlp" : 0,
+          "fOverlaps" : [],
+          "fMatrix" : {"$ref":69}
+        }, {
+          "_typename" : "TGeoNodeMatrix",
+          "fUniqueID" : 0,
+          "fBits" : 0,
+          "fName" : "physicTiO20x494ab50",
+          "fTitle" : "",
+          "fGeoAtt" : 3084,
+          "fVolume" : {"$ref":187},
+          "fMother" : {"$ref":215},
+          "fNumber" : 6,
+          "fNovlp" : 0,
+          "fOverlaps" : [],
+          "fMatrix" : {"$ref":70}
+        }, {
+          "_typename" : "TGeoNodeMatrix",
+          "fUniqueID" : 0,
+          "fBits" : 0,
+          "fName" : "physicCsI0x494abe0",
+          "fTitle" : "",
+          "fGeoAtt" : 3084,
+          "fVolume" : {"$ref":175},
+          "fMother" : {"$ref":215},
+          "fNumber" : 7,
+          "fNovlp" : 0,
+          "fOverlaps" : [],
+          "fMatrix" : {"$ref":71}
+        }, {
+          "_typename" : "TGeoNodeMatrix",
+          "fUniqueID" : 0,
+          "fBits" : 0,
+          "fName" : "physicTiO20x494ac70",
+          "fTitle" : "",
+          "fGeoAtt" : 3084,
+          "fVolume" : {"$ref":187},
+          "fMother" : {"$ref":215},
+          "fNumber" : 7,
+          "fNovlp" : 0,
+          "fOverlaps" : [],
+          "fMatrix" : {"$ref":72}
+        }, {
+          "_typename" : "TGeoNodeMatrix",
+          "fUniqueID" : 0,
+          "fBits" : 0,
+          "fName" : "physicCsI0x494ad00",
+          "fTitle" : "",
+          "fGeoAtt" : 3084,
+          "fVolume" : {"$ref":175},
+          "fMother" : {"$ref":215},
+          "fNumber" : 8,
+          "fNovlp" : 0,
+          "fOverlaps" : [],
+          "fMatrix" : {"$ref":73}
+        }, {
+          "_typename" : "TGeoNodeMatrix",
+          "fUniqueID" : 0,
+          "fBits" : 0,
+          "fName" : "physicTiO20x494a890",
+          "fTitle" : "",
+          "fGeoAtt" : 3084,
+          "fVolume" : {"$ref":187},
+          "fMother" : {"$ref":215},
+          "fNumber" : 8,
+          "fNovlp" : 0,
+          "fOverlaps" : [],
+          "fMatrix" : {"$ref":74}
+        }, {
+          "_typename" : "TGeoNodeMatrix",
+          "fUniqueID" : 0,
+          "fBits" : 0,
+          "fName" : "physicCsI0x494afc0",
+          "fTitle" : "",
+          "fGeoAtt" : 3084,
+          "fVolume" : {"$ref":175},
+          "fMother" : {"$ref":215},
+          "fNumber" : 9,
+          "fNovlp" : 0,
+          "fOverlaps" : [],
+          "fMatrix" : {"$ref":75}
+        }, {
+          "_typename" : "TGeoNodeMatrix",
+          "fUniqueID" : 0,
+          "fBits" : 0,
+          "fName" : "physicTiO20x494b050",
+          "fTitle" : "",
+          "fGeoAtt" : 3084,
+          "fVolume" : {"$ref":187},
+          "fMother" : {"$ref":215},
+          "fNumber" : 9,
+          "fNovlp" : 0,
+          "fOverlaps" : [],
+          "fMatrix" : {"$ref":76}
+        }, {
+          "_typename" : "TGeoNodeMatrix",
+          "fUniqueID" : 0,
+          "fBits" : 0,
+          "fName" : "physicCsI0x494b0e0",
+          "fTitle" : "",
+          "fGeoAtt" : 3084,
+          "fVolume" : {"$ref":175},
+          "fMother" : {"$ref":215},
+          "fNumber" : 10,
+          "fNovlp" : 0,
+          "fOverlaps" : [],
+          "fMatrix" : {"$ref":77}
+        }, {
+          "_typename" : "TGeoNodeMatrix",
+          "fUniqueID" : 0,
+          "fBits" : 0,
+          "fName" : "physicTiO20x494b170",
+          "fTitle" : "",
+          "fGeoAtt" : 3084,
+          "fVolume" : {"$ref":187},
+          "fMother" : {"$ref":215},
+          "fNumber" : 10,
+          "fNovlp" : 0,
+          "fOverlaps" : [],
+          "fMatrix" : {"$ref":78}
+        }, {
+          "_typename" : "TGeoNodeMatrix",
+          "fUniqueID" : 0,
+          "fBits" : 0,
+          "fName" : "physicCsI0x494b200",
+          "fTitle" : "",
+          "fGeoAtt" : 3084,
+          "fVolume" : {"$ref":175},
+          "fMother" : {"$ref":215},
+          "fNumber" : 11,
+          "fNovlp" : 0,
+          "fOverlaps" : [],
+          "fMatrix" : {"$ref":79}
+        }, {
+          "_typename" : "TGeoNodeMatrix",
+          "fUniqueID" : 0,
+          "fBits" : 0,
+          "fName" : "physicTiO20x494b290",
+          "fTitle" : "",
+          "fGeoAtt" : 3084,
+          "fVolume" : {"$ref":187},
+          "fMother" : {"$ref":215},
+          "fNumber" : 11,
+          "fNovlp" : 0,
+          "fOverlaps" : [],
+          "fMatrix" : {"$ref":80}
+        }, {
+          "_typename" : "TGeoNodeMatrix",
+          "fUniqueID" : 0,
+          "fBits" : 0,
+          "fName" : "physicCsI0x494b320",
+          "fTitle" : "",
+          "fGeoAtt" : 3084,
+          "fVolume" : {"$ref":175},
+          "fMother" : {"$ref":215},
+          "fNumber" : 12,
+          "fNovlp" : 0,
+          "fOverlaps" : [],
+          "fMatrix" : {"$ref":81}
+        }, {
+          "_typename" : "TGeoNodeMatrix",
+          "fUniqueID" : 0,
+          "fBits" : 0,
+          "fName" : "physicTiO20x494b3b0",
+          "fTitle" : "",
+          "fGeoAtt" : 3084,
+          "fVolume" : {"$ref":187},
+          "fMother" : {"$ref":215},
+          "fNumber" : 12,
+          "fNovlp" : 0,
+          "fOverlaps" : [],
+          "fMatrix" : {"$ref":82}
+        }, {
+          "_typename" : "TGeoNodeMatrix",
+          "fUniqueID" : 0,
+          "fBits" : 0,
+          "fName" : "physicCsI0x494b440",
+          "fTitle" : "",
+          "fGeoAtt" : 3084,
+          "fVolume" : {"$ref":175},
+          "fMother" : {"$ref":215},
+          "fNumber" : 13,
+          "fNovlp" : 0,
+          "fOverlaps" : [],
+          "fMatrix" : {"$ref":83}
+        }, {
+          "_typename" : "TGeoNodeMatrix",
+          "fUniqueID" : 0,
+          "fBits" : 0,
+          "fName" : "physicTiO20x494b4d0",
+          "fTitle" : "",
+          "fGeoAtt" : 3084,
+          "fVolume" : {"$ref":187},
+          "fMother" : {"$ref":215},
+          "fNumber" : 13,
+          "fNovlp" : 0,
+          "fOverlaps" : [],
+          "fMatrix" : {"$ref":84}
+        }, {
+          "_typename" : "TGeoNodeMatrix",
+          "fUniqueID" : 0,
+          "fBits" : 0,
+          "fName" : "physicCsI0x494b560",
+          "fTitle" : "",
+          "fGeoAtt" : 3084,
+          "fVolume" : {"$ref":175},
+          "fMother" : {"$ref":215},
+          "fNumber" : 14,
+          "fNovlp" : 0,
+          "fOverlaps" : [],
+          "fMatrix" : {"$ref":85}
+        }, {
+          "_typename" : "TGeoNodeMatrix",
+          "fUniqueID" : 0,
+          "fBits" : 0,
+          "fName" : "physicTiO20x494b5f0",
+          "fTitle" : "",
+          "fGeoAtt" : 3084,
+          "fVolume" : {"$ref":187},
+          "fMother" : {"$ref":215},
+          "fNumber" : 14,
+          "fNovlp" : 0,
+          "fOverlaps" : [],
+          "fMatrix" : {"$ref":86}
+        }, {
+          "_typename" : "TGeoNodeMatrix",
+          "fUniqueID" : 0,
+          "fBits" : 0,
+          "fName" : "physicCsI0x494b680",
+          "fTitle" : "",
+          "fGeoAtt" : 3084,
+          "fVolume" : {"$ref":175},
+          "fMother" : {"$ref":215},
+          "fNumber" : 15,
+          "fNovlp" : 0,
+          "fOverlaps" : [],
+          "fMatrix" : {"$ref":87}
+        }, {
+          "_typename" : "TGeoNodeMatrix",
+          "fUniqueID" : 0,
+          "fBits" : 0,
+          "fName" : "physicTiO20x494b710",
+          "fTitle" : "",
+          "fGeoAtt" : 3084,
+          "fVolume" : {"$ref":187},
+          "fMother" : {"$ref":215},
+          "fNumber" : 15,
+          "fNovlp" : 0,
+          "fOverlaps" : [],
+          "fMatrix" : {"$ref":88}
+        }, {
+          "_typename" : "TGeoNodeMatrix",
+          "fUniqueID" : 0,
+          "fBits" : 0,
+          "fName" : "physicCsI0x494b7a0",
+          "fTitle" : "",
+          "fGeoAtt" : 3084,
+          "fVolume" : {"$ref":175},
+          "fMother" : {"$ref":215},
+          "fNumber" : 16,
+          "fNovlp" : 0,
+          "fOverlaps" : [],
+          "fMatrix" : {"$ref":89}
+        }, {
+          "_typename" : "TGeoNodeMatrix",
+          "fUniqueID" : 0,
+          "fBits" : 0,
+          "fName" : "physicTiO20x494ad90",
+          "fTitle" : "",
+          "fGeoAtt" : 3084,
+          "fVolume" : {"$ref":187},
+          "fMother" : {"$ref":215},
+          "fNumber" : 16,
+          "fNovlp" : 0,
+          "fOverlaps" : [],
+          "fMatrix" : {"$ref":90}
+        }, {
+          "_typename" : "TGeoNodeMatrix",
+          "fUniqueID" : 0,
+          "fBits" : 0,
+          "fName" : "physicCsI0x494af30",
+          "fTitle" : "",
+          "fGeoAtt" : 3084,
+          "fVolume" : {"$ref":175},
+          "fMother" : {"$ref":215},
+          "fNumber" : 17,
+          "fNovlp" : 0,
+          "fOverlaps" : [],
+          "fMatrix" : {"$ref":91}
+        }, {
+          "_typename" : "TGeoNodeMatrix",
+          "fUniqueID" : 0,
+          "fBits" : 0,
+          "fName" : "physicTiO20x494bb50",
+          "fTitle" : "",
+          "fGeoAtt" : 3084,
+          "fVolume" : {"$ref":187},
+          "fMother" : {"$ref":215},
+          "fNumber" : 17,
+          "fNovlp" : 0,
+          "fOverlaps" : [],
+          "fMatrix" : {"$ref":92}
+        }, {
+          "_typename" : "TGeoNodeMatrix",
+          "fUniqueID" : 0,
+          "fBits" : 0,
+          "fName" : "physicCsI0x494bbe0",
+          "fTitle" : "",
+          "fGeoAtt" : 3084,
+          "fVolume" : {"$ref":175},
+          "fMother" : {"$ref":215},
+          "fNumber" : 18,
+          "fNovlp" : 0,
+          "fOverlaps" : [],
+          "fMatrix" : {"$ref":93}
+        }, {
+          "_typename" : "TGeoNodeMatrix",
+          "fUniqueID" : 0,
+          "fBits" : 0,
+          "fName" : "physicTiO20x494bc70",
+          "fTitle" : "",
+          "fGeoAtt" : 3084,
+          "fVolume" : {"$ref":187},
+          "fMother" : {"$ref":215},
+          "fNumber" : 18,
+          "fNovlp" : 0,
+          "fOverlaps" : [],
+          "fMatrix" : {"$ref":94}
+        }, {
+          "_typename" : "TGeoNodeMatrix",
+          "fUniqueID" : 0,
+          "fBits" : 0,
+          "fName" : "physicCsI0x494bd00",
+          "fTitle" : "",
+          "fGeoAtt" : 3084,
+          "fVolume" : {"$ref":175},
+          "fMother" : {"$ref":215},
+          "fNumber" : 19,
+          "fNovlp" : 0,
+          "fOverlaps" : [],
+          "fMatrix" : {"$ref":95}
+        }, {
+          "_typename" : "TGeoNodeMatrix",
+          "fUniqueID" : 0,
+          "fBits" : 0,
+          "fName" : "physicTiO20x494bd90",
+          "fTitle" : "",
+          "fGeoAtt" : 3084,
+          "fVolume" : {"$ref":187},
+          "fMother" : {"$ref":215},
+          "fNumber" : 19,
+          "fNovlp" : 0,
+          "fOverlaps" : [],
+          "fMatrix" : {"$ref":96}
+        }, {
+          "_typename" : "TGeoNodeMatrix",
+          "fUniqueID" : 0,
+          "fBits" : 0,
+          "fName" : "physicCsI0x494be20",
+          "fTitle" : "",
+          "fGeoAtt" : 3084,
+          "fVolume" : {"$ref":175},
+          "fMother" : {"$ref":215},
+          "fNumber" : 20,
+          "fNovlp" : 0,
+          "fOverlaps" : [],
+          "fMatrix" : {"$ref":97}
+        }, {
+          "_typename" : "TGeoNodeMatrix",
+          "fUniqueID" : 0,
+          "fBits" : 0,
+          "fName" : "physicTiO20x494beb0",
+          "fTitle" : "",
+          "fGeoAtt" : 3084,
+          "fVolume" : {"$ref":187},
+          "fMother" : {"$ref":215},
+          "fNumber" : 20,
+          "fNovlp" : 0,
+          "fOverlaps" : [],
+          "fMatrix" : {"$ref":98}
+        }, {
+          "_typename" : "TGeoNodeMatrix",
+          "fUniqueID" : 0,
+          "fBits" : 0,
+          "fName" : "physicCsI0x494bf40",
+          "fTitle" : "",
+          "fGeoAtt" : 3084,
+          "fVolume" : {"$ref":175},
+          "fMother" : {"$ref":215},
+          "fNumber" : 21,
+          "fNovlp" : 0,
+          "fOverlaps" : [],
+          "fMatrix" : {"$ref":99}
+        }, {
+          "_typename" : "TGeoNodeMatrix",
+          "fUniqueID" : 0,
+          "fBits" : 0,
+          "fName" : "physicTiO20x494bfd0",
+          "fTitle" : "",
+          "fGeoAtt" : 3084,
+          "fVolume" : {"$ref":187},
+          "fMother" : {"$ref":215},
+          "fNumber" : 21,
+          "fNovlp" : 0,
+          "fOverlaps" : [],
+          "fMatrix" : {"$ref":100}
+        }, {
+          "_typename" : "TGeoNodeMatrix",
+          "fUniqueID" : 0,
+          "fBits" : 0,
+          "fName" : "physicCsI0x494c060",
+          "fTitle" : "",
+          "fGeoAtt" : 3084,
+          "fVolume" : {"$ref":175},
+          "fMother" : {"$ref":215},
+          "fNumber" : 22,
+          "fNovlp" : 0,
+          "fOverlaps" : [],
+          "fMatrix" : {"$ref":101}
+        }, {
+          "_typename" : "TGeoNodeMatrix",
+          "fUniqueID" : 0,
+          "fBits" : 0,
+          "fName" : "physicTiO20x494c0f0",
+          "fTitle" : "",
+          "fGeoAtt" : 3084,
+          "fVolume" : {"$ref":187},
+          "fMother" : {"$ref":215},
+          "fNumber" : 22,
+          "fNovlp" : 0,
+          "fOverlaps" : [],
+          "fMatrix" : {"$ref":102}
+        }, {
+          "_typename" : "TGeoNodeMatrix",
+          "fUniqueID" : 0,
+          "fBits" : 0,
+          "fName" : "physicCsI0x494c180",
+          "fTitle" : "",
+          "fGeoAtt" : 3084,
+          "fVolume" : {"$ref":175},
+          "fMother" : {"$ref":215},
+          "fNumber" : 23,
+          "fNovlp" : 0,
+          "fOverlaps" : [],
+          "fMatrix" : {"$ref":103}
+        }, {
+          "_typename" : "TGeoNodeMatrix",
+          "fUniqueID" : 0,
+          "fBits" : 0,
+          "fName" : "physicTiO20x494c210",
+          "fTitle" : "",
+          "fGeoAtt" : 3084,
+          "fVolume" : {"$ref":187},
+          "fMother" : {"$ref":215},
+          "fNumber" : 23,
+          "fNovlp" : 0,
+          "fOverlaps" : [],
+          "fMatrix" : {"$ref":104}
+        }, {
+          "_typename" : "TGeoNodeMatrix",
+          "fUniqueID" : 0,
+          "fBits" : 0,
+          "fName" : "physicCsI0x494c2a0",
+          "fTitle" : "",
+          "fGeoAtt" : 3084,
+          "fVolume" : {"$ref":175},
+          "fMother" : {"$ref":215},
+          "fNumber" : 24,
+          "fNovlp" : 0,
+          "fOverlaps" : [],
+          "fMatrix" : {"$ref":105}
+        }, {
+          "_typename" : "TGeoNodeMatrix",
+          "fUniqueID" : 0,
+          "fBits" : 0,
+          "fName" : "physicTiO20x494c330",
+          "fTitle" : "",
+          "fGeoAtt" : 3084,
+          "fVolume" : {"$ref":187},
+          "fMother" : {"$ref":215},
+          "fNumber" : 24,
+          "fNovlp" : 0,
+          "fOverlaps" : [],
+          "fMatrix" : {"$ref":106}
+        }, {
+          "_typename" : "TGeoNodeMatrix",
+          "fUniqueID" : 0,
+          "fBits" : 0,
+          "fName" : "physicECALShield0x494c3c0",
+          "fTitle" : "",
+          "fGeoAtt" : 3084,
+          "fVolume" : {"$ref":205},
+          "fMother" : {"$ref":215},
+          "fNumber" : 0,
+          "fNovlp" : 0,
+          "fOverlaps" : [],
+          "fMatrix" : {"$ref":107}
+        }]
+      },
+      "fShape" : {"$ref":173},
+      "fMedium" : {
+        "_typename" : "TGeoMedium",
+        "fUniqueID" : 0,
+        "fBits" : 0,
+        "fName" : "G4_Galactic",
+        "fTitle" : "",
+        "fId" : 5,
+        "fParams" : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        "fMaterial" : {
+          "_typename" : "TGeoMixture",
+          "fUniqueID" : 0,
+          "fBits" : 131072,
+          "fName" : "G4_Galactic",
+          "fTitle" : "",
+          "fFillColor" : 19,
+          "fFillStyle" : 3060,
+          "fIndex" : 3,
+          "fA" : 1.00794075266514,
+          "fZ" : 1,
+          "fDensity" : 1e-25,
+          "fRadLen" : 5.78371431083406e26,
+          "fIntLen" : 3.52752219948169e26,
+          "fTemperature" : 273.15,
+          "fPressure" : 632420000,
+          "fState" : 0,
+          "fShader" : null,
+          "fCerenkov" : null,
+          "fElement" : null,
+          "fProperties" : {
+            "_typename" : "TList",
+            "name" : "TList",
+            "arr" : [],
+            "opt" : []
+          },
+          "fConstProperties" : {
+            "_typename" : "TList",
+            "name" : "TList",
+            "arr" : [],
+            "opt" : []
+          },
+          "fNelements" : 1,
+          "fZmixture" : [1],
+          "fAmixture" : [1.00794075266514],
+          "fWeights" : [1],
+          "fNatoms" : [],
+          "fVecNbOfAtomsPerVolume" : [],
+          "fElements" : {
+            "_typename" : "TObjArray",
+            "name" : "TObjArray",
+            "arr" : [{
+              "_typename" : "TGeoElement",
+              "fUniqueID" : 0,
+              "fBits" : 262144,
+              "fName" : "H",
+              "fTitle" : "HYDROGEN",
+              "fZ" : 1,
+              "fN" : 1,
+              "fNisotopes" : 2,
+              "fA" : 1.00794075266514,
+              "fIsotopes" : {
+                "_typename" : "TObjArray",
+                "name" : "TObjArray",
+                "arr" : [{
+                  "_typename" : "TGeoIsotope",
+                  "fUniqueID" : 0,
+                  "fBits" : 0,
+                  "fName" : "H1",
+                  "fTitle" : "",
+                  "fZ" : 1,
+                  "fN" : 1,
+                  "fA" : 1.00782503081372
+                }, {
+                  "_typename" : "TGeoIsotope",
+                  "fUniqueID" : 0,
+                  "fBits" : 0,
+                  "fName" : "H2",
+                  "fTitle" : "",
+                  "fZ" : 1,
+                  "fN" : 2,
+                  "fA" : 2.01410199966617
+                }]
+              },
+              "fAbundances" : [0.999885, 1.15e-4],
+              "fCoulomb" : 6.4008382452848e-5,
+              "fRadTsai" : 2.65487233968378e-26
+            }]
+          }
+        }
+      },
+      "fFinder" : null,
+      "fVoxels" : null,
+      "fNumber" : 4,
+      "fNtotal" : 52,
+      "fRefCount" : 51,
+      "fTransparency" : -1
+    }]
+  },
+  "fPhysicalNodes" : {
+    "_typename" : "TObjArray",
+    "name" : "TObjArray",
+    "arr" : []
+  },
+  "fTracks" : {
+    "_typename" : "TObjArray",
+    "name" : "TObjArray",
+    "arr" : []
+  },
+  "fPdgNames" : {
+    "_typename" : "TObjArray",
+    "name" : "TObjArray",
+    "arr" : []
+  },
+  "fGDMLMatrices" : {
+    "_typename" : "TObjArray",
+    "name" : "TObjArray",
+    "arr" : []
+  },
+  "fOpticalSurfaces" : {
+    "_typename" : "TObjArray",
+    "name" : "TObjArray",
+    "arr" : []
+  },
+  "fSkinSurfaces" : {
+    "_typename" : "TObjArray",
+    "name" : "TObjArray",
+    "arr" : []
+  },
+  "fBorderSurfaces" : {
+    "_typename" : "TObjArray",
+    "name" : "TObjArray",
+    "arr" : []
+  },
+  "fMaterials" : {
+    "_typename" : "TList",
+    "name" : "THashList",
+    "arr" : [{"$ref":177}, {"$ref":189}, {"$ref":207}, {"$ref":269}],
+    "opt" : ["", "", "", ""]
+  },
+  "fMedia" : {
+    "_typename" : "TList",
+    "name" : "THashList",
+    "arr" : [{"$ref":176}, {"$ref":188}, {"$ref":206}, {"$ref":268}],
+    "opt" : ["", "", "", ""]
+  },
+  "fNodes" : {
+    "_typename" : "TObjArray",
+    "name" : "TObjArray",
+    "arr" : [{
+      "_typename" : "TGeoNodeMatrix",
+      "fUniqueID" : 0,
+      "fBits" : 0,
+      "fName" : "World_1",
+      "fTitle" : "Top logical node",
+      "fGeoAtt" : 3084,
+      "fVolume" : {"$ref":215},
+      "fMother" : null,
+      "fNumber" : 1,
+      "fNovlp" : 0,
+      "fOverlaps" : [],
+      "fMatrix" : {"$ref":2}
+    }]
+  },
+  "fOverlaps" : {
+    "_typename" : "TObjArray",
+    "name" : "TObjArray",
+    "arr" : []
+  },
+  "fRegions" : {
+    "_typename" : "TObjArray",
+    "name" : "TObjArray",
+    "arr" : []
+  },
+  "fMasterVolume" : {"$ref":215},
+  "fGLMatrix" : {
+    "_typename" : "TGeoHMatrix",
+    "fUniqueID" : 0,
+    "fBits" : 0,
+    "fName" : "",
+    "fTitle" : "",
+    "fTranslation" : [0, 0, 0],
+    "fRotationMatrix" : [1, 0, 0, 0, 1, 0, 0, 0, 1],
+    "fScale" : [1, 1, 1]
+  },
+  "fUniqueVolumes" : {
+    "_typename" : "TObjArray",
+    "name" : "TObjArray",
+    "arr" : [{"$ref":215}, {"$ref":175}, {"$ref":187}, {"$ref":205}, {"$ref":215}]
+  },
+  "fNLevel" : 100,
+  "fHashPNE" : {
+    "_typename" : "THashList",
+    "name" : "THashList",
+    "arr" : [],
+    "opt" : []
+  },
+  "fSizePNEId" : 0,
+  "fNPNEId" : 0,
+  "fKeyPNEId" : [],
+  "fValuePNEId" : [],
+  "fUsePWNav" : false,
+  "fParallelWorld" : null,
+  "fProperties" : []
+}
