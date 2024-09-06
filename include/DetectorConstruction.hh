@@ -69,6 +69,7 @@ class DetectorConstruction : public G4VUserDetectorConstruction
 	void ConstructECAL();
 	G4SubtractionSolid* constructSolidTiO2();
 	G4VSolid* constructECALShield();
+	G4SubtractionSolid* constructSolidSiliconeRubber();
 	void defineECALParameter();
 	void defineECALMaterial();
 	Config *config;
@@ -85,12 +86,15 @@ class DetectorConstruction : public G4VUserDetectorConstruction
 	G4double CryGap;
 	G4double ECALShield_XY;
 	G4double ECALShield_Z;
+	G4double Hole_XY;
+	G4double Hole_Z;
 
 	G4Material* Vacuum;
 	G4Material* CsI;
 	G4Material* TiO2;
 
 	G4Material* carbonFiber;
+	G4Material* siliconeRubber;
 };
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......

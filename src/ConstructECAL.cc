@@ -65,9 +65,12 @@ void DetectorConstruction::defineECALParameter(){
 	nCryX = 5;
 	nCryY = 5;
 
-	CryGap = 5*mm; // 5mm gap between crystals
-	ECALShield_XY = 336. * mm; // 6*CryGap + 5*TiO2_XY = 336.;
-	ECALShield_Z = 201.2 * mm; // <TiO2_Z
+	CryGap = 1.5 * mm; // 5mm gap between crystals
+
+	Hole_XY = 62. * mm;
+	Hole_Z = TiO2_Z;
+	ECALShield_XY = 6*CryGap + 5*Hole_XY; // 6*CryGap + 5*TiO2_XY = 336.;
+	ECALShield_Z = TiO2_Z + 2.*mm; // TiO2_Z + 2mm carbone fiber
 }
 
 void DetectorConstruction::defineECALMaterial(){
@@ -90,6 +93,15 @@ void DetectorConstruction::defineECALMaterial(){
 	carbonFiber->AddElement(elC, 0.9); 
 	carbonFiber->AddElement(elO, 0.1);
 
+	//silicone rubber
+	G4Element* elSi = G4NistManager::Instance()->FindOrBuildElement("Si");
+	G4Element* elH = G4NistManager::Instance()->FindOrBuildElement("H");
+	siliconeRubber = new G4Material("SiliconeRubber", 1.1*g/cm3, 4);
+	siliconeRubber->AddElement(elSi, 1); // 硅
+    siliconeRubber->AddElement(elO, 2);  // 氧
+    siliconeRubber->AddElement(elC, 2);  // 碳
+    siliconeRubber->AddElement(elH, 6);  // 氢
+
 }
 
 G4SubtractionSolid* DetectorConstruction::constructSolidTiO2(){
@@ -102,29 +114,37 @@ G4SubtractionSolid* DetectorConstruction::constructSolidTiO2(){
 	return solidTiO2;
 }
 
+G4SubtractionSolid* DetectorConstruction::constructSolidSiliconeRubber(){
+	auto TiO2_box = new G4Box("TiO2", 0.5*TiO2_XY, 0.5*TiO2_XY, 0.5*TiO2_Z);
+	auto SiliconeRubber_box = new G4Box("SiliconeRubber", 0.5*Hole_XY, 0.5*Hole_XY, 0.5*Hole_Z);
+
+	auto solidSiliconeRubber = new G4SubtractionSolid("solidSiliconeRubber",SiliconeRubber_box,TiO2_box,0,G4ThreeVector(0.,0.,0.));
+	return solidSiliconeRubber;
+}
+
 G4VSolid* DetectorConstruction::constructECALShield(){
     auto ECALShield_box = new G4Box("ECALShield_box", 0.5*ECALShield_XY, 0.5*ECALShield_XY, 0.5*ECALShield_Z);
-	auto ES_TiO2_box = new G4Box("ES_TiO2_box", 0.5*TiO2_XY, 0.5*TiO2_XY, 0.5*TiO2_Z);
+	auto Hole_box = new G4Box("Hole_box", 0.5*Hole_XY, 0.5*Hole_XY, 0.5*Hole_Z);
 
 	G4VSolid* unionTiO2Solid = nullptr;
 
 	for(int i=0;i<nCryX;i++){
 		for(int j=0;j<nCryY;j++){
 			if(i==2 && j==2)continue;
-			double x_o = -TiO2_XY*2. - CryGap*2.;//left lower X position
-			double y_o = -TiO2_XY*2. - CryGap*2.;//left lower Y position
-			double x = x_o + double(i) * ( TiO2_XY + CryGap );
-			double y = y_o + double(j) * ( TiO2_XY + CryGap );
+			double x_o = -Hole_XY*2. - CryGap*2.;//left lower X position
+			double y_o = -Hole_XY*2. - CryGap*2.;//left lower Y position
+			double x = x_o + double(i) * ( Hole_XY + CryGap );
+			double y = y_o + double(j) * ( Hole_XY + CryGap );
 			if(unionTiO2Solid == nullptr){
-				unionTiO2Solid = new G4UnionSolid("unionSolid",ES_TiO2_box,ES_TiO2_box,0,G4ThreeVector(x,y,0.));
+				unionTiO2Solid = new G4UnionSolid("unionSolid",Hole_box,Hole_box,0,G4ThreeVector(x,y,0.));
 			}
 			else{
-				unionTiO2Solid = new G4UnionSolid("unionSolid",unionTiO2Solid,ES_TiO2_box,0,G4ThreeVector(x,y,0.));
+				unionTiO2Solid = new G4UnionSolid("unionSolid",unionTiO2Solid,Hole_box,0,G4ThreeVector(x,y,0.));
 			}
 		}
 	}
 
-	auto solidECALShield = new G4SubtractionSolid("solidECALShield",ECALShield_box,unionTiO2Solid);
+	auto solidECALShield = new G4SubtractionSolid("solidECALShield",ECALShield_box,unionTiO2Solid, 0, G4ThreeVector(0.,0.,1.*mm));
 	return solidECALShield;
 }
 
@@ -146,28 +166,39 @@ void DetectorConstruction::ConstructECAL()
 	//Construct logical TiO2 reflector;
 	auto logicTiO2 = new G4LogicalVolume(solidTiO2, TiO2, "logicTiO2");
 
-	//Construct Carbon Fiber Shield;
+	//Construct Carbon Fiber Shield, silicone rubber;
 	G4LogicalVolume* logicECALShield = nullptr;
+	G4LogicalVolume* logicSiliconeRubber = nullptr;
 	if(config->conf["ECAL"]["ECALShield"].as<bool>()){
 		//Solid ECAL Shield
 		auto solidECALShield = constructECALShield();
 		//Logical ECAL Shield
 		logicECALShield = new G4LogicalVolume(solidECALShield, carbonFiber, "logicECALShield");
+
+		//Solid Silicone Rubber
+		auto solidSiliconeRubber = constructSolidSiliconeRubber();
+		//Logical Silicone Rubber
+		logicSiliconeRubber = new G4LogicalVolume(solidSiliconeRubber, siliconeRubber, "logicSiliconeRubber");
 	}
 
 	//Placement
 	for(int i=0;i<nCryX;i++){
 		for(int j=0;j<nCryY;j++){
-			double x_o = -TiO2_XY*2. - CryGap*2.;//left lower X position
-			double y_o = -TiO2_XY*2. - CryGap*2.;//left lower Y position
-			double x = x_o + double(i) * ( TiO2_XY + CryGap );
-			double y = y_o + double(j) * ( TiO2_XY + CryGap );
+			double x_o = -Hole_XY*2. - CryGap*2.;//left lower X position
+			double y_o = -Hole_XY*2. - CryGap*2.;//left lower Y position
+			double x = x_o + double(i) * ( Hole_XY + CryGap );
+			double y = y_o + double(j) * ( Hole_XY + CryGap );
 			int CopyNo = i*5+j;
 			new G4PVPlacement(0, G4ThreeVector(x,y,0.), logicCsI, "physicCsI", logicWorld, false, CopyNo, true);
 			new G4PVPlacement(0, G4ThreeVector(x,y,0.), logicTiO2, "physicTiO2", logicWorld, false, CopyNo, true);
+			if(config->conf["ECAL"]["ECALShield"].as<bool>()){
+				new G4PVPlacement(0, G4ThreeVector(x,y,0.), logicSiliconeRubber, "physicSiliconeRubber", logicWorld, false, CopyNo, true);
+			}
 		}
 	}
-	new G4PVPlacement(0, G4ThreeVector(0.,0.,0.), logicECALShield, "physicECALShield", logicWorld, false, 0, true);
+	if(config->conf["ECAL"]["ECALShield"].as<bool>()){
+		new G4PVPlacement(0, G4ThreeVector(0.,0.,-1.*mm), logicECALShield, "physicECALShield", logicWorld, false, 0, true);
+	}
 
 }
 
