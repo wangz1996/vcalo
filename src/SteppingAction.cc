@@ -73,18 +73,37 @@ SteppingAction::~SteppingAction()
 
 void SteppingAction::UserSteppingAction(const G4Step* aStep)
 {
-  G4double edep = BirksAttenuation(aStep);
+  // G4double edep = BirksAttenuation(aStep);
+  auto preStepPoint = aStep->GetPreStepPoint();
+  auto postStepPoint = aStep->GetPostStepPoint();
+  std::string preStepVName, postStepVName;
+  if (preStepPoint && preStepPoint->GetPhysicalVolume()) {
+    preStepVName = preStepPoint->GetPhysicalVolume()->GetName();
+  }
+
+  if (postStepPoint && postStepPoint->GetPhysicalVolume()) {
+    postStepVName = postStepPoint->GetPhysicalVolume()->GetName();
+  }
+  
+  G4double edep = aStep->GetTotalEnergyDeposit();
   G4int copyNo = aStep->GetPreStepPoint()->GetPhysicalVolume()->GetCopyNo();
   G4int pdgid = aStep->GetTrack()->GetDefinition()->GetPDGEncoding();
   G4int trackid = aStep->GetTrack()->GetTrackID();
   G4double time = aStep->GetPreStepPoint()->GetGlobalTime();
   G4String volumeName = aStep->GetPreStepPoint()->GetTouchableHandle()->GetVolume()->GetLogicalVolume()->GetName();
-  if(time > 150.)return;
+  if(aStep->GetTrack()->GetDefinition() == G4OpticalPhoton::OpticalPhotonDefinition() &&
+    preStepVName.find("CsI")!=std::string::npos &&
+    postStepVName.find("World")!=std::string::npos){
+    HistoManager::getInstance().npup(preStepVName);
+    HistoManager::getInstance().filloptime(time);
+  }
+  // if(time > 150.)return;
 
   // check if we are in scoring volume
   // collect energy and track length step by step
   //std::cout<<volumeName<<" "<<int(volumeName=="ecal_crystal")<<" "<<edep<<std::endl;
   if(volumeName=="logicCsI") {  HistoManager::getInstance().fillEcalHit(copyNo,edep,time,pdgid,trackid); }
+  // std::cout<<"End"<<std::endl;
 }
 
  

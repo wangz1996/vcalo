@@ -41,6 +41,7 @@
 #include "globals.hh"
 #include "HistoManager.hh"
 #include "G4GeneralParticleSource.hh"
+#include "Config.hh"
 
 class DetectorConstruction;
 class EventAction;

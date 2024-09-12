@@ -63,11 +63,10 @@ PrimaryGeneratorAction::PrimaryGeneratorAction(DetectorConstruction* det,Config 
   std::vector<double> gps_direction = config->conf["Source"]["direction"].as<std::vector<double>>();
   fParticleGun->GetAngDist()->SetParticleMomentumDirection(G4ThreeVector(gps_direction.at(0),gps_direction.at(1),gps_direction.at(2)));
   fParticleGun->GetEneDist()->SetEnergyDisType("Mono");
-  fParticleGun->GetEneDist()->SetMonoEnergy(config->conf["Source"]["energy"].as<double>() *1000.);
+  fParticleGun->GetEneDist()->SetMonoEnergy(config->conf["Source"]["energy"].as<double>());
   fParticleGun->GetPosDist()->SetPosDisType("Point");
   std::vector<double> gps_position = config->conf["Source"]["position"].as<std::vector<double>>();
   fParticleGun->GetPosDist()->SetCentreCoords(G4ThreeVector(gps_position.at(0),gps_position.at(1),gps_position.at(2)));
-
   useHEPEvt = false;
 }
 

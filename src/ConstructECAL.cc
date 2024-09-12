@@ -43,6 +43,7 @@
 #include "G4PVPlacement.hh"
 #include "G4SystemOfUnits.hh"
 #include "G4VisAttributes.hh"
+#include "G4LogicalBorderSurface.hh"
 #include "G4Colour.hh"
 #include "G4GeometryTolerance.hh"
 #include "G4GeometryManager.hh"
@@ -61,6 +62,9 @@ void DetectorConstruction::defineECALParameter(){
 
 	Polish_XY = 35. * mm;
 	Polish_Z = (TiO2_Z - CsI_Z)/2.;
+
+	APD_XY = 10. *mm;
+	APD_Z = 10. *um;
 	
 	nCryX = 5;
 	nCryY = 5;
@@ -71,6 +75,8 @@ void DetectorConstruction::defineECALParameter(){
 	Hole_Z = TiO2_Z;
 	ECALShield_XY = 6*CryGap + 5*Hole_XY; // 6*CryGap + 5*TiO2_XY = 336.;
 	ECALShield_Z = TiO2_Z + 2.*mm; // TiO2_Z + 2mm carbone fiber
+
+
 }
 
 void DetectorConstruction::defineECALMaterial(){
@@ -102,6 +108,39 @@ void DetectorConstruction::defineECALMaterial(){
     siliconeRubber->AddElement(elC, 2);  // 碳
     siliconeRubber->AddElement(elH, 6);  // 氢
 
+	//Optical properties
+	//CsI
+	for(size_t i=0;i<CsI_NEntries;i++){CsI_RIndex[i] = 1.79;}
+	for(size_t i=0;i<CsI_NEntries;i++){CsI_AbsLength[i] = 500.*cm;}
+	CsIMPT = new G4MaterialPropertiesTable();
+	CsIMPT->AddProperty("RINDEX", CsI_PEnergy, CsI_RIndex, CsI_NEntries);//Refractive index
+	CsIMPT->AddProperty("ABSLENGTH", CsI_PEnergy, CsI_AbsLength, CsI_NEntries);//Absorption length
+	// CsIMPT->AddProperty("RAYLEIGH", PhotonEnergy, {500*cm, 500*cm}, nEntries);//Rayleigh scattering length
+	CsIMPT->AddProperty("SCINTILLATIONCOMPONENT1", CsI_PEnergy, CsI_SlowComponentIntensity, CsI_NEntries);//Slow component of the scintillation spectrum
+
+	CsIMPT->AddConstProperty("SCINTILLATIONYIELD",65000./MeV); //The number of photons emitted per MeV of deposited energy
+	CsIMPT->AddConstProperty("RESOLUTIONSCALE",1.); //The resolution of the scintillation spectrum
+	// CsIMPT->AddConstProperty("FASTTIMECONSTANT", 700*ns); //The time constant of the fast component of the scintillation spectrum
+	CsIMPT->AddConstProperty("SCINTILLATIONTIMECONSTANT1", 1220*ns); //The time constant of the slow component of the scintillation spectrum
+	// CsIMPT->AddConstProperty("YIELDRATIO",0.57);//Fast-to-slow component yield ratio
+	CsI->SetMaterialPropertiesTable(CsIMPT);
+
+	//Optical Surfaces
+	//CsI(Tl) and TiO2
+	for(size_t i=0;i<CsI_NEntries;i++){CsI_SpecularLobe[i] = 0.95;}
+	for(size_t i=0;i<CsI_NEntries;i++){CsI_DiffuseLobe[i] = 0.05;}
+	for(size_t i=0;i<CsI_NEntries;i++){CsI_Reflectivity[i] = 0.98;}
+	CsISurface = new G4OpticalSurface("CsISurface");
+	CsISurface->SetType(dielectric_dielectric);
+	CsISurface->SetModel(glisur);
+	CsISurface->SetFinish(groundbackpainted);
+	CsISurface->SetSigmaAlpha(0.06);
+
+	CsI_SurfaceMPT = new G4MaterialPropertiesTable();
+	CsI_SurfaceMPT->AddProperty("REFLECTIVITY",CsI_PEnergy, CsI_Reflectivity, CsI_NEntries);
+	CsI_SurfaceMPT->AddProperty("SPECULARLOBECONSTANT",CsI_PEnergy, CsI_SpecularLobe, CsI_NEntries);
+	// CsI_SurfaceMPT->AddProperty("DIFFUSELOBECONSTANT",CsI_PEnergy, CsI_DiffuseLobe, CsI_NEntries);
+	CsISurface->SetMaterialPropertiesTable(CsI_SurfaceMPT);
 }
 
 G4SubtractionSolid* DetectorConstruction::constructSolidTiO2(){
@@ -154,17 +193,24 @@ void DetectorConstruction::ConstructECAL()
 	std::cout<<"Starting to construct ECAL"<<std::endl;
     //
     // define materials and parameters
+
     defineECALParameter();
+
     defineECALMaterial();
 
 	// Construct CsI solid;
 	auto solidCsI = new G4Box("solidCsI", 0.5*CsI_XY, 0.5*CsI_XY, 0.5*CsI_Z);
 	//Construct logical CsI;
 	auto logicCsI = new G4LogicalVolume(solidCsI, CsI, "logicCsI");
+
 	//Construct TiO2 reflector;
 	auto solidTiO2 = constructSolidTiO2();
 	//Construct logical TiO2 reflector;
 	auto logicTiO2 = new G4LogicalVolume(solidTiO2, TiO2, "logicTiO2");
+
+	//Construct APD
+	auto solidAPD = new G4Box("solidAPD", 0.5*APD_XY, 0.5*APD_XY, 0.5*APD_Z);
+	auto logicAPD = new G4LogicalVolume(solidAPD, G4NistManager::Instance()->FindOrBuildMaterial("G4_Si"), "logicAPD");
 
 	//Construct Carbon Fiber Shield, silicone rubber;
 	G4LogicalVolume* logicECALShield = nullptr;
@@ -174,6 +220,7 @@ void DetectorConstruction::ConstructECAL()
 		auto solidECALShield = constructECALShield();
 		//Logical ECAL Shield
 		logicECALShield = new G4LogicalVolume(solidECALShield, carbonFiber, "logicECALShield");
+		// logicECALShield->SetVisAttributes(new G4VisAttributes(G4Colour(1.0, 0.549, 0.0, 0.5)));
 
 		//Solid Silicone Rubber
 		auto solidSiliconeRubber = constructSolidSiliconeRubber();
@@ -189,13 +236,25 @@ void DetectorConstruction::ConstructECAL()
 			double x = x_o + double(i) * ( Hole_XY + CryGap );
 			double y = y_o + double(j) * ( Hole_XY + CryGap );
 			int CopyNo = i*5+j;
-			new G4PVPlacement(0, G4ThreeVector(x,y,0.), logicCsI, "physicCsI", logicWorld, false, CopyNo, true);
-			new G4PVPlacement(0, G4ThreeVector(x,y,0.), logicTiO2, "physicTiO2", logicWorld, false, CopyNo, true);
+
+			// Create unique names for each physical volume
+        	G4String CsIName = "physicCsI_" + std::to_string(CopyNo);
+        	G4String TiO2Name = "physicTiO2_" + std::to_string(CopyNo);
+			G4String APDName = "physicAPD_" + std::to_string(CopyNo);
+			// Create physical volumes
+        	G4VPhysicalVolume* physicCsI = new G4PVPlacement(0, G4ThreeVector(x, y, 0.), logicCsI, CsIName, logicWorld, false, CopyNo, true);
+        	G4VPhysicalVolume* physicTiO2 = new G4PVPlacement(0, G4ThreeVector(x, y, 0.), logicTiO2, TiO2Name, logicWorld, false, CopyNo, true);
+			G4VPhysicalVolume* physicAPD = new G4PVPlacement(0, G4ThreeVector(x, y, CsI_Z/2. + 2.*mm), logicAPD, APDName, logicWorld, false, CopyNo, true);
+			// Create logical border surface
+        	auto logicBorderSurface = new G4LogicalBorderSurface("CsITiO2BorderSurface_" + std::to_string(CopyNo), physicCsI, physicTiO2, CsISurface);
+			auto opticalSurface = dynamic_cast<G4OpticalSurface*>(logicBorderSurface->GetSurface(physicCsI, physicTiO2)->GetSurfaceProperty());
+  			if(opticalSurface)opticalSurface->DumpInfo();
 			if(config->conf["ECAL"]["ECALShield"].as<bool>()){
 				new G4PVPlacement(0, G4ThreeVector(x,y,0.), logicSiliconeRubber, "physicSiliconeRubber", logicWorld, false, CopyNo, true);
 			}
 		}
 	}
+	
 	if(config->conf["ECAL"]["ECALShield"].as<bool>()){
 		new G4PVPlacement(0, G4ThreeVector(0.,0.,-1.*mm), logicECALShield, "physicECALShield", logicWorld, false, 0, true);
 	}

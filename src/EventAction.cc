@@ -68,7 +68,7 @@ void EventAction::EndOfEventAction(const G4Event* evt)
  G4int evtNb = evt->GetEventID(); 
  //printing survey
  //
- if (evtNb%1000 == 0) 
+ if (1) 
    G4cout << "\n end of event " << std::setw(6) << evtNb 
           << " :" + fDecayChain << G4endl;
  

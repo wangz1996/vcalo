@@ -56,11 +56,16 @@ int Config::Run()
 	if(conf["Global"]["savegeo"].as<bool>())
 	{
 		G4GDMLParser parser;
+		if(std::filesystem::exists("vcalo.gdml")){
+			std::remove("vcalo.gdml");
+		}
 		parser.Write("vcalo.gdml",detector->Construct());
 	}
 	runManager->SetUserInitialization(detector);
 
-	G4VUserPhysicsList* physics = new QGSP_BERT();
+	G4VModularPhysicsList* physics = new FTFP_BERT();
+	physics->ReplacePhysics(new G4EmStandardPhysics_option4());
+	physics->RegisterPhysics(new G4OpticalPhysics());
 	runManager->SetUserInitialization(physics);
 
 	//SteppingVerbose* stepV = new SteppingVerbose();
@@ -93,7 +98,7 @@ int Config::Run()
 	// job termination
 	//
 	delete runManager;
-	if(access("vcalo.gdml",F_OK) == 0)std::remove("vcalo.gdml");
+	//if(access("vcalo.gdml",F_OK) == 0)std::remove("vcalo.gdml");
 
 	return 1;
 }

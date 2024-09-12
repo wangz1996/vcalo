@@ -41,6 +41,7 @@
 #include <vector>
 #include <G4ThreeVector.hh>
 #include <unordered_map>
+#include <filesystem>
 
 class TTree;
 class TFile;
@@ -54,6 +55,8 @@ class HistoManager
 		void clear();
 		void book(const std::string& foutname,const bool &savegeo);
 		void fill();
+		void npup(const std::string& name);
+		void filloptime(const float& time){ecal_optime.emplace_back(time);}
 		void fillEcalHit(const G4int &copyNo,const G4double &edep,const G4double &time,const G4int &pdgid,const G4int &trackid);
 	private:
 		//Singleton
@@ -74,7 +77,11 @@ class HistoManager
 	private:
 		std::vector<int> ecal_cellid;
 		std::vector<float> ecal_celle;
+		std::vector<int> ecal_nphoton;
+		std::vector<float> ecal_optime;
 		std::unordered_map<int,float> ecal_mape;
+		std::unordered_map<int,int> ecal_npmap;
+		float ecal_e;
 };
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......

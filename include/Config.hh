@@ -15,9 +15,14 @@
 #include "TrackingAction.hh"
 #include "QGSP_BERT.hh"
 #include "G4GDMLParser.hh"
+#include "FTFP_BERT.hh"
+#include "G4EmStandardPhysics_option4.hh"
+#include "G4SystemOfUnits.hh"
+#include <CLHEP/Units/SystemOfUnits.h>
 
 #include "G4VisExecutive.hh"
-
+#include "G4OpticalPhysics.hh"
+#include "G4OpticalPhoton.hh"
 #include "G4UIExecutive.hh"
 #include <iostream>
 #include <string>
@@ -25,6 +30,7 @@
 #include <fstream>
 #include <ctime>
 #include "yaml-cpp/yaml.h"
+#include <filesystem>
 
 class Config
 {

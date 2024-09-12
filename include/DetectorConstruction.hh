@@ -38,10 +38,12 @@
 #include "G4VUserDetectorConstruction.hh"
 #include "G4UnionSolid.hh"
 #include "G4SubtractionSolid.hh"
+#include "G4OpticalSurface.hh"
 #include "globals.hh"
 #include "SteppingAction.hh"
 #include "Config.hh"
 
+using CLHEP::eV;
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 class Config;
 class DetectorConstruction : public G4VUserDetectorConstruction
@@ -88,6 +90,8 @@ class DetectorConstruction : public G4VUserDetectorConstruction
 	G4double ECALShield_Z;
 	G4double Hole_XY;
 	G4double Hole_Z;
+	G4double APD_XY;
+	G4double APD_Z;
 
 	G4Material* Vacuum;
 	G4Material* CsI;
@@ -95,6 +99,31 @@ class DetectorConstruction : public G4VUserDetectorConstruction
 
 	G4Material* carbonFiber;
 	G4Material* siliconeRubber;
+
+	//Optical Properties
+	G4MaterialPropertiesTable *CsIMPT;
+	G4OpticalSurface* CsISurface;
+	G4MaterialPropertiesTable* CsI_SurfaceMPT;
+	static const G4int CsI_NEntries=20;
+	G4double CsI_PEnergy[CsI_NEntries] = {
+    1.55219*eV, 1.62123*eV, 1.70461*eV, 1.78240*eV, 1.86127*eV,
+    1.91672*eV, 1.97201*eV, 2.02307*eV, 2.07292*eV, 2.12529*eV,
+    2.17170*eV, 2.22473*eV, 2.27094*eV, 2.31910*eV, 2.38484*eV,
+    2.49924*eV, 2.63158*eV, 2.78577*eV, 2.95112*eV, 3.31817*eV
+	};
+
+	G4double CsI_SlowComponentIntensity[CsI_NEntries] = {
+    0.16787, 0.19185, 0.22782, 0.29736, 0.39808,
+    0.49400, 0.60432, 0.73141, 0.82494, 0.91607,
+    0.95683, 0.97842, 0.98321, 0.97362, 0.93525,
+    0.80576, 0.57074, 0.35971, 0.19664, 0.02878
+	};
+
+	G4double CsI_RIndex[CsI_NEntries];
+	G4double CsI_AbsLength[CsI_NEntries];	
+	G4double CsI_SpecularLobe[CsI_NEntries];
+	G4double CsI_DiffuseLobe[CsI_NEntries];
+	G4double CsI_Reflectivity[CsI_NEntries];
 };
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......

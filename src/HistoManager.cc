@@ -51,26 +51,44 @@ void HistoManager::book(const std::string& foutname,const bool &savegeo)
   vTree = new TTree("vtree","calo events");
   vTree->Branch("ecal_cellid",               &ecal_cellid);
   vTree->Branch("ecal_celle",               &ecal_celle);
+  vTree->Branch("ecal_e",					&ecal_e);
+	vTree->Branch("ecal_nphoton",			&ecal_nphoton);
+	vTree->Branch("ecal_optime",			&ecal_optime);
 	fSaveGeo = savegeo;
 }
 
 void HistoManager::fill(){
-	for(auto i:ecal_mape){
-		ecal_cellid.emplace_back(i.first);
-		ecal_celle.emplace_back(SiPMDigi(i.second));
+	for(size_t i=0;i<25;i++){
+		ecal_cellid.emplace_back(i);
+		ecal_celle.emplace_back(ecal_mape.at(i));
+		ecal_e+=ecal_mape.at(i);
+		ecal_nphoton.emplace_back(ecal_npmap.at(i));
 	}
 	vTree->Fill();
-	
 }
 
 void HistoManager::fillEcalHit(const G4int &copyNo,const G4double &edep,const G4double &time,const G4int &pdgid,const G4int &trackid){
 	ecal_mape[copyNo]+=edep;
 }
 
+void HistoManager::npup(const std::string& name){
+	std::string npname = name.substr(name.find_first_of("_")+1);
+	int npid = std::stoi(npname);
+	ecal_npmap[npid]++;
+}
+
 void HistoManager::clear(){
 	std::vector<int>().swap(ecal_cellid);
 	std::vector<float>().swap(ecal_celle);
+	std::vector<int>().swap(ecal_nphoton);
+	std::vector<float>().swap(ecal_optime);
 	ecal_mape.clear();
+	ecal_npmap.clear();
+	for(size_t i=0;i<25;i++){
+		ecal_mape[i]=0.;
+		ecal_npmap[i]=0;
+	}
+	ecal_e=0.;
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
@@ -89,7 +107,7 @@ void HistoManager::save()
 		gSystem->Load("libGeom");
 		TGeoManager::Import("vcalo.gdml");
 		gGeoManager->Write("vcalo");
-		std::remove("vcalo.gdml");
+		//std::remove("vcalo.gdml");
 	}
 	vTree->Write("",TObject::kOverwrite);
 	vFile->Close();

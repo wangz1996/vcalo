@@ -62,6 +62,7 @@ TrackingAction::~TrackingAction()
 
   void TrackingAction::PreUserTrackingAction(const G4Track* track)
 {
+    // std::cout<<"TrackingAction::PreUserTrackingAction"<<std::endl;
     fEvent->fStepTag=0;
   /*
   Run* run 
@@ -80,7 +81,7 @@ TrackingAction::~TrackingAction()
 
 void TrackingAction::PostUserTrackingAction(const G4Track* track)
 {
- 
+    // std::cout<<"TrackingAction::PostUserTrackingAction"<<std::endl;
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......

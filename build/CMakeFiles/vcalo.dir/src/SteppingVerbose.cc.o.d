@@ -601,6 +601,10 @@ CMakeFiles/vcalo.dir/src/SteppingVerbose.cc.o: \
  /cvmfs/sft.cern.ch/lcg/views/LCG_105/x86_64-centos7-gcc12-opt/include/Geant4/G4VBooleanProcessor.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_105/x86_64-centos7-gcc12-opt/include/Geant4/G4BooleanSolid.icc \
  /cvmfs/sft.cern.ch/lcg/views/LCG_105/x86_64-centos7-gcc12-opt/include/Geant4/G4SubtractionSolid.hh \
+ /cvmfs/sft.cern.ch/lcg/views/LCG_105/x86_64-centos7-gcc12-opt/include/Geant4/G4OpticalSurface.hh \
+ /cvmfs/sft.cern.ch/lcg/views/LCG_105/x86_64-centos7-gcc12-opt/include/Geant4/G4Physics2DVector.hh \
+ /cvmfs/sft.cern.ch/lcg/views/LCG_105/x86_64-centos7-gcc12-opt/include/Geant4/G4Physics2DVector.icc \
+ /cvmfs/sft.cern.ch/lcg/views/LCG_105/x86_64-centos7-gcc12-opt/include/Geant4/G4SurfaceProperty.hh \
  /lustre/collider/wangzhen/vlast/vcalo/include/SteppingAction.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_105/x86_64-centos7-gcc12-opt/include/Geant4/G4UserSteppingAction.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_105/x86_64-centos7-gcc12-opt/include/Geant4/G4GeneralParticleSource.hh \
@@ -896,6 +900,9 @@ CMakeFiles/vcalo.dir/src/SteppingVerbose.cc.o: \
  /cvmfs/sft.cern.ch/lcg/views/LCG_105/x86_64-centos7-gcc12-opt/include/Geant4/G4SafetyHelper.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_105/x86_64-centos7-gcc12-opt/include/Geant4/G4TransportationManager.icc \
  /cvmfs/sft.cern.ch/lcg/views/LCG_105/x86_64-centos7-gcc12-opt/include/Geant4/G4GDMLParser.icc \
+ /cvmfs/sft.cern.ch/lcg/views/LCG_105/x86_64-centos7-gcc12-opt/include/Geant4/FTFP_BERT.hh \
+ /cvmfs/sft.cern.ch/lcg/views/LCG_105/x86_64-centos7-gcc12-opt/include/Geant4/G4EmStandardPhysics_option4.hh \
+ /cvmfs/sft.cern.ch/lcg/views/LCG_105/x86_64-centos7-gcc12-opt/include/Geant4/G4SystemOfUnits.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_105/x86_64-centos7-gcc12-opt/include/Geant4/G4VisExecutive.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_105/x86_64-centos7-gcc12-opt/include/Geant4/G4VisManager.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_105/x86_64-centos7-gcc12-opt/include/Geant4/G4VVisManager.hh \
@@ -995,6 +1002,9 @@ CMakeFiles/vcalo.dir/src/SteppingVerbose.cc.o: \
  /cvmfs/sft.cern.ch/lcg/views/LCG_105/x86_64-centos7-gcc12-opt/include/Geant4/G4UIsession.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_105/x86_64-centos7-gcc12-opt/include/Geant4/G4coutDestination.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_105/x86_64-centos7-gcc12-opt/include/Geant4/G4UIbatch.hh \
+ /cvmfs/sft.cern.ch/lcg/views/LCG_105/x86_64-centos7-gcc12-opt/include/Geant4/G4OpticalPhysics.hh \
+ /cvmfs/sft.cern.ch/lcg/views/LCG_105/x86_64-centos7-gcc12-opt/include/Geant4/G4OpticalParameters.hh \
+ /cvmfs/sft.cern.ch/lcg/views/LCG_105/x86_64-centos7-gcc12-opt/include/Geant4/G4OpticalPhoton.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_105/x86_64-centos7-gcc12-opt/include/Geant4/G4UIExecutive.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_105/x86_64-centos7-gcc12-opt/include/Geant4/G4VUIshell.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_105/x86_64-centos7-gcc12-opt/include/yaml-cpp/yaml.h \
@@ -1028,6 +1038,12 @@ CMakeFiles/vcalo.dir/src/SteppingVerbose.cc.o: \
  /cvmfs/sft.cern.ch/lcg/views/LCG_105/x86_64-centos7-gcc12-opt/include/yaml-cpp/node/detail/impl.h \
  /cvmfs/sft.cern.ch/lcg/views/LCG_105/x86_64-centos7-gcc12-opt/include/yaml-cpp/node/parse.h \
  /cvmfs/sft.cern.ch/lcg/views/LCG_105/x86_64-centos7-gcc12-opt/include/yaml-cpp/node/emit.h \
+ /cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/include/c++/12.1.0/filesystem \
+ /cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/include/c++/12.1.0/bits/fs_fwd.h \
+ /cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/include/c++/12.1.0/bits/fs_path.h \
+ /cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/include/c++/12.1.0/codecvt \
+ /cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/include/c++/12.1.0/bits/fs_dir.h \
+ /cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/include/c++/12.1.0/bits/fs_ops.h \
  /cvmfs/sft.cern.ch/lcg/views/LCG_105/x86_64-centos7-gcc12-opt/include/Geant4/G4SteppingManager.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_105/x86_64-centos7-gcc12-opt/include/Geant4/G4ParticleTypes.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_105/x86_64-centos7-gcc12-opt/include/Geant4/G4ChargedGeantino.hh \
