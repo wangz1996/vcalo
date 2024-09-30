@@ -2,837 +2,837 @@
 <gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://service-spi.web.cern.ch/service-spi/app/releases/GDML/schema/gdml.xsd">
 
   <define>
-    <matrix coldim="2" name="RINDEX0x4a43240" values="1.55219e-06 1.79 1.62123e-06 1.79 1.70461e-06 1.79 1.7824e-06 1.79 1.86127e-06 1.79 1.91672e-06 1.79 1.97201e-06 1.79 2.02307e-06 1.79 2.07292e-06 1.79 2.12529e-06 1.79 2.1717e-06 1.79 2.22473e-06 1.79 2.27094e-06 1.79 2.3191e-06 1.79 2.38484e-06 1.79 2.49924e-06 1.79 2.63158e-06 1.79 2.78577e-06 1.79 2.95112e-06 1.79 3.31817e-06 1.79"/>
-    <matrix coldim="2" name="GROUPVEL0x4a43480" values="1.55219e-06 167.482 1.58671e-06 167.482 1.66292e-06 167.482 1.7435e-06 167.482 1.82183e-06 167.482 1.88899e-06 167.482 1.94436e-06 167.482 1.99754e-06 167.482 2.048e-06 167.482 2.0991e-06 167.482 2.14849e-06 167.482 2.19821e-06 167.482 2.24783e-06 167.482 2.29502e-06 167.482 2.35197e-06 167.482 2.44204e-06 167.482 2.56541e-06 167.482 2.70867e-06 167.482 2.86844e-06 167.482 3.31817e-06 167.482"/>
-    <matrix coldim="2" name="ABSLENGTH0x4a439a0" values="1.55219e-06 5000 1.62123e-06 5000 1.70461e-06 5000 1.7824e-06 5000 1.86127e-06 5000 1.91672e-06 5000 1.97201e-06 5000 2.02307e-06 5000 2.07292e-06 5000 2.12529e-06 5000 2.1717e-06 5000 2.22473e-06 5000 2.27094e-06 5000 2.3191e-06 5000 2.38484e-06 5000 2.49924e-06 5000 2.63158e-06 5000 2.78577e-06 5000 2.95112e-06 5000 3.31817e-06 5000"/>
-    <matrix coldim="2" name="SCINTILLATIONCOMPONENT10x4a43b30" values="1.55219e-06 0.16787 1.62123e-06 0.19185 1.70461e-06 0.22782 1.7824e-06 0.29736 1.86127e-06 0.39808 1.91672e-06 0.494 1.97201e-06 0.60432 2.02307e-06 0.73141 2.07292e-06 0.82494 2.12529e-06 0.91607 2.1717e-06 0.95683 2.22473e-06 0.97842 2.27094e-06 0.98321 2.3191e-06 0.97362 2.38484e-06 0.93525 2.49924e-06 0.80576 2.63158e-06 0.57074 2.78577e-06 0.35971 2.95112e-06 0.19664 3.31817e-06 0.02878"/>
-    <matrix coldim="1" name="SCINTILLATIONYIELD0x4a408b0" values="65000"/>
-    <matrix coldim="1" name="RESOLUTIONSCALE0x4a408b0" values="1"/>
-    <matrix coldim="1" name="SCINTILLATIONTIMECONSTANT10x4a408b0" values="1220"/>
-    <matrix coldim="2" name="REFLECTIVITY0x4a45c30" values="1.55219e-06 0.98 1.62123e-06 0.98 1.70461e-06 0.98 1.7824e-06 0.98 1.86127e-06 0.98 1.91672e-06 0.98 1.97201e-06 0.98 2.02307e-06 0.98 2.07292e-06 0.98 2.12529e-06 0.98 2.1717e-06 0.98 2.22473e-06 0.98 2.27094e-06 0.98 2.3191e-06 0.98 2.38484e-06 0.98 2.49924e-06 0.98 2.63158e-06 0.98 2.78577e-06 0.98 2.95112e-06 0.98 3.31817e-06 0.98"/>
-    <matrix coldim="2" name="SPECULARLOBECONSTANT0x4a45e70" values="1.55219e-06 0.95 1.62123e-06 0.95 1.70461e-06 0.95 1.7824e-06 0.95 1.86127e-06 0.95 1.91672e-06 0.95 1.97201e-06 0.95 2.02307e-06 0.95 2.07292e-06 0.95 2.12529e-06 0.95 2.1717e-06 0.95 2.22473e-06 0.95 2.27094e-06 0.95 2.3191e-06 0.95 2.38484e-06 0.95 2.49924e-06 0.95 2.63158e-06 0.95 2.78577e-06 0.95 2.95112e-06 0.95 3.31817e-06 0.95"/>
+    <matrix coldim="2" name="RINDEX0x42dd7c0" values="1.55219e-06 1.79 1.62123e-06 1.79 1.70461e-06 1.79 1.7824e-06 1.79 1.86127e-06 1.79 1.91672e-06 1.79 1.97201e-06 1.79 2.02307e-06 1.79 2.07292e-06 1.79 2.12529e-06 1.79 2.1717e-06 1.79 2.22473e-06 1.79 2.27094e-06 1.79 2.3191e-06 1.79 2.38484e-06 1.79 2.49924e-06 1.79 2.63158e-06 1.79 2.78577e-06 1.79 2.95112e-06 1.79 3.31817e-06 1.79"/>
+    <matrix coldim="2" name="GROUPVEL0x42dda00" values="1.55219e-06 167.482 1.58671e-06 167.482 1.66292e-06 167.482 1.7435e-06 167.482 1.82183e-06 167.482 1.88899e-06 167.482 1.94436e-06 167.482 1.99754e-06 167.482 2.048e-06 167.482 2.0991e-06 167.482 2.14849e-06 167.482 2.19821e-06 167.482 2.24783e-06 167.482 2.29502e-06 167.482 2.35197e-06 167.482 2.44204e-06 167.482 2.56541e-06 167.482 2.70867e-06 167.482 2.86844e-06 167.482 3.31817e-06 167.482"/>
+    <matrix coldim="2" name="ABSLENGTH0x42ddf20" values="1.55219e-06 5000 1.62123e-06 5000 1.70461e-06 5000 1.7824e-06 5000 1.86127e-06 5000 1.91672e-06 5000 1.97201e-06 5000 2.02307e-06 5000 2.07292e-06 5000 2.12529e-06 5000 2.1717e-06 5000 2.22473e-06 5000 2.27094e-06 5000 2.3191e-06 5000 2.38484e-06 5000 2.49924e-06 5000 2.63158e-06 5000 2.78577e-06 5000 2.95112e-06 5000 3.31817e-06 5000"/>
+    <matrix coldim="2" name="SCINTILLATIONCOMPONENT10x42de0b0" values="1.55219e-06 0.16787 1.62123e-06 0.19185 1.70461e-06 0.22782 1.7824e-06 0.29736 1.86127e-06 0.39808 1.91672e-06 0.494 1.97201e-06 0.60432 2.02307e-06 0.73141 2.07292e-06 0.82494 2.12529e-06 0.91607 2.1717e-06 0.95683 2.22473e-06 0.97842 2.27094e-06 0.98321 2.3191e-06 0.97362 2.38484e-06 0.93525 2.49924e-06 0.80576 2.63158e-06 0.57074 2.78577e-06 0.35971 2.95112e-06 0.19664 3.31817e-06 0.02878"/>
+    <matrix coldim="1" name="SCINTILLATIONYIELD0x42dae30" values="65000"/>
+    <matrix coldim="1" name="RESOLUTIONSCALE0x42dae30" values="1"/>
+    <matrix coldim="1" name="SCINTILLATIONTIMECONSTANT10x42dae30" values="1220"/>
+    <matrix coldim="2" name="REFLECTIVITY0x42e01b0" values="1.55219e-06 0.98 1.62123e-06 0.98 1.70461e-06 0.98 1.7824e-06 0.98 1.86127e-06 0.98 1.91672e-06 0.98 1.97201e-06 0.98 2.02307e-06 0.98 2.07292e-06 0.98 2.12529e-06 0.98 2.1717e-06 0.98 2.22473e-06 0.98 2.27094e-06 0.98 2.3191e-06 0.98 2.38484e-06 0.98 2.49924e-06 0.98 2.63158e-06 0.98 2.78577e-06 0.98 2.95112e-06 0.98 3.31817e-06 0.98"/>
+    <matrix coldim="2" name="SPECULARLOBECONSTANT0x42e03f0" values="1.55219e-06 0.95 1.62123e-06 0.95 1.70461e-06 0.95 1.7824e-06 0.95 1.86127e-06 0.95 1.91672e-06 0.95 1.97201e-06 0.95 2.02307e-06 0.95 2.07292e-06 0.95 2.12529e-06 0.95 2.1717e-06 0.95 2.22473e-06 0.95 2.27094e-06 0.95 2.3191e-06 0.95 2.38484e-06 0.95 2.49924e-06 0.95 2.63158e-06 0.95 2.78577e-06 0.95 2.95112e-06 0.95 3.31817e-06 0.95"/>
   </define>
 
   <materials>
-    <isotope N="133" Z="55" name="Cs1330x4a2eaf0">
+    <isotope N="133" Z="55" name="Cs1330x42c9070">
       <atom unit="g/mole" value="132.905"/>
     </isotope>
-    <element name="Cs0x4a1dfa0">
-      <fraction n="1" ref="Cs1330x4a2eaf0"/>
+    <element name="Cs0x42b8520">
+      <fraction n="1" ref="Cs1330x42c9070"/>
     </element>
-    <isotope N="127" Z="53" name="I1270x4a2fc40">
+    <isotope N="127" Z="53" name="I1270x42ca1c0">
       <atom unit="g/mole" value="126.904"/>
     </isotope>
-    <element name="I0x4a1db80">
-      <fraction n="1" ref="I1270x4a2fc40"/>
+    <element name="I0x42b8100">
+      <fraction n="1" ref="I1270x42ca1c0"/>
     </element>
-    <material name="G4_CESIUM_IODIDE0x4a2f8e0" state="solid">
-      <property name="RINDEX" ref="RINDEX0x4a43240"/>
-      <property name="GROUPVEL" ref="GROUPVEL0x4a43480"/>
-      <property name="ABSLENGTH" ref="ABSLENGTH0x4a439a0"/>
-      <property name="SCINTILLATIONCOMPONENT1" ref="SCINTILLATIONCOMPONENT10x4a43b30"/>
-      <property name="SCINTILLATIONYIELD" ref="SCINTILLATIONYIELD0x4a408b0"/>
-      <property name="RESOLUTIONSCALE" ref="RESOLUTIONSCALE0x4a408b0"/>
-      <property name="SCINTILLATIONTIMECONSTANT1" ref="SCINTILLATIONTIMECONSTANT10x4a408b0"/>
+    <material name="G4_CESIUM_IODIDE0x42c9e60" state="solid">
+      <property name="RINDEX" ref="RINDEX0x42dd7c0"/>
+      <property name="GROUPVEL" ref="GROUPVEL0x42dda00"/>
+      <property name="ABSLENGTH" ref="ABSLENGTH0x42ddf20"/>
+      <property name="SCINTILLATIONCOMPONENT1" ref="SCINTILLATIONCOMPONENT10x42de0b0"/>
+      <property name="SCINTILLATIONYIELD" ref="SCINTILLATIONYIELD0x42dae30"/>
+      <property name="RESOLUTIONSCALE" ref="RESOLUTIONSCALE0x42dae30"/>
+      <property name="SCINTILLATIONTIMECONSTANT1" ref="SCINTILLATIONTIMECONSTANT10x42dae30"/>
       <T unit="K" value="293.15"/>
       <MEE unit="eV" value="553.1"/>
       <D unit="g/cm3" value="4.51"/>
-      <fraction n="0.511548868591927" ref="Cs0x4a1dfa0"/>
-      <fraction n="0.488451131408073" ref="I0x4a1db80"/>
+      <fraction n="0.511548868591927" ref="Cs0x42b8520"/>
+      <fraction n="0.488451131408073" ref="I0x42b8100"/>
     </material>
-    <isotope N="46" Z="22" name="Ti460x4a30400">
+    <isotope N="46" Z="22" name="Ti460x42ca980">
       <atom unit="g/mole" value="45.9526"/>
     </isotope>
-    <isotope N="47" Z="22" name="Ti470x4a1d9e0">
+    <isotope N="47" Z="22" name="Ti470x42b7f60">
       <atom unit="g/mole" value="46.9518"/>
     </isotope>
-    <isotope N="48" Z="22" name="Ti480x4a1da30">
+    <isotope N="48" Z="22" name="Ti480x42b7fb0">
       <atom unit="g/mole" value="47.9479"/>
     </isotope>
-    <isotope N="49" Z="22" name="Ti490x4a1da80">
+    <isotope N="49" Z="22" name="Ti490x42b8000">
       <atom unit="g/mole" value="48.9479"/>
     </isotope>
-    <isotope N="50" Z="22" name="Ti500x4a1dc70">
+    <isotope N="50" Z="22" name="Ti500x42b81f0">
       <atom unit="g/mole" value="49.9448"/>
     </isotope>
-    <element name="Ti0x4a1dd50">
-      <fraction n="0.0825" ref="Ti460x4a30400"/>
-      <fraction n="0.0744" ref="Ti470x4a1d9e0"/>
-      <fraction n="0.7372" ref="Ti480x4a1da30"/>
-      <fraction n="0.0541" ref="Ti490x4a1da80"/>
-      <fraction n="0.0518" ref="Ti500x4a1dc70"/>
+    <element name="Ti0x42b82d0">
+      <fraction n="0.0825" ref="Ti460x42ca980"/>
+      <fraction n="0.0744" ref="Ti470x42b7f60"/>
+      <fraction n="0.7372" ref="Ti480x42b7fb0"/>
+      <fraction n="0.0541" ref="Ti490x42b8000"/>
+      <fraction n="0.0518" ref="Ti500x42b81f0"/>
     </element>
-    <isotope N="16" Z="8" name="O160x4a305a0">
+    <isotope N="16" Z="8" name="O160x42cab20">
       <atom unit="g/mole" value="15.9949"/>
     </isotope>
-    <isotope N="17" Z="8" name="O170x4a30ba0">
+    <isotope N="17" Z="8" name="O170x42cb120">
       <atom unit="g/mole" value="16.9991"/>
     </isotope>
-    <isotope N="18" Z="8" name="O180x4a30c10">
+    <isotope N="18" Z="8" name="O180x42cb190">
       <atom unit="g/mole" value="17.9992"/>
     </isotope>
-    <element name="O0x4a30c90">
-      <fraction n="0.99757" ref="O160x4a305a0"/>
-      <fraction n="0.00038" ref="O170x4a30ba0"/>
-      <fraction n="0.00205" ref="O180x4a30c10"/>
+    <element name="O0x42cb210">
+      <fraction n="0.99757" ref="O160x42cab20"/>
+      <fraction n="0.00038" ref="O170x42cb120"/>
+      <fraction n="0.00205" ref="O180x42cb190"/>
     </element>
-    <material name="G4_TITANIUM_DIOXIDE0x4a30020" state="solid">
+    <material name="G4_TITANIUM_DIOXIDE0x42ca5a0" state="solid">
       <T unit="K" value="293.15"/>
       <MEE unit="eV" value="179.5"/>
       <D unit="g/cm3" value="4.26"/>
-      <fraction n="0.599341623574426" ref="Ti0x4a1dd50"/>
-      <fraction n="0.400658376425574" ref="O0x4a30c90"/>
+      <fraction n="0.599341623574426" ref="Ti0x42b82d0"/>
+      <fraction n="0.400658376425574" ref="O0x42cb210"/>
     </material>
-    <isotope N="28" Z="14" name="Si280x4a3ffc0">
+    <isotope N="28" Z="14" name="Si280x42da540">
       <atom unit="g/mole" value="27.9769"/>
     </isotope>
-    <isotope N="29" Z="14" name="Si290x4a3fc20">
+    <isotope N="29" Z="14" name="Si290x42da1a0">
       <atom unit="g/mole" value="28.9765"/>
     </isotope>
-    <isotope N="30" Z="14" name="Si300x4a3fc70">
+    <isotope N="30" Z="14" name="Si300x42da1f0">
       <atom unit="g/mole" value="29.9738"/>
     </isotope>
-    <element name="Si0x4a40480">
-      <fraction n="0.922296077703922" ref="Si280x4a3ffc0"/>
-      <fraction n="0.0468319531680468" ref="Si290x4a3fc20"/>
-      <fraction n="0.0308719691280309" ref="Si300x4a3fc70"/>
+    <element name="Si0x42daa00">
+      <fraction n="0.922296077703922" ref="Si280x42da540"/>
+      <fraction n="0.0468319531680468" ref="Si290x42da1a0"/>
+      <fraction n="0.0308719691280309" ref="Si300x42da1f0"/>
     </element>
-    <material name="G4_Si0x4a46b80" state="solid">
+    <material name="G4_Si0x42e1100" state="solid">
       <T unit="K" value="293.15"/>
       <MEE unit="eV" value="173"/>
       <D unit="g/cm3" value="2.33"/>
-      <fraction n="1" ref="Si0x4a40480"/>
+      <fraction n="1" ref="Si0x42daa00"/>
     </material>
-    <isotope N="12" Z="6" name="C120x4a313b0">
+    <isotope N="12" Z="6" name="C120x42cb930">
       <atom unit="g/mole" value="12"/>
     </isotope>
-    <isotope N="13" Z="6" name="C130x4a3f750">
+    <isotope N="13" Z="6" name="C130x42d9cd0">
       <atom unit="g/mole" value="13.0034"/>
     </isotope>
-    <element name="C0x4a3f7a0">
-      <fraction n="0.9893" ref="C120x4a313b0"/>
-      <fraction n="0.0107" ref="C130x4a3f750"/>
+    <element name="C0x42d9d20">
+      <fraction n="0.9893" ref="C120x42cb930"/>
+      <fraction n="0.0107" ref="C130x42d9cd0"/>
     </element>
-    <isotope N="1" Z="1" name="H10x4a1d510">
+    <isotope N="1" Z="1" name="H10x42b7a90">
       <atom unit="g/mole" value="1.00782503081372"/>
     </isotope>
-    <isotope N="2" Z="1" name="H20x4a1d5a0">
+    <isotope N="2" Z="1" name="H20x42b7b20">
       <atom unit="g/mole" value="2.01410199966617"/>
     </isotope>
-    <element name="H0x4a1d610">
-      <fraction n="0.999885" ref="H10x4a1d510"/>
-      <fraction n="0.000115" ref="H20x4a1d5a0"/>
+    <element name="H0x42b7b90">
+      <fraction n="0.999885" ref="H10x42b7a90"/>
+      <fraction n="0.000115" ref="H20x42b7b20"/>
     </element>
-    <material name="SiliconeRubber0x4a40540" state="solid">
+    <material name="SiliconeRubber0x42daac0" state="solid">
       <T unit="K" value="293.15"/>
       <MEE unit="eV" value="89.0304476045349"/>
       <D unit="g/cm3" value="1.1"/>
-      <fraction n="0.311529073875167" ref="Si0x4a40480"/>
-      <fraction n="0.354937591613095" ref="O0x4a30c90"/>
-      <fraction n="0.266451516883169" ref="C0x4a3f7a0"/>
-      <fraction n="0.0670818176285683" ref="H0x4a1d610"/>
+      <fraction n="0.311529073875167" ref="Si0x42daa00"/>
+      <fraction n="0.354937591613095" ref="O0x42cb210"/>
+      <fraction n="0.266451516883169" ref="C0x42d9d20"/>
+      <fraction n="0.0670818176285683" ref="H0x42b7b90"/>
     </material>
-    <material name="carbonFiber0x4a3f880" state="solid">
+    <material name="carbonFiber0x42d9e00" state="solid">
       <T unit="K" value="293.15"/>
       <MEE unit="eV" value="82.3028150527586"/>
       <D unit="g/cm3" value="1.75"/>
-      <fraction n="0.9" ref="C0x4a3f7a0"/>
-      <fraction n="0.1" ref="O0x4a30c90"/>
+      <fraction n="0.9" ref="C0x42d9d20"/>
+      <fraction n="0.1" ref="O0x42cb210"/>
     </material>
-    <material name="G4_Galactic0x4a1d3b0" state="gas">
+    <material name="G4_Galactic0x42b7930" state="gas">
       <T unit="K" value="2.73"/>
       <P unit="pascal" value="3e-18"/>
       <MEE unit="eV" value="21.8"/>
       <D unit="g/cm3" value="1e-25"/>
-      <fraction n="1" ref="H0x4a1d610"/>
+      <fraction n="1" ref="H0x42b7b90"/>
     </material>
   </materials>
 
   <solids>
-    <box lunit="mm" name="solidCsI0x4a45ad0" x="60" y="60" z="200"/>
-    <opticalsurface finish="5" model="0" name="CsISurface0x4a430e0" type="1" value="1">
-      <property name="REFLECTIVITY" ref="REFLECTIVITY0x4a45c30"/>
-      <property name="SPECULARLOBECONSTANT" ref="SPECULARLOBECONSTANT0x4a45e70"/>
+    <box lunit="mm" name="solidCsI0x42e0050" x="60" y="60" z="200"/>
+    <opticalsurface finish="5" model="0" name="CsISurface0x42dd660" type="1" value="1">
+      <property name="REFLECTIVITY" ref="REFLECTIVITY0x42e01b0"/>
+      <property name="SPECULARLOBECONSTANT" ref="SPECULARLOBECONSTANT0x42e03f0"/>
     </opticalsurface>
-    <box lunit="mm" name="TiO20x4a461c0" x="61.2" y="61.2" z="201.2"/>
-    <box lunit="mm" name="CsI0x4a462a0" x="60" y="60" z="200"/>
-    <subtraction name="sTiO20x4a46460">
-      <first ref="TiO20x4a461c0"/>
-      <second ref="CsI0x4a462a0"/>
+    <box lunit="mm" name="TiO20x42e0740" x="61.2" y="61.2" z="201.2"/>
+    <box lunit="mm" name="CsI0x42e0820" x="60" y="60" z="200"/>
+    <subtraction name="sTiO20x42e09e0">
+      <first ref="TiO20x42e0740"/>
+      <second ref="CsI0x42e0820"/>
     </subtraction>
-    <box lunit="mm" name="Polish0x4a46380" x="35" y="35" z="0.599999999999994"/>
-    <subtraction name="solidTiO20x4a46570">
-      <first ref="sTiO20x4a46460"/>
-      <second ref="Polish0x4a46380"/>
-      <position name="solidTiO20x4a46570_pos" unit="mm" x="0" y="0" z="100.3"/>
+    <box lunit="mm" name="Polish0x42e0900" x="35" y="35" z="0.599999999999994"/>
+    <subtraction name="solidTiO20x42e0af0">
+      <first ref="sTiO20x42e09e0"/>
+      <second ref="Polish0x42e0900"/>
+      <position name="solidTiO20x42e0af0_pos" unit="mm" x="0" y="0" z="100.3"/>
     </subtraction>
-    <box lunit="mm" name="solidAPD0x4a469d0" x="10" y="10" z="0.01"/>
-    <box lunit="mm" name="SiliconeRubber0x4a4aff0" x="62" y="62" z="201.2"/>
-    <box lunit="mm" name="TiO20x4a4af70" x="61.2" y="61.2" z="201.2"/>
-    <subtraction name="solidSiliconeRubber0x4a4b0d0">
-      <first ref="SiliconeRubber0x4a4aff0"/>
-      <second ref="TiO20x4a4af70"/>
+    <box lunit="mm" name="solidAPD0x42e0f50" x="10" y="10" z="0.01"/>
+    <box lunit="mm" name="SiliconeRubber0x42e5570" x="62" y="62" z="201.2"/>
+    <box lunit="mm" name="TiO20x42e54f0" x="61.2" y="61.2" z="201.2"/>
+    <subtraction name="solidSiliconeRubber0x42e5650">
+      <first ref="SiliconeRubber0x42e5570"/>
+      <second ref="TiO20x42e54f0"/>
     </subtraction>
-    <box lunit="mm" name="ECALShield_box0x4a47340" x="319" y="319" z="203.2"/>
-    <box lunit="mm" name="Hole_box0x4a47420" x="62" y="62" z="201.2"/>
-    <union name="unionSolid0x4a47520">
-      <first ref="Hole_box0x4a47420"/>
-      <second ref="Hole_box0x4a47420"/>
-      <position name="unionSolid0x4a47520_pos" unit="mm" x="-127" y="-127" z="0"/>
+    <box lunit="mm" name="ECALShield_box0x42e18c0" x="319" y="319" z="203.2"/>
+    <box lunit="mm" name="Hole_box0x42e19a0" x="62" y="62" z="201.2"/>
+    <union name="unionSolid0x42e1aa0">
+      <first ref="Hole_box0x42e19a0"/>
+      <second ref="Hole_box0x42e19a0"/>
+      <position name="unionSolid0x42e1aa0_pos" unit="mm" x="-127" y="-127" z="0"/>
     </union>
-    <union name="unionSolid0x4a477c0">
-      <first ref="unionSolid0x4a47520"/>
-      <second ref="Hole_box0x4a47420"/>
-      <position name="unionSolid0x4a477c0_pos" unit="mm" x="-127" y="-63.5" z="0"/>
+    <union name="unionSolid0x42e1d40">
+      <first ref="unionSolid0x42e1aa0"/>
+      <second ref="Hole_box0x42e19a0"/>
+      <position name="unionSolid0x42e1d40_pos" unit="mm" x="-127" y="-63.5" z="0"/>
     </union>
-    <union name="unionSolid0x4a47a10">
-      <first ref="unionSolid0x4a477c0"/>
-      <second ref="Hole_box0x4a47420"/>
-      <position name="unionSolid0x4a47a10_pos" unit="mm" x="-127" y="0" z="0"/>
+    <union name="unionSolid0x42e1f90">
+      <first ref="unionSolid0x42e1d40"/>
+      <second ref="Hole_box0x42e19a0"/>
+      <position name="unionSolid0x42e1f90_pos" unit="mm" x="-127" y="0" z="0"/>
     </union>
-    <union name="unionSolid0x4a47c60">
-      <first ref="unionSolid0x4a47a10"/>
-      <second ref="Hole_box0x4a47420"/>
-      <position name="unionSolid0x4a47c60_pos" unit="mm" x="-127" y="63.5" z="0"/>
+    <union name="unionSolid0x42e21e0">
+      <first ref="unionSolid0x42e1f90"/>
+      <second ref="Hole_box0x42e19a0"/>
+      <position name="unionSolid0x42e21e0_pos" unit="mm" x="-127" y="63.5" z="0"/>
     </union>
-    <union name="unionSolid0x4a47ed0">
-      <first ref="unionSolid0x4a47c60"/>
-      <second ref="Hole_box0x4a47420"/>
-      <position name="unionSolid0x4a47ed0_pos" unit="mm" x="-127" y="127" z="0"/>
+    <union name="unionSolid0x42e2450">
+      <first ref="unionSolid0x42e21e0"/>
+      <second ref="Hole_box0x42e19a0"/>
+      <position name="unionSolid0x42e2450_pos" unit="mm" x="-127" y="127" z="0"/>
     </union>
-    <union name="unionSolid0x4a48140">
-      <first ref="unionSolid0x4a47ed0"/>
-      <second ref="Hole_box0x4a47420"/>
-      <position name="unionSolid0x4a48140_pos" unit="mm" x="-63.5" y="-127" z="0"/>
+    <union name="unionSolid0x42e26c0">
+      <first ref="unionSolid0x42e2450"/>
+      <second ref="Hole_box0x42e19a0"/>
+      <position name="unionSolid0x42e26c0_pos" unit="mm" x="-63.5" y="-127" z="0"/>
     </union>
-    <union name="unionSolid0x4a48360">
-      <first ref="unionSolid0x4a48140"/>
-      <second ref="Hole_box0x4a47420"/>
-      <position name="unionSolid0x4a48360_pos" unit="mm" x="-63.5" y="-63.5" z="0"/>
+    <union name="unionSolid0x42e28e0">
+      <first ref="unionSolid0x42e26c0"/>
+      <second ref="Hole_box0x42e19a0"/>
+      <position name="unionSolid0x42e28e0_pos" unit="mm" x="-63.5" y="-63.5" z="0"/>
     </union>
-    <union name="unionSolid0x4a48580">
-      <first ref="unionSolid0x4a48360"/>
-      <second ref="Hole_box0x4a47420"/>
-      <position name="unionSolid0x4a48580_pos" unit="mm" x="-63.5" y="0" z="0"/>
+    <union name="unionSolid0x42e2b00">
+      <first ref="unionSolid0x42e28e0"/>
+      <second ref="Hole_box0x42e19a0"/>
+      <position name="unionSolid0x42e2b00_pos" unit="mm" x="-63.5" y="0" z="0"/>
     </union>
-    <union name="unionSolid0x4a48830">
-      <first ref="unionSolid0x4a48580"/>
-      <second ref="Hole_box0x4a47420"/>
-      <position name="unionSolid0x4a48830_pos" unit="mm" x="-63.5" y="63.5" z="0"/>
+    <union name="unionSolid0x42e2db0">
+      <first ref="unionSolid0x42e2b00"/>
+      <second ref="Hole_box0x42e19a0"/>
+      <position name="unionSolid0x42e2db0_pos" unit="mm" x="-63.5" y="63.5" z="0"/>
     </union>
-    <union name="unionSolid0x4a48ae0">
-      <first ref="unionSolid0x4a48830"/>
-      <second ref="Hole_box0x4a47420"/>
-      <position name="unionSolid0x4a48ae0_pos" unit="mm" x="-63.5" y="127" z="0"/>
+    <union name="unionSolid0x42e3060">
+      <first ref="unionSolid0x42e2db0"/>
+      <second ref="Hole_box0x42e19a0"/>
+      <position name="unionSolid0x42e3060_pos" unit="mm" x="-63.5" y="127" z="0"/>
     </union>
-    <union name="unionSolid0x4a48d00">
-      <first ref="unionSolid0x4a48ae0"/>
-      <second ref="Hole_box0x4a47420"/>
-      <position name="unionSolid0x4a48d00_pos" unit="mm" x="0" y="-127" z="0"/>
+    <union name="unionSolid0x42e3280">
+      <first ref="unionSolid0x42e3060"/>
+      <second ref="Hole_box0x42e19a0"/>
+      <position name="unionSolid0x42e3280_pos" unit="mm" x="0" y="-127" z="0"/>
     </union>
-    <union name="unionSolid0x4a48f20">
-      <first ref="unionSolid0x4a48d00"/>
-      <second ref="Hole_box0x4a47420"/>
-      <position name="unionSolid0x4a48f20_pos" unit="mm" x="0" y="-63.5" z="0"/>
+    <union name="unionSolid0x42e34a0">
+      <first ref="unionSolid0x42e3280"/>
+      <second ref="Hole_box0x42e19a0"/>
+      <position name="unionSolid0x42e34a0_pos" unit="mm" x="0" y="-63.5" z="0"/>
     </union>
-    <union name="unionSolid0x4a49140">
-      <first ref="unionSolid0x4a48f20"/>
-      <second ref="Hole_box0x4a47420"/>
-      <position name="unionSolid0x4a49140_pos" unit="mm" x="0" y="63.5" z="0"/>
+    <union name="unionSolid0x42e36c0">
+      <first ref="unionSolid0x42e34a0"/>
+      <second ref="Hole_box0x42e19a0"/>
+      <position name="unionSolid0x42e36c0_pos" unit="mm" x="0" y="63.5" z="0"/>
     </union>
-    <union name="unionSolid0x4a49360">
-      <first ref="unionSolid0x4a49140"/>
-      <second ref="Hole_box0x4a47420"/>
-      <position name="unionSolid0x4a49360_pos" unit="mm" x="0" y="127" z="0"/>
+    <union name="unionSolid0x42e38e0">
+      <first ref="unionSolid0x42e36c0"/>
+      <second ref="Hole_box0x42e19a0"/>
+      <position name="unionSolid0x42e38e0_pos" unit="mm" x="0" y="127" z="0"/>
     </union>
-    <union name="unionSolid0x4a49580">
-      <first ref="unionSolid0x4a49360"/>
-      <second ref="Hole_box0x4a47420"/>
-      <position name="unionSolid0x4a49580_pos" unit="mm" x="63.5" y="-127" z="0"/>
+    <union name="unionSolid0x42e3b00">
+      <first ref="unionSolid0x42e38e0"/>
+      <second ref="Hole_box0x42e19a0"/>
+      <position name="unionSolid0x42e3b00_pos" unit="mm" x="63.5" y="-127" z="0"/>
     </union>
-    <union name="unionSolid0x4a497a0">
-      <first ref="unionSolid0x4a49580"/>
-      <second ref="Hole_box0x4a47420"/>
-      <position name="unionSolid0x4a497a0_pos" unit="mm" x="63.5" y="-63.5" z="0"/>
+    <union name="unionSolid0x42e3d20">
+      <first ref="unionSolid0x42e3b00"/>
+      <second ref="Hole_box0x42e19a0"/>
+      <position name="unionSolid0x42e3d20_pos" unit="mm" x="63.5" y="-63.5" z="0"/>
     </union>
-    <union name="unionSolid0x4a49a60">
-      <first ref="unionSolid0x4a497a0"/>
-      <second ref="Hole_box0x4a47420"/>
-      <position name="unionSolid0x4a49a60_pos" unit="mm" x="63.5" y="0" z="0"/>
+    <union name="unionSolid0x42e3fe0">
+      <first ref="unionSolid0x42e3d20"/>
+      <second ref="Hole_box0x42e19a0"/>
+      <position name="unionSolid0x42e3fe0_pos" unit="mm" x="63.5" y="0" z="0"/>
     </union>
-    <union name="unionSolid0x4a49d30">
-      <first ref="unionSolid0x4a49a60"/>
-      <second ref="Hole_box0x4a47420"/>
-      <position name="unionSolid0x4a49d30_pos" unit="mm" x="63.5" y="63.5" z="0"/>
+    <union name="unionSolid0x42e42b0">
+      <first ref="unionSolid0x42e3fe0"/>
+      <second ref="Hole_box0x42e19a0"/>
+      <position name="unionSolid0x42e42b0_pos" unit="mm" x="63.5" y="63.5" z="0"/>
     </union>
-    <union name="unionSolid0x4a49f50">
-      <first ref="unionSolid0x4a49d30"/>
-      <second ref="Hole_box0x4a47420"/>
-      <position name="unionSolid0x4a49f50_pos" unit="mm" x="63.5" y="127" z="0"/>
+    <union name="unionSolid0x42e44d0">
+      <first ref="unionSolid0x42e42b0"/>
+      <second ref="Hole_box0x42e19a0"/>
+      <position name="unionSolid0x42e44d0_pos" unit="mm" x="63.5" y="127" z="0"/>
     </union>
-    <union name="unionSolid0x4a4a170">
-      <first ref="unionSolid0x4a49f50"/>
-      <second ref="Hole_box0x4a47420"/>
-      <position name="unionSolid0x4a4a170_pos" unit="mm" x="127" y="-127" z="0"/>
+    <union name="unionSolid0x42e46f0">
+      <first ref="unionSolid0x42e44d0"/>
+      <second ref="Hole_box0x42e19a0"/>
+      <position name="unionSolid0x42e46f0_pos" unit="mm" x="127" y="-127" z="0"/>
     </union>
-    <union name="unionSolid0x4a4a390">
-      <first ref="unionSolid0x4a4a170"/>
-      <second ref="Hole_box0x4a47420"/>
-      <position name="unionSolid0x4a4a390_pos" unit="mm" x="127" y="-63.5" z="0"/>
+    <union name="unionSolid0x42e4910">
+      <first ref="unionSolid0x42e46f0"/>
+      <second ref="Hole_box0x42e19a0"/>
+      <position name="unionSolid0x42e4910_pos" unit="mm" x="127" y="-63.5" z="0"/>
     </union>
-    <union name="unionSolid0x4a4a5b0">
-      <first ref="unionSolid0x4a4a390"/>
-      <second ref="Hole_box0x4a47420"/>
-      <position name="unionSolid0x4a4a5b0_pos" unit="mm" x="127" y="0" z="0"/>
+    <union name="unionSolid0x42e4b30">
+      <first ref="unionSolid0x42e4910"/>
+      <second ref="Hole_box0x42e19a0"/>
+      <position name="unionSolid0x42e4b30_pos" unit="mm" x="127" y="0" z="0"/>
     </union>
-    <union name="unionSolid0x4a4a7d0">
-      <first ref="unionSolid0x4a4a5b0"/>
-      <second ref="Hole_box0x4a47420"/>
-      <position name="unionSolid0x4a4a7d0_pos" unit="mm" x="127" y="63.5" z="0"/>
+    <union name="unionSolid0x42e4d50">
+      <first ref="unionSolid0x42e4b30"/>
+      <second ref="Hole_box0x42e19a0"/>
+      <position name="unionSolid0x42e4d50_pos" unit="mm" x="127" y="63.5" z="0"/>
     </union>
-    <union name="unionSolid0x4a4a9f0">
-      <first ref="unionSolid0x4a4a7d0"/>
-      <second ref="Hole_box0x4a47420"/>
-      <position name="unionSolid0x4a4a9f0_pos" unit="mm" x="127" y="127" z="0"/>
+    <union name="unionSolid0x42e4f70">
+      <first ref="unionSolid0x42e4d50"/>
+      <second ref="Hole_box0x42e19a0"/>
+      <position name="unionSolid0x42e4f70_pos" unit="mm" x="127" y="127" z="0"/>
     </union>
-    <subtraction name="solidECALShield0x4a4ac10">
-      <first ref="ECALShield_box0x4a47340"/>
-      <second ref="unionSolid0x4a4a9f0"/>
-      <position name="solidECALShield0x4a4ac10_pos" unit="mm" x="0" y="0" z="1"/>
+    <subtraction name="solidECALShield0x42e5190">
+      <first ref="ECALShield_box0x42e18c0"/>
+      <second ref="unionSolid0x42e4f70"/>
+      <position name="solidECALShield0x42e5190_pos" unit="mm" x="0" y="0" z="1"/>
     </subtraction>
-    <orb lunit="mm" name="World0x4a2ed80" r="2000"/>
+    <orb lunit="mm" name="World0x42c9300" r="2000"/>
   </solids>
 
   <structure>
-    <volume name="logicCsI0x4a460b0">
-      <materialref ref="G4_CESIUM_IODIDE0x4a2f8e0"/>
-      <solidref ref="solidCsI0x4a45ad0"/>
+    <volume name="logicCsI0x42e0630">
+      <materialref ref="G4_CESIUM_IODIDE0x42c9e60"/>
+      <solidref ref="solidCsI0x42e0050"/>
     </volume>
-    <volume name="logicTiO20x4a46860">
-      <materialref ref="G4_TITANIUM_DIOXIDE0x4a30020"/>
-      <solidref ref="solidTiO20x4a46570"/>
+    <volume name="logicTiO20x42e0de0">
+      <materialref ref="G4_TITANIUM_DIOXIDE0x42ca5a0"/>
+      <solidref ref="solidTiO20x42e0af0"/>
     </volume>
-    <volume name="logicAPD0x4a46ad0">
-      <materialref ref="G4_Si0x4a46b80"/>
-      <solidref ref="solidAPD0x4a469d0"/>
+    <volume name="logicAPD0x42e1050">
+      <materialref ref="G4_Si0x42e1100"/>
+      <solidref ref="solidAPD0x42e0f50"/>
     </volume>
-    <volume name="logicSiliconeRubber0x4a4b3a0">
-      <materialref ref="SiliconeRubber0x4a40540"/>
-      <solidref ref="solidSiliconeRubber0x4a4b0d0"/>
+    <volume name="logicSiliconeRubber0x42e5920">
+      <materialref ref="SiliconeRubber0x42daac0"/>
+      <solidref ref="solidSiliconeRubber0x42e5650"/>
     </volume>
-    <volume name="logicECALShield0x4a4ae60">
-      <materialref ref="carbonFiber0x4a3f880"/>
-      <solidref ref="solidECALShield0x4a4ac10"/>
+    <volume name="logicECALShield0x42e53e0">
+      <materialref ref="carbonFiber0x42d9e00"/>
+      <solidref ref="solidECALShield0x42e5190"/>
     </volume>
-    <volume name="World0x4a2f130">
-      <materialref ref="G4_Galactic0x4a1d3b0"/>
-      <solidref ref="World0x4a2ed80"/>
-      <physvol name="physicCsI_00x4a4b510">
-        <volumeref ref="logicCsI0x4a460b0"/>
-        <position name="physicCsI_00x4a4b510_pos" unit="mm" x="-127" y="-127" z="0"/>
-      </physvol>
-      <physvol name="physicTiO2_00x4a4b5d0">
-        <volumeref ref="logicTiO20x4a46860"/>
-        <position name="physicTiO2_00x4a4b5d0_pos" unit="mm" x="-127" y="-127" z="0"/>
-      </physvol>
-      <physvol name="physicAPD_00x4a4b6b0">
-        <volumeref ref="logicAPD0x4a46ad0"/>
-        <position name="physicAPD_00x4a4b6b0_pos" unit="mm" x="-127" y="-127" z="102"/>
-      </physvol>
-      <physvol name="physicSiliconeRubber0x4a4bab0">
-        <volumeref ref="logicSiliconeRubber0x4a4b3a0"/>
-        <position name="physicSiliconeRubber0x4a4bab0_pos" unit="mm" x="-127" y="-127" z="0"/>
-      </physvol>
-      <physvol copynumber="1" name="physicCsI_10x4a4bd40">
-        <volumeref ref="logicCsI0x4a460b0"/>
-        <position name="physicCsI_10x4a4bd40_pos" unit="mm" x="-127" y="-63.5" z="0"/>
-      </physvol>
-      <physvol copynumber="1" name="physicTiO2_10x4a4be50">
-        <volumeref ref="logicTiO20x4a46860"/>
-        <position name="physicTiO2_10x4a4be50_pos" unit="mm" x="-127" y="-63.5" z="0"/>
-      </physvol>
-      <physvol copynumber="1" name="physicAPD_10x4a4bf10">
-        <volumeref ref="logicAPD0x4a46ad0"/>
-        <position name="physicAPD_10x4a4bf10_pos" unit="mm" x="-127" y="-63.5" z="102"/>
-      </physvol>
-      <physvol copynumber="1" name="physicSiliconeRubber0x4a4c0f0">
-        <volumeref ref="logicSiliconeRubber0x4a4b3a0"/>
-        <position name="physicSiliconeRubber0x4a4c0f0_pos" unit="mm" x="-127" y="-63.5" z="0"/>
-      </physvol>
-      <physvol copynumber="2" name="physicCsI_20x4a51f60">
-        <volumeref ref="logicCsI0x4a460b0"/>
-        <position name="physicCsI_20x4a51f60_pos" unit="mm" x="-127" y="0" z="0"/>
-      </physvol>
-      <physvol copynumber="2" name="physicTiO2_20x4a4c280">
-        <volumeref ref="logicTiO20x4a46860"/>
-        <position name="physicTiO2_20x4a4c280_pos" unit="mm" x="-127" y="0" z="0"/>
-      </physvol>
-      <physvol copynumber="2" name="physicAPD_20x4a4c3b0">
-        <volumeref ref="logicAPD0x4a46ad0"/>
-        <position name="physicAPD_20x4a4c3b0_pos" unit="mm" x="-127" y="0" z="102"/>
-      </physvol>
-      <physvol copynumber="2" name="physicSiliconeRubber0x4a4c570">
-        <volumeref ref="logicSiliconeRubber0x4a4b3a0"/>
-        <position name="physicSiliconeRubber0x4a4c570_pos" unit="mm" x="-127" y="0" z="0"/>
-      </physvol>
-      <physvol copynumber="3" name="physicCsI_30x4a4c620">
-        <volumeref ref="logicCsI0x4a460b0"/>
-        <position name="physicCsI_30x4a4c620_pos" unit="mm" x="-127" y="63.5" z="0"/>
-      </physvol>
-      <physvol copynumber="3" name="physicTiO2_30x4a4c710">
-        <volumeref ref="logicTiO20x4a46860"/>
-        <position name="physicTiO2_30x4a4c710_pos" unit="mm" x="-127" y="63.5" z="0"/>
-      </physvol>
-      <physvol copynumber="3" name="physicAPD_30x4a4c820">
-        <volumeref ref="logicAPD0x4a46ad0"/>
-        <position name="physicAPD_30x4a4c820_pos" unit="mm" x="-127" y="63.5" z="102"/>
-      </physvol>
-      <physvol copynumber="3" name="physicSiliconeRubber0x4a4ca20">
-        <volumeref ref="logicSiliconeRubber0x4a4b3a0"/>
-        <position name="physicSiliconeRubber0x4a4ca20_pos" unit="mm" x="-127" y="63.5" z="0"/>
-      </physvol>
-      <physvol copynumber="4" name="physicCsI_40x4a4caa0">
-        <volumeref ref="logicCsI0x4a460b0"/>
-        <position name="physicCsI_40x4a4caa0_pos" unit="mm" x="-127" y="127" z="0"/>
-      </physvol>
-      <physvol copynumber="4" name="physicTiO2_40x4a4c1f0">
-        <volumeref ref="logicTiO20x4a46860"/>
-        <position name="physicTiO2_40x4a4c1f0_pos" unit="mm" x="-127" y="127" z="0"/>
-      </physvol>
-      <physvol copynumber="4" name="physicAPD_40x4a4cd20">
-        <volumeref ref="logicAPD0x4a46ad0"/>
-        <position name="physicAPD_40x4a4cd20_pos" unit="mm" x="-127" y="127" z="102"/>
-      </physvol>
-      <physvol copynumber="4" name="physicSiliconeRubber0x4a4cef0">
-        <volumeref ref="logicSiliconeRubber0x4a4b3a0"/>
-        <position name="physicSiliconeRubber0x4a4cef0_pos" unit="mm" x="-127" y="127" z="0"/>
-      </physvol>
-      <physvol copynumber="5" name="physicCsI_50x4a4cfc0">
-        <volumeref ref="logicCsI0x4a460b0"/>
-        <position name="physicCsI_50x4a4cfc0_pos" unit="mm" x="-63.5" y="-127" z="0"/>
-      </physvol>
-      <physvol copynumber="5" name="physicTiO2_50x4a4d0a0">
-        <volumeref ref="logicTiO20x4a46860"/>
-        <position name="physicTiO2_50x4a4d0a0_pos" unit="mm" x="-63.5" y="-127" z="0"/>
-      </physvol>
-      <physvol copynumber="5" name="physicAPD_50x4a4d1b0">
-        <volumeref ref="logicAPD0x4a46ad0"/>
-        <position name="physicAPD_50x4a4d1b0_pos" unit="mm" x="-63.5" y="-127" z="102"/>
-      </physvol>
-      <physvol copynumber="5" name="physicSiliconeRubber0x4a4d3b0">
-        <volumeref ref="logicSiliconeRubber0x4a4b3a0"/>
-        <position name="physicSiliconeRubber0x4a4d3b0_pos" unit="mm" x="-63.5" y="-127" z="0"/>
-      </physvol>
-      <physvol copynumber="6" name="physicCsI_60x4a4d430">
-        <volumeref ref="logicCsI0x4a460b0"/>
-        <position name="physicCsI_60x4a4d430_pos" unit="mm" x="-63.5" y="-63.5" z="0"/>
+    <volume name="World0x42c96b0">
+      <materialref ref="G4_Galactic0x42b7930"/>
+      <solidref ref="World0x42c9300"/>
+      <physvol name="physicCsI_00x42e5a90">
+        <volumeref ref="logicCsI0x42e0630"/>
+        <position name="physicCsI_00x42e5a90_pos" unit="mm" x="-127" y="-127" z="0"/>
+      </physvol>
+      <physvol name="physicTiO2_00x42e5b50">
+        <volumeref ref="logicTiO20x42e0de0"/>
+        <position name="physicTiO2_00x42e5b50_pos" unit="mm" x="-127" y="-127" z="0"/>
+      </physvol>
+      <physvol name="physicAPD_00x42e5c30">
+        <volumeref ref="logicAPD0x42e1050"/>
+        <position name="physicAPD_00x42e5c30_pos" unit="mm" x="-127" y="-127" z="102"/>
+      </physvol>
+      <physvol name="physicSiliconeRubber0x42e6030">
+        <volumeref ref="logicSiliconeRubber0x42e5920"/>
+        <position name="physicSiliconeRubber0x42e6030_pos" unit="mm" x="-127" y="-127" z="0"/>
+      </physvol>
+      <physvol copynumber="1" name="physicCsI_10x42e62c0">
+        <volumeref ref="logicCsI0x42e0630"/>
+        <position name="physicCsI_10x42e62c0_pos" unit="mm" x="-127" y="-63.5" z="0"/>
+      </physvol>
+      <physvol copynumber="1" name="physicTiO2_10x42e63d0">
+        <volumeref ref="logicTiO20x42e0de0"/>
+        <position name="physicTiO2_10x42e63d0_pos" unit="mm" x="-127" y="-63.5" z="0"/>
+      </physvol>
+      <physvol copynumber="1" name="physicAPD_10x42e6490">
+        <volumeref ref="logicAPD0x42e1050"/>
+        <position name="physicAPD_10x42e6490_pos" unit="mm" x="-127" y="-63.5" z="102"/>
+      </physvol>
+      <physvol copynumber="1" name="physicSiliconeRubber0x42e6670">
+        <volumeref ref="logicSiliconeRubber0x42e5920"/>
+        <position name="physicSiliconeRubber0x42e6670_pos" unit="mm" x="-127" y="-63.5" z="0"/>
+      </physvol>
+      <physvol copynumber="2" name="physicCsI_20x42ec4e0">
+        <volumeref ref="logicCsI0x42e0630"/>
+        <position name="physicCsI_20x42ec4e0_pos" unit="mm" x="-127" y="0" z="0"/>
+      </physvol>
+      <physvol copynumber="2" name="physicTiO2_20x42e6800">
+        <volumeref ref="logicTiO20x42e0de0"/>
+        <position name="physicTiO2_20x42e6800_pos" unit="mm" x="-127" y="0" z="0"/>
+      </physvol>
+      <physvol copynumber="2" name="physicAPD_20x42e6930">
+        <volumeref ref="logicAPD0x42e1050"/>
+        <position name="physicAPD_20x42e6930_pos" unit="mm" x="-127" y="0" z="102"/>
+      </physvol>
+      <physvol copynumber="2" name="physicSiliconeRubber0x42e6af0">
+        <volumeref ref="logicSiliconeRubber0x42e5920"/>
+        <position name="physicSiliconeRubber0x42e6af0_pos" unit="mm" x="-127" y="0" z="0"/>
+      </physvol>
+      <physvol copynumber="3" name="physicCsI_30x42e6ba0">
+        <volumeref ref="logicCsI0x42e0630"/>
+        <position name="physicCsI_30x42e6ba0_pos" unit="mm" x="-127" y="63.5" z="0"/>
+      </physvol>
+      <physvol copynumber="3" name="physicTiO2_30x42e6c90">
+        <volumeref ref="logicTiO20x42e0de0"/>
+        <position name="physicTiO2_30x42e6c90_pos" unit="mm" x="-127" y="63.5" z="0"/>
+      </physvol>
+      <physvol copynumber="3" name="physicAPD_30x42e6da0">
+        <volumeref ref="logicAPD0x42e1050"/>
+        <position name="physicAPD_30x42e6da0_pos" unit="mm" x="-127" y="63.5" z="102"/>
+      </physvol>
+      <physvol copynumber="3" name="physicSiliconeRubber0x42e6fa0">
+        <volumeref ref="logicSiliconeRubber0x42e5920"/>
+        <position name="physicSiliconeRubber0x42e6fa0_pos" unit="mm" x="-127" y="63.5" z="0"/>
+      </physvol>
+      <physvol copynumber="4" name="physicCsI_40x42e7020">
+        <volumeref ref="logicCsI0x42e0630"/>
+        <position name="physicCsI_40x42e7020_pos" unit="mm" x="-127" y="127" z="0"/>
+      </physvol>
+      <physvol copynumber="4" name="physicTiO2_40x42e6770">
+        <volumeref ref="logicTiO20x42e0de0"/>
+        <position name="physicTiO2_40x42e6770_pos" unit="mm" x="-127" y="127" z="0"/>
+      </physvol>
+      <physvol copynumber="4" name="physicAPD_40x42e72a0">
+        <volumeref ref="logicAPD0x42e1050"/>
+        <position name="physicAPD_40x42e72a0_pos" unit="mm" x="-127" y="127" z="102"/>
+      </physvol>
+      <physvol copynumber="4" name="physicSiliconeRubber0x42e7470">
+        <volumeref ref="logicSiliconeRubber0x42e5920"/>
+        <position name="physicSiliconeRubber0x42e7470_pos" unit="mm" x="-127" y="127" z="0"/>
+      </physvol>
+      <physvol copynumber="5" name="physicCsI_50x42e7540">
+        <volumeref ref="logicCsI0x42e0630"/>
+        <position name="physicCsI_50x42e7540_pos" unit="mm" x="-63.5" y="-127" z="0"/>
+      </physvol>
+      <physvol copynumber="5" name="physicTiO2_50x42e7620">
+        <volumeref ref="logicTiO20x42e0de0"/>
+        <position name="physicTiO2_50x42e7620_pos" unit="mm" x="-63.5" y="-127" z="0"/>
+      </physvol>
+      <physvol copynumber="5" name="physicAPD_50x42e7730">
+        <volumeref ref="logicAPD0x42e1050"/>
+        <position name="physicAPD_50x42e7730_pos" unit="mm" x="-63.5" y="-127" z="102"/>
+      </physvol>
+      <physvol copynumber="5" name="physicSiliconeRubber0x42e7930">
+        <volumeref ref="logicSiliconeRubber0x42e5920"/>
+        <position name="physicSiliconeRubber0x42e7930_pos" unit="mm" x="-63.5" y="-127" z="0"/>
+      </physvol>
+      <physvol copynumber="6" name="physicCsI_60x42e79b0">
+        <volumeref ref="logicCsI0x42e0630"/>
+        <position name="physicCsI_60x42e79b0_pos" unit="mm" x="-63.5" y="-63.5" z="0"/>
       </physvol>
-      <physvol copynumber="6" name="physicTiO2_60x4a4d540">
-        <volumeref ref="logicTiO20x4a46860"/>
-        <position name="physicTiO2_60x4a4d540_pos" unit="mm" x="-63.5" y="-63.5" z="0"/>
+      <physvol copynumber="6" name="physicTiO2_60x42e7ac0">
+        <volumeref ref="logicTiO20x42e0de0"/>
+        <position name="physicTiO2_60x42e7ac0_pos" unit="mm" x="-63.5" y="-63.5" z="0"/>
       </physvol>
-      <physvol copynumber="6" name="physicAPD_60x4a4d650">
-        <volumeref ref="logicAPD0x4a46ad0"/>
-        <position name="physicAPD_60x4a4d650_pos" unit="mm" x="-63.5" y="-63.5" z="102"/>
+      <physvol copynumber="6" name="physicAPD_60x42e7bd0">
+        <volumeref ref="logicAPD0x42e1050"/>
+        <position name="physicAPD_60x42e7bd0_pos" unit="mm" x="-63.5" y="-63.5" z="102"/>
       </physvol>
-      <physvol copynumber="6" name="physicSiliconeRubber0x4a4d850">
-        <volumeref ref="logicSiliconeRubber0x4a4b3a0"/>
-        <position name="physicSiliconeRubber0x4a4d850_pos" unit="mm" x="-63.5" y="-63.5" z="0"/>
+      <physvol copynumber="6" name="physicSiliconeRubber0x42e7dd0">
+        <volumeref ref="logicSiliconeRubber0x42e5920"/>
+        <position name="physicSiliconeRubber0x42e7dd0_pos" unit="mm" x="-63.5" y="-63.5" z="0"/>
       </physvol>
-      <physvol copynumber="7" name="physicCsI_70x4a4d8d0">
-        <volumeref ref="logicCsI0x4a460b0"/>
-        <position name="physicCsI_70x4a4d8d0_pos" unit="mm" x="-63.5" y="0" z="0"/>
+      <physvol copynumber="7" name="physicCsI_70x42e7e50">
+        <volumeref ref="logicCsI0x42e0630"/>
+        <position name="physicCsI_70x42e7e50_pos" unit="mm" x="-63.5" y="0" z="0"/>
       </physvol>
-      <physvol copynumber="7" name="physicTiO2_70x4a4d9e0">
-        <volumeref ref="logicTiO20x4a46860"/>
-        <position name="physicTiO2_70x4a4d9e0_pos" unit="mm" x="-63.5" y="0" z="0"/>
+      <physvol copynumber="7" name="physicTiO2_70x42e7f60">
+        <volumeref ref="logicTiO20x42e0de0"/>
+        <position name="physicTiO2_70x42e7f60_pos" unit="mm" x="-63.5" y="0" z="0"/>
       </physvol>
-      <physvol copynumber="7" name="physicAPD_70x4a4daf0">
-        <volumeref ref="logicAPD0x4a46ad0"/>
-        <position name="physicAPD_70x4a4daf0_pos" unit="mm" x="-63.5" y="0" z="102"/>
+      <physvol copynumber="7" name="physicAPD_70x42e8070">
+        <volumeref ref="logicAPD0x42e1050"/>
+        <position name="physicAPD_70x42e8070_pos" unit="mm" x="-63.5" y="0" z="102"/>
       </physvol>
-      <physvol copynumber="7" name="physicSiliconeRubber0x4a4dcf0">
-        <volumeref ref="logicSiliconeRubber0x4a4b3a0"/>
-        <position name="physicSiliconeRubber0x4a4dcf0_pos" unit="mm" x="-63.5" y="0" z="0"/>
+      <physvol copynumber="7" name="physicSiliconeRubber0x42e8270">
+        <volumeref ref="logicSiliconeRubber0x42e5920"/>
+        <position name="physicSiliconeRubber0x42e8270_pos" unit="mm" x="-63.5" y="0" z="0"/>
       </physvol>
-      <physvol copynumber="8" name="physicCsI_80x4a4dd70">
-        <volumeref ref="logicCsI0x4a460b0"/>
-        <position name="physicCsI_80x4a4dd70_pos" unit="mm" x="-63.5" y="63.5" z="0"/>
+      <physvol copynumber="8" name="physicCsI_80x42e82f0">
+        <volumeref ref="logicCsI0x42e0630"/>
+        <position name="physicCsI_80x42e82f0_pos" unit="mm" x="-63.5" y="63.5" z="0"/>
       </physvol>
-      <physvol copynumber="8" name="physicTiO2_80x4a4cbb0">
-        <volumeref ref="logicTiO20x4a46860"/>
-        <position name="physicTiO2_80x4a4cbb0_pos" unit="mm" x="-63.5" y="63.5" z="0"/>
+      <physvol copynumber="8" name="physicTiO2_80x42e7130">
+        <volumeref ref="logicTiO20x42e0de0"/>
+        <position name="physicTiO2_80x42e7130_pos" unit="mm" x="-63.5" y="63.5" z="0"/>
       </physvol>
-      <physvol copynumber="8" name="physicAPD_80x4a4e090">
-        <volumeref ref="logicAPD0x4a46ad0"/>
-        <position name="physicAPD_80x4a4e090_pos" unit="mm" x="-63.5" y="63.5" z="102"/>
+      <physvol copynumber="8" name="physicAPD_80x42e8610">
+        <volumeref ref="logicAPD0x42e1050"/>
+        <position name="physicAPD_80x42e8610_pos" unit="mm" x="-63.5" y="63.5" z="102"/>
       </physvol>
-      <physvol copynumber="8" name="physicSiliconeRubber0x4a4e290">
-        <volumeref ref="logicSiliconeRubber0x4a4b3a0"/>
-        <position name="physicSiliconeRubber0x4a4e290_pos" unit="mm" x="-63.5" y="63.5" z="0"/>
+      <physvol copynumber="8" name="physicSiliconeRubber0x42e8810">
+        <volumeref ref="logicSiliconeRubber0x42e5920"/>
+        <position name="physicSiliconeRubber0x42e8810_pos" unit="mm" x="-63.5" y="63.5" z="0"/>
       </physvol>
-      <physvol copynumber="9" name="physicCsI_90x4a4e3a0">
-        <volumeref ref="logicCsI0x4a460b0"/>
-        <position name="physicCsI_90x4a4e3a0_pos" unit="mm" x="-63.5" y="127" z="0"/>
+      <physvol copynumber="9" name="physicCsI_90x42e8920">
+        <volumeref ref="logicCsI0x42e0630"/>
+        <position name="physicCsI_90x42e8920_pos" unit="mm" x="-63.5" y="127" z="0"/>
       </physvol>
-      <physvol copynumber="9" name="physicTiO2_90x4a4e4b0">
-        <volumeref ref="logicTiO20x4a46860"/>
-        <position name="physicTiO2_90x4a4e4b0_pos" unit="mm" x="-63.5" y="127" z="0"/>
+      <physvol copynumber="9" name="physicTiO2_90x42e8a30">
+        <volumeref ref="logicTiO20x42e0de0"/>
+        <position name="physicTiO2_90x42e8a30_pos" unit="mm" x="-63.5" y="127" z="0"/>
       </physvol>
-      <physvol copynumber="9" name="physicAPD_90x4a4e5c0">
-        <volumeref ref="logicAPD0x4a46ad0"/>
-        <position name="physicAPD_90x4a4e5c0_pos" unit="mm" x="-63.5" y="127" z="102"/>
+      <physvol copynumber="9" name="physicAPD_90x42e8b40">
+        <volumeref ref="logicAPD0x42e1050"/>
+        <position name="physicAPD_90x42e8b40_pos" unit="mm" x="-63.5" y="127" z="102"/>
       </physvol>
-      <physvol copynumber="9" name="physicSiliconeRubber0x4a4e7c0">
-        <volumeref ref="logicSiliconeRubber0x4a4b3a0"/>
-        <position name="physicSiliconeRubber0x4a4e7c0_pos" unit="mm" x="-63.5" y="127" z="0"/>
+      <physvol copynumber="9" name="physicSiliconeRubber0x42e8d40">
+        <volumeref ref="logicSiliconeRubber0x42e5920"/>
+        <position name="physicSiliconeRubber0x42e8d40_pos" unit="mm" x="-63.5" y="127" z="0"/>
       </physvol>
-      <physvol copynumber="10" name="physicCsI_100x4a4e840">
-        <volumeref ref="logicCsI0x4a460b0"/>
-        <position name="physicCsI_100x4a4e840_pos" unit="mm" x="0" y="-127" z="0"/>
+      <physvol copynumber="10" name="physicCsI_100x42e8dc0">
+        <volumeref ref="logicCsI0x42e0630"/>
+        <position name="physicCsI_100x42e8dc0_pos" unit="mm" x="0" y="-127" z="0"/>
       </physvol>
-      <physvol copynumber="10" name="physicTiO2_100x4a4e950">
-        <volumeref ref="logicTiO20x4a46860"/>
-        <position name="physicTiO2_100x4a4e950_pos" unit="mm" x="0" y="-127" z="0"/>
+      <physvol copynumber="10" name="physicTiO2_100x42e8ed0">
+        <volumeref ref="logicTiO20x42e0de0"/>
+        <position name="physicTiO2_100x42e8ed0_pos" unit="mm" x="0" y="-127" z="0"/>
       </physvol>
-      <physvol copynumber="10" name="physicAPD_100x4a4ea60">
-        <volumeref ref="logicAPD0x4a46ad0"/>
-        <position name="physicAPD_100x4a4ea60_pos" unit="mm" x="0" y="-127" z="102"/>
+      <physvol copynumber="10" name="physicAPD_100x42e8fe0">
+        <volumeref ref="logicAPD0x42e1050"/>
+        <position name="physicAPD_100x42e8fe0_pos" unit="mm" x="0" y="-127" z="102"/>
       </physvol>
-      <physvol copynumber="10" name="physicSiliconeRubber0x4a4ec60">
-        <volumeref ref="logicSiliconeRubber0x4a4b3a0"/>
-        <position name="physicSiliconeRubber0x4a4ec60_pos" unit="mm" x="0" y="-127" z="0"/>
+      <physvol copynumber="10" name="physicSiliconeRubber0x42e91e0">
+        <volumeref ref="logicSiliconeRubber0x42e5920"/>
+        <position name="physicSiliconeRubber0x42e91e0_pos" unit="mm" x="0" y="-127" z="0"/>
       </physvol>
-      <physvol copynumber="11" name="physicCsI_110x4a4ece0">
-        <volumeref ref="logicCsI0x4a460b0"/>
-        <position name="physicCsI_110x4a4ece0_pos" unit="mm" x="0" y="-63.5" z="0"/>
+      <physvol copynumber="11" name="physicCsI_110x42e9260">
+        <volumeref ref="logicCsI0x42e0630"/>
+        <position name="physicCsI_110x42e9260_pos" unit="mm" x="0" y="-63.5" z="0"/>
       </physvol>
-      <physvol copynumber="11" name="physicTiO2_110x4a4edf0">
-        <volumeref ref="logicTiO20x4a46860"/>
-        <position name="physicTiO2_110x4a4edf0_pos" unit="mm" x="0" y="-63.5" z="0"/>
+      <physvol copynumber="11" name="physicTiO2_110x42e9370">
+        <volumeref ref="logicTiO20x42e0de0"/>
+        <position name="physicTiO2_110x42e9370_pos" unit="mm" x="0" y="-63.5" z="0"/>
       </physvol>
-      <physvol copynumber="11" name="physicAPD_110x4a4ef00">
-        <volumeref ref="logicAPD0x4a46ad0"/>
-        <position name="physicAPD_110x4a4ef00_pos" unit="mm" x="0" y="-63.5" z="102"/>
+      <physvol copynumber="11" name="physicAPD_110x42e9480">
+        <volumeref ref="logicAPD0x42e1050"/>
+        <position name="physicAPD_110x42e9480_pos" unit="mm" x="0" y="-63.5" z="102"/>
       </physvol>
-      <physvol copynumber="11" name="physicSiliconeRubber0x4a4f100">
-        <volumeref ref="logicSiliconeRubber0x4a4b3a0"/>
-        <position name="physicSiliconeRubber0x4a4f100_pos" unit="mm" x="0" y="-63.5" z="0"/>
+      <physvol copynumber="11" name="physicSiliconeRubber0x42e9680">
+        <volumeref ref="logicSiliconeRubber0x42e5920"/>
+        <position name="physicSiliconeRubber0x42e9680_pos" unit="mm" x="0" y="-63.5" z="0"/>
       </physvol>
-      <physvol copynumber="12" name="physicCsI_120x4a4f180">
-        <volumeref ref="logicCsI0x4a460b0"/>
+      <physvol copynumber="12" name="physicCsI_120x42e9700">
+        <volumeref ref="logicCsI0x42e0630"/>
       </physvol>
-      <physvol copynumber="12" name="physicTiO2_120x4a4f290">
-        <volumeref ref="logicTiO20x4a46860"/>
+      <physvol copynumber="12" name="physicTiO2_120x42e9810">
+        <volumeref ref="logicTiO20x42e0de0"/>
       </physvol>
-      <physvol copynumber="12" name="physicAPD_120x4a4f3a0">
-        <volumeref ref="logicAPD0x4a46ad0"/>
-        <position name="physicAPD_120x4a4f3a0_pos" unit="mm" x="0" y="0" z="102"/>
+      <physvol copynumber="12" name="physicAPD_120x42e9920">
+        <volumeref ref="logicAPD0x42e1050"/>
+        <position name="physicAPD_120x42e9920_pos" unit="mm" x="0" y="0" z="102"/>
       </physvol>
-      <physvol copynumber="12" name="physicSiliconeRubber0x4a4f5a0">
-        <volumeref ref="logicSiliconeRubber0x4a4b3a0"/>
+      <physvol copynumber="12" name="physicSiliconeRubber0x42e9b20">
+        <volumeref ref="logicSiliconeRubber0x42e5920"/>
       </physvol>
-      <physvol copynumber="13" name="physicCsI_130x4a4f620">
-        <volumeref ref="logicCsI0x4a460b0"/>
-        <position name="physicCsI_130x4a4f620_pos" unit="mm" x="0" y="63.5" z="0"/>
+      <physvol copynumber="13" name="physicCsI_130x42e9ba0">
+        <volumeref ref="logicCsI0x42e0630"/>
+        <position name="physicCsI_130x42e9ba0_pos" unit="mm" x="0" y="63.5" z="0"/>
       </physvol>
-      <physvol copynumber="13" name="physicTiO2_130x4a4f730">
-        <volumeref ref="logicTiO20x4a46860"/>
-        <position name="physicTiO2_130x4a4f730_pos" unit="mm" x="0" y="63.5" z="0"/>
+      <physvol copynumber="13" name="physicTiO2_130x42e9cb0">
+        <volumeref ref="logicTiO20x42e0de0"/>
+        <position name="physicTiO2_130x42e9cb0_pos" unit="mm" x="0" y="63.5" z="0"/>
       </physvol>
-      <physvol copynumber="13" name="physicAPD_130x4a4f840">
-        <volumeref ref="logicAPD0x4a46ad0"/>
-        <position name="physicAPD_130x4a4f840_pos" unit="mm" x="0" y="63.5" z="102"/>
+      <physvol copynumber="13" name="physicAPD_130x42e9dc0">
+        <volumeref ref="logicAPD0x42e1050"/>
+        <position name="physicAPD_130x42e9dc0_pos" unit="mm" x="0" y="63.5" z="102"/>
       </physvol>
-      <physvol copynumber="13" name="physicSiliconeRubber0x4a4fa40">
-        <volumeref ref="logicSiliconeRubber0x4a4b3a0"/>
-        <position name="physicSiliconeRubber0x4a4fa40_pos" unit="mm" x="0" y="63.5" z="0"/>
+      <physvol copynumber="13" name="physicSiliconeRubber0x42e9fc0">
+        <volumeref ref="logicSiliconeRubber0x42e5920"/>
+        <position name="physicSiliconeRubber0x42e9fc0_pos" unit="mm" x="0" y="63.5" z="0"/>
       </physvol>
-      <physvol copynumber="14" name="physicCsI_140x4a4fac0">
-        <volumeref ref="logicCsI0x4a460b0"/>
-        <position name="physicCsI_140x4a4fac0_pos" unit="mm" x="0" y="127" z="0"/>
+      <physvol copynumber="14" name="physicCsI_140x42ea040">
+        <volumeref ref="logicCsI0x42e0630"/>
+        <position name="physicCsI_140x42ea040_pos" unit="mm" x="0" y="127" z="0"/>
       </physvol>
-      <physvol copynumber="14" name="physicTiO2_140x4a4fbd0">
-        <volumeref ref="logicTiO20x4a46860"/>
-        <position name="physicTiO2_140x4a4fbd0_pos" unit="mm" x="0" y="127" z="0"/>
+      <physvol copynumber="14" name="physicTiO2_140x42ea150">
+        <volumeref ref="logicTiO20x42e0de0"/>
+        <position name="physicTiO2_140x42ea150_pos" unit="mm" x="0" y="127" z="0"/>
       </physvol>
-      <physvol copynumber="14" name="physicAPD_140x4a4fce0">
-        <volumeref ref="logicAPD0x4a46ad0"/>
-        <position name="physicAPD_140x4a4fce0_pos" unit="mm" x="0" y="127" z="102"/>
+      <physvol copynumber="14" name="physicAPD_140x42ea260">
+        <volumeref ref="logicAPD0x42e1050"/>
+        <position name="physicAPD_140x42ea260_pos" unit="mm" x="0" y="127" z="102"/>
       </physvol>
-      <physvol copynumber="14" name="physicSiliconeRubber0x4a4fee0">
-        <volumeref ref="logicSiliconeRubber0x4a4b3a0"/>
-        <position name="physicSiliconeRubber0x4a4fee0_pos" unit="mm" x="0" y="127" z="0"/>
+      <physvol copynumber="14" name="physicSiliconeRubber0x42ea460">
+        <volumeref ref="logicSiliconeRubber0x42e5920"/>
+        <position name="physicSiliconeRubber0x42ea460_pos" unit="mm" x="0" y="127" z="0"/>
       </physvol>
-      <physvol copynumber="15" name="physicCsI_150x4a4ff60">
-        <volumeref ref="logicCsI0x4a460b0"/>
-        <position name="physicCsI_150x4a4ff60_pos" unit="mm" x="63.5" y="-127" z="0"/>
+      <physvol copynumber="15" name="physicCsI_150x42ea4e0">
+        <volumeref ref="logicCsI0x42e0630"/>
+        <position name="physicCsI_150x42ea4e0_pos" unit="mm" x="63.5" y="-127" z="0"/>
       </physvol>
-      <physvol copynumber="15" name="physicTiO2_150x4a50070">
-        <volumeref ref="logicTiO20x4a46860"/>
-        <position name="physicTiO2_150x4a50070_pos" unit="mm" x="63.5" y="-127" z="0"/>
+      <physvol copynumber="15" name="physicTiO2_150x42ea5f0">
+        <volumeref ref="logicTiO20x42e0de0"/>
+        <position name="physicTiO2_150x42ea5f0_pos" unit="mm" x="63.5" y="-127" z="0"/>
       </physvol>
-      <physvol copynumber="15" name="physicAPD_150x4a50180">
-        <volumeref ref="logicAPD0x4a46ad0"/>
-        <position name="physicAPD_150x4a50180_pos" unit="mm" x="63.5" y="-127" z="102"/>
+      <physvol copynumber="15" name="physicAPD_150x42ea700">
+        <volumeref ref="logicAPD0x42e1050"/>
+        <position name="physicAPD_150x42ea700_pos" unit="mm" x="63.5" y="-127" z="102"/>
       </physvol>
-      <physvol copynumber="15" name="physicSiliconeRubber0x4a50380">
-        <volumeref ref="logicSiliconeRubber0x4a4b3a0"/>
-        <position name="physicSiliconeRubber0x4a50380_pos" unit="mm" x="63.5" y="-127" z="0"/>
+      <physvol copynumber="15" name="physicSiliconeRubber0x42ea900">
+        <volumeref ref="logicSiliconeRubber0x42e5920"/>
+        <position name="physicSiliconeRubber0x42ea900_pos" unit="mm" x="63.5" y="-127" z="0"/>
       </physvol>
-      <physvol copynumber="16" name="physicCsI_160x4a50400">
-        <volumeref ref="logicCsI0x4a460b0"/>
-        <position name="physicCsI_160x4a50400_pos" unit="mm" x="63.5" y="-63.5" z="0"/>
+      <physvol copynumber="16" name="physicCsI_160x42ea980">
+        <volumeref ref="logicCsI0x42e0630"/>
+        <position name="physicCsI_160x42ea980_pos" unit="mm" x="63.5" y="-63.5" z="0"/>
       </physvol>
-      <physvol copynumber="16" name="physicTiO2_160x4a4de80">
-        <volumeref ref="logicTiO20x4a46860"/>
-        <position name="physicTiO2_160x4a4de80_pos" unit="mm" x="63.5" y="-63.5" z="0"/>
+      <physvol copynumber="16" name="physicTiO2_160x42e8400">
+        <volumeref ref="logicTiO20x42e0de0"/>
+        <position name="physicTiO2_160x42e8400_pos" unit="mm" x="63.5" y="-63.5" z="0"/>
       </physvol>
-      <physvol copynumber="16" name="physicAPD_160x4a4df90">
-        <volumeref ref="logicAPD0x4a46ad0"/>
-        <position name="physicAPD_160x4a4df90_pos" unit="mm" x="63.5" y="-63.5" z="102"/>
+      <physvol copynumber="16" name="physicAPD_160x42e8510">
+        <volumeref ref="logicAPD0x42e1050"/>
+        <position name="physicAPD_160x42e8510_pos" unit="mm" x="63.5" y="-63.5" z="102"/>
       </physvol>
-      <physvol copynumber="16" name="physicSiliconeRubber0x4a50a70">
-        <volumeref ref="logicSiliconeRubber0x4a4b3a0"/>
-        <position name="physicSiliconeRubber0x4a50a70_pos" unit="mm" x="63.5" y="-63.5" z="0"/>
+      <physvol copynumber="16" name="physicSiliconeRubber0x42eaff0">
+        <volumeref ref="logicSiliconeRubber0x42e5920"/>
+        <position name="physicSiliconeRubber0x42eaff0_pos" unit="mm" x="63.5" y="-63.5" z="0"/>
       </physvol>
-      <physvol copynumber="17" name="physicCsI_170x4a4e310">
-        <volumeref ref="logicCsI0x4a460b0"/>
-        <position name="physicCsI_170x4a4e310_pos" unit="mm" x="63.5" y="0" z="0"/>
+      <physvol copynumber="17" name="physicCsI_170x42e8890">
+        <volumeref ref="logicCsI0x42e0630"/>
+        <position name="physicCsI_170x42e8890_pos" unit="mm" x="63.5" y="0" z="0"/>
       </physvol>
-      <physvol copynumber="17" name="physicTiO2_170x4a50c60">
-        <volumeref ref="logicTiO20x4a46860"/>
-        <position name="physicTiO2_170x4a50c60_pos" unit="mm" x="63.5" y="0" z="0"/>
+      <physvol copynumber="17" name="physicTiO2_170x42eb1e0">
+        <volumeref ref="logicTiO20x42e0de0"/>
+        <position name="physicTiO2_170x42eb1e0_pos" unit="mm" x="63.5" y="0" z="0"/>
       </physvol>
-      <physvol copynumber="17" name="physicAPD_170x4a50d40">
-        <volumeref ref="logicAPD0x4a46ad0"/>
-        <position name="physicAPD_170x4a50d40_pos" unit="mm" x="63.5" y="0" z="102"/>
+      <physvol copynumber="17" name="physicAPD_170x42eb2c0">
+        <volumeref ref="logicAPD0x42e1050"/>
+        <position name="physicAPD_170x42eb2c0_pos" unit="mm" x="63.5" y="0" z="102"/>
       </physvol>
-      <physvol copynumber="17" name="physicSiliconeRubber0x4a50f40">
-        <volumeref ref="logicSiliconeRubber0x4a4b3a0"/>
-        <position name="physicSiliconeRubber0x4a50f40_pos" unit="mm" x="63.5" y="0" z="0"/>
+      <physvol copynumber="17" name="physicSiliconeRubber0x42eb4c0">
+        <volumeref ref="logicSiliconeRubber0x42e5920"/>
+        <position name="physicSiliconeRubber0x42eb4c0_pos" unit="mm" x="63.5" y="0" z="0"/>
       </physvol>
-      <physvol copynumber="18" name="physicCsI_180x4a50fc0">
-        <volumeref ref="logicCsI0x4a460b0"/>
-        <position name="physicCsI_180x4a50fc0_pos" unit="mm" x="63.5" y="63.5" z="0"/>
+      <physvol copynumber="18" name="physicCsI_180x42eb540">
+        <volumeref ref="logicCsI0x42e0630"/>
+        <position name="physicCsI_180x42eb540_pos" unit="mm" x="63.5" y="63.5" z="0"/>
       </physvol>
-      <physvol copynumber="18" name="physicTiO2_180x4a510d0">
-        <volumeref ref="logicTiO20x4a46860"/>
-        <position name="physicTiO2_180x4a510d0_pos" unit="mm" x="63.5" y="63.5" z="0"/>
+      <physvol copynumber="18" name="physicTiO2_180x42eb650">
+        <volumeref ref="logicTiO20x42e0de0"/>
+        <position name="physicTiO2_180x42eb650_pos" unit="mm" x="63.5" y="63.5" z="0"/>
       </physvol>
-      <physvol copynumber="18" name="physicAPD_180x4a511e0">
-        <volumeref ref="logicAPD0x4a46ad0"/>
-        <position name="physicAPD_180x4a511e0_pos" unit="mm" x="63.5" y="63.5" z="102"/>
+      <physvol copynumber="18" name="physicAPD_180x42eb760">
+        <volumeref ref="logicAPD0x42e1050"/>
+        <position name="physicAPD_180x42eb760_pos" unit="mm" x="63.5" y="63.5" z="102"/>
       </physvol>
-      <physvol copynumber="18" name="physicSiliconeRubber0x4a513e0">
-        <volumeref ref="logicSiliconeRubber0x4a4b3a0"/>
-        <position name="physicSiliconeRubber0x4a513e0_pos" unit="mm" x="63.5" y="63.5" z="0"/>
+      <physvol copynumber="18" name="physicSiliconeRubber0x42eb960">
+        <volumeref ref="logicSiliconeRubber0x42e5920"/>
+        <position name="physicSiliconeRubber0x42eb960_pos" unit="mm" x="63.5" y="63.5" z="0"/>
       </physvol>
-      <physvol copynumber="19" name="physicCsI_190x4a51460">
-        <volumeref ref="logicCsI0x4a460b0"/>
-        <position name="physicCsI_190x4a51460_pos" unit="mm" x="63.5" y="127" z="0"/>
+      <physvol copynumber="19" name="physicCsI_190x42eb9e0">
+        <volumeref ref="logicCsI0x42e0630"/>
+        <position name="physicCsI_190x42eb9e0_pos" unit="mm" x="63.5" y="127" z="0"/>
       </physvol>
-      <physvol copynumber="19" name="physicTiO2_190x4a51570">
-        <volumeref ref="logicTiO20x4a46860"/>
-        <position name="physicTiO2_190x4a51570_pos" unit="mm" x="63.5" y="127" z="0"/>
+      <physvol copynumber="19" name="physicTiO2_190x42ebaf0">
+        <volumeref ref="logicTiO20x42e0de0"/>
+        <position name="physicTiO2_190x42ebaf0_pos" unit="mm" x="63.5" y="127" z="0"/>
       </physvol>
-      <physvol copynumber="19" name="physicAPD_190x4a51680">
-        <volumeref ref="logicAPD0x4a46ad0"/>
-        <position name="physicAPD_190x4a51680_pos" unit="mm" x="63.5" y="127" z="102"/>
+      <physvol copynumber="19" name="physicAPD_190x42ebc00">
+        <volumeref ref="logicAPD0x42e1050"/>
+        <position name="physicAPD_190x42ebc00_pos" unit="mm" x="63.5" y="127" z="102"/>
       </physvol>
-      <physvol copynumber="19" name="physicSiliconeRubber0x4a51880">
-        <volumeref ref="logicSiliconeRubber0x4a4b3a0"/>
-        <position name="physicSiliconeRubber0x4a51880_pos" unit="mm" x="63.5" y="127" z="0"/>
+      <physvol copynumber="19" name="physicSiliconeRubber0x42ebe00">
+        <volumeref ref="logicSiliconeRubber0x42e5920"/>
+        <position name="physicSiliconeRubber0x42ebe00_pos" unit="mm" x="63.5" y="127" z="0"/>
       </physvol>
-      <physvol copynumber="20" name="physicCsI_200x4a51900">
-        <volumeref ref="logicCsI0x4a460b0"/>
-        <position name="physicCsI_200x4a51900_pos" unit="mm" x="127" y="-127" z="0"/>
+      <physvol copynumber="20" name="physicCsI_200x42ebe80">
+        <volumeref ref="logicCsI0x42e0630"/>
+        <position name="physicCsI_200x42ebe80_pos" unit="mm" x="127" y="-127" z="0"/>
       </physvol>
-      <physvol copynumber="20" name="physicTiO2_200x4a51a10">
-        <volumeref ref="logicTiO20x4a46860"/>
-        <position name="physicTiO2_200x4a51a10_pos" unit="mm" x="127" y="-127" z="0"/>
+      <physvol copynumber="20" name="physicTiO2_200x42ebf90">
+        <volumeref ref="logicTiO20x42e0de0"/>
+        <position name="physicTiO2_200x42ebf90_pos" unit="mm" x="127" y="-127" z="0"/>
       </physvol>
-      <physvol copynumber="20" name="physicAPD_200x4a51b20">
-        <volumeref ref="logicAPD0x4a46ad0"/>
-        <position name="physicAPD_200x4a51b20_pos" unit="mm" x="127" y="-127" z="102"/>
+      <physvol copynumber="20" name="physicAPD_200x42ec0a0">
+        <volumeref ref="logicAPD0x42e1050"/>
+        <position name="physicAPD_200x42ec0a0_pos" unit="mm" x="127" y="-127" z="102"/>
       </physvol>
-      <physvol copynumber="20" name="physicSiliconeRubber0x4a51d20">
-        <volumeref ref="logicSiliconeRubber0x4a4b3a0"/>
-        <position name="physicSiliconeRubber0x4a51d20_pos" unit="mm" x="127" y="-127" z="0"/>
+      <physvol copynumber="20" name="physicSiliconeRubber0x42ec2a0">
+        <volumeref ref="logicSiliconeRubber0x42e5920"/>
+        <position name="physicSiliconeRubber0x42ec2a0_pos" unit="mm" x="127" y="-127" z="0"/>
       </physvol>
-      <physvol copynumber="21" name="physicCsI_210x4a51da0">
-        <volumeref ref="logicCsI0x4a460b0"/>
-        <position name="physicCsI_210x4a51da0_pos" unit="mm" x="127" y="-63.5" z="0"/>
+      <physvol copynumber="21" name="physicCsI_210x42ec320">
+        <volumeref ref="logicCsI0x42e0630"/>
+        <position name="physicCsI_210x42ec320_pos" unit="mm" x="127" y="-63.5" z="0"/>
       </physvol>
-      <physvol copynumber="21" name="physicTiO2_210x4a51eb0">
-        <volumeref ref="logicTiO20x4a46860"/>
-        <position name="physicTiO2_210x4a51eb0_pos" unit="mm" x="127" y="-63.5" z="0"/>
+      <physvol copynumber="21" name="physicTiO2_210x42ec430">
+        <volumeref ref="logicTiO20x42e0de0"/>
+        <position name="physicTiO2_210x42ec430_pos" unit="mm" x="127" y="-63.5" z="0"/>
       </physvol>
-      <physvol copynumber="21" name="physicAPD_210x4a57df0">
-        <volumeref ref="logicAPD0x4a46ad0"/>
-        <position name="physicAPD_210x4a57df0_pos" unit="mm" x="127" y="-63.5" z="102"/>
+      <physvol copynumber="21" name="physicAPD_210x42f2370">
+        <volumeref ref="logicAPD0x42e1050"/>
+        <position name="physicAPD_210x42f2370_pos" unit="mm" x="127" y="-63.5" z="102"/>
       </physvol>
-      <physvol copynumber="21" name="physicSiliconeRubber0x4a52170">
-        <volumeref ref="logicSiliconeRubber0x4a4b3a0"/>
-        <position name="physicSiliconeRubber0x4a52170_pos" unit="mm" x="127" y="-63.5" z="0"/>
+      <physvol copynumber="21" name="physicSiliconeRubber0x42ec6f0">
+        <volumeref ref="logicSiliconeRubber0x42e5920"/>
+        <position name="physicSiliconeRubber0x42ec6f0_pos" unit="mm" x="127" y="-63.5" z="0"/>
       </physvol>
-      <physvol copynumber="22" name="physicCsI_220x4a521f0">
-        <volumeref ref="logicCsI0x4a460b0"/>
-        <position name="physicCsI_220x4a521f0_pos" unit="mm" x="127" y="0" z="0"/>
+      <physvol copynumber="22" name="physicCsI_220x42ec770">
+        <volumeref ref="logicCsI0x42e0630"/>
+        <position name="physicCsI_220x42ec770_pos" unit="mm" x="127" y="0" z="0"/>
       </physvol>
-      <physvol copynumber="22" name="physicTiO2_220x4a52300">
-        <volumeref ref="logicTiO20x4a46860"/>
-        <position name="physicTiO2_220x4a52300_pos" unit="mm" x="127" y="0" z="0"/>
+      <physvol copynumber="22" name="physicTiO2_220x42ec880">
+        <volumeref ref="logicTiO20x42e0de0"/>
+        <position name="physicTiO2_220x42ec880_pos" unit="mm" x="127" y="0" z="0"/>
       </physvol>
-      <physvol copynumber="22" name="physicAPD_220x4a52410">
-        <volumeref ref="logicAPD0x4a46ad0"/>
-        <position name="physicAPD_220x4a52410_pos" unit="mm" x="127" y="0" z="102"/>
+      <physvol copynumber="22" name="physicAPD_220x42ec990">
+        <volumeref ref="logicAPD0x42e1050"/>
+        <position name="physicAPD_220x42ec990_pos" unit="mm" x="127" y="0" z="102"/>
       </physvol>
-      <physvol copynumber="22" name="physicSiliconeRubber0x4a52610">
-        <volumeref ref="logicSiliconeRubber0x4a4b3a0"/>
-        <position name="physicSiliconeRubber0x4a52610_pos" unit="mm" x="127" y="0" z="0"/>
+      <physvol copynumber="22" name="physicSiliconeRubber0x42ecb90">
+        <volumeref ref="logicSiliconeRubber0x42e5920"/>
+        <position name="physicSiliconeRubber0x42ecb90_pos" unit="mm" x="127" y="0" z="0"/>
       </physvol>
-      <physvol copynumber="23" name="physicCsI_230x4a52690">
-        <volumeref ref="logicCsI0x4a460b0"/>
-        <position name="physicCsI_230x4a52690_pos" unit="mm" x="127" y="63.5" z="0"/>
+      <physvol copynumber="23" name="physicCsI_230x42ecc10">
+        <volumeref ref="logicCsI0x42e0630"/>
+        <position name="physicCsI_230x42ecc10_pos" unit="mm" x="127" y="63.5" z="0"/>
       </physvol>
-      <physvol copynumber="23" name="physicTiO2_230x4a527a0">
-        <volumeref ref="logicTiO20x4a46860"/>
-        <position name="physicTiO2_230x4a527a0_pos" unit="mm" x="127" y="63.5" z="0"/>
+      <physvol copynumber="23" name="physicTiO2_230x42ecd20">
+        <volumeref ref="logicTiO20x42e0de0"/>
+        <position name="physicTiO2_230x42ecd20_pos" unit="mm" x="127" y="63.5" z="0"/>
       </physvol>
-      <physvol copynumber="23" name="physicAPD_230x4a528b0">
-        <volumeref ref="logicAPD0x4a46ad0"/>
-        <position name="physicAPD_230x4a528b0_pos" unit="mm" x="127" y="63.5" z="102"/>
+      <physvol copynumber="23" name="physicAPD_230x42ece30">
+        <volumeref ref="logicAPD0x42e1050"/>
+        <position name="physicAPD_230x42ece30_pos" unit="mm" x="127" y="63.5" z="102"/>
       </physvol>
-      <physvol copynumber="23" name="physicSiliconeRubber0x4a52ab0">
-        <volumeref ref="logicSiliconeRubber0x4a4b3a0"/>
-        <position name="physicSiliconeRubber0x4a52ab0_pos" unit="mm" x="127" y="63.5" z="0"/>
+      <physvol copynumber="23" name="physicSiliconeRubber0x42ed030">
+        <volumeref ref="logicSiliconeRubber0x42e5920"/>
+        <position name="physicSiliconeRubber0x42ed030_pos" unit="mm" x="127" y="63.5" z="0"/>
       </physvol>
-      <physvol copynumber="24" name="physicCsI_240x4a52b30">
-        <volumeref ref="logicCsI0x4a460b0"/>
-        <position name="physicCsI_240x4a52b30_pos" unit="mm" x="127" y="127" z="0"/>
+      <physvol copynumber="24" name="physicCsI_240x42ed0b0">
+        <volumeref ref="logicCsI0x42e0630"/>
+        <position name="physicCsI_240x42ed0b0_pos" unit="mm" x="127" y="127" z="0"/>
       </physvol>
-      <physvol copynumber="24" name="physicTiO2_240x4a52c40">
-        <volumeref ref="logicTiO20x4a46860"/>
-        <position name="physicTiO2_240x4a52c40_pos" unit="mm" x="127" y="127" z="0"/>
+      <physvol copynumber="24" name="physicTiO2_240x42ed1c0">
+        <volumeref ref="logicTiO20x42e0de0"/>
+        <position name="physicTiO2_240x42ed1c0_pos" unit="mm" x="127" y="127" z="0"/>
       </physvol>
-      <physvol copynumber="24" name="physicAPD_240x4a52d50">
-        <volumeref ref="logicAPD0x4a46ad0"/>
-        <position name="physicAPD_240x4a52d50_pos" unit="mm" x="127" y="127" z="102"/>
+      <physvol copynumber="24" name="physicAPD_240x42ed2d0">
+        <volumeref ref="logicAPD0x42e1050"/>
+        <position name="physicAPD_240x42ed2d0_pos" unit="mm" x="127" y="127" z="102"/>
       </physvol>
-      <physvol copynumber="24" name="physicSiliconeRubber0x4a52f50">
-        <volumeref ref="logicSiliconeRubber0x4a4b3a0"/>
-        <position name="physicSiliconeRubber0x4a52f50_pos" unit="mm" x="127" y="127" z="0"/>
+      <physvol copynumber="24" name="physicSiliconeRubber0x42ed4d0">
+        <volumeref ref="logicSiliconeRubber0x42e5920"/>
+        <position name="physicSiliconeRubber0x42ed4d0_pos" unit="mm" x="127" y="127" z="0"/>
       </physvol>
-      <physvol name="physicECALShield0x4a2f550">
-        <volumeref ref="logicECALShield0x4a4ae60"/>
-        <position name="physicECALShield0x4a2f550_pos" unit="mm" x="0" y="0" z="-1"/>
+      <physvol name="physicECALShield0x42c9ad0">
+        <volumeref ref="logicECALShield0x42e53e0"/>
+        <position name="physicECALShield0x42c9ad0_pos" unit="mm" x="0" y="0" z="-1"/>
       </physvol>
     </volume>
-    <bordersurface name="CsITiO2BorderSurface_00x4a4b9d0" surfaceproperty="CsISurface0x4a430e0">
-      <physvolref ref="physicCsI_00x4a4b510"/>
-      <physvolref ref="physicTiO2_00x4a4b5d0"/>
+    <bordersurface name="CsITiO2BorderSurface_00x42e5f50" surfaceproperty="CsISurface0x42dd660">
+      <physvolref ref="physicCsI_00x42e5a90"/>
+      <physvolref ref="physicTiO2_00x42e5b50"/>
     </bordersurface>
-    <bordersurface name="CsITiO2BorderSurface_10x4a4c020" surfaceproperty="CsISurface0x4a430e0">
-      <physvolref ref="physicCsI_10x4a4bd40"/>
-      <physvolref ref="physicTiO2_10x4a4be50"/>
+    <bordersurface name="CsITiO2BorderSurface_10x42e65a0" surfaceproperty="CsISurface0x42dd660">
+      <physvolref ref="physicCsI_10x42e62c0"/>
+      <physvolref ref="physicTiO2_10x42e63d0"/>
     </bordersurface>
-    <bordersurface name="CsITiO2BorderSurface_20x4a4c4c0" surfaceproperty="CsISurface0x4a430e0">
-      <physvolref ref="physicCsI_20x4a51f60"/>
-      <physvolref ref="physicTiO2_20x4a4c280"/>
+    <bordersurface name="CsITiO2BorderSurface_20x42e6a40" surfaceproperty="CsISurface0x42dd660">
+      <physvolref ref="physicCsI_20x42ec4e0"/>
+      <physvolref ref="physicTiO2_20x42e6800"/>
     </bordersurface>
-    <bordersurface name="CsITiO2BorderSurface_30x4a4c930" surfaceproperty="CsISurface0x4a430e0">
-      <physvolref ref="physicCsI_30x4a4c620"/>
-      <physvolref ref="physicTiO2_30x4a4c710"/>
+    <bordersurface name="CsITiO2BorderSurface_30x42e6eb0" surfaceproperty="CsISurface0x42dd660">
+      <physvolref ref="physicCsI_30x42e6ba0"/>
+      <physvolref ref="physicTiO2_30x42e6c90"/>
     </bordersurface>
-    <bordersurface name="CsITiO2BorderSurface_40x4a4ce00" surfaceproperty="CsISurface0x4a430e0">
-      <physvolref ref="physicCsI_40x4a4caa0"/>
-      <physvolref ref="physicTiO2_40x4a4c1f0"/>
+    <bordersurface name="CsITiO2BorderSurface_40x42e7380" surfaceproperty="CsISurface0x42dd660">
+      <physvolref ref="physicCsI_40x42e7020"/>
+      <physvolref ref="physicTiO2_40x42e6770"/>
     </bordersurface>
-    <bordersurface name="CsITiO2BorderSurface_50x4a4d2c0" surfaceproperty="CsISurface0x4a430e0">
-      <physvolref ref="physicCsI_50x4a4cfc0"/>
-      <physvolref ref="physicTiO2_50x4a4d0a0"/>
+    <bordersurface name="CsITiO2BorderSurface_50x42e7840" surfaceproperty="CsISurface0x42dd660">
+      <physvolref ref="physicCsI_50x42e7540"/>
+      <physvolref ref="physicTiO2_50x42e7620"/>
     </bordersurface>
-    <bordersurface name="CsITiO2BorderSurface_60x4a4d760" surfaceproperty="CsISurface0x4a430e0">
-      <physvolref ref="physicCsI_60x4a4d430"/>
-      <physvolref ref="physicTiO2_60x4a4d540"/>
+    <bordersurface name="CsITiO2BorderSurface_60x42e7ce0" surfaceproperty="CsISurface0x42dd660">
+      <physvolref ref="physicCsI_60x42e79b0"/>
+      <physvolref ref="physicTiO2_60x42e7ac0"/>
     </bordersurface>
-    <bordersurface name="CsITiO2BorderSurface_70x4a4dc00" surfaceproperty="CsISurface0x4a430e0">
-      <physvolref ref="physicCsI_70x4a4d8d0"/>
-      <physvolref ref="physicTiO2_70x4a4d9e0"/>
+    <bordersurface name="CsITiO2BorderSurface_70x42e8180" surfaceproperty="CsISurface0x42dd660">
+      <physvolref ref="physicCsI_70x42e7e50"/>
+      <physvolref ref="physicTiO2_70x42e7f60"/>
     </bordersurface>
-    <bordersurface name="CsITiO2BorderSurface_80x4a4e1a0" surfaceproperty="CsISurface0x4a430e0">
-      <physvolref ref="physicCsI_80x4a4dd70"/>
-      <physvolref ref="physicTiO2_80x4a4cbb0"/>
+    <bordersurface name="CsITiO2BorderSurface_80x42e8720" surfaceproperty="CsISurface0x42dd660">
+      <physvolref ref="physicCsI_80x42e82f0"/>
+      <physvolref ref="physicTiO2_80x42e7130"/>
     </bordersurface>
-    <bordersurface name="CsITiO2BorderSurface_90x4a4e6d0" surfaceproperty="CsISurface0x4a430e0">
-      <physvolref ref="physicCsI_90x4a4e3a0"/>
-      <physvolref ref="physicTiO2_90x4a4e4b0"/>
+    <bordersurface name="CsITiO2BorderSurface_90x42e8c50" surfaceproperty="CsISurface0x42dd660">
+      <physvolref ref="physicCsI_90x42e8920"/>
+      <physvolref ref="physicTiO2_90x42e8a30"/>
     </bordersurface>
-    <bordersurface name="CsITiO2BorderSurface_100x4a4eb70" surfaceproperty="CsISurface0x4a430e0">
-      <physvolref ref="physicCsI_100x4a4e840"/>
-      <physvolref ref="physicTiO2_100x4a4e950"/>
+    <bordersurface name="CsITiO2BorderSurface_100x42e90f0" surfaceproperty="CsISurface0x42dd660">
+      <physvolref ref="physicCsI_100x42e8dc0"/>
+      <physvolref ref="physicTiO2_100x42e8ed0"/>
     </bordersurface>
-    <bordersurface name="CsITiO2BorderSurface_110x4a4f010" surfaceproperty="CsISurface0x4a430e0">
-      <physvolref ref="physicCsI_110x4a4ece0"/>
-      <physvolref ref="physicTiO2_110x4a4edf0"/>
+    <bordersurface name="CsITiO2BorderSurface_110x42e9590" surfaceproperty="CsISurface0x42dd660">
+      <physvolref ref="physicCsI_110x42e9260"/>
+      <physvolref ref="physicTiO2_110x42e9370"/>
     </bordersurface>
-    <bordersurface name="CsITiO2BorderSurface_120x4a4f4b0" surfaceproperty="CsISurface0x4a430e0">
-      <physvolref ref="physicCsI_120x4a4f180"/>
-      <physvolref ref="physicTiO2_120x4a4f290"/>
+    <bordersurface name="CsITiO2BorderSurface_120x42e9a30" surfaceproperty="CsISurface0x42dd660">
+      <physvolref ref="physicCsI_120x42e9700"/>
+      <physvolref ref="physicTiO2_120x42e9810"/>
     </bordersurface>
-    <bordersurface name="CsITiO2BorderSurface_130x4a4f950" surfaceproperty="CsISurface0x4a430e0">
-      <physvolref ref="physicCsI_130x4a4f620"/>
-      <physvolref ref="physicTiO2_130x4a4f730"/>
+    <bordersurface name="CsITiO2BorderSurface_130x42e9ed0" surfaceproperty="CsISurface0x42dd660">
+      <physvolref ref="physicCsI_130x42e9ba0"/>
+      <physvolref ref="physicTiO2_130x42e9cb0"/>
     </bordersurface>
-    <bordersurface name="CsITiO2BorderSurface_140x4a4fdf0" surfaceproperty="CsISurface0x4a430e0">
-      <physvolref ref="physicCsI_140x4a4fac0"/>
-      <physvolref ref="physicTiO2_140x4a4fbd0"/>
+    <bordersurface name="CsITiO2BorderSurface_140x42ea370" surfaceproperty="CsISurface0x42dd660">
+      <physvolref ref="physicCsI_140x42ea040"/>
+      <physvolref ref="physicTiO2_140x42ea150"/>
     </bordersurface>
-    <bordersurface name="CsITiO2BorderSurface_150x4a50290" surfaceproperty="CsISurface0x4a430e0">
-      <physvolref ref="physicCsI_150x4a4ff60"/>
-      <physvolref ref="physicTiO2_150x4a50070"/>
+    <bordersurface name="CsITiO2BorderSurface_150x42ea810" surfaceproperty="CsISurface0x42dd660">
+      <physvolref ref="physicCsI_150x42ea4e0"/>
+      <physvolref ref="physicTiO2_150x42ea5f0"/>
     </bordersurface>
-    <bordersurface name="CsITiO2BorderSurface_160x4a50980" surfaceproperty="CsISurface0x4a430e0">
-      <physvolref ref="physicCsI_160x4a50400"/>
-      <physvolref ref="physicTiO2_160x4a4de80"/>
+    <bordersurface name="CsITiO2BorderSurface_160x42eaf00" surfaceproperty="CsISurface0x42dd660">
+      <physvolref ref="physicCsI_160x42ea980"/>
+      <physvolref ref="physicTiO2_160x42e8400"/>
     </bordersurface>
-    <bordersurface name="CsITiO2BorderSurface_170x4a50e50" surfaceproperty="CsISurface0x4a430e0">
-      <physvolref ref="physicCsI_170x4a4e310"/>
-      <physvolref ref="physicTiO2_170x4a50c60"/>
+    <bordersurface name="CsITiO2BorderSurface_170x42eb3d0" surfaceproperty="CsISurface0x42dd660">
+      <physvolref ref="physicCsI_170x42e8890"/>
+      <physvolref ref="physicTiO2_170x42eb1e0"/>
     </bordersurface>
-    <bordersurface name="CsITiO2BorderSurface_180x4a512f0" surfaceproperty="CsISurface0x4a430e0">
-      <physvolref ref="physicCsI_180x4a50fc0"/>
-      <physvolref ref="physicTiO2_180x4a510d0"/>
+    <bordersurface name="CsITiO2BorderSurface_180x42eb870" surfaceproperty="CsISurface0x42dd660">
+      <physvolref ref="physicCsI_180x42eb540"/>
+      <physvolref ref="physicTiO2_180x42eb650"/>
     </bordersurface>
-    <bordersurface name="CsITiO2BorderSurface_190x4a51790" surfaceproperty="CsISurface0x4a430e0">
-      <physvolref ref="physicCsI_190x4a51460"/>
-      <physvolref ref="physicTiO2_190x4a51570"/>
+    <bordersurface name="CsITiO2BorderSurface_190x42ebd10" surfaceproperty="CsISurface0x42dd660">
+      <physvolref ref="physicCsI_190x42eb9e0"/>
+      <physvolref ref="physicTiO2_190x42ebaf0"/>
     </bordersurface>
-    <bordersurface name="CsITiO2BorderSurface_200x4a51c30" surfaceproperty="CsISurface0x4a430e0">
-      <physvolref ref="physicCsI_200x4a51900"/>
-      <physvolref ref="physicTiO2_200x4a51a10"/>
+    <bordersurface name="CsITiO2BorderSurface_200x42ec1b0" surfaceproperty="CsISurface0x42dd660">
+      <physvolref ref="physicCsI_200x42ebe80"/>
+      <physvolref ref="physicTiO2_200x42ebf90"/>
     </bordersurface>
-    <bordersurface name="CsITiO2BorderSurface_210x4a52080" surfaceproperty="CsISurface0x4a430e0">
-      <physvolref ref="physicCsI_210x4a51da0"/>
-      <physvolref ref="physicTiO2_210x4a51eb0"/>
+    <bordersurface name="CsITiO2BorderSurface_210x42ec600" surfaceproperty="CsISurface0x42dd660">
+      <physvolref ref="physicCsI_210x42ec320"/>
+      <physvolref ref="physicTiO2_210x42ec430"/>
     </bordersurface>
-    <bordersurface name="CsITiO2BorderSurface_220x4a52520" surfaceproperty="CsISurface0x4a430e0">
-      <physvolref ref="physicCsI_220x4a521f0"/>
-      <physvolref ref="physicTiO2_220x4a52300"/>
+    <bordersurface name="CsITiO2BorderSurface_220x42ecaa0" surfaceproperty="CsISurface0x42dd660">
+      <physvolref ref="physicCsI_220x42ec770"/>
+      <physvolref ref="physicTiO2_220x42ec880"/>
     </bordersurface>
-    <bordersurface name="CsITiO2BorderSurface_230x4a529c0" surfaceproperty="CsISurface0x4a430e0">
-      <physvolref ref="physicCsI_230x4a52690"/>
-      <physvolref ref="physicTiO2_230x4a527a0"/>
+    <bordersurface name="CsITiO2BorderSurface_230x42ecf40" surfaceproperty="CsISurface0x42dd660">
+      <physvolref ref="physicCsI_230x42ecc10"/>
+      <physvolref ref="physicTiO2_230x42ecd20"/>
     </bordersurface>
-    <bordersurface name="CsITiO2BorderSurface_240x4a52e60" surfaceproperty="CsISurface0x4a430e0">
-      <physvolref ref="physicCsI_240x4a52b30"/>
-      <physvolref ref="physicTiO2_240x4a52c40"/>
+    <bordersurface name="CsITiO2BorderSurface_240x42ed3e0" surfaceproperty="CsISurface0x42dd660">
+      <physvolref ref="physicCsI_240x42ed0b0"/>
+      <physvolref ref="physicTiO2_240x42ed1c0"/>
     </bordersurface>
   </structure>
 
   <setup name="Default" version="1.0">
-    <world ref="World0x4a2f130"/>
+    <world ref="World0x42c96b0"/>
   </setup>
 
 </gdml>

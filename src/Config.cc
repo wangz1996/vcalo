@@ -65,7 +65,9 @@ int Config::Run()
 
 	G4VModularPhysicsList* physics = new FTFP_BERT();
 	physics->ReplacePhysics(new G4EmStandardPhysics_option4());
-	physics->RegisterPhysics(new G4OpticalPhysics());
+	if(conf["Global"]["optical"].as<bool>()){
+		physics->RegisterPhysics(new G4OpticalPhysics());
+	}
 	runManager->SetUserInitialization(physics);
 
 	//SteppingVerbose* stepV = new SteppingVerbose();
@@ -93,8 +95,13 @@ int Config::Run()
 	UI->ApplyCommand(G4String("/event/verbose ")+G4String(conf["Verbose"]["event"].as<std::string>()));
 	//Initialize G4 kernel
 	runManager->Initialize();
-
-	runManager->BeamOn(conf["Global"]["beamon"].as<int>());
+	if(conf["Global"]["usemac"].as<bool>()){
+		UI->ExecuteMacroFile(conf["Global"]["mac"].as<std::string>().c_str());
+	}
+	else{
+		runManager->BeamOn(conf["Global"]["beamon"].as<int>());
+	}
+	
 	// job termination
 	//
 	delete runManager;
@@ -107,7 +114,7 @@ void Config::Print()
 {
 	ofstream fout("./default.yaml");
 	fout<<"#Project information"<<endl;
-	fout<<"Project: Vlast-calo"<<endl;
+	fout<<"Project: Vlast-CALO"<<endl;
 	fout<<"Contact: Zhen Wang < wangz1996@sjtu.edu.cn >"<<endl;
 	fout<<"\n"<<endl;
 	fout<<"Global:"<<endl;
@@ -118,8 +125,10 @@ void Config::Print()
 	fout<<"        mac: ./vis.mac"<<endl;
 	fout<<"\n"<<endl;
 	fout<<"        output: ./test.root # Output root file name"<<endl;
-	fout<<"        beamon: 100"<<endl;
-	fout<<"        savegeo: False"<<endl;
+	fout<<"        beamon: 1"<<endl;
+	fout<<"        savegeo: True"<<endl;
+	fout<<"        optical: True"<<endl;
+	fout<<"\n"<<endl;
 	fout<<"#Construct Calorimeter"<<endl;
 	fout<<"ECAL:"<<endl;
 	fout<<"        ECALShield: True"<<endl;
@@ -127,10 +136,11 @@ void Config::Print()
 	fout<<"\n"<<endl;
 	fout<<"#Particle source setup"<<endl;
 	fout<<"Source:"<<endl;
-	fout<<"        particle: mu+"<<endl;
-	fout<<"        energy: 100.  # Unit is in GeV"<<endl;
+	fout<<"        particle: mu-"<<endl;
+	fout<<"        energy: 3000  # Unit is in MeV"<<endl;
 	fout<<"        position: [ 0., 0., -100.]   # Unit is in cm"<<endl;
-    fout<<"        direction: [ 0., 0., 1.]"<<endl;
+	fout<<"        direction: [ 0., 0., 1.]"<<endl;
+	fout<<"\n"<<endl;
 	fout<<"#Verbose"<<endl;
 	fout<<"Verbose:"<<endl;
 	fout<<"        run: 0"<<endl;
@@ -138,4 +148,5 @@ void Config::Print()
 	fout<<"        event: 0"<<endl;
 	fout<<"        tracking: 0"<<endl;
 	fout.close();
+
 }

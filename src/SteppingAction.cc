@@ -84,7 +84,7 @@ void SteppingAction::UserSteppingAction(const G4Step* aStep)
   if (postStepPoint && postStepPoint->GetPhysicalVolume()) {
     postStepVName = postStepPoint->GetPhysicalVolume()->GetName();
   }
-  
+  auto process = postStepPoint->GetProcessDefinedStep()->GetProcessName();
   G4double edep = aStep->GetTotalEnergyDeposit();
   G4int copyNo = aStep->GetPreStepPoint()->GetPhysicalVolume()->GetCopyNo();
   G4int pdgid = aStep->GetTrack()->GetDefinition()->GetPDGEncoding();
@@ -92,7 +92,7 @@ void SteppingAction::UserSteppingAction(const G4Step* aStep)
   G4double time = aStep->GetPreStepPoint()->GetGlobalTime();
   G4String volumeName = aStep->GetPreStepPoint()->GetTouchableHandle()->GetVolume()->GetLogicalVolume()->GetName();
   if(aStep->GetTrack()->GetDefinition() == G4OpticalPhoton::OpticalPhotonDefinition() &&
-    preStepVName.find("CsI")!=std::string::npos &&
+    preStepVName.find("CsI_12")!=std::string::npos &&
     postStepVName.find("World")!=std::string::npos){
     HistoManager::getInstance().npup(preStepVName);
     HistoManager::getInstance().filloptime(time);

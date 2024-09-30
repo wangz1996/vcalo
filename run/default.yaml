@@ -7,14 +7,13 @@ Global:
         useseed: False # default: system time in nano-second
         seed: 1234
 
-
         usemac: False # Currently not applicable
         mac: ./vis.mac
 
-
-        output: ./test.root # Output root file name
+        output: ./optical.root # Output root file name
         beamon: 1
         savegeo: True
+        optical: True
 #Construct Calorimeter
 ECAL:
         ECALShield: True
