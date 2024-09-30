@@ -1,0 +1,34 @@
+#Project information
+Project: Vlast-CALO
+Contact: Zhen Wang < wangz1996@sjtu.edu.cn >
+
+
+Global:
+        useseed: False # default: system time in nano-second
+        seed: 1234
+
+
+        usemac: False # Currently not applicable
+        mac: ./vis.mac
+
+
+        output: ./test.root # Output root file name
+        beamon: 1
+        savegeo: True
+#Construct Calorimeter
+ECAL:
+        ECALShield: True
+        build: True
+
+#Particle source setup
+Source:
+        particle: mu-
+        energy: 3000  # Unit is in MeV
+        position: [ 0., 0., -100.]   # Unit is in cm
+        direction: [ 0., 0., 1.]
+#Verbose
+Verbose:
+        run: 0
+        control: 0
+        event: 0
+        tracking: 0
