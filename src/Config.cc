@@ -96,11 +96,14 @@ int Config::Run()
 	//Initialize G4 kernel
 	runManager->Initialize();
 	if(conf["Global"]["usemac"].as<bool>()){
+		if(!ifstream(conf["Global"]["mac"].as<std::string>()).good()){
+			std::cout<<"Macro file not found!"<<std::endl;
+			throw conf["Global"]["mac"].as<std::string>().c_str();
+		}
+		std::cout<<"Executing macro file..."<<std::endl;
 		UI->ExecuteMacroFile(conf["Global"]["mac"].as<std::string>().c_str());
 	}
-	else{
-		runManager->BeamOn(conf["Global"]["beamon"].as<int>());
-	}
+	runManager->BeamOn(conf["Global"]["beamon"].as<int>());
 	
 	// job termination
 	//

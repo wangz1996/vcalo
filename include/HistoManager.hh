@@ -54,10 +54,11 @@ class HistoManager
 		void save();
 		void clear();
 		void book(const std::string& foutname,const bool &savegeo);
-		void fill();
+		void fill(const int& _eventNo);
 		void npup(const std::string& name);
 		void filloptime(const float& time){ecal_optime.emplace_back(time);}
 		void fillEcalHit(const G4int &copyNo,const G4double &edep,const G4double &time,const G4int &pdgid,const G4int &trackid);
+		void fillPrimary(const G4Track* trk);
 	private:
 		//Singleton
 		HistoManager();
@@ -75,6 +76,10 @@ class HistoManager
 		TTree* vTree;
 
 	private:
+		int eventNo;
+		float init_x;
+		float init_y;
+		float init_z;
 		std::vector<int> ecal_cellid;
 		std::vector<float> ecal_celle;
 		std::vector<int> ecal_nphoton;

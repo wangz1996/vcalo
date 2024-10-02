@@ -49,21 +49,25 @@ void HistoManager::book(const std::string& foutname,const bool &savegeo)
   G4cout<<"---->Creating Instance for HistoManager..."<<G4endl;
   vFile = new TFile(TString(foutname),"RECREATE");
   vTree = new TTree("vtree","calo events");
+  vTree->Branch("eventNo",					&eventNo);
   vTree->Branch("ecal_cellid",               &ecal_cellid);
   vTree->Branch("ecal_celle",               &ecal_celle);
   vTree->Branch("ecal_e",					&ecal_e);
 	vTree->Branch("ecal_nphoton",			&ecal_nphoton);
 	vTree->Branch("ecal_optime",			&ecal_optime);
+	vTree->Branch("init_x",					&init_x);
+	vTree->Branch("init_y",					&init_y);
+	vTree->Branch("init_z",					&init_z);
 	fSaveGeo = savegeo;
 }
 
-void HistoManager::fill(){
-	for(size_t i=0;i<25;i++){
-		ecal_cellid.emplace_back(i);
-		ecal_celle.emplace_back(ecal_mape.at(i));
-		ecal_e+=ecal_mape.at(i);
-		ecal_nphoton.emplace_back(ecal_npmap.at(i));
+void HistoManager::fill(const int& _eventNo){
+	for(auto i:ecal_mape){
+		ecal_cellid.emplace_back(i.first);
+		ecal_celle.emplace_back(SiPMDigi(i.second));
+		ecal_e+=SiPMDigi(i.second);
 	}
+	eventNo = _eventNo;
 	vTree->Fill();
 }
 
@@ -77,6 +81,12 @@ void HistoManager::npup(const std::string& name){
 	ecal_npmap[npid]++;
 }
 
+void HistoManager::fillPrimary(const G4Track* trk){
+	init_x = trk->GetMomentumDirection().x();
+	init_y = trk->GetMomentumDirection().y();
+	init_z = trk->GetMomentumDirection().z();
+}
+
 void HistoManager::clear(){
 	std::vector<int>().swap(ecal_cellid);
 	std::vector<float>().swap(ecal_celle);
@@ -84,11 +94,10 @@ void HistoManager::clear(){
 	std::vector<float>().swap(ecal_optime);
 	ecal_mape.clear();
 	ecal_npmap.clear();
-	for(size_t i=0;i<25;i++){
-		ecal_mape[i]=0.;
-		ecal_npmap[i]=0;
-	}
 	ecal_e=0.;
+	init_x=0.;
+	init_y=0.;
+	init_z=0.;
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......

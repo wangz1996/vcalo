@@ -42,7 +42,7 @@
 
 EventAction::EventAction(Config *c)
 :G4UserEventAction(),
- fEventEdep(0),fPrintModulo(10000),fDecayChain(),config(c)
+ fEventEdep(0),fPrintModulo(1000),fDecayChain(),config(c)
 {
   fGParticleSource  = new G4GeneralParticleSource();
 }
@@ -68,11 +68,11 @@ void EventAction::EndOfEventAction(const G4Event* evt)
  G4int evtNb = evt->GetEventID(); 
  //printing survey
  //
- if (1) 
+ if (evtNb%fPrintModulo == 0) 
    G4cout << "\n end of event " << std::setw(6) << evtNb 
           << " :" + fDecayChain << G4endl;
  
-	HistoManager::getInstance().fill();
+	HistoManager::getInstance().fill(evtNb);
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......

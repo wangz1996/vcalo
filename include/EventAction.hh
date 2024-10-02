@@ -65,7 +65,6 @@ class EventAction : public G4UserEventAction
 
 
     private:
-		Double_t SiPMDigi(const Double_t &edep) const;
         G4double        fEventEdep;
         G4int           fPrintModulo;
         G4String        fDecayChain;                   

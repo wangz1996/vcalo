@@ -89,6 +89,9 @@ void SteppingAction::UserSteppingAction(const G4Step* aStep)
   G4int copyNo = aStep->GetPreStepPoint()->GetPhysicalVolume()->GetCopyNo();
   G4int pdgid = aStep->GetTrack()->GetDefinition()->GetPDGEncoding();
   G4int trackid = aStep->GetTrack()->GetTrackID();
+  if(trackid==1){
+    HistoManager::getInstance().fillPrimary(aStep->GetTrack());
+  }
   G4double time = aStep->GetPreStepPoint()->GetGlobalTime();
   G4String volumeName = aStep->GetPreStepPoint()->GetTouchableHandle()->GetVolume()->GetLogicalVolume()->GetName();
   if(aStep->GetTrack()->GetDefinition() == G4OpticalPhoton::OpticalPhotonDefinition() &&
