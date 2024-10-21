@@ -125,7 +125,7 @@ void DetectorConstruction::defineECALMaterial(){
 	// CsIMPT->AddConstProperty("YIELDRATIO",0.57);//Fast-to-slow component yield ratio
 	CsI->SetMaterialPropertiesTable(CsIMPT);
 
-	//Optical Surfaces
+	//Optical Surfaces (actually I think it should be called TiO2 surface)
 	//CsI(Tl) and TiO2
 	for(size_t i=0;i<CsI_NEntries;i++){CsI_SpecularLobe[i] = 0.95;}
 	for(size_t i=0;i<CsI_NEntries;i++){CsI_DiffuseLobe[i] = 0.05;}
@@ -187,16 +187,10 @@ G4VSolid* DetectorConstruction::constructECALShield(){
 	return solidECALShield;
 }
 
-void DetectorConstruction::ConstructECAL()
+void DetectorConstruction::constructECAL()
 {
     G4bool checkOverlaps = false;
 	std::cout<<"Starting to construct ECAL"<<std::endl;
-    //
-    // define materials and parameters
-
-    defineECALParameter();
-
-    defineECALMaterial();
 
 	// Construct CsI solid;
 	auto solidCsI = new G4Box("solidCsI", 0.5*CsI_XY, 0.5*CsI_XY, 0.5*CsI_Z);

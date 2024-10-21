@@ -59,6 +59,8 @@ class HistoManager
 		void filloptime(const float& time){ecal_optime.emplace_back(time);}
 		void fillEcalHit(const G4int &copyNo,const G4double &edep,const G4double &time,const G4int &pdgid,const G4int &trackid);
 		void fillPrimary(const G4Track* trk);
+		void addConvPhoton(){++nConvPhoton;}
+		void fillConvTime(const float& time){ecal_convtime.emplace_back(time);}
 	private:
 		//Singleton
 		HistoManager();
@@ -77,13 +79,18 @@ class HistoManager
 
 	private:
 		int eventNo;
+		int nConvPhoton;
 		float init_x;
 		float init_y;
 		float init_z;
+		float init_Px;
+		float init_Py;
+		float init_Pz;
 		std::vector<int> ecal_cellid;
 		std::vector<float> ecal_celle;
 		std::vector<int> ecal_nphoton;
 		std::vector<float> ecal_optime;
+		std::vector<float> ecal_convtime;
 		std::unordered_map<int,float> ecal_mape;
 		std::unordered_map<int,int> ecal_npmap;
 		float ecal_e;

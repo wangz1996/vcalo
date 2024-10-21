@@ -198,6 +198,30 @@ src/Config.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/vcalo.dir/build.make CMakeFiles/vcalo.dir/src/Config.cc.s
 .PHONY : src/Config.cc.s
 
+src/ConstructConverter.o: src/ConstructConverter.cc.o
+.PHONY : src/ConstructConverter.o
+
+# target to build an object file
+src/ConstructConverter.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vcalo.dir/build.make CMakeFiles/vcalo.dir/src/ConstructConverter.cc.o
+.PHONY : src/ConstructConverter.cc.o
+
+src/ConstructConverter.i: src/ConstructConverter.cc.i
+.PHONY : src/ConstructConverter.i
+
+# target to preprocess a source file
+src/ConstructConverter.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vcalo.dir/build.make CMakeFiles/vcalo.dir/src/ConstructConverter.cc.i
+.PHONY : src/ConstructConverter.cc.i
+
+src/ConstructConverter.s: src/ConstructConverter.cc.s
+.PHONY : src/ConstructConverter.s
+
+# target to generate assembly for a file
+src/ConstructConverter.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vcalo.dir/build.make CMakeFiles/vcalo.dir/src/ConstructConverter.cc.s
+.PHONY : src/ConstructConverter.cc.s
+
 src/ConstructECAL.o: src/ConstructECAL.cc.o
 .PHONY : src/ConstructECAL.o
 
@@ -502,6 +526,9 @@ help:
 	@echo "... src/Config.o"
 	@echo "... src/Config.i"
 	@echo "... src/Config.s"
+	@echo "... src/ConstructConverter.o"
+	@echo "... src/ConstructConverter.i"
+	@echo "... src/ConstructConverter.s"
 	@echo "... src/ConstructECAL.o"
 	@echo "... src/ConstructECAL.i"
 	@echo "... src/ConstructECAL.s"

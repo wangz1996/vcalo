@@ -58,6 +58,11 @@ void HistoManager::book(const std::string& foutname,const bool &savegeo)
 	vTree->Branch("init_x",					&init_x);
 	vTree->Branch("init_y",					&init_y);
 	vTree->Branch("init_z",					&init_z);
+	vTree->Branch("init_Px",					&init_Px);
+	vTree->Branch("init_Py",					&init_Py);
+	vTree->Branch("init_Pz",					&init_Pz);
+	vTree->Branch("nConvPhoton",			&nConvPhoton);
+	vTree->Branch("ecal_convtime",			&ecal_convtime);
 	fSaveGeo = savegeo;
 }
 
@@ -82,9 +87,12 @@ void HistoManager::npup(const std::string& name){
 }
 
 void HistoManager::fillPrimary(const G4Track* trk){
-	init_x = trk->GetMomentumDirection().x();
-	init_y = trk->GetMomentumDirection().y();
-	init_z = trk->GetMomentumDirection().z();
+	init_x = trk->GetPosition().x();
+	init_y = trk->GetPosition().y();
+	init_z = trk->GetPosition().z();
+	init_Px = trk->GetMomentumDirection().x();
+	init_Py = trk->GetMomentumDirection().y();
+	init_Pz = trk->GetMomentumDirection().z();
 }
 
 void HistoManager::clear(){
@@ -92,12 +100,17 @@ void HistoManager::clear(){
 	std::vector<float>().swap(ecal_celle);
 	std::vector<int>().swap(ecal_nphoton);
 	std::vector<float>().swap(ecal_optime);
+	std::vector<float>().swap(ecal_convtime);
 	ecal_mape.clear();
 	ecal_npmap.clear();
 	ecal_e=0.;
 	init_x=0.;
 	init_y=0.;
 	init_z=0.;
+	init_Px=0.;
+	init_Py=0.;
+	init_Pz=0.;
+	nConvPhoton=0;
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......

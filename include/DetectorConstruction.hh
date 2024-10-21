@@ -63,18 +63,22 @@ class DetectorConstruction : public G4VUserDetectorConstruction
 	}
     
   private:
+  	Config *config;
     G4double fWorldSize;
 	G4LogicalVolume* logicWorld;
 	G4VPhysicalVolume* ConstructWorld(); 
 	G4VPhysicalVolume* physiWorld; 
-    G4VisAttributes* visAttributes;
-	void ConstructECAL();
+	G4VisAttributes* visAttributes;
+	void constructECAL();
+	void constructConverter();
 	G4SubtractionSolid* constructSolidTiO2();
+	G4SubtractionSolid* constructSolidConvTiO2();
 	G4VSolid* constructECALShield();
 	G4SubtractionSolid* constructSolidSiliconeRubber();
 	void defineECALParameter();
 	void defineECALMaterial();
-	Config *config;
+	void defineConvParameter();
+	
 
 	int nCryX;
 	int nCryY;
@@ -92,6 +96,12 @@ class DetectorConstruction : public G4VUserDetectorConstruction
 	G4double Hole_Z;
 	G4double APD_XY;
 	G4double APD_Z;
+	G4double Conv_XY;
+	G4double Conv_Z;
+	G4double ConvTiO2_XY;
+	G4double ConvTiO2_Z;
+	G4double ConvPolish_XY;
+	G4double ConvPolish_Z;
 
 	G4Material* Vacuum;
 	G4Material* CsI;

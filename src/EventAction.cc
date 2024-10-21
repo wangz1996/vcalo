@@ -42,7 +42,7 @@
 
 EventAction::EventAction(Config *c)
 :G4UserEventAction(),
- fEventEdep(0),fPrintModulo(1000),fDecayChain(),config(c)
+ fEventEdep(0),fPrintModulo(100),fDecayChain(),config(c)
 {
   fGParticleSource  = new G4GeneralParticleSource();
 }

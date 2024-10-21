@@ -89,17 +89,25 @@ void SteppingAction::UserSteppingAction(const G4Step* aStep)
   G4int copyNo = aStep->GetPreStepPoint()->GetPhysicalVolume()->GetCopyNo();
   G4int pdgid = aStep->GetTrack()->GetDefinition()->GetPDGEncoding();
   G4int trackid = aStep->GetTrack()->GetTrackID();
-  if(trackid==1){
+  G4int stepNumber = aStep->GetTrack()->GetCurrentStepNumber();
+  if(trackid==1 && stepNumber==1){
     HistoManager::getInstance().fillPrimary(aStep->GetTrack());
   }
   G4double time = aStep->GetPreStepPoint()->GetGlobalTime();
   G4String volumeName = aStep->GetPreStepPoint()->GetTouchableHandle()->GetVolume()->GetLogicalVolume()->GetName();
+  // std::cout<<preStepVName<<std::endl;
   if(aStep->GetTrack()->GetDefinition() == G4OpticalPhoton::OpticalPhotonDefinition() &&
-    preStepVName.find("CsI_12")!=std::string::npos &&
+    preStepVName.find("physicConv")!=std::string::npos &&
     postStepVName.find("World")!=std::string::npos){
-    HistoManager::getInstance().npup(preStepVName);
-    HistoManager::getInstance().filloptime(time);
+    HistoManager::getInstance().addConvPhoton();
+    HistoManager::getInstance().fillConvTime(time);
   }
+  // if(aStep->GetTrack()->GetDefinition() == G4OpticalPhoton::OpticalPhotonDefinition() &&
+  //   preStepVName.find("CsI_12")!=std::string::npos &&
+  //   postStepVName.find("World")!=std::string::npos){
+  //   HistoManager::getInstance().npup(preStepVName);
+  //   HistoManager::getInstance().filloptime(time);
+  // }
   // if(time > 150.)return;
 
   // check if we are in scoring volume

@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
   "CMakeFiles/vcalo.dir/src/Config.cc.o"
   "CMakeFiles/vcalo.dir/src/Config.cc.o.d"
+  "CMakeFiles/vcalo.dir/src/ConstructConverter.cc.o"
+  "CMakeFiles/vcalo.dir/src/ConstructConverter.cc.o.d"
   "CMakeFiles/vcalo.dir/src/ConstructECAL.cc.o"
   "CMakeFiles/vcalo.dir/src/ConstructECAL.cc.o.d"
   "CMakeFiles/vcalo.dir/src/DetectorConstruction.cc.o"

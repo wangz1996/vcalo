@@ -97,10 +97,24 @@ CMakeFiles/vcalo.dir/src/Config.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/vcalo.dir/src/Config.cc.s"
 	/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /lustre/collider/wangzhen/vlast/vcalo/src/Config.cc -o CMakeFiles/vcalo.dir/src/Config.cc.s
 
+CMakeFiles/vcalo.dir/src/ConstructConverter.cc.o: CMakeFiles/vcalo.dir/flags.make
+CMakeFiles/vcalo.dir/src/ConstructConverter.cc.o: /lustre/collider/wangzhen/vlast/vcalo/src/ConstructConverter.cc
+CMakeFiles/vcalo.dir/src/ConstructConverter.cc.o: CMakeFiles/vcalo.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/vcalo.dir/src/ConstructConverter.cc.o"
+	/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/vcalo.dir/src/ConstructConverter.cc.o -MF CMakeFiles/vcalo.dir/src/ConstructConverter.cc.o.d -o CMakeFiles/vcalo.dir/src/ConstructConverter.cc.o -c /lustre/collider/wangzhen/vlast/vcalo/src/ConstructConverter.cc
+
+CMakeFiles/vcalo.dir/src/ConstructConverter.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/vcalo.dir/src/ConstructConverter.cc.i"
+	/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /lustre/collider/wangzhen/vlast/vcalo/src/ConstructConverter.cc > CMakeFiles/vcalo.dir/src/ConstructConverter.cc.i
+
+CMakeFiles/vcalo.dir/src/ConstructConverter.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/vcalo.dir/src/ConstructConverter.cc.s"
+	/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /lustre/collider/wangzhen/vlast/vcalo/src/ConstructConverter.cc -o CMakeFiles/vcalo.dir/src/ConstructConverter.cc.s
+
 CMakeFiles/vcalo.dir/src/ConstructECAL.cc.o: CMakeFiles/vcalo.dir/flags.make
 CMakeFiles/vcalo.dir/src/ConstructECAL.cc.o: /lustre/collider/wangzhen/vlast/vcalo/src/ConstructECAL.cc
 CMakeFiles/vcalo.dir/src/ConstructECAL.cc.o: CMakeFiles/vcalo.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/vcalo.dir/src/ConstructECAL.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/vcalo.dir/src/ConstructECAL.cc.o"
 	/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/vcalo.dir/src/ConstructECAL.cc.o -MF CMakeFiles/vcalo.dir/src/ConstructECAL.cc.o.d -o CMakeFiles/vcalo.dir/src/ConstructECAL.cc.o -c /lustre/collider/wangzhen/vlast/vcalo/src/ConstructECAL.cc
 
 CMakeFiles/vcalo.dir/src/ConstructECAL.cc.i: cmake_force
@@ -114,7 +128,7 @@ CMakeFiles/vcalo.dir/src/ConstructECAL.cc.s: cmake_force
 CMakeFiles/vcalo.dir/src/DetectorConstruction.cc.o: CMakeFiles/vcalo.dir/flags.make
 CMakeFiles/vcalo.dir/src/DetectorConstruction.cc.o: /lustre/collider/wangzhen/vlast/vcalo/src/DetectorConstruction.cc
 CMakeFiles/vcalo.dir/src/DetectorConstruction.cc.o: CMakeFiles/vcalo.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/vcalo.dir/src/DetectorConstruction.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/vcalo.dir/src/DetectorConstruction.cc.o"
 	/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/vcalo.dir/src/DetectorConstruction.cc.o -MF CMakeFiles/vcalo.dir/src/DetectorConstruction.cc.o.d -o CMakeFiles/vcalo.dir/src/DetectorConstruction.cc.o -c /lustre/collider/wangzhen/vlast/vcalo/src/DetectorConstruction.cc
 
 CMakeFiles/vcalo.dir/src/DetectorConstruction.cc.i: cmake_force
@@ -128,7 +142,7 @@ CMakeFiles/vcalo.dir/src/DetectorConstruction.cc.s: cmake_force
 CMakeFiles/vcalo.dir/src/EventAction.cc.o: CMakeFiles/vcalo.dir/flags.make
 CMakeFiles/vcalo.dir/src/EventAction.cc.o: /lustre/collider/wangzhen/vlast/vcalo/src/EventAction.cc
 CMakeFiles/vcalo.dir/src/EventAction.cc.o: CMakeFiles/vcalo.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/vcalo.dir/src/EventAction.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/vcalo.dir/src/EventAction.cc.o"
 	/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/vcalo.dir/src/EventAction.cc.o -MF CMakeFiles/vcalo.dir/src/EventAction.cc.o.d -o CMakeFiles/vcalo.dir/src/EventAction.cc.o -c /lustre/collider/wangzhen/vlast/vcalo/src/EventAction.cc
 
 CMakeFiles/vcalo.dir/src/EventAction.cc.i: cmake_force
@@ -142,7 +156,7 @@ CMakeFiles/vcalo.dir/src/EventAction.cc.s: cmake_force
 CMakeFiles/vcalo.dir/src/HistoManager.cc.o: CMakeFiles/vcalo.dir/flags.make
 CMakeFiles/vcalo.dir/src/HistoManager.cc.o: /lustre/collider/wangzhen/vlast/vcalo/src/HistoManager.cc
 CMakeFiles/vcalo.dir/src/HistoManager.cc.o: CMakeFiles/vcalo.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/vcalo.dir/src/HistoManager.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/vcalo.dir/src/HistoManager.cc.o"
 	/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/vcalo.dir/src/HistoManager.cc.o -MF CMakeFiles/vcalo.dir/src/HistoManager.cc.o.d -o CMakeFiles/vcalo.dir/src/HistoManager.cc.o -c /lustre/collider/wangzhen/vlast/vcalo/src/HistoManager.cc
 
 CMakeFiles/vcalo.dir/src/HistoManager.cc.i: cmake_force
@@ -156,7 +170,7 @@ CMakeFiles/vcalo.dir/src/HistoManager.cc.s: cmake_force
 CMakeFiles/vcalo.dir/src/PhysicsList.cc.o: CMakeFiles/vcalo.dir/flags.make
 CMakeFiles/vcalo.dir/src/PhysicsList.cc.o: /lustre/collider/wangzhen/vlast/vcalo/src/PhysicsList.cc
 CMakeFiles/vcalo.dir/src/PhysicsList.cc.o: CMakeFiles/vcalo.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/vcalo.dir/src/PhysicsList.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/vcalo.dir/src/PhysicsList.cc.o"
 	/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/vcalo.dir/src/PhysicsList.cc.o -MF CMakeFiles/vcalo.dir/src/PhysicsList.cc.o.d -o CMakeFiles/vcalo.dir/src/PhysicsList.cc.o -c /lustre/collider/wangzhen/vlast/vcalo/src/PhysicsList.cc
 
 CMakeFiles/vcalo.dir/src/PhysicsList.cc.i: cmake_force
@@ -170,7 +184,7 @@ CMakeFiles/vcalo.dir/src/PhysicsList.cc.s: cmake_force
 CMakeFiles/vcalo.dir/src/PrimaryGeneratorAction.cc.o: CMakeFiles/vcalo.dir/flags.make
 CMakeFiles/vcalo.dir/src/PrimaryGeneratorAction.cc.o: /lustre/collider/wangzhen/vlast/vcalo/src/PrimaryGeneratorAction.cc
 CMakeFiles/vcalo.dir/src/PrimaryGeneratorAction.cc.o: CMakeFiles/vcalo.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/vcalo.dir/src/PrimaryGeneratorAction.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/vcalo.dir/src/PrimaryGeneratorAction.cc.o"
 	/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/vcalo.dir/src/PrimaryGeneratorAction.cc.o -MF CMakeFiles/vcalo.dir/src/PrimaryGeneratorAction.cc.o.d -o CMakeFiles/vcalo.dir/src/PrimaryGeneratorAction.cc.o -c /lustre/collider/wangzhen/vlast/vcalo/src/PrimaryGeneratorAction.cc
 
 CMakeFiles/vcalo.dir/src/PrimaryGeneratorAction.cc.i: cmake_force
@@ -184,7 +198,7 @@ CMakeFiles/vcalo.dir/src/PrimaryGeneratorAction.cc.s: cmake_force
 CMakeFiles/vcalo.dir/src/Run.cc.o: CMakeFiles/vcalo.dir/flags.make
 CMakeFiles/vcalo.dir/src/Run.cc.o: /lustre/collider/wangzhen/vlast/vcalo/src/Run.cc
 CMakeFiles/vcalo.dir/src/Run.cc.o: CMakeFiles/vcalo.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/vcalo.dir/src/Run.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/vcalo.dir/src/Run.cc.o"
 	/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/vcalo.dir/src/Run.cc.o -MF CMakeFiles/vcalo.dir/src/Run.cc.o.d -o CMakeFiles/vcalo.dir/src/Run.cc.o -c /lustre/collider/wangzhen/vlast/vcalo/src/Run.cc
 
 CMakeFiles/vcalo.dir/src/Run.cc.i: cmake_force
@@ -198,7 +212,7 @@ CMakeFiles/vcalo.dir/src/Run.cc.s: cmake_force
 CMakeFiles/vcalo.dir/src/RunAction.cc.o: CMakeFiles/vcalo.dir/flags.make
 CMakeFiles/vcalo.dir/src/RunAction.cc.o: /lustre/collider/wangzhen/vlast/vcalo/src/RunAction.cc
 CMakeFiles/vcalo.dir/src/RunAction.cc.o: CMakeFiles/vcalo.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/vcalo.dir/src/RunAction.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/vcalo.dir/src/RunAction.cc.o"
 	/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/vcalo.dir/src/RunAction.cc.o -MF CMakeFiles/vcalo.dir/src/RunAction.cc.o.d -o CMakeFiles/vcalo.dir/src/RunAction.cc.o -c /lustre/collider/wangzhen/vlast/vcalo/src/RunAction.cc
 
 CMakeFiles/vcalo.dir/src/RunAction.cc.i: cmake_force
@@ -212,7 +226,7 @@ CMakeFiles/vcalo.dir/src/RunAction.cc.s: cmake_force
 CMakeFiles/vcalo.dir/src/SteppingAction.cc.o: CMakeFiles/vcalo.dir/flags.make
 CMakeFiles/vcalo.dir/src/SteppingAction.cc.o: /lustre/collider/wangzhen/vlast/vcalo/src/SteppingAction.cc
 CMakeFiles/vcalo.dir/src/SteppingAction.cc.o: CMakeFiles/vcalo.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/vcalo.dir/src/SteppingAction.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/vcalo.dir/src/SteppingAction.cc.o"
 	/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/vcalo.dir/src/SteppingAction.cc.o -MF CMakeFiles/vcalo.dir/src/SteppingAction.cc.o.d -o CMakeFiles/vcalo.dir/src/SteppingAction.cc.o -c /lustre/collider/wangzhen/vlast/vcalo/src/SteppingAction.cc
 
 CMakeFiles/vcalo.dir/src/SteppingAction.cc.i: cmake_force
@@ -226,7 +240,7 @@ CMakeFiles/vcalo.dir/src/SteppingAction.cc.s: cmake_force
 CMakeFiles/vcalo.dir/src/SteppingVerbose.cc.o: CMakeFiles/vcalo.dir/flags.make
 CMakeFiles/vcalo.dir/src/SteppingVerbose.cc.o: /lustre/collider/wangzhen/vlast/vcalo/src/SteppingVerbose.cc
 CMakeFiles/vcalo.dir/src/SteppingVerbose.cc.o: CMakeFiles/vcalo.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/vcalo.dir/src/SteppingVerbose.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/vcalo.dir/src/SteppingVerbose.cc.o"
 	/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/vcalo.dir/src/SteppingVerbose.cc.o -MF CMakeFiles/vcalo.dir/src/SteppingVerbose.cc.o.d -o CMakeFiles/vcalo.dir/src/SteppingVerbose.cc.o -c /lustre/collider/wangzhen/vlast/vcalo/src/SteppingVerbose.cc
 
 CMakeFiles/vcalo.dir/src/SteppingVerbose.cc.i: cmake_force
@@ -240,7 +254,7 @@ CMakeFiles/vcalo.dir/src/SteppingVerbose.cc.s: cmake_force
 CMakeFiles/vcalo.dir/src/TrackingAction.cc.o: CMakeFiles/vcalo.dir/flags.make
 CMakeFiles/vcalo.dir/src/TrackingAction.cc.o: /lustre/collider/wangzhen/vlast/vcalo/src/TrackingAction.cc
 CMakeFiles/vcalo.dir/src/TrackingAction.cc.o: CMakeFiles/vcalo.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/vcalo.dir/src/TrackingAction.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/vcalo.dir/src/TrackingAction.cc.o"
 	/cvmfs/sft.cern.ch/lcg/releases/gcc/12.1.0-57c96/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/vcalo.dir/src/TrackingAction.cc.o -MF CMakeFiles/vcalo.dir/src/TrackingAction.cc.o.d -o CMakeFiles/vcalo.dir/src/TrackingAction.cc.o -c /lustre/collider/wangzhen/vlast/vcalo/src/TrackingAction.cc
 
 CMakeFiles/vcalo.dir/src/TrackingAction.cc.i: cmake_force
@@ -255,6 +269,7 @@ CMakeFiles/vcalo.dir/src/TrackingAction.cc.s: cmake_force
 vcalo_OBJECTS = \
 "CMakeFiles/vcalo.dir/vcalo.cc.o" \
 "CMakeFiles/vcalo.dir/src/Config.cc.o" \
+"CMakeFiles/vcalo.dir/src/ConstructConverter.cc.o" \
 "CMakeFiles/vcalo.dir/src/ConstructECAL.cc.o" \
 "CMakeFiles/vcalo.dir/src/DetectorConstruction.cc.o" \
 "CMakeFiles/vcalo.dir/src/EventAction.cc.o" \
@@ -272,6 +287,7 @@ vcalo_EXTERNAL_OBJECTS =
 
 vcalo: CMakeFiles/vcalo.dir/vcalo.cc.o
 vcalo: CMakeFiles/vcalo.dir/src/Config.cc.o
+vcalo: CMakeFiles/vcalo.dir/src/ConstructConverter.cc.o
 vcalo: CMakeFiles/vcalo.dir/src/ConstructECAL.cc.o
 vcalo: CMakeFiles/vcalo.dir/src/DetectorConstruction.cc.o
 vcalo: CMakeFiles/vcalo.dir/src/EventAction.cc.o
@@ -356,7 +372,7 @@ vcalo: /cvmfs/sft.cern.ch/lcg/views/LCG_105/x86_64-centos7-gcc12-opt/lib64/libG4
 vcalo: /cvmfs/sft.cern.ch/lcg/views/LCG_105/x86_64-centos7-gcc12-opt/lib64/libG4ptl.so.2.3.3
 vcalo: /cvmfs/sft.cern.ch/lcg/views/LCG_105/x86_64-centos7-gcc12-opt/lib/libCLHEP-2.4.7.1.so
 vcalo: CMakeFiles/vcalo.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Linking CXX executable vcalo"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/lustre/collider/wangzhen/vlast/vcalo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Linking CXX executable vcalo"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/vcalo.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

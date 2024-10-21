@@ -72,24 +72,20 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
     visAttributes -> SetVisibility(false);
 
 	physiWorld = ConstructWorld();
+    // define materials and parameters 
+    // some of the materials are used by converter
+    defineECALParameter();
+    defineECALMaterial();
+    if(config->conf["Converter"]["build"].as<bool>()){
+        constructConverter();
+    }
 	if(config->conf["ECAL"]["build"].as<bool>())
 	{
-		ConstructECAL();
+		constructECAL();
 	}
     if(config->conf["ECAL"]["ECALShield"].as<bool>()){
         constructECALShield();
     }
-    //logicAbsorber ->SetVisAttributes(visAttributes);
-    //(0.9,0.9,0.0)yellow
-
-    //visAttributes = new G4VisAttributes(G4Colour(0.0,1.0,0.0));//green
-    //logicPCB ->SetVisAttributes(visAttributes);
-
-    //visAttributes = new G4VisAttributes(G4Colour(0.9,0.9,0.9));//white
-    //logicCrystal ->SetVisAttributes(visAttributes);
-
-    //SteppingAction* steppingAction = SteppingAction::Instance();
-    //  
     return physiWorld;
 }
 G4VPhysicalVolume* DetectorConstruction::ConstructWorld()
