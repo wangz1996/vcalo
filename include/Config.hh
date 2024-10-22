@@ -4,7 +4,7 @@
 
 #include "G4UImanager.hh"
 #include "Randomize.hh"
-
+#include "G4OpBoundaryProcess.hh"
 #include "DetectorConstruction.hh"
 #include "PhysicsList.hh"
 #include "SteppingVerbose.hh"
@@ -41,6 +41,7 @@ public:
     virtual void Parse(const std::string &config_file);
     virtual int Run();
 	bool IsLoad();
+	virtual void SetupVisualization();
 	YAML::Node conf;
 private:
 	G4UImanager* UI;

@@ -112,6 +112,7 @@ class DetectorConstruction : public G4VUserDetectorConstruction
 
 	//Optical Properties
 	G4MaterialPropertiesTable *CsIMPT;
+	G4MaterialPropertiesTable *TiO2MPT;
 	G4OpticalSurface* CsISurface;
 	G4MaterialPropertiesTable* CsI_SurfaceMPT;
 	static const G4int CsI_NEntries=20;
@@ -128,12 +129,57 @@ class DetectorConstruction : public G4VUserDetectorConstruction
     0.95683, 0.97842, 0.98321, 0.97362, 0.93525,
     0.80576, 0.57074, 0.35971, 0.19664, 0.02878
 	};
+	static const G4int TiO2_NEntries=15;
+	G4double TiO2_PEnergy[TiO2_NEntries] = {
+    0.95372*eV,   // 1.30 μm
+    1.03320*eV,   // 1.20 μm
+    1.12713*eV,   // 1.10 μm
+    1.23984*eV,   // 1.00 μm
+    1.37760*eV,   // 0.90 μm
+    1.45981*eV,   // 0.85 μm
+    1.54980*eV,   // 0.80 μm
+    1.65246*eV,   // 0.75 μm
+    1.77120*eV,   // 0.70 μm
+    1.90745*eV,   // 0.65 μm
+    2.06640*eV,   // 0.60 μm
+    2.25425*eV,   // 0.55 μm
+    2.47968*eV,   // 0.50 μm
+    2.75520*eV,   // 0.45 μm
+    2.88195*eV    // 0.43 μm
+	};
+	G4double TiO2_RIndex[TiO2_NEntries] = {
+    2.4626,  // 对应 1.30 μm
+    2.4683,  // 对应 1.20 μm
+    2.4757,  // 对应 1.10 μm
+    2.4856,  // 对应 1.00 μm
+    2.4995,  // 对应 0.90 μm
+    2.5086,  // 对应 0.85 μm
+    2.5197,  // 对应 0.80 μm
+    2.5336,  // 对应 0.75 μm
+    2.5512,  // 对应 0.70 μm
+    2.5742,  // 对应 0.65 μm
+    2.6049,  // 对应 0.60 μm
+    2.6479,  // 对应 0.55 μm
+    2.7114,  // 对应 0.50 μm
+    2.8126,  // 对应 0.45 μm
+    2.8717   // 对应 0.43 μm
+	};
+	G4double TiO2_Reflectivity[TiO2_NEntries];
+	G4double TiO2_Transmission[TiO2_NEntries];
+	G4double TiO2_AbsLength[TiO2_NEntries];
+
 
 	G4double CsI_RIndex[CsI_NEntries];
 	G4double CsI_AbsLength[CsI_NEntries];	
 	G4double CsI_SpecularLobe[CsI_NEntries];
+	G4double CsI_SpecularSpike[CsI_NEntries];
+	G4double CsI_BackScatter[CsI_NEntries];
 	G4double CsI_DiffuseLobe[CsI_NEntries];
 	G4double CsI_Reflectivity[CsI_NEntries];
+
+	static const std::unordered_map<std::string, G4SurfaceType> surfaceTypeMap;
+	static const std::unordered_map<std::string, G4OpticalSurfaceModel> surfaceModelMap;
+	static const std::unordered_map<std::string, G4OpticalSurfaceFinish> surfaceFinishMap;
 };
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......

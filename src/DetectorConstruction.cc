@@ -95,7 +95,7 @@ G4VPhysicalVolume* DetectorConstruction::ConstructWorld()
     G4bool checkOverlaps = false;
 
     // Full sphere shape
-    G4double solidWorld_rmax = 200*cm;
+    G4double solidWorld_rmax = 500*cm;
     G4Orb*
         solidWorld = new G4Orb("World",                          // its name
                 solidWorld_rmax);                // its size 

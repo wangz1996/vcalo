@@ -4,26 +4,43 @@ Contact: Zhen Wang < wangz1996@sjtu.edu.cn >
 
 
 Global:
-        useseed: True # default: system time in nano-second
+        vis: True
+        useseed: False # default: system time in nano-second
         seed: 1234
 
         usemac: False # Currently not applicable
-        #mac: ./primaryproton.mac
-        mac: ./secondaryproton.mac
+        mac: ./primaryproton.mac
+        #mac: ./secondaryproton.mac
 
-        optical: False
+        optical: True
         #output: ./priproton.root # Output root file name
-        #output: ./converter.root # Output root file name
-        output: ./muon_3gev.root # Output root file name
-        beamon: 10000
+        #output: ./secproton.root # Output root file name
+        output: ./test.root # Output root file name
+        beamon: 1
         savegeo: False
+
+Parameter:
+        CsI:
+                Rayleigh: 0.6
+        TiO2:
+                Reflectivity: 0.8
+                AbsLength: 100.
+        Surface:
+                SpecularLobe: 0.8
+                SpecularSpike: 0.2
+                Reflectivity: 0.98
+                Type: dielectric_dielectric
+                Model: unified
+                Finish: ground
+                SigmaAlpha: 0.1
 #Construct Converter
 Converter:
         build: True
+        
 #Construct Calorimeter
 ECAL:
-        ECALShield: True
-        build: True
+        ECALShield: False
+        build: False
 
 #Particle source setup
 Source:

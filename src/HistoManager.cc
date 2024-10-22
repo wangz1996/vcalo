@@ -63,6 +63,7 @@ void HistoManager::book(const std::string& foutname,const bool &savegeo)
 	vTree->Branch("init_Pz",					&init_Pz);
 	vTree->Branch("nConvPhoton",			&nConvPhoton);
 	vTree->Branch("ecal_convtime",			&ecal_convtime);
+	vTree->Branch("nTotalOptPhoton",		&nTotalOptPhoton);
 	fSaveGeo = savegeo;
 }
 
@@ -111,6 +112,7 @@ void HistoManager::clear(){
 	init_Py=0.;
 	init_Pz=0.;
 	nConvPhoton=0;
+	nTotalOptPhoton=0;
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......

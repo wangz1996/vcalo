@@ -52,6 +52,25 @@
 #include "G4GlobalMagFieldMessenger.hh"
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
+const std::unordered_map<std::string, G4SurfaceType> DetectorConstruction::surfaceTypeMap = {
+    {"dielectric_metal", G4SurfaceType::dielectric_metal},
+    {"dielectric_dielectric", G4SurfaceType::dielectric_dielectric},
+    {"firsov", G4SurfaceType::firsov},
+    {"x_ray", G4SurfaceType::x_ray}
+};
+const std::unordered_map<std::string, G4OpticalSurfaceModel> DetectorConstruction::surfaceModelMap = {
+    {"glisur", G4OpticalSurfaceModel::glisur},
+    {"unified", G4OpticalSurfaceModel::unified},
+    {"LUT", G4OpticalSurfaceModel::LUT}
+};
+const std::unordered_map<std::string, G4OpticalSurfaceFinish> DetectorConstruction::surfaceFinishMap = {
+    {"polished", G4OpticalSurfaceFinish::polished},
+    {"polishedfrontpainted", G4OpticalSurfaceFinish::polishedfrontpainted},
+    {"polishedbackpainted", G4OpticalSurfaceFinish::polishedbackpainted},
+    {"ground", G4OpticalSurfaceFinish::ground},
+    {"groundfrontpainted", G4OpticalSurfaceFinish::groundfrontpainted},
+    {"groundbackpainted", G4OpticalSurfaceFinish::groundbackpainted}
+};
 
 void DetectorConstruction::defineECALParameter(){
 	CsI_XY = 60. * mm;
@@ -115,6 +134,7 @@ void DetectorConstruction::defineECALMaterial(){
 	CsIMPT = new G4MaterialPropertiesTable();
 	CsIMPT->AddProperty("RINDEX", CsI_PEnergy, CsI_RIndex, CsI_NEntries);//Refractive index
 	CsIMPT->AddProperty("ABSLENGTH", CsI_PEnergy, CsI_AbsLength, CsI_NEntries);//Absorption length
+	CsIMPT->AddConstProperty("RAYLEIGH", config->conf["Parameter"]["CsI"]["Rayleigh"].as<double>()*m);
 	// CsIMPT->AddProperty("RAYLEIGH", PhotonEnergy, {500*cm, 500*cm}, nEntries);//Rayleigh scattering length
 	CsIMPT->AddProperty("SCINTILLATIONCOMPONENT1", CsI_PEnergy, CsI_SlowComponentIntensity, CsI_NEntries);//Slow component of the scintillation spectrum
 
@@ -125,21 +145,33 @@ void DetectorConstruction::defineECALMaterial(){
 	// CsIMPT->AddConstProperty("YIELDRATIO",0.57);//Fast-to-slow component yield ratio
 	CsI->SetMaterialPropertiesTable(CsIMPT);
 
+	//TiO2
+	TiO2MPT = new G4MaterialPropertiesTable();
+	TiO2MPT->AddProperty("RINDEX", TiO2_PEnergy, TiO2_RIndex, TiO2_NEntries);
+	for(size_t i=0;i<TiO2_NEntries;i++){TiO2_Reflectivity[i] = config->conf["Parameter"]["TiO2"]["Reflectivity"].as<double>();}
+	TiO2MPT->AddProperty("REFLECTIVITY",TiO2_PEnergy, TiO2_Reflectivity, TiO2_NEntries);
+	for(size_t i=0;i<TiO2_NEntries;i++){TiO2_AbsLength[i] = config->conf["Parameter"]["TiO2"]["AbsLength"].as<double>()*cm;}
+	TiO2MPT->AddProperty("ABSLENGTH",TiO2_PEnergy, TiO2_AbsLength, TiO2_NEntries);
+	TiO2->SetMaterialPropertiesTable(TiO2MPT);
+
 	//Optical Surfaces (actually I think it should be called TiO2 surface)
 	//CsI(Tl) and TiO2
-	for(size_t i=0;i<CsI_NEntries;i++){CsI_SpecularLobe[i] = 0.95;}
-	for(size_t i=0;i<CsI_NEntries;i++){CsI_DiffuseLobe[i] = 0.05;}
-	for(size_t i=0;i<CsI_NEntries;i++){CsI_Reflectivity[i] = 0.98;}
+	for(size_t i=0;i<CsI_NEntries;i++){CsI_SpecularLobe[i] = config->conf["Parameter"]["Surface"]["SpecularLobe"].as<double>();}
+	for(size_t i=0;i<CsI_NEntries;i++){CsI_SpecularSpike[i] = config->conf["Parameter"]["Surface"]["SpecularSpike"].as<double>();}
+	// for(size_t i=0;i<CsI_NEntries;i++){CsI_DiffuseLobe[i] = 0.05;}
+	for(size_t i=0;i<CsI_NEntries;i++){CsI_BackScatter[i] = 0.;}
+	for(size_t i=0;i<CsI_NEntries;i++){CsI_Reflectivity[i] = config->conf["Parameter"]["Surface"]["Reflectivity"].as<double>();}
 	CsISurface = new G4OpticalSurface("CsISurface");
-	CsISurface->SetType(dielectric_dielectric);
-	CsISurface->SetModel(glisur);
-	CsISurface->SetFinish(groundbackpainted);
-	CsISurface->SetSigmaAlpha(0.06);
+	CsISurface->SetType(surfaceTypeMap.at(config->conf["Parameter"]["Surface"]["Type"].as<std::string>()));
+	CsISurface->SetModel(surfaceModelMap.at(config->conf["Parameter"]["Surface"]["Model"].as<std::string>()));
+	CsISurface->SetFinish(surfaceFinishMap.at(config->conf["Parameter"]["Surface"]["Finish"].as<std::string>()));
+	CsISurface->SetSigmaAlpha(config->conf["Parameter"]["Surface"]["SigmaAlpha"].as<double>());
 
 	CsI_SurfaceMPT = new G4MaterialPropertiesTable();
 	CsI_SurfaceMPT->AddProperty("REFLECTIVITY",CsI_PEnergy, CsI_Reflectivity, CsI_NEntries);
 	CsI_SurfaceMPT->AddProperty("SPECULARLOBECONSTANT",CsI_PEnergy, CsI_SpecularLobe, CsI_NEntries);
-	// CsI_SurfaceMPT->AddProperty("DIFFUSELOBECONSTANT",CsI_PEnergy, CsI_DiffuseLobe, CsI_NEntries);
+	CsI_SurfaceMPT->AddProperty("SPECULARSPIKECONSTANT",CsI_PEnergy, CsI_SpecularSpike, CsI_NEntries);
+	CsI_SurfaceMPT->AddProperty("BACKSCATTERCONSTANT",CsI_PEnergy, CsI_BackScatter, CsI_NEntries);
 	CsISurface->SetMaterialPropertiesTable(CsI_SurfaceMPT);
 }
 

@@ -60,6 +60,7 @@ class HistoManager
 		void fillEcalHit(const G4int &copyNo,const G4double &edep,const G4double &time,const G4int &pdgid,const G4int &trackid);
 		void fillPrimary(const G4Track* trk);
 		void addConvPhoton(){++nConvPhoton;}
+		void addTotalOptPhoton(){++nTotalOptPhoton;}
 		void fillConvTime(const float& time){ecal_convtime.emplace_back(time);}
 	private:
 		//Singleton
@@ -80,6 +81,7 @@ class HistoManager
 	private:
 		int eventNo;
 		int nConvPhoton;
+		int nTotalOptPhoton;
 		float init_x;
 		float init_y;
 		float init_z;

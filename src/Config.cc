@@ -93,6 +93,20 @@ int Config::Run()
 	UI->ApplyCommand(G4String("/control/verbose ")+G4String(conf["Verbose"]["control"].as<std::string>()));
 	UI->ApplyCommand(G4String("/tracking/verbose ")+G4String(conf["Verbose"]["tracking"].as<std::string>()));
 	UI->ApplyCommand(G4String("/event/verbose ")+G4String(conf["Verbose"]["event"].as<std::string>()));
+
+	G4VisManager* visManager = new G4VisExecutive();
+    visManager->Initialize();
+	if(conf["Global"]["vis"].as<bool>()){
+		std::cout<<"Check 1"<<std::endl;
+		G4UIExecutive* uie = new G4UIExecutive(1,nullptr,"Qt");
+		std::cout<<"Check 2"<<std::endl;
+		SetupVisualization();
+		std::cout<<"Check 3"<<std::endl;
+
+		uie->SessionStart();
+		std::cout<<"Check 4"<<std::endl;
+		// delete uie;
+	}
 	//Initialize G4 kernel
 	runManager->Initialize();
 	if(conf["Global"]["usemac"].as<bool>()){
@@ -103,6 +117,7 @@ int Config::Run()
 		std::cout<<"Executing macro file..."<<std::endl;
 		UI->ExecuteMacroFile(conf["Global"]["mac"].as<std::string>().c_str());
 	}
+
 	runManager->BeamOn(conf["Global"]["beamon"].as<int>());
 	
 	// job termination
@@ -111,6 +126,27 @@ int Config::Run()
 	//if(access("vcalo.gdml",F_OK) == 0)std::remove("vcalo.gdml");
 
 	return 1;
+}
+
+void Config::SetupVisualization()
+{
+	UI->ApplyCommand("/vis/viewer/set/autoRefresh false");
+	UI->ApplyCommand("/vis/open OGL");
+	UI->ApplyCommand("/vis/drawVolume");
+	UI->ApplyCommand("/vis/viewer/set/viewpointTheta 45");
+	UI->ApplyCommand("/vis/viewer/set/viewpointPhi 45");
+	UI->ApplyCommand("/vis/viewer/set/style wireframe");
+	UI->ApplyCommand("/vis/viewer/set/background white");
+	UI->ApplyCommand("/vis/scene/add/trajectories smooth");
+	UI->ApplyCommand("/vis/scene/add/hits");
+	UI->ApplyCommand("/vis/scene/add/axes 0 0 1 0.2");
+	UI->ApplyCommand("/vis/scene/add/axes 1 0 0 0.2");
+	UI->ApplyCommand("/vis/scene/add/axes 0 1 0 0.2");
+	UI->ApplyCommand("/vis/scene/add/axes 0 0 0 0.2");
+	UI->ApplyCommand("/vis/scene/add/text 0 0 0 0.1 \"Vlast-CALO\" red");
+	UI->ApplyCommand("/vis/scene/add/text 0 0 0 0.1 \"Zhen Wang\" red");
+	UI->ApplyCommand("/vis/scene/add/text 0 0 0 0.1 \"wangz1996@sjtu.edu.cn\" red");
+	return;
 }
 
 void Config::Print()
