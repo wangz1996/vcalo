@@ -118,7 +118,7 @@ void SteppingAction::UserSteppingAction(const G4Step* aStep)
 
   // check if we are in scoring volume
   // collect energy and track length step by step
-  //std::cout<<volumeName<<" "<<int(volumeName=="ecal_crystal")<<" "<<edep<<std::endl;
+  // std::cout<<volumeName<<" "<<int(volumeName=="ecal_crystal")<<" "<<edep<<std::endl;
   if(volumeName=="logicCsI") {  HistoManager::getInstance().fillEcalHit(copyNo,edep,time,pdgid,trackid); }
   // std::cout<<"End"<<std::endl;
 }

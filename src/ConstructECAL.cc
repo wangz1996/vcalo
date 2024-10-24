@@ -88,12 +88,23 @@ void DetectorConstruction::defineECALParameter(){
 	nCryX = 5;
 	nCryY = 5;
 
-	CryGap = 1.5 * mm; // 5mm gap between crystals
+	Cushion_XY = TiO2_XY;
+	CushionInner_XY = 40. *mm;
+	Cushion_Z = 1. *mm;
 
-	Hole_XY = 62. * mm;
+	if(config->conf["ECAL"]["ECALShield"].as<bool>()){
+		CryGap = 1.5 * mm;
+		Hole_XY = 62. * mm;
+	}
+	else{
+		CryGap = 0. * mm;
+		Hole_XY = TiO2_XY;
+	}
+
+	
 	Hole_Z = TiO2_Z;
 	ECALShield_XY = 6*CryGap + 5*Hole_XY; // 6*CryGap + 5*TiO2_XY = 336.;
-	ECALShield_Z = TiO2_Z + 2.*mm; // TiO2_Z + 2mm carbone fiber
+	ECALShield_Z = TiO2_Z; // TiO2_Z + 2mm carbone fiber
 
 
 }
@@ -131,10 +142,11 @@ void DetectorConstruction::defineECALMaterial(){
 	//CsI
 	for(size_t i=0;i<CsI_NEntries;i++){CsI_RIndex[i] = 1.79;}
 	for(size_t i=0;i<CsI_NEntries;i++){CsI_AbsLength[i] = 500.*cm;}
+	for(size_t i=0;i<CsI_NEntries;i++){CsI_Rayleigh[i] = config->conf["Parameter"]["CsI"]["Rayleigh"].as<double>()*m;}
 	CsIMPT = new G4MaterialPropertiesTable();
 	CsIMPT->AddProperty("RINDEX", CsI_PEnergy, CsI_RIndex, CsI_NEntries);//Refractive index
 	CsIMPT->AddProperty("ABSLENGTH", CsI_PEnergy, CsI_AbsLength, CsI_NEntries);//Absorption length
-	CsIMPT->AddConstProperty("RAYLEIGH", config->conf["Parameter"]["CsI"]["Rayleigh"].as<double>()*m);
+	CsIMPT->AddProperty("RAYLEIGH", CsI_PEnergy, CsI_Rayleigh, CsI_NEntries);//Rayleigh scattering length
 	// CsIMPT->AddProperty("RAYLEIGH", PhotonEnergy, {500*cm, 500*cm}, nEntries);//Rayleigh scattering length
 	CsIMPT->AddProperty("SCINTILLATIONCOMPONENT1", CsI_PEnergy, CsI_SlowComponentIntensity, CsI_NEntries);//Slow component of the scintillation spectrum
 
@@ -150,7 +162,7 @@ void DetectorConstruction::defineECALMaterial(){
 	TiO2MPT->AddProperty("RINDEX", TiO2_PEnergy, TiO2_RIndex, TiO2_NEntries);
 	for(size_t i=0;i<TiO2_NEntries;i++){TiO2_Reflectivity[i] = config->conf["Parameter"]["TiO2"]["Reflectivity"].as<double>();}
 	TiO2MPT->AddProperty("REFLECTIVITY",TiO2_PEnergy, TiO2_Reflectivity, TiO2_NEntries);
-	for(size_t i=0;i<TiO2_NEntries;i++){TiO2_AbsLength[i] = config->conf["Parameter"]["TiO2"]["AbsLength"].as<double>()*cm;}
+	for(size_t i=0;i<TiO2_NEntries;i++){TiO2_AbsLength[i] = config->conf["Parameter"]["TiO2"]["AbsLength"].as<double>()*m;}
 	TiO2MPT->AddProperty("ABSLENGTH",TiO2_PEnergy, TiO2_AbsLength, TiO2_NEntries);
 	TiO2->SetMaterialPropertiesTable(TiO2MPT);
 
@@ -215,8 +227,16 @@ G4VSolid* DetectorConstruction::constructECALShield(){
 		}
 	}
 
-	auto solidECALShield = new G4SubtractionSolid("solidECALShield",ECALShield_box,unionTiO2Solid, 0, G4ThreeVector(0.,0.,1.*mm));
+	auto solidECALShield = new G4SubtractionSolid("solidECALShield",ECALShield_box,unionTiO2Solid, 0, G4ThreeVector(0.,0.,0.));
 	return solidECALShield;
+}
+
+G4VSolid* DetectorConstruction::constructCushion(){
+	auto Cushion_box = new G4Box("Cushion_box", 0.5*Cushion_XY, 0.5*Cushion_XY, 0.5*Cushion_Z);
+	auto CushionInner_box = new G4Box("CushionInner_box", 0.5*CushionInner_XY, 0.5*CushionInner_XY, 0.5*Cushion_Z);
+
+	auto solidCushion = new G4SubtractionSolid("solidCushion",Cushion_box,CushionInner_box,0,G4ThreeVector(0.,0.,0.));
+	return solidCushion;
 }
 
 void DetectorConstruction::constructECAL()
@@ -241,6 +261,8 @@ void DetectorConstruction::constructECAL()
 	//Construct Carbon Fiber Shield, silicone rubber;
 	G4LogicalVolume* logicECALShield = nullptr;
 	G4LogicalVolume* logicSiliconeRubber = nullptr;
+	G4LogicalVolume* logicCushion = nullptr;
+	G4LogicalVolume* logicLid = nullptr;
 	if(config->conf["ECAL"]["ECALShield"].as<bool>()){
 		//Solid ECAL Shield
 		auto solidECALShield = constructECALShield();
@@ -252,6 +274,14 @@ void DetectorConstruction::constructECAL()
 		auto solidSiliconeRubber = constructSolidSiliconeRubber();
 		//Logical Silicone Rubber
 		logicSiliconeRubber = new G4LogicalVolume(solidSiliconeRubber, siliconeRubber, "logicSiliconeRubber");
+
+		//Cushion
+		auto solidCushion = constructCushion();
+		logicCushion = new G4LogicalVolume(solidCushion, siliconeRubber, "logicCushion");
+
+		//Lid
+		auto Lid_box = new G4Box("Lid_box", 0.5*ECALShield_XY, 0.5*ECALShield_XY, 0.5*mm);
+		logicLid = new G4LogicalVolume(Lid_box, carbonFiber, "logicLid");
 	}
 
 	//Placement
@@ -270,19 +300,22 @@ void DetectorConstruction::constructECAL()
 			// Create physical volumes
         	G4VPhysicalVolume* physicCsI = new G4PVPlacement(0, G4ThreeVector(x, y, 0.), logicCsI, CsIName, logicWorld, false, CopyNo, true);
         	G4VPhysicalVolume* physicTiO2 = new G4PVPlacement(0, G4ThreeVector(x, y, 0.), logicTiO2, TiO2Name, logicWorld, false, CopyNo, true);
-			G4VPhysicalVolume* physicAPD = new G4PVPlacement(0, G4ThreeVector(x, y, CsI_Z/2. + 2.*mm), logicAPD, APDName, logicWorld, false, CopyNo, true);
+			//G4VPhysicalVolume* physicAPD = new G4PVPlacement(0, G4ThreeVector(x, y, CsI_Z/2. + 2.*mm), logicAPD, APDName, logicWorld, false, CopyNo, true);
 			// Create logical border surface
         	auto logicBorderSurface = new G4LogicalBorderSurface("CsITiO2BorderSurface_" + std::to_string(CopyNo), physicCsI, physicTiO2, CsISurface);
 			auto opticalSurface = dynamic_cast<G4OpticalSurface*>(logicBorderSurface->GetSurface(physicCsI, physicTiO2)->GetSurfaceProperty());
   			if(opticalSurface)opticalSurface->DumpInfo();
+			new G4PVPlacement(0, G4ThreeVector(x,y,0.5*TiO2_Z+0.5*Cushion_Z), logicCushion, "physicCushion", logicWorld, false, CopyNo, true);
 			if(config->conf["ECAL"]["ECALShield"].as<bool>()){
 				new G4PVPlacement(0, G4ThreeVector(x,y,0.), logicSiliconeRubber, "physicSiliconeRubber", logicWorld, false, CopyNo, true);
+				new G4PVPlacement(0, G4ThreeVector(x,y,-0.5*TiO2_Z-0.5*Cushion_Z), logicCushion, "physicCushion", logicWorld, false, CopyNo, true);
 			}
 		}
 	}
 	
 	if(config->conf["ECAL"]["ECALShield"].as<bool>()){
-		new G4PVPlacement(0, G4ThreeVector(0.,0.,-1.*mm), logicECALShield, "physicECALShield", logicWorld, false, 0, true);
+		new G4PVPlacement(0, G4ThreeVector(0.,0.,0.), logicECALShield, "physicECALShield", logicWorld, false, 0, true);
+		new G4PVPlacement(0, G4ThreeVector(0.,0.,-0.5*TiO2_Z-0.5*Cushion_Z-0.5*mm), logicLid, "physicLid", logicWorld, false, 0, true);
 	}
 
 }

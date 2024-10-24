@@ -74,6 +74,7 @@ class DetectorConstruction : public G4VUserDetectorConstruction
 	G4SubtractionSolid* constructSolidTiO2();
 	G4SubtractionSolid* constructSolidConvTiO2();
 	G4VSolid* constructECALShield();
+	G4VSolid* constructCushion();
 	G4SubtractionSolid* constructSolidSiliconeRubber();
 	void defineECALParameter();
 	void defineECALMaterial();
@@ -89,6 +90,9 @@ class DetectorConstruction : public G4VUserDetectorConstruction
 	G4double TiO2_Z;
 	G4double Polish_XY;
 	G4double Polish_Z;
+	G4double Cushion_XY;
+	G4double CushionInner_XY;
+	G4double Cushion_Z;
 	G4double CryGap;
 	G4double ECALShield_XY;
 	G4double ECALShield_Z;
@@ -170,7 +174,8 @@ class DetectorConstruction : public G4VUserDetectorConstruction
 
 
 	G4double CsI_RIndex[CsI_NEntries];
-	G4double CsI_AbsLength[CsI_NEntries];	
+	G4double CsI_AbsLength[CsI_NEntries];
+	G4double CsI_Rayleigh[CsI_NEntries];
 	G4double CsI_SpecularLobe[CsI_NEntries];
 	G4double CsI_SpecularSpike[CsI_NEntries];
 	G4double CsI_BackScatter[CsI_NEntries];

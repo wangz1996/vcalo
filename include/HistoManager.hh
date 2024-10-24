@@ -33,6 +33,7 @@
 #define HistoManager_h
 
 #include "globals.hh"
+#include <TRandom3.h>
 #include "TSystem.h"
 #include "TGeoManager.h"
 #include "TMath.h"
@@ -45,6 +46,7 @@
 
 class TTree;
 class TFile;
+class Config;
 //const G4int kMAXTrack=5000;//should be checked!!!
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 class HistoManager
@@ -62,6 +64,7 @@ class HistoManager
 		void addConvPhoton(){++nConvPhoton;}
 		void addTotalOptPhoton(){++nTotalOptPhoton;}
 		void fillConvTime(const float& time){ecal_convtime.emplace_back(time);}
+		void bindConfig(Config* c){config=c;}
 	private:
 		//Singleton
 		HistoManager();
@@ -78,6 +81,8 @@ class HistoManager
 		TFile* vFile;
 		TTree* vTree;
 
+		Config* config;
+
 	private:
 		int eventNo;
 		int nConvPhoton;
@@ -88,6 +93,8 @@ class HistoManager
 		float init_Px;
 		float init_Py;
 		float init_Pz;
+		float init_E;
+		float init_Ke;
 		std::vector<int> ecal_cellid;
 		std::vector<float> ecal_celle;
 		std::vector<int> ecal_nphoton;

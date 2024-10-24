@@ -61,6 +61,8 @@ void HistoManager::book(const std::string& foutname,const bool &savegeo)
 	vTree->Branch("init_Px",					&init_Px);
 	vTree->Branch("init_Py",					&init_Py);
 	vTree->Branch("init_Pz",					&init_Pz);
+	vTree->Branch("init_E",					&init_E);
+	vTree->Branch("init_Ke",                &init_Ke);
 	vTree->Branch("nConvPhoton",			&nConvPhoton);
 	vTree->Branch("ecal_convtime",			&ecal_convtime);
 	vTree->Branch("nTotalOptPhoton",		&nTotalOptPhoton);
@@ -68,16 +70,20 @@ void HistoManager::book(const std::string& foutname,const bool &savegeo)
 }
 
 void HistoManager::fill(const int& _eventNo){
+	TRandom3 *rand = new TRandom3();
 	for(auto i:ecal_mape){
+		float ecell = i.second;
+		ecell = ecell + rand->Gaus(0,config->conf["ECAL"]["Crystal-Nonuniformity"].as<double>()*ecell);
 		ecal_cellid.emplace_back(i.first);
-		ecal_celle.emplace_back(SiPMDigi(i.second));
-		ecal_e+=SiPMDigi(i.second);
+		ecal_celle.emplace_back(ecell);
+		ecal_e+=ecell;
 	}
 	eventNo = _eventNo;
 	vTree->Fill();
 }
 
 void HistoManager::fillEcalHit(const G4int &copyNo,const G4double &edep,const G4double &time,const G4int &pdgid,const G4int &trackid){
+	// ecal_e+=edep;
 	ecal_mape[copyNo]+=edep;
 }
 
@@ -94,6 +100,8 @@ void HistoManager::fillPrimary(const G4Track* trk){
 	init_Px = trk->GetMomentumDirection().x();
 	init_Py = trk->GetMomentumDirection().y();
 	init_Pz = trk->GetMomentumDirection().z();
+	init_E = trk->GetTotalEnergy();
+	init_Ke = trk->GetKineticEnergy();
 }
 
 void HistoManager::clear(){
@@ -111,6 +119,8 @@ void HistoManager::clear(){
 	init_Px=0.;
 	init_Py=0.;
 	init_Pz=0.;
+	init_E=0.;
+	init_Ke=0.;
 	nConvPhoton=0;
 	nTotalOptPhoton=0;
 }

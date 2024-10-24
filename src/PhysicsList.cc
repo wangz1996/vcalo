@@ -150,23 +150,6 @@ void PhysicsList::ConstructParticle()
 void PhysicsList::ConstructProcess()
 {
   AddTransportation();
-  /*
-  G4RadioactiveDecay* radioactiveDecay = new G4RadioactiveDecay();
-
-  radioactiveDecay->SetICM(true);                //Internal Conversion
-  radioactiveDecay->SetARM(false);               //Atomic Rearangement
-  
-  G4PhysicsListHelper* ph = G4PhysicsListHelper::GetPhysicsListHelper();  
-  ph->RegisterProcess(radioactiveDecay, G4GenericIon::GenericIon());
-      
-  // Deexcitation (in case of Atomic Rearangement)
-  //
-  G4UAtomicDeexcitation* de = new G4UAtomicDeexcitation();
-  de->SetFluo(true);
-  de->SetAuger(true);   
-  de->SetPIXE(false);  
-  G4LossTableManager::Instance()->SetAtomDeexcitation(de);  
-  */
   ConstructEMProcess();
   G4cout<<"************************* "<<" 33333333333333333 "<<" ****************************"<<G4endl;
 }

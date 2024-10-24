@@ -31,6 +31,7 @@ int Config::Run()
 {
 	//Initialize the singleton HistoManager
 	HistoManager::getInstance().book(conf["Global"]["output"].as<std::string>().c_str(),conf["Global"]["savegeo"].as<bool>());
+	HistoManager::getInstance().bindConfig(this);
 	//choose the Random engine
 	CLHEP::HepRandom::setTheEngine(new CLHEP::RanecuEngine);
 	if(conf["Global"]["useseed"].as<bool>())
@@ -95,6 +96,7 @@ int Config::Run()
 	UI->ApplyCommand(G4String("/event/verbose ")+G4String(conf["Verbose"]["event"].as<std::string>()));
 
 	G4VisManager* visManager = new G4VisExecutive();
+	std::cout<<"Check 0"<<std::endl;
     visManager->Initialize();
 	if(conf["Global"]["vis"].as<bool>()){
 		std::cout<<"Check 1"<<std::endl;
