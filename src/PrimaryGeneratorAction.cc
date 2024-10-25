@@ -59,12 +59,38 @@ PrimaryGeneratorAction::PrimaryGeneratorAction(DetectorConstruction* det,Config 
   G4ParticleDefinition* particle = particleTable->FindParticle(config->conf["Source"]["particle"].as<std::string>());
   auto fParticleGun = fGParticleSource->GetCurrentSource();
   fParticleGun->SetParticleDefinition(particle);
-  fParticleGun->GetAngDist()->SetAngDistType("planar");
-  std::vector<double> gps_direction = config->conf["Source"]["direction"].as<std::vector<double>>();
-  fParticleGun->GetAngDist()->SetParticleMomentumDirection(G4ThreeVector(gps_direction.at(0),gps_direction.at(1),gps_direction.at(2)));
+  
+  std::string angtype = config->conf["Source"]["angtype"].as<std::string>();
+  if(angtype == "iso"){
+    fParticleGun->GetAngDist()->SetAngDistType("iso");
+  }
+  else if(angtype == "planar"){
+    fParticleGun->GetAngDist()->SetAngDistType("planar");
+    std::vector<double> gps_direction = config->conf["Source"]["direction"].as<std::vector<double>>();
+    fParticleGun->GetAngDist()->SetParticleMomentumDirection(G4ThreeVector(gps_direction.at(0),gps_direction.at(1),gps_direction.at(2)));
+  }
+  else{
+    std::err<<"Unknown angular distribution type: "<<angtype<<std::endl;
+  }
+  
   fParticleGun->GetEneDist()->SetEnergyDisType("Mono");
   fParticleGun->GetEneDist()->SetMonoEnergy(config->conf["Source"]["energy"].as<double>());
-  fParticleGun->GetPosDist()->SetPosDisType("Point");
+
+  std::string postype = config->conf["Source"]["type"].as<std::string>();
+  if(postype == "Point"){
+    fParticleGun->GetPosDist()->SetPosDisType("Point");
+  }
+  else if(postype == "Plane"){
+    fParticleGun->GetPosDist()->SetPosDisType("Plane");
+    fParticleGun->GetPosDist()->SetPosDisShape("Rectangle");
+    float size = config->conf["Source"]["size"].as<double>();
+    fParticleGun->GetPosDist()->SetHalfX(size/2. * cm);  // X方向半长度
+    fParticleGun->GetPosDist()->SetHalfY(size/2. * cm);  // Y方向半长度
+  }
+  else{
+    std::err<<"Unknown position distribution type: "<<postype<<std::endl;
+  }
+
   std::vector<double> gps_position = config->conf["Source"]["position"].as<std::vector<double>>();
   fParticleGun->GetPosDist()->SetCentreCoords(G4ThreeVector(gps_position.at(0),gps_position.at(1),gps_position.at(2)));
   useHEPEvt = false;
