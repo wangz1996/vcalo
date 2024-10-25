@@ -76,7 +76,7 @@ void HistoManager::fill(const int& _eventNo){
 		ecell = ecell + rand->Gaus(0,config->conf["ECAL"]["Crystal-Nonuniformity"].as<double>()*ecell);
 		if(config->conf["ECAL"]["light-yield-effect"].as<bool>()){
 			double yield = ecell*1000.; //pe
-			yield = yield + rand->Gaus(0,TMath::Sqrt(yield));
+			yield = yield + rand->Gaus(0,TMath::Sqrt(yield)) + (config->conf["ECAL"]["E-Noise"].as<bool>() ? rand->Gaus(0,1000.) : 0.);
 			ecell = yield/1000.; //MeV
 		}
 		ecal_cellid.emplace_back(i.first);
