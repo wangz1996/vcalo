@@ -70,7 +70,7 @@ PrimaryGeneratorAction::PrimaryGeneratorAction(DetectorConstruction* det,Config 
     fParticleGun->GetAngDist()->SetParticleMomentumDirection(G4ThreeVector(gps_direction.at(0),gps_direction.at(1),gps_direction.at(2)));
   }
   else{
-    std::err<<"Unknown angular distribution type: "<<angtype<<std::endl;
+    std::cerr<<"Unknown angular distribution type: "<<angtype<<std::endl;
   }
   
   fParticleGun->GetEneDist()->SetEnergyDisType("Mono");
@@ -88,7 +88,7 @@ PrimaryGeneratorAction::PrimaryGeneratorAction(DetectorConstruction* det,Config 
     fParticleGun->GetPosDist()->SetHalfY(size/2. * cm);  // Y方向半长度
   }
   else{
-    std::err<<"Unknown position distribution type: "<<postype<<std::endl;
+    std::cerr<<"Unknown position distribution type: "<<postype<<std::endl;
   }
 
   std::vector<double> gps_position = config->conf["Source"]["position"].as<std::vector<double>>();
