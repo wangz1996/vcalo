@@ -66,6 +66,7 @@ void HistoManager::book(const std::string& foutname,const bool &savegeo)
 	vTree->Branch("nConvPhoton",			&nConvPhoton);
 	vTree->Branch("ecal_convtime",			&ecal_convtime);
 	vTree->Branch("nTotalOptPhoton",		&nTotalOptPhoton);
+	vTree->Branch("apd_celle",				&apd_celle);
 	fSaveGeo = savegeo;
 }
 
@@ -73,14 +74,19 @@ void HistoManager::fill(const int& _eventNo){
 	TRandom3 *rand = new TRandom3();
 	for(auto i:ecal_mape){
 		float ecell = i.second;
+		float apdcell = apd_mape[i.first];
 		ecell = ecell + rand->Gaus(0,config->conf["ECAL"]["Crystal-Nonuniformity"].as<double>()*ecell);
 		if(config->conf["ECAL"]["light-yield-effect"].as<bool>()){
 			double yield = ecell*1000.; //pe
-			yield = yield + rand->Gaus(0,TMath::Sqrt(yield)) + (config->conf["ECAL"]["E-Noise"].as<bool>() ? rand->Gaus(0,1000.) : 0.);
+			double apdyield = apdcell*1e6*3.6;
+			yield = yield + rand->Gaus(0,TMath::Sqrt(yield)) 
+						+ (config->conf["ECAL"]["E-Noise"].as<bool>() ? rand->Gaus(0,1000.) : 0.)
+						+ (config->conf["ECAL"]["APD-Ionisation"].as<bool>() ? rand->Gaus(apdyield,TMath::Sqrt(apdyield)) : 0.);
 			ecell = yield/1000.; //MeV
 		}
 		ecal_cellid.emplace_back(i.first);
 		ecal_celle.emplace_back(ecell);
+		apd_celle.emplace_back(apdcell);
 		ecal_e+=ecell;
 	}
 	eventNo = _eventNo;
@@ -90,6 +96,11 @@ void HistoManager::fill(const int& _eventNo){
 void HistoManager::fillEcalHit(const G4int &copyNo,const G4double &edep,const G4double &time,const G4int &pdgid,const G4int &trackid){
 	// ecal_e+=edep;
 	ecal_mape[copyNo]+=edep;
+}
+
+void HistoManager::fillAPDHit(const G4int &copyNo,const G4double &edep,const G4double &time,const G4int &pdgid,const G4int &trackid){
+	// ecal_e+=edep;
+	apd_mape[copyNo]+=edep;
 }
 
 void HistoManager::npup(const std::string& name){
@@ -116,6 +127,7 @@ void HistoManager::clear(){
 	std::vector<float>().swap(ecal_optime);
 	std::vector<float>().swap(ecal_convtime);
 	ecal_mape.clear();
+	apd_mape.clear();
 	ecal_npmap.clear();
 	ecal_e=0.;
 	init_x=0.;

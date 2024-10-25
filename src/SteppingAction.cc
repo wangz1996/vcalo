@@ -73,19 +73,22 @@ SteppingAction::~SteppingAction()
 
 void SteppingAction::UserSteppingAction(const G4Step* aStep)
 {
-  // G4double edep = BirksAttenuation(aStep);
   auto preStepPoint = aStep->GetPreStepPoint();
   auto postStepPoint = aStep->GetPostStepPoint();
-  std::string preStepVName, postStepVName;
+  std::string preStepPVName, postStepPVName,preStepLVName,postStepLVName;
   if (preStepPoint && preStepPoint->GetPhysicalVolume()) {
-    preStepVName = preStepPoint->GetPhysicalVolume()->GetName();
+    preStepPVName = preStepPoint->GetPhysicalVolume()->GetName();
+    preStepLVName = preStepPoint->GetPhysicalVolume()->GetLogicalVolume()->GetName();
   }
 
   if (postStepPoint && postStepPoint->GetPhysicalVolume()) {
-    postStepVName = postStepPoint->GetPhysicalVolume()->GetName();
+    postStepPVName = postStepPoint->GetPhysicalVolume()->GetName();
+    postStepLVName = postStepPoint->GetPhysicalVolume()->GetLogicalVolume()->GetName();
   }
   auto process = postStepPoint->GetProcessDefinedStep();
   auto processName = process->GetProcessName();
+
+
   G4double edep = aStep->GetTotalEnergyDeposit();
   G4int copyNo = aStep->GetPreStepPoint()->GetPhysicalVolume()->GetCopyNo();
   G4int pdgid = aStep->GetTrack()->GetDefinition()->GetPDGEncoding();
@@ -99,28 +102,17 @@ void SteppingAction::UserSteppingAction(const G4Step* aStep)
     HistoManager::getInstance().addTotalOptPhoton();
   }
   G4double time = aStep->GetPreStepPoint()->GetGlobalTime();
-  G4String volumeName = aStep->GetPreStepPoint()->GetTouchableHandle()->GetVolume()->GetLogicalVolume()->GetName();
-  // std::cout<<preStepVName<<std::endl;
   if(aStep->GetTrack()->GetDefinition() == G4OpticalPhoton::OpticalPhotonDefinition() &&
-    preStepVName=="physicConv" &&
-    postStepVName.find("World")!=std::string::npos){
-      // std::cout<<preStepVName<<" "<<postStepVName<<" "<<aStep->GetTrack()->GetPosition().x()<<" "<<aStep->GetTrack()->GetPosition().y()<<" "<<aStep->GetTrack()->GetPosition().z()<<std::endl;
+    preStepPVName=="physicConv" &&
+    postStepPVName.find("World")!=std::string::npos){
     HistoManager::getInstance().addConvPhoton();
     HistoManager::getInstance().fillConvTime(time);
   }
-  // if(aStep->GetTrack()->GetDefinition() == G4OpticalPhoton::OpticalPhotonDefinition() &&
-  //   preStepVName.find("CsI_12")!=std::string::npos &&
-  //   postStepVName.find("World")!=std::string::npos){
-  //   HistoManager::getInstance().npup(preStepVName);
-  //   HistoManager::getInstance().filloptime(time);
-  // }
+
+  if(postStepLVName=="logicAPD"){HistoManager::getInstance().fillAPDHit(copyNo,edep,time,pdgid,trackid); }
   // if(time > 150.)return;
 
-  // check if we are in scoring volume
-  // collect energy and track length step by step
-  // std::cout<<volumeName<<" "<<int(volumeName=="ecal_crystal")<<" "<<edep<<std::endl;
-  if(volumeName=="logicCsI") {  HistoManager::getInstance().fillEcalHit(copyNo,edep,time,pdgid,trackid); }
-  // std::cout<<"End"<<std::endl;
+  if(postStepLVName=="logicCsI") {  HistoManager::getInstance().fillEcalHit(copyNo,edep,time,pdgid,trackid); }
 }
 
  

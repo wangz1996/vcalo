@@ -60,6 +60,7 @@ class HistoManager
 		void npup(const std::string& name);
 		void filloptime(const float& time){ecal_optime.emplace_back(time);}
 		void fillEcalHit(const G4int &copyNo,const G4double &edep,const G4double &time,const G4int &pdgid,const G4int &trackid);
+		void fillAPDHit(const G4int &copyNo,const G4double &edep,const G4double &time,const G4int &pdgid,const G4int &trackid);
 		void fillPrimary(const G4Track* trk);
 		void addConvPhoton(){++nConvPhoton;}
 		void addTotalOptPhoton(){++nTotalOptPhoton;}
@@ -97,11 +98,13 @@ class HistoManager
 		float init_Ke;
 		std::vector<int> ecal_cellid;
 		std::vector<float> ecal_celle;
+		std::vector<float> apd_celle;
 		std::vector<int> ecal_nphoton;
 		std::vector<float> ecal_optime;
 		std::vector<float> ecal_convtime;
-		std::unordered_map<int,float> ecal_mape;
-		std::unordered_map<int,int> ecal_npmap;
+		std::map<int,float> ecal_mape;
+		std::map<int,float> apd_mape;
+		std::map<int,int> ecal_npmap;
 		float ecal_e;
 };
 
