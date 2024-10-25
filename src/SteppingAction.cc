@@ -95,6 +95,11 @@ void SteppingAction::UserSteppingAction(const G4Step* aStep)
   G4int trackid = aStep->GetTrack()->GetTrackID();
   G4int stepNumber = aStep->GetTrack()->GetCurrentStepNumber();
   if(trackid==1 && stepNumber==1){
+    if(aStep->GetTrack()->GetMomentum().z()<0){
+        HistoManager::getInstance().changeStatusCode(0);
+		    aStep->GetTrack()->SetTrackStatus(fStopAndKill);
+        G4RunManager::GetRunManager()->AbortEvent();
+	  }
     HistoManager::getInstance().fillPrimary(aStep->GetTrack());
   }
   if(aStep->GetTrack()->GetDefinition() == G4OpticalPhoton::OpticalPhotonDefinition() &&

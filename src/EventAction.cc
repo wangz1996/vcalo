@@ -72,7 +72,7 @@ void EventAction::EndOfEventAction(const G4Event* evt)
    G4cout << "\n end of event " << std::setw(6) << evtNb 
           << " :" + fDecayChain << G4endl;
  
-	HistoManager::getInstance().fill(evtNb);
+	if(HistoManager::getInstance().getStatusCode())HistoManager::getInstance().fill(evtNb);
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......

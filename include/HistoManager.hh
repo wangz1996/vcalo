@@ -66,6 +66,8 @@ class HistoManager
 		void addTotalOptPhoton(){++nTotalOptPhoton;}
 		void fillConvTime(const float& time){ecal_convtime.emplace_back(time);}
 		void bindConfig(Config* c){config=c;}
+		void changeStatusCode(const int& code){StatusCode = code;}
+		int getStatusCode(){return StatusCode;}
 	private:
 		//Singleton
 		HistoManager();
@@ -83,6 +85,8 @@ class HistoManager
 		TTree* vTree;
 
 		Config* config;
+
+		int StatusCode;
 
 	private:
 		int eventNo;

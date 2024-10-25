@@ -121,6 +121,7 @@ void HistoManager::fillPrimary(const G4Track* trk){
 }
 
 void HistoManager::clear(){
+	StatusCode = 1;
 	std::vector<int>().swap(ecal_cellid);
 	std::vector<float>().swap(ecal_celle);
 	std::vector<int>().swap(ecal_nphoton);
