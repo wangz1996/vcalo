@@ -53,8 +53,8 @@ void HistoManager::book(const std::string& foutname,const bool &savegeo)
   vTree->Branch("ecal_cellid",               &ecal_cellid);
   vTree->Branch("ecal_celle",               &ecal_celle);
   vTree->Branch("ecal_e",					&ecal_e);
-	vTree->Branch("ecal_nphoton",			&ecal_nphoton);
-	vTree->Branch("ecal_optime",			&ecal_optime);
+	vTree->Branch("apd_nphoton",			&apd_nphoton);
+	vTree->Branch("apd_optime",			&apd_optime);
 	vTree->Branch("init_x",					&init_x);
 	vTree->Branch("init_y",					&init_y);
 	vTree->Branch("init_z",					&init_z);
@@ -103,12 +103,6 @@ void HistoManager::fillAPDHit(const G4int &copyNo,const G4double &edep,const G4d
 	apd_mape[copyNo]+=edep;
 }
 
-void HistoManager::npup(const std::string& name){
-	std::string npname = name.substr(name.find_first_of("_")+1);
-	int npid = std::stoi(npname);
-	ecal_npmap[npid]++;
-}
-
 void HistoManager::fillPrimary(const G4Track* trk){
 	init_x = trk->GetPosition().x();
 	init_y = trk->GetPosition().y();
@@ -124,9 +118,9 @@ void HistoManager::clear(){
 	StatusCode = 1;
 	std::vector<int>().swap(ecal_cellid);
 	std::vector<float>().swap(ecal_celle);
-	std::vector<int>().swap(ecal_nphoton);
-	std::vector<float>().swap(ecal_optime);
+	std::vector<float>().swap(apd_optime);
 	std::vector<float>().swap(ecal_convtime);
+	apd_nphoton=0;
 	ecal_mape.clear();
 	apd_mape.clear();
 	ecal_npmap.clear();
@@ -164,24 +158,5 @@ void HistoManager::save()
 	vTree->Write("",TObject::kOverwrite);
 	vFile->Close();
 	G4cout<<"------>close rootfile"<<G4endl;
-}
-
-Double_t HistoManager::SiPMDigi(const Double_t &edep) const
-{
-	Int_t sPix = 0;
-	sPix = gRandom->Poisson(edep / 0.466 * 20);
-	sPix = 7396.* (1 - TMath::Exp(-sPix / 7284.));
-	Double_t sChargeOutMean = sPix * 29.4;
-	Double_t sChargeOutSigma = sqrt(sPix * 5 * 5 + 3 * 3);
-	Double_t sChargeOut = -1;
-	while(sChargeOut < 0)
-		sChargeOut = gRandom->Gaus(sChargeOutMean, sChargeOutSigma);
-	Double_t sAdc = -1;
-	while(sAdc < 0)
-		sAdc = gRandom->Gaus(sChargeOut,.0002 * sChargeOut);
-	Double_t sMIP =sAdc / 29.4 / 20;
-	if (sMIP < 0.5)
-		return 0;
-	return sMIP * 0.466;
 }
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......

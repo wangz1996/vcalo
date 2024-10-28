@@ -90,12 +90,16 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
 }
 G4VPhysicalVolume* DetectorConstruction::ConstructWorld()
 {
+    auto GalacticMPT = new G4MaterialPropertiesTable();
+	GalacticMPT -> AddProperty("RINDEX", {1.0*eV, 6.0*eV}, {1.0,1.0}, 2); 
+    GalacticMPT -> AddProperty("ABSLENGTH", {1.0*eV, 6.0*eV}, {500.*m,500.*m}, 2);
     G4Material* Vacuum =
         G4NistManager::Instance()->FindOrBuildMaterial("G4_Galactic");
+    Vacuum->SetMaterialPropertiesTable(GalacticMPT);
     G4bool checkOverlaps = false;
 
     // Full sphere shape
-    G4double solidWorld_rmax = 500*cm;
+    G4double solidWorld_rmax = 15*cm;
     G4Orb*
         solidWorld = new G4Orb("World",                          // its name
                 solidWorld_rmax);                // its size 

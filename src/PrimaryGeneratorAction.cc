@@ -78,6 +78,7 @@ PrimaryGeneratorAction::PrimaryGeneratorAction(DetectorConstruction* det,Config 
 
   std::string postype = config->conf["Source"]["type"].as<std::string>();
   if(postype == "Point"){
+    std::cout<<"Using Point source"<<std::endl;
     fParticleGun->GetPosDist()->SetPosDisType("Point");
   }
   else if(postype == "Plane"){
@@ -93,6 +94,7 @@ PrimaryGeneratorAction::PrimaryGeneratorAction(DetectorConstruction* det,Config 
 
   std::vector<double> gps_position = config->conf["Source"]["position"].as<std::vector<double>>();
   fParticleGun->GetPosDist()->SetCentreCoords(G4ThreeVector(gps_position.at(0),gps_position.at(1),gps_position.at(2)));
+  std::cout<<"Source position: "<<gps_position.at(0)<<", "<<gps_position.at(1)<<", "<<gps_position.at(2)<<std::endl;
   useHEPEvt = false;
 }
 

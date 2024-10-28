@@ -85,8 +85,8 @@ void DetectorConstruction::defineECALParameter(){
 	APD_XY = 10. *mm;
 	APD_Z = 10. *um;
 	
-	nCryX = 5;
-	nCryY = 5;
+	nCryX = config->conf["ECAL"]["nCryX"].as<int>();
+	nCryY = config->conf["ECAL"]["nCryY"].as<int>();
 
 	Cushion_XY = TiO2_XY;
 	CushionInner_XY = 40. *mm;
@@ -166,6 +166,11 @@ void DetectorConstruction::defineECALMaterial(){
 	TiO2MPT->AddProperty("ABSLENGTH",TiO2_PEnergy, TiO2_AbsLength, TiO2_NEntries);
 	TiO2->SetMaterialPropertiesTable(TiO2MPT);
 
+	//APD
+	APDMPT = new G4MaterialPropertiesTable();
+	APDMPT ->AddProperty("RINDEX", {1.0*eV, 6.0*eV}, {3.950, 3.950}, 2); //APD的折射率
+	G4NistManager::Instance()->FindOrBuildMaterial("G4_Si")->SetMaterialPropertiesTable(APDMPT);
+
 	//Optical Surfaces (actually I think it should be called TiO2 surface)
 	//CsI(Tl) and TiO2
 	for(size_t i=0;i<CsI_NEntries;i++){CsI_SpecularLobe[i] = config->conf["Parameter"]["Surface"]["SpecularLobe"].as<double>();}
@@ -185,6 +190,46 @@ void DetectorConstruction::defineECALMaterial(){
 	CsI_SurfaceMPT->AddProperty("SPECULARSPIKECONSTANT",CsI_PEnergy, CsI_SpecularSpike, CsI_NEntries);
 	CsI_SurfaceMPT->AddProperty("BACKSCATTERCONSTANT",CsI_PEnergy, CsI_BackScatter, CsI_NEntries);
 	CsISurface->SetMaterialPropertiesTable(CsI_SurfaceMPT);
+
+	//CsI and Galactic
+	CsI_Galactic_Surface = new G4OpticalSurface("CsIToGalacticSurface");
+	CsI_Galactic_Surface->SetType(dielectric_dielectric);  // 确保是两种介质之间的光学界面
+	CsI_Galactic_Surface->SetModel(glisur);               // 使用标准的光滑表面模型
+	CsI_Galactic_Surface->SetFinish(polished);            // 设置为光滑表面
+	auto CsI_Galactic_SurfaceMPT = new G4MaterialPropertiesTable();
+	CsI_Galactic_SurfaceMPT->AddProperty("REFLECTIVITY",{1.0*eV, 6.0*eV}, {0.,0.}, 2);
+	// CsI_Galactic_SurfaceMPT->AddProperty("RINDEX",{1.0*eV, 6.0*eV}, {1.0,1.0}, 2);
+	CsI_Galactic_Surface->SetMaterialPropertiesTable(CsI_Galactic_SurfaceMPT);
+
+	//TiO2 and Galactic
+	TiO2_Galactic_Surface = new G4OpticalSurface("TiO2ToGalacticSurface");
+	TiO2_Galactic_Surface->SetType(dielectric_dielectric);  // 确保是两种介质之间的光学界面
+	TiO2_Galactic_Surface->SetModel(glisur);               // 使用标准的光滑表面模型
+	TiO2_Galactic_Surface->SetFinish(polished);            // 设置为光滑表面
+	auto TiO2_Galactic_SurfaceMPT = new G4MaterialPropertiesTable();
+	TiO2_Galactic_SurfaceMPT->AddProperty("REFLECTIVITY",{1.0*eV, 6.0*eV}, {0.,0.}, 2);
+	// TiO2_Galactic_SurfaceMPT->AddProperty("RINDEX",{1.0*eV, 6.0*eV}, {1.0,1.0}, 2);
+	TiO2_Galactic_Surface->SetMaterialPropertiesTable(TiO2_Galactic_SurfaceMPT);
+
+	//APD and Galactic
+	APD_Galactic_Surface = new G4OpticalSurface("APDToGalacticSurface");
+	APD_Galactic_Surface->SetType(dielectric_dielectric);  // 确保是两种介质之间的光学界面
+	APD_Galactic_Surface->SetModel(glisur);               // 使用标准的光滑表面模型
+	APD_Galactic_Surface->SetFinish(polished);            // 设置为光滑表面
+	auto APD_Galactic_SurfaceMPT = new G4MaterialPropertiesTable();
+	APD_Galactic_SurfaceMPT->AddProperty("REFLECTIVITY",{1.0*eV, 6.0*eV}, {0.,0.}, 2);
+	// APD_Galactic_SurfaceMPT->AddProperty("RINDEX",{1.0*eV, 6.0*eV}, {1.0,1.0}, 2);
+	APD_Galactic_Surface->SetMaterialPropertiesTable(APD_Galactic_SurfaceMPT);
+
+	//APD and CsI
+	APD_CsI_Surface = new G4OpticalSurface("APDToCsISurface");
+	APD_CsI_Surface->SetType(dielectric_dielectric);  // 确保是两种介质之间的光学界面
+	APD_CsI_Surface->SetModel(glisur);               // 使用标准的光滑表面模型
+	APD_CsI_Surface->SetFinish(polished);            // 设置为光滑表面
+	auto APD_CsI_SurfaceMPT = new G4MaterialPropertiesTable();
+	APD_CsI_SurfaceMPT->AddProperty("REFLECTIVITY",{1.0*eV, 6.0*eV}, {0.,0.}, 2);
+	// APD_CsI_SurfaceMPT->AddProperty("RINDEX",{1.0*eV, 6.0*eV}, {1.0,1.0}, 2);
+	APD_CsI_Surface->SetMaterialPropertiesTable(APD_CsI_SurfaceMPT);
 }
 
 G4SubtractionSolid* DetectorConstruction::constructSolidTiO2(){
@@ -291,6 +336,11 @@ void DetectorConstruction::constructECAL()
 			double y_o = -Hole_XY*2. - CryGap*2.;//left lower Y position
 			double x = x_o + double(i) * ( Hole_XY + CryGap );
 			double y = y_o + double(j) * ( Hole_XY + CryGap );
+
+			if(nCryX == 1 && nCryY == 1){
+				x=0.;
+				y=0.;
+			}
 			int CopyNo = i*5+j;
 
 			// Create unique names for each physical volume
@@ -300,22 +350,34 @@ void DetectorConstruction::constructECAL()
 			// Create physical volumes
         	G4VPhysicalVolume* physicCsI = new G4PVPlacement(0, G4ThreeVector(x, y, 0.), logicCsI, CsIName, logicWorld, false, CopyNo, true);
         	G4VPhysicalVolume* physicTiO2 = new G4PVPlacement(0, G4ThreeVector(x, y, 0.), logicTiO2, TiO2Name, logicWorld, false, CopyNo, true);
-			G4VPhysicalVolume* physicAPD = new G4PVPlacement(0, G4ThreeVector(x, y, CsI_Z/2. + 5.*mm), logicAPD, APDName, logicWorld, false, CopyNo, true);
+			G4VPhysicalVolume* physicAPD = new G4PVPlacement(0, G4ThreeVector(x, y, CsI_Z/2. + 0.5*APD_Z), logicAPD, APDName, logicWorld, false, CopyNo, true);
 			// Create logical border surface
         	auto logicBorderSurface = new G4LogicalBorderSurface("CsITiO2BorderSurface_" + std::to_string(CopyNo), physicCsI, physicTiO2, CsISurface);
+			// Create physical border surface between CsI and world
+			new G4LogicalBorderSurface("CsIGalacticBorderSurface_" + std::to_string(CopyNo), physicCsI, physiWorld, CsI_Galactic_Surface);
+			std::cout<<"CsIGalactic"<<std::endl;
+			// Create physical border surface between TiO2 and world
+			new G4LogicalBorderSurface("TiO2GalacticBorderSurface_" + std::to_string(CopyNo), physicTiO2, physiWorld, TiO2_Galactic_Surface);
+			std::cout<<"TiO2Galactic"<<std::endl;
+			// Create physical border surface between APD and world
+			new G4LogicalBorderSurface("APDGalacticBorderSurface_" + std::to_string(CopyNo), physicAPD, physiWorld, APD_Galactic_Surface);
+			// Create physical border surface between APD and CsI
+			new G4LogicalBorderSurface("APDCsIBorderSurface_" + std::to_string(CopyNo), physicAPD, physicCsI, APD_CsI_Surface);
+			auto TiO2Galactic_opticalSurface = dynamic_cast<G4OpticalSurface*>(logicBorderSurface->GetSurface(physicTiO2, physiWorld)->GetSurfaceProperty());
 			auto opticalSurface = dynamic_cast<G4OpticalSurface*>(logicBorderSurface->GetSurface(physicCsI, physicTiO2)->GetSurfaceProperty());
   			if(opticalSurface)opticalSurface->DumpInfo();
-			new G4PVPlacement(0, G4ThreeVector(x,y,0.5*TiO2_Z+0.5*Cushion_Z), logicCushion, "physicCushion", logicWorld, false, CopyNo, true);
+			
 			if(config->conf["ECAL"]["ECALShield"].as<bool>()){
 				new G4PVPlacement(0, G4ThreeVector(x,y,0.), logicSiliconeRubber, "physicSiliconeRubber", logicWorld, false, CopyNo, true);
 				new G4PVPlacement(0, G4ThreeVector(x,y,-0.5*TiO2_Z-0.5*Cushion_Z), logicCushion, "physicCushion", logicWorld, false, CopyNo, true);
+				new G4PVPlacement(0, G4ThreeVector(x,y,0.5*TiO2_Z+0.5*Cushion_Z), logicCushion, "physicCushion", logicWorld, false, CopyNo, true);
 			}
 		}
 	}
 	
 	if(config->conf["ECAL"]["ECALShield"].as<bool>()){
 		new G4PVPlacement(0, G4ThreeVector(0.,0.,0.), logicECALShield, "physicECALShield", logicWorld, false, 0, true);
-		new G4PVPlacement(0, G4ThreeVector(0.,0.,-0.5*TiO2_Z-0.5*Cushion_Z-0.5*mm), logicLid, "physicLid", logicWorld, false, 0, true);
+		new G4PVPlacement(0, G4ThreeVector(0.,0.,-0.5*TiO2_Z-Cushion_Z-0.5*mm), logicLid, "physicLid", logicWorld, false, 0, true);
 	}
 
 }

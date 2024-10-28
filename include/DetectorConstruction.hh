@@ -117,7 +117,12 @@ class DetectorConstruction : public G4VUserDetectorConstruction
 	//Optical Properties
 	G4MaterialPropertiesTable *CsIMPT;
 	G4MaterialPropertiesTable *TiO2MPT;
+	G4MaterialPropertiesTable *APDMPT;
 	G4OpticalSurface* CsISurface;
+	G4OpticalSurface* CsI_Galactic_Surface;
+	G4OpticalSurface* TiO2_Galactic_Surface;
+	G4OpticalSurface* APD_Galactic_Surface;
+	G4OpticalSurface* APD_CsI_Surface;
 	G4MaterialPropertiesTable* CsI_SurfaceMPT;
 	static const G4int CsI_NEntries=20;
 	G4double CsI_PEnergy[CsI_NEntries] = {

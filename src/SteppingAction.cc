@@ -71,54 +71,75 @@ SteppingAction::~SteppingAction()
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-void SteppingAction::UserSteppingAction(const G4Step* aStep)
-{
+void SteppingAction::UserSteppingAction(const G4Step* aStep) {
+  // 获取 PreStep 和 PostStep 信息
   auto preStepPoint = aStep->GetPreStepPoint();
   auto postStepPoint = aStep->GetPostStepPoint();
-  std::string preStepPVName, postStepPVName,preStepLVName,postStepLVName;
-  if (preStepPoint && preStepPoint->GetPhysicalVolume()) {
-    preStepPVName = preStepPoint->GetPhysicalVolume()->GetName();
-    preStepLVName = preStepPoint->GetPhysicalVolume()->GetLogicalVolume()->GetName();
+
+  // 初始化 PreStep 和 PostStep 的物理/逻辑体名称
+  std::string preStepPVName, postStepPVName, preStepLVName, postStepLVName;
+
+  if (preStepPoint) {
+    if (auto preVolume = preStepPoint->GetPhysicalVolume()) {
+      preStepPVName = preVolume->GetName();
+      preStepLVName = preVolume->GetLogicalVolume()->GetName();
+    }
   }
 
-  if (postStepPoint && postStepPoint->GetPhysicalVolume()) {
-    postStepPVName = postStepPoint->GetPhysicalVolume()->GetName();
-    postStepLVName = postStepPoint->GetPhysicalVolume()->GetLogicalVolume()->GetName();
+  if (postStepPoint) {
+    if (auto postVolume = postStepPoint->GetPhysicalVolume()) {
+      postStepPVName = postVolume->GetName();
+      postStepLVName = postVolume->GetLogicalVolume()->GetName();
+    }
   }
-  auto process = postStepPoint->GetProcessDefinedStep();
-  auto processName = process->GetProcessName();
 
-
+  // 获取步骤相关的信息
+  auto process = preStepPoint->GetProcessDefinedStep();
+  auto processName = process ? process->GetProcessName() : "";
   G4double edep = aStep->GetTotalEnergyDeposit();
-  G4int copyNo = aStep->GetPreStepPoint()->GetPhysicalVolume()->GetCopyNo();
-  G4int pdgid = aStep->GetTrack()->GetDefinition()->GetPDGEncoding();
-  G4int trackid = aStep->GetTrack()->GetTrackID();
-  G4int stepNumber = aStep->GetTrack()->GetCurrentStepNumber();
-  if(trackid==1 && stepNumber==1){
-    if(aStep->GetTrack()->GetMomentum().z()<0){
-        HistoManager::getInstance().changeStatusCode(0);
-		    aStep->GetTrack()->SetTrackStatus(fStopAndKill);
-        G4RunManager::GetRunManager()->AbortEvent();
-	  }
-    HistoManager::getInstance().fillPrimary(aStep->GetTrack());
-  }
-  if(aStep->GetTrack()->GetDefinition() == G4OpticalPhoton::OpticalPhotonDefinition() &&
-    stepNumber==1){
-    HistoManager::getInstance().addTotalOptPhoton();
-  }
-  G4double time = aStep->GetPreStepPoint()->GetGlobalTime();
-  if(aStep->GetTrack()->GetDefinition() == G4OpticalPhoton::OpticalPhotonDefinition() &&
-    preStepPVName=="physicConv" &&
-    postStepPVName.find("World")!=std::string::npos){
-    HistoManager::getInstance().addConvPhoton();
-    HistoManager::getInstance().fillConvTime(time);
+  G4Track* track = aStep->GetTrack();
+  G4double time = track->GetGlobalTime();
+  G4int trackid = track->GetTrackID();
+  G4int stepNumber = track->GetCurrentStepNumber();
+  G4int pdgid = track->GetDefinition()->GetPDGEncoding();
+  G4int copyNo = preStepPoint->GetPhysicalVolume()->GetCopyNo();
+  auto particleDef = track->GetDefinition();
+
+  // 处理初级粒子
+  if (trackid == 1 && stepNumber == 1) {
+    if (track->GetMomentum().z() < 0) {
+      HistoManager::getInstance().changeStatusCode(0);
+      track->SetTrackStatus(fStopAndKill);
+      G4RunManager::GetRunManager()->AbortEvent();
+    }
+    HistoManager::getInstance().fillPrimary(track);
   }
 
-  if(postStepLVName=="logicAPD"){HistoManager::getInstance().fillAPDHit(copyNo,edep,time,pdgid,trackid); }
-  // if(time > 150.)return;
+  // 处理光子信息
+  if (particleDef == G4OpticalPhoton::OpticalPhotonDefinition()) {
+    if (stepNumber == 1) {
+      HistoManager::getInstance().addTotalOptPhoton();
+    }
+    else if (preStepPVName == "physicConv" && postStepPVName.find("World") != std::string::npos) {
+      HistoManager::getInstance().addConvPhoton();
+      HistoManager::getInstance().fillConvTime(time);
+    }
+    else if (preStepPVName.find("CsI") != std::string::npos && postStepLVName == "logicAPD") {
+      HistoManager::getInstance().fillAPDOptHit(time);
+    }
+    else if (preStepLVName.find("logicCsI") != std::string::npos && postStepLVName == "World") {
+      // std::cout<<"CsI to World"<<std::endl;
+    }
+  }
 
-  if(postStepLVName=="logicCsI") {  HistoManager::getInstance().fillEcalHit(copyNo,edep,time,pdgid,trackid); }
+  // 处理能量沉积和命中
+  if (postStepLVName == "logicAPD") {
+    HistoManager::getInstance().fillAPDHit(copyNo, edep, time, pdgid, trackid);
+  } else if (postStepLVName == "logicCsI") {
+    HistoManager::getInstance().fillEcalHit(copyNo, edep, time, pdgid, trackid);
+  }
 }
+
 
  
 void SteppingAction::Reset()
