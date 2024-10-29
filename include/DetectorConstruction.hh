@@ -110,6 +110,7 @@ class DetectorConstruction : public G4VUserDetectorConstruction
 	G4Material* Vacuum;
 	G4Material* CsI;
 	G4Material* TiO2;
+	G4Material* fAir;
 
 	G4Material* carbonFiber;
 	G4Material* siliconeRubber;

@@ -90,12 +90,37 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
 }
 G4VPhysicalVolume* DetectorConstruction::ConstructWorld()
 {
-    auto GalacticMPT = new G4MaterialPropertiesTable();
-	GalacticMPT -> AddProperty("RINDEX", {1.0*eV, 6.0*eV}, {1.0,1.0}, 2); 
-    GalacticMPT -> AddProperty("ABSLENGTH", {1.0*eV, 6.0*eV}, {500.*m,500.*m}, 2);
-    G4Material* Vacuum =
-        G4NistManager::Instance()->FindOrBuildMaterial("G4_Galactic");
-    Vacuum->SetMaterialPropertiesTable(GalacticMPT);
+    G4double a, z, density;
+    G4int nelements;
+    auto N = new G4Element("Nitrogen", "N", z = 7, a = 14.01 * g / mole);
+    auto O = new G4Element("Oxygen", "O", z = 8, a = 16.00 * g / mole);
+    fAir = new G4Material("Air", density = 1.29 * mg / cm3, nelements = 2);
+    fAir->AddElement(N, 70. * perCent);
+    fAir->AddElement(O, 30. * perCent);
+    // Air
+    std::vector<G4double> photonEnergy = {
+    2.034 * eV, 2.068 * eV, 2.103 * eV, 2.139 * eV, 2.177 * eV, 2.216 * eV,
+    2.256 * eV, 2.298 * eV, 2.341 * eV, 2.386 * eV, 2.433 * eV, 2.481 * eV,
+    2.532 * eV, 2.585 * eV, 2.640 * eV, 2.697 * eV, 2.757 * eV, 2.820 * eV,
+    2.885 * eV, 2.954 * eV, 3.026 * eV, 3.102 * eV, 3.181 * eV, 3.265 * eV,
+    3.353 * eV, 3.446 * eV, 3.545 * eV, 3.649 * eV, 3.760 * eV, 3.877 * eV,
+    4.002 * eV, 4.136 * eV
+    };
+    std::vector<G4double> AirRIndex = { 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0,
+                                             1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0,
+                                             1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0,
+                                             1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0,
+                                             1.0, 1.0, 1.0, 1.0 };
+
+    Vacuum = G4NistManager::Instance()->FindOrBuildMaterial("G4_Galactic");
+    auto AirMPT = new G4MaterialPropertiesTable();
+    AirMPT->AddProperty("RINDEX", photonEnergy, AirRIndex);
+
+    G4cout << "Air G4MaterialPropertiesTable:" << G4endl;
+    AirMPT->DumpTable();
+
+    fAir->SetMaterialPropertiesTable(AirMPT);
+    Vacuum->SetMaterialPropertiesTable(AirMPT);
     G4bool checkOverlaps = false;
 
     // Full sphere shape

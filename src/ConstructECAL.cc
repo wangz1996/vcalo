@@ -44,6 +44,7 @@
 #include "G4SystemOfUnits.hh"
 #include "G4VisAttributes.hh"
 #include "G4LogicalBorderSurface.hh"
+#include "G4LogicalSkinSurface.hh"
 #include "G4Colour.hh"
 #include "G4GeometryTolerance.hh"
 #include "G4GeometryManager.hh"
@@ -197,8 +198,8 @@ void DetectorConstruction::defineECALMaterial(){
 	CsI_Galactic_Surface->SetModel(glisur);               // 使用标准的光滑表面模型
 	CsI_Galactic_Surface->SetFinish(polished);            // 设置为光滑表面
 	auto CsI_Galactic_SurfaceMPT = new G4MaterialPropertiesTable();
-	CsI_Galactic_SurfaceMPT->AddProperty("REFLECTIVITY",{1.0*eV, 6.0*eV}, {0.,0.}, 2);
-	// CsI_Galactic_SurfaceMPT->AddProperty("RINDEX",{1.0*eV, 6.0*eV}, {1.0,1.0}, 2);
+	CsI_Galactic_SurfaceMPT->AddProperty("REFLECTIVITY",{2.034 * eV, 4.136 * eV}, {0.3,0.5}, 2);
+	CsI_Galactic_SurfaceMPT->AddProperty("EFFICIENCY",{2.034 * eV, 4.136 * eV}, {0.8,1.0}, 2);
 	CsI_Galactic_Surface->SetMaterialPropertiesTable(CsI_Galactic_SurfaceMPT);
 
 	//TiO2 and Galactic
@@ -207,8 +208,8 @@ void DetectorConstruction::defineECALMaterial(){
 	TiO2_Galactic_Surface->SetModel(glisur);               // 使用标准的光滑表面模型
 	TiO2_Galactic_Surface->SetFinish(polished);            // 设置为光滑表面
 	auto TiO2_Galactic_SurfaceMPT = new G4MaterialPropertiesTable();
-	TiO2_Galactic_SurfaceMPT->AddProperty("REFLECTIVITY",{1.0*eV, 6.0*eV}, {0.,0.}, 2);
-	// TiO2_Galactic_SurfaceMPT->AddProperty("RINDEX",{1.0*eV, 6.0*eV}, {1.0,1.0}, 2);
+	TiO2_Galactic_SurfaceMPT->AddProperty("REFLECTIVITY",{2.034 * eV, 4.136 * eV}, {0.,0.}, 2);
+	TiO2_Galactic_SurfaceMPT->AddProperty("EFFICIENCY",{2.034 * eV, 4.136 * eV}, {1.0,1.0}, 2);
 	TiO2_Galactic_Surface->SetMaterialPropertiesTable(TiO2_Galactic_SurfaceMPT);
 
 	//APD and Galactic
@@ -217,8 +218,8 @@ void DetectorConstruction::defineECALMaterial(){
 	APD_Galactic_Surface->SetModel(glisur);               // 使用标准的光滑表面模型
 	APD_Galactic_Surface->SetFinish(polished);            // 设置为光滑表面
 	auto APD_Galactic_SurfaceMPT = new G4MaterialPropertiesTable();
-	APD_Galactic_SurfaceMPT->AddProperty("REFLECTIVITY",{1.0*eV, 6.0*eV}, {0.,0.}, 2);
-	// APD_Galactic_SurfaceMPT->AddProperty("RINDEX",{1.0*eV, 6.0*eV}, {1.0,1.0}, 2);
+	APD_Galactic_SurfaceMPT->AddProperty("REFLECTIVITY",{2.034 * eV, 4.136 * eV}, {0.,0.}, 2);
+	APD_Galactic_SurfaceMPT->AddProperty("EFFICIENCY",{2.034 * eV, 4.136 * eV}, {1.0,1.0}, 2);
 	APD_Galactic_Surface->SetMaterialPropertiesTable(APD_Galactic_SurfaceMPT);
 
 	//APD and CsI
@@ -350,20 +351,15 @@ void DetectorConstruction::constructECAL()
 			// Create physical volumes
         	G4VPhysicalVolume* physicCsI = new G4PVPlacement(0, G4ThreeVector(x, y, 0.), logicCsI, CsIName, logicWorld, false, CopyNo, true);
         	G4VPhysicalVolume* physicTiO2 = new G4PVPlacement(0, G4ThreeVector(x, y, 0.), logicTiO2, TiO2Name, logicWorld, false, CopyNo, true);
-			G4VPhysicalVolume* physicAPD = new G4PVPlacement(0, G4ThreeVector(x, y, CsI_Z/2. + 0.5*APD_Z), logicAPD, APDName, logicWorld, false, CopyNo, true);
+			G4VPhysicalVolume* physicAPD = new G4PVPlacement(0, G4ThreeVector(x, y, CsI_Z/2. + 5.*mm +0.5*APD_Z), logicAPD, APDName, logicWorld, false, CopyNo, true);
 			// Create logical border surface
         	auto logicBorderSurface = new G4LogicalBorderSurface("CsITiO2BorderSurface_" + std::to_string(CopyNo), physicCsI, physicTiO2, CsISurface);
-			// Create physical border surface between CsI and world
-			new G4LogicalBorderSurface("CsIGalacticBorderSurface_" + std::to_string(CopyNo), physicCsI, physiWorld, CsI_Galactic_Surface);
-			std::cout<<"CsIGalactic"<<std::endl;
 			// Create physical border surface between TiO2 and world
 			new G4LogicalBorderSurface("TiO2GalacticBorderSurface_" + std::to_string(CopyNo), physicTiO2, physiWorld, TiO2_Galactic_Surface);
-			std::cout<<"TiO2Galactic"<<std::endl;
+			// Create physical border surface between CsI and world
+			new G4LogicalBorderSurface("CsIGalacticBorderSurface_" + std::to_string(CopyNo), physicCsI, physiWorld, CsI_Galactic_Surface);
 			// Create physical border surface between APD and world
-			new G4LogicalBorderSurface("APDGalacticBorderSurface_" + std::to_string(CopyNo), physicAPD, physiWorld, APD_Galactic_Surface);
-			// Create physical border surface between APD and CsI
-			new G4LogicalBorderSurface("APDCsIBorderSurface_" + std::to_string(CopyNo), physicAPD, physicCsI, APD_CsI_Surface);
-			auto TiO2Galactic_opticalSurface = dynamic_cast<G4OpticalSurface*>(logicBorderSurface->GetSurface(physicTiO2, physiWorld)->GetSurfaceProperty());
+			new G4LogicalSkinSurface("APDGalacticSkinSurface_" + std::to_string(CopyNo), logicAPD, APD_Galactic_Surface);
 			auto opticalSurface = dynamic_cast<G4OpticalSurface*>(logicBorderSurface->GetSurface(physicCsI, physicTiO2)->GetSurfaceProperty());
   			if(opticalSurface)opticalSurface->DumpInfo();
 			
