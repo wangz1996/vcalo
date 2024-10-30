@@ -36,6 +36,7 @@
 #define DetectorConstruction_h 1
 
 #include "G4VUserDetectorConstruction.hh"
+#include "G4LogicalSkinSurface.hh"
 #include "G4UnionSolid.hh"
 #include "G4SubtractionSolid.hh"
 #include "G4OpticalSurface.hh"
@@ -64,6 +65,7 @@ class DetectorConstruction : public G4VUserDetectorConstruction
     
   private:
   	Config *config;
+	G4UserLimits* userLimits;
     G4double fWorldSize;
 	G4LogicalVolume* logicWorld;
 	G4VPhysicalVolume* ConstructWorld(); 

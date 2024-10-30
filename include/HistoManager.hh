@@ -61,9 +61,8 @@ class HistoManager
 		void fillEcalHit(const G4int &copyNo,const G4double &edep,const G4double &time,const G4int &pdgid,const G4int &trackid);
 		void fillAPDHit(const G4int &copyNo,const G4double &edep,const G4double &time,const G4int &pdgid,const G4int &trackid);
 		void fillPrimary(const G4Track* trk);
-		void addConvPhoton(){++nConvPhoton;}
+		void fillConvOptHit(const float& t){++nConvPhoton;ecal_convtime.emplace_back(t);}
 		void addTotalOptPhoton(){++nTotalOptPhoton;}
-		void fillConvTime(const float& time){ecal_convtime.emplace_back(time);}
 		void bindConfig(Config* c){config=c;}
 		void changeStatusCode(const int& code){StatusCode = code;}
 		int getStatusCode(){return StatusCode;}

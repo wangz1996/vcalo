@@ -121,13 +121,15 @@ void SteppingAction::UserSteppingAction(const G4Step* aStep) {
       HistoManager::getInstance().addTotalOptPhoton();
     }
     else if (preStepPVName == "physicConv" && postStepPVName.find("World") != std::string::npos) {
-      HistoManager::getInstance().addConvPhoton();
-      HistoManager::getInstance().fillConvTime(time);
+      HistoManager::getInstance().fillConvOptHit(time);
     }
     else if ((preStepPVName.find("World") != std::string::npos) && postStepLVName == "logicAPD") {
       // std::cout<<"APD detected"<<std::endl;
         HistoManager::getInstance().fillAPDOptHit(time);
-      
+    }
+    else if ((preStepPVName.find("World") != std::string::npos) && postStepLVName == "logicConvAPD") {
+      // std::cout<<"APD detected"<<std::endl;
+        HistoManager::getInstance().fillConvOptHit(time);
     }
     else if (preStepLVName.find("logicCsI") != std::string::npos && postStepLVName == "World") {
       // std::cout<<"CsI to World"<<std::endl;

@@ -35,7 +35,7 @@
 #include "DetectorConstruction.hh"
 
 #include "SteppingAction.hh"
-
+#include "G4UserLimits.hh"
 #include "G4NistManager.hh"
 #include "G4Box.hh"
 #include "G4Orb.hh"
@@ -70,7 +70,8 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
 {
     visAttributes = new G4VisAttributes(G4Colour(0.9,0.0,0.0));
     visAttributes -> SetVisibility(false);
-
+    G4double maxStepLength = 0.001 * mm; // 设置全局最大步长为 1 mm
+    userLimits= new G4UserLimits(maxStepLength);
 	physiWorld = ConstructWorld();
     // define materials and parameters 
     // some of the materials are used by converter
@@ -124,7 +125,7 @@ G4VPhysicalVolume* DetectorConstruction::ConstructWorld()
     G4bool checkOverlaps = false;
 
     // Full sphere shape
-    G4double solidWorld_rmax = 100*cm;
+    G4double solidWorld_rmax = 500*cm;
     G4Orb*
         solidWorld = new G4Orb("World",                          // its name
                 solidWorld_rmax);                // its size 
@@ -133,6 +134,8 @@ G4VPhysicalVolume* DetectorConstruction::ConstructWorld()
         logicWorld = new G4LogicalVolume(solidWorld,             //its solid
                 Vacuum,                    //its material
                 "World");               //its name
+
+    logicWorld->SetUserLimits(userLimits); // 将UserLimits应用到World逻辑体积
     G4VPhysicalVolume*                                   
         physiWorld = new G4PVPlacement(0,                      //no rotation
                 G4ThreeVector(),        //at (0,0,0)

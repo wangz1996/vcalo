@@ -142,7 +142,7 @@ void DetectorConstruction::defineECALMaterial(){
 	//Optical properties
 	//CsI
 	for(size_t i=0;i<CsI_NEntries;i++){CsI_RIndex[i] = 1.79;}
-	for(size_t i=0;i<CsI_NEntries;i++){CsI_AbsLength[i] = 500.*cm;}
+	for(size_t i=0;i<CsI_NEntries;i++){CsI_AbsLength[i] = 1000000.*cm;}
 	for(size_t i=0;i<CsI_NEntries;i++){CsI_Rayleigh[i] = config->conf["Parameter"]["CsI"]["Rayleigh"].as<double>()*m;}
 	CsIMPT = new G4MaterialPropertiesTable();
 	CsIMPT->AddProperty("RINDEX", CsI_PEnergy, CsI_RIndex, CsI_NEntries);//Refractive index

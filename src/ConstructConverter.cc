@@ -35,7 +35,7 @@
 #include "DetectorConstruction.hh"
 
 #include "SteppingAction.hh"
-
+#include "G4UserLimits.hh"
 #include "G4NistManager.hh"
 #include "G4Box.hh"
 #include "G4Orb.hh"
@@ -71,11 +71,6 @@ G4SubtractionSolid* DetectorConstruction::constructSolidConvTiO2(){
     G4RotationMatrix* rotationx = new G4RotationMatrix();
     rotationx->rotateX(90 * deg);  // 90 degrees around Y-axis
 
-	// auto sConvTiO2 = new G4SubtractionSolid("sConvTiO2",ConvTiO2_box,Conv_box);
-	// auto solidConvTiO2 = new G4SubtractionSolid("solidConvTiO2",sConvTiO2,Polish_box,rotationy,G4ThreeVector(0.5*Conv_XY+0.5*ConvPolish_XY,0.,0.));
-    // solidConvTiO2 = new G4SubtractionSolid("solidConvTiO2",solidConvTiO2,Polish_box,rotationx,G4ThreeVector(0.,0.5*Conv_XY+0.5*ConvPolish_XY,0.));
-	// return solidConvTiO2;
-
     // Step1: Construct a TiO2 shell
     auto sConvTiO2 = new G4SubtractionSolid("sConvTiO2", ConvTiO2_box, Conv_box);
 
@@ -102,26 +97,42 @@ void DetectorConstruction::constructConverter()
 	auto solidConv = new G4Box("solidConv", 0.5*Conv_XY, 0.5*Conv_XY, 0.5*Conv_Z);
 	//Construct logical CsI;
 	auto logicConv = new G4LogicalVolume(solidConv, CsI, "logicConv");
-
+    logicConv->SetUserLimits(userLimits);
 	//Construct TiO2 reflector;
 	auto solidConvTiO2 = constructSolidConvTiO2();
 	//Construct logical TiO2 reflector;
 	auto logicConvTiO2 = new G4LogicalVolume(solidConvTiO2, TiO2, "logicConvTiO2");
+    logicConvTiO2->SetUserLimits(userLimits);
+    // std::cout<<"Minimum step length for TiO2 is :"<<logicConvTiO2->GetUserLimits()->GetUserMaxTrackLength()<<std::endl;
 
-	// //Construct APD
-	// auto solidAPD = new G4Box("solidAPD", 0.5*APD_XY, 0.5*APD_XY, 0.5*APD_Z);
-	// auto logicAPD = new G4LogicalVolume(solidAPD, G4NistManager::Instance()->FindOrBuildMaterial("G4_Si"), "logicAPD");
+	//Construct APD
+	auto solidAPD = new G4Box("solidConvAPD", 0.5*APD_XY, 0.5*APD_XY, 0.5*APD_Z);
+	auto logicConvAPD = new G4LogicalVolume(solidAPD, G4NistManager::Instance()->FindOrBuildMaterial("G4_Si"), "logicConvAPD");
+    logicConvAPD->SetUserLimits(userLimits);
 
 	//Placement
     G4String ConvName = "physicConv";
     G4String ConvTiO2Name = "physicConvTiO2";
+    G4String APDName = "physicConvAPD";
     G4VPhysicalVolume* physicConv = new G4PVPlacement(0, G4ThreeVector(0., 0., -CsI_Z), logicConv, ConvName, logicWorld, false, 0, checkOverlaps);
     G4VPhysicalVolume* physicConvTiO2 = new G4PVPlacement(0, G4ThreeVector(0., 0., -CsI_Z), logicConvTiO2, ConvTiO2Name, logicWorld, false, 0, checkOverlaps);
-    // Create logical border surface
-    auto logicBorderSurface = new G4LogicalBorderSurface("ConvTiO2BorderSurface", physicConv, physicConvTiO2, CsISurface);
-    auto opticalSurface = dynamic_cast<G4OpticalSurface*>(logicBorderSurface->GetSurface(physicConv, physicConvTiO2)->GetSurfaceProperty());
-  	if(opticalSurface)opticalSurface->DumpInfo();
-
-
+    G4RotationMatrix* rotationy = new G4RotationMatrix();
+    rotationy->rotateY(90 * deg);  // 90 degrees around Y-axis
+    G4RotationMatrix* rotationx = new G4RotationMatrix();
+    rotationx->rotateX(90 * deg);  // 90 degrees around Y-axis
+    G4VPhysicalVolume* physicConvAPD1 = new G4PVPlacement(rotationy, G4ThreeVector(0.5*Conv_XY + 5.*mm + 0.5*APD_Z, 0.,-CsI_Z), logicConvAPD, APDName+G4String("1"), logicWorld, false, 0, checkOverlaps);
+    G4VPhysicalVolume* physicConvAPD2 = new G4PVPlacement(rotationx, G4ThreeVector(0., 0.5*Conv_XY + 5.*mm + 0.5*APD_Z,-CsI_Z), logicConvAPD, APDName+G4String("2"), logicWorld, false, 0, checkOverlaps);
+    if(config->conf["Global"]["optical"].as<bool>()){
+        // Create logical border surface
+        auto logicBorderSurface = new G4LogicalBorderSurface("ConvTiO2BorderSurface", physicConv, physicConvTiO2, CsISurface);
+        auto opticalSurface = dynamic_cast<G4OpticalSurface*>(logicBorderSurface->GetSurface(physicConv, physicConvTiO2)->GetSurfaceProperty());
+        if(opticalSurface)opticalSurface->DumpInfo();
+        // Create physical border surface between TiO2 and world
+		new G4LogicalBorderSurface("ConvTiO2GalacticBorderSurface", physicConvTiO2, physiWorld, TiO2_Galactic_Surface);
+		// Create physical border surface between CsI and world
+		new G4LogicalBorderSurface("ConvCsIGalacticBorderSurface", physicConv, physiWorld, CsI_Galactic_Surface);
+        // Create physical border surface between APD and world
+        new G4LogicalSkinSurface("ConvAPDGalacticSkinSurface", logicConvAPD, APD_Galactic_Surface);
+    }
 }
 

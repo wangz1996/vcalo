@@ -6,7 +6,7 @@
 #include "Randomize.hh"
 #include "G4OpBoundaryProcess.hh"
 #include "DetectorConstruction.hh"
-#include "PhysicsList.hh"
+// #include "PhysicsList.hh"
 #include "SteppingVerbose.hh"
 #include "RunAction.hh"
 #include "EventAction.hh"
