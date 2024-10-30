@@ -84,6 +84,9 @@ void HistoManager::fill(const int& _eventNo){
 						+ (config->conf["ECAL"]["APD-Ionisation"].as<bool>() ? rand->Gaus(apdyield,TMath::Sqrt(apdyield)) : 0.);
 			ecell = yield/1000.; //MeV
 		}
+		if(config->conf["ECAL"]["Digi"].as<bool>()){
+			ecell = ecell*0.999841;
+		}
 		ecal_cellid.emplace_back(i.first);
 		ecal_celle.emplace_back(ecell);
 		apd_celle.emplace_back(apdcell);

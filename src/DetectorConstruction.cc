@@ -116,15 +116,15 @@ G4VPhysicalVolume* DetectorConstruction::ConstructWorld()
     auto AirMPT = new G4MaterialPropertiesTable();
     AirMPT->AddProperty("RINDEX", photonEnergy, AirRIndex);
 
-    G4cout << "Air G4MaterialPropertiesTable:" << G4endl;
-    AirMPT->DumpTable();
+    // G4cout << "Air G4MaterialPropertiesTable:" << G4endl;
+    // AirMPT->DumpTable();
 
     fAir->SetMaterialPropertiesTable(AirMPT);
     Vacuum->SetMaterialPropertiesTable(AirMPT);
     G4bool checkOverlaps = false;
 
     // Full sphere shape
-    G4double solidWorld_rmax = 15*cm;
+    G4double solidWorld_rmax = 100*cm;
     G4Orb*
         solidWorld = new G4Orb("World",                          // its name
                 solidWorld_rmax);                // its size 

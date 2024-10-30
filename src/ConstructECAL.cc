@@ -352,17 +352,18 @@ void DetectorConstruction::constructECAL()
         	G4VPhysicalVolume* physicCsI = new G4PVPlacement(0, G4ThreeVector(x, y, 0.), logicCsI, CsIName, logicWorld, false, CopyNo, true);
         	G4VPhysicalVolume* physicTiO2 = new G4PVPlacement(0, G4ThreeVector(x, y, 0.), logicTiO2, TiO2Name, logicWorld, false, CopyNo, true);
 			G4VPhysicalVolume* physicAPD = new G4PVPlacement(0, G4ThreeVector(x, y, CsI_Z/2. + 5.*mm +0.5*APD_Z), logicAPD, APDName, logicWorld, false, CopyNo, true);
-			// Create logical border surface
-        	auto logicBorderSurface = new G4LogicalBorderSurface("CsITiO2BorderSurface_" + std::to_string(CopyNo), physicCsI, physicTiO2, CsISurface);
-			// Create physical border surface between TiO2 and world
-			new G4LogicalBorderSurface("TiO2GalacticBorderSurface_" + std::to_string(CopyNo), physicTiO2, physiWorld, TiO2_Galactic_Surface);
-			// Create physical border surface between CsI and world
-			new G4LogicalBorderSurface("CsIGalacticBorderSurface_" + std::to_string(CopyNo), physicCsI, physiWorld, CsI_Galactic_Surface);
-			// Create physical border surface between APD and world
-			new G4LogicalSkinSurface("APDGalacticSkinSurface_" + std::to_string(CopyNo), logicAPD, APD_Galactic_Surface);
-			auto opticalSurface = dynamic_cast<G4OpticalSurface*>(logicBorderSurface->GetSurface(physicCsI, physicTiO2)->GetSurfaceProperty());
-  			if(opticalSurface)opticalSurface->DumpInfo();
-			
+			if(config->conf["Global"]["optical"].as<bool>()){
+				// Create logical border surface
+				auto logicBorderSurface = new G4LogicalBorderSurface("CsITiO2BorderSurface_" + std::to_string(CopyNo), physicCsI, physicTiO2, CsISurface);
+				// Create physical border surface between TiO2 and world
+				new G4LogicalBorderSurface("TiO2GalacticBorderSurface_" + std::to_string(CopyNo), physicTiO2, physiWorld, TiO2_Galactic_Surface);
+				// Create physical border surface between CsI and world
+				new G4LogicalBorderSurface("CsIGalacticBorderSurface_" + std::to_string(CopyNo), physicCsI, physiWorld, CsI_Galactic_Surface);
+				// Create physical border surface between APD and world
+				new G4LogicalSkinSurface("APDGalacticSkinSurface_" + std::to_string(CopyNo), logicAPD, APD_Galactic_Surface);
+				auto opticalSurface = dynamic_cast<G4OpticalSurface*>(logicBorderSurface->GetSurface(physicCsI, physicTiO2)->GetSurfaceProperty());
+				if(opticalSurface)opticalSurface->DumpInfo();
+			}
 			if(config->conf["ECAL"]["ECALShield"].as<bool>()){
 				new G4PVPlacement(0, G4ThreeVector(x,y,0.), logicSiliconeRubber, "physicSiliconeRubber", logicWorld, false, CopyNo, true);
 				new G4PVPlacement(0, G4ThreeVector(x,y,-0.5*TiO2_Z-0.5*Cushion_Z), logicCushion, "physicCushion", logicWorld, false, CopyNo, true);
