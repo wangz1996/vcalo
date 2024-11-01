@@ -68,11 +68,18 @@ TrackingAction::~TrackingAction()
   Run* run 
     = static_cast<Run*>(G4RunManager::GetRunManager()->GetCurrentRun());
   */   
-  
+  if (track->GetParentID() == 0) {
+    if (track->GetMomentum().z() < 0) {
+      HistoManager::getInstance().changeStatusCode(0);
+      const_cast<G4Track*>(track)->SetTrackStatus(fStopAndKill);
+      G4RunManager::GetRunManager()->AbortEvent();
+    }
+    HistoManager::getInstance().fillPrimary(track);
+  }
   G4ParticleDefinition* particle = track->GetDefinition();
   G4String name   = particle->GetParticleName();
   G4int ID      = track->GetTrackID();
-   G4double Ekin = track->GetKineticEnergy();
+  G4double Ekin = track->GetKineticEnergy();
   fParticleEnCode= particle->GetPDGEncoding();
   //-----------------update------------------------
 }

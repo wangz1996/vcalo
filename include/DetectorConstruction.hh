@@ -106,6 +106,8 @@ class DetectorConstruction : public G4VUserDetectorConstruction
 	G4double Conv_Z;
 	G4double ConvTiO2_XY;
 	G4double ConvTiO2_Z;
+	G4double ConvAir_XY;
+	G4double ConvAir_Z;
 	G4double ConvPolish_XY;
 	G4double ConvPolish_Z;
 

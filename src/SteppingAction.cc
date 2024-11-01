@@ -94,7 +94,8 @@ void SteppingAction::UserSteppingAction(const G4Step* aStep) {
   }
 
   // 获取步骤相关的信息
-  auto process = preStepPoint->GetProcessDefinedStep();
+  const G4VProcess *process;
+  process = (postStepPoint) ? postStepPoint->GetProcessDefinedStep(): nullptr;
   auto processName = process ? process->GetProcessName() : "";
   G4double edep = aStep->GetTotalEnergyDeposit();
   G4Track* track = aStep->GetTrack();
@@ -105,14 +106,18 @@ void SteppingAction::UserSteppingAction(const G4Step* aStep) {
   G4int copyNo = preStepPoint->GetPhysicalVolume()->GetCopyNo();
   auto particleDef = track->GetDefinition();
 
-  // 处理初级粒子
-  if (trackid == 1 && stepNumber == 1) {
-    if (track->GetMomentum().z() < 0) {
-      HistoManager::getInstance().changeStatusCode(0);
-      track->SetTrackStatus(fStopAndKill);
-      G4RunManager::GetRunManager()->AbortEvent();
+  // 处理Converter信息
+  if (processName == "conv" && postStepLVName == "logicConv" && track->GetParentID() == 0) {
+    HistoManager::getInstance().setConv();
+    const std::vector<const G4Track*>* secondaries = aStep->GetSecondaryInCurrentStep();
+    for(auto trk:*secondaries){
+      if(trk->GetDefinition()->GetPDGEncoding() == 11){
+        HistoManager::getInstance().fillConvElectron(trk);
+      }
+      else if(trk->GetDefinition()->GetPDGEncoding() == -11){
+        HistoManager::getInstance().fillConvPositron(trk);
+      }
     }
-    HistoManager::getInstance().fillPrimary(track);
   }
 
   // 处理光子信息

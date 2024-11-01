@@ -63,10 +63,13 @@ void HistoManager::book(const std::string& foutname,const bool &savegeo)
 	vTree->Branch("init_Pz",					&init_Pz);
 	vTree->Branch("init_E",					&init_E);
 	vTree->Branch("init_Ke",                &init_Ke);
+	vTree->Branch("conve_kinematic",		&conve_kinematic);
+	vTree->Branch("convp_kinematic",		&convp_kinematic);
 	vTree->Branch("nConvPhoton",			&nConvPhoton);
 	vTree->Branch("ecal_convtime",			&ecal_convtime);
 	vTree->Branch("nTotalOptPhoton",		&nTotalOptPhoton);
 	vTree->Branch("apd_celle",				&apd_celle);
+	vTree->Branch("isconv",					&isconv);
 	fSaveGeo = savegeo;
 }
 
@@ -106,6 +109,36 @@ void HistoManager::fillAPDHit(const G4int &copyNo,const G4double &edep,const G4d
 	apd_mape[copyNo]+=edep;
 }
 
+void HistoManager::fillConvElectron(const G4Track* trk){
+	//Kinematic x y z px py pz E theta phi
+	G4ThreeVector position = trk->GetPosition();
+	conve_kinematic.emplace_back(position.x());
+	conve_kinematic.emplace_back(position.y());
+	conve_kinematic.emplace_back(position.z());
+	auto momentum = trk->GetMomentum();
+	conve_kinematic.emplace_back(momentum.x());
+	conve_kinematic.emplace_back(momentum.y());
+	conve_kinematic.emplace_back(momentum.z());
+	conve_kinematic.emplace_back(trk->GetTotalEnergy());
+	conve_kinematic.emplace_back(trk->GetMomentumDirection().theta());
+	conve_kinematic.emplace_back(trk->GetMomentumDirection().phi());
+}
+
+void HistoManager::fillConvPositron(const G4Track* trk){
+	//Kinematic x y z px py pz E theta phi
+	G4ThreeVector position = trk->GetPosition();
+	convp_kinematic.emplace_back(position.x());
+	convp_kinematic.emplace_back(position.y());
+	convp_kinematic.emplace_back(position.z());
+	auto momentum = trk->GetMomentum();
+	convp_kinematic.emplace_back(momentum.x());
+	convp_kinematic.emplace_back(momentum.y());
+	convp_kinematic.emplace_back(momentum.z());
+	convp_kinematic.emplace_back(trk->GetTotalEnergy());
+	convp_kinematic.emplace_back(trk->GetMomentumDirection().theta());
+	convp_kinematic.emplace_back(trk->GetMomentumDirection().phi());
+}
+
 void HistoManager::fillPrimary(const G4Track* trk){
 	init_x = trk->GetPosition().x();
 	init_y = trk->GetPosition().y();
@@ -123,7 +156,10 @@ void HistoManager::clear(){
 	std::vector<float>().swap(ecal_celle);
 	std::vector<float>().swap(apd_optime);
 	std::vector<float>().swap(ecal_convtime);
+	std::vector<float>().swap(conve_kinematic);
+	std::vector<float>().swap(convp_kinematic);
 	apd_nphoton=0;
+	isconv=0;
 	ecal_mape.clear();
 	apd_mape.clear();
 	ecal_npmap.clear();

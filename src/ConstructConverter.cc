@@ -56,13 +56,16 @@
 void DetectorConstruction::defineConvParameter(){
     Conv_XY = 15.*cm;
     Conv_Z = 1.5*cm;
-    ConvTiO2_XY = 15.12*cm;
-    ConvTiO2_Z = 1.62*cm;
+    ConvAir_XY = 15.02*cm;
+    ConvAir_Z = 1.52*cm;
+    ConvTiO2_XY = 15.14*cm;
+    ConvTiO2_Z = 1.64*cm;
     ConvPolish_XY = 1.5*cm;
     ConvPolish_Z = 0.06*cm;
 }
 G4SubtractionSolid* DetectorConstruction::constructSolidConvTiO2(){
 	auto ConvTiO2_box = new G4Box("ConvTiO2", 0.5*ConvTiO2_XY, 0.5*ConvTiO2_XY, 0.5*ConvTiO2_Z);
+    auto ConvAir_box = new G4Box("ConvAir", 0.5*ConvAir_XY, 0.5*ConvAir_XY, 0.5*ConvAir_Z);
 	auto Conv_box = new G4Box("Conv", 0.5*Conv_XY, 0.5*Conv_XY, 0.5*Conv_Z);
 	auto ConvPolish_box = new G4Box("Polish", 0.5*ConvPolish_XY, 0.5*ConvPolish_XY, 0.5*ConvPolish_Z);
 
@@ -72,15 +75,15 @@ G4SubtractionSolid* DetectorConstruction::constructSolidConvTiO2(){
     rotationx->rotateX(90 * deg);  // 90 degrees around Y-axis
 
     // Step1: Construct a TiO2 shell
-    auto sConvTiO2 = new G4SubtractionSolid("sConvTiO2", ConvTiO2_box, Conv_box);
+    auto sConvTiO2 = new G4SubtractionSolid("sConvTiO2", ConvTiO2_box, ConvAir_box);
 
     // Step2: Subtract one polish from the shell
     auto solidConvTiO2_step1 = new G4SubtractionSolid("solidConvTiO2_step1", sConvTiO2, ConvPolish_box, rotationy,
-    G4ThreeVector(0.5 * Conv_XY + 0.5 * ConvPolish_Z, 0., 0.));
+    G4ThreeVector(0.5 * ConvAir_XY + 0.5 * ConvPolish_Z, 0., 0.));
 
     // Step3: Subtract the other polish from the shell
     auto solidConvTiO2 = new G4SubtractionSolid("solidConvTiO2", solidConvTiO2_step1, ConvPolish_box, rotationx,
-    G4ThreeVector(0., 0.5 * Conv_XY + 0.5 * ConvPolish_Z, 0.));
+    G4ThreeVector(0., 0.5 * ConvAir_XY + 0.5 * ConvPolish_Z, 0.));
 
     // 返回最终的固体
     return solidConvTiO2;
@@ -114,14 +117,14 @@ void DetectorConstruction::constructConverter()
     G4String ConvName = "physicConv";
     G4String ConvTiO2Name = "physicConvTiO2";
     G4String APDName = "physicConvAPD";
-    G4VPhysicalVolume* physicConv = new G4PVPlacement(0, G4ThreeVector(0., 0., -CsI_Z), logicConv, ConvName, logicWorld, false, 0, checkOverlaps);
-    G4VPhysicalVolume* physicConvTiO2 = new G4PVPlacement(0, G4ThreeVector(0., 0., -CsI_Z), logicConvTiO2, ConvTiO2Name, logicWorld, false, 0, checkOverlaps);
+    G4VPhysicalVolume* physicConv = new G4PVPlacement(0, G4ThreeVector(0., 0., -0.5*CsI_Z-162.3*mm-0.5*ConvTiO2_Z), logicConv, ConvName, logicWorld, false, 0, checkOverlaps);
+    G4VPhysicalVolume* physicConvTiO2 = new G4PVPlacement(0, G4ThreeVector(0., 0., -0.5*CsI_Z-162.3*mm-0.5*ConvTiO2_Z), logicConvTiO2, ConvTiO2Name, logicWorld, false, 0, checkOverlaps);
     G4RotationMatrix* rotationy = new G4RotationMatrix();
     rotationy->rotateY(90 * deg);  // 90 degrees around Y-axis
     G4RotationMatrix* rotationx = new G4RotationMatrix();
     rotationx->rotateX(90 * deg);  // 90 degrees around Y-axis
-    G4VPhysicalVolume* physicConvAPD1 = new G4PVPlacement(rotationy, G4ThreeVector(0.5*Conv_XY + 5.*mm + 0.5*APD_Z, 0.,-CsI_Z), logicConvAPD, APDName+G4String("1"), logicWorld, false, 0, checkOverlaps);
-    G4VPhysicalVolume* physicConvAPD2 = new G4PVPlacement(rotationx, G4ThreeVector(0., 0.5*Conv_XY + 5.*mm + 0.5*APD_Z,-CsI_Z), logicConvAPD, APDName+G4String("2"), logicWorld, false, 0, checkOverlaps);
+    G4VPhysicalVolume* physicConvAPD1 = new G4PVPlacement(rotationy, G4ThreeVector(0.5*Conv_XY + 5.*mm + 0.5*APD_Z, 0.,-0.5*CsI_Z-162.3*mm-0.5*ConvTiO2_Z), logicConvAPD, APDName+G4String("1"), logicWorld, false, 0, checkOverlaps);
+    G4VPhysicalVolume* physicConvAPD2 = new G4PVPlacement(rotationx, G4ThreeVector(0., 0.5*Conv_XY + 5.*mm + 0.5*APD_Z,-0.5*CsI_Z-162.3*mm-0.5*ConvTiO2_Z), logicConvAPD, APDName+G4String("2"), logicWorld, false, 0, checkOverlaps);
     if(config->conf["Global"]["optical"].as<bool>()){
         // Create logical border surface
         auto logicBorderSurface = new G4LogicalBorderSurface("ConvTiO2BorderSurface", physicConv, physicConvTiO2, CsISurface);
@@ -134,5 +137,6 @@ void DetectorConstruction::constructConverter()
         // Create physical border surface between APD and world
         new G4LogicalSkinSurface("ConvAPDGalacticSkinSurface", logicConvAPD, APD_Galactic_Surface);
     }
+    std::cout<<"Converter constructed at : "<<-0.5*CsI_Z-162.3*mm-0.5*ConvTiO2_Z<<std::endl;
 }
 

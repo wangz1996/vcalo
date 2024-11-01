@@ -65,6 +65,9 @@ class HistoManager
 		void addTotalOptPhoton(){++nTotalOptPhoton;}
 		void bindConfig(Config* c){config=c;}
 		void changeStatusCode(const int& code){StatusCode = code;}
+		void setConv(){isconv=1;};
+		void fillConvElectron(const G4Track* trk);
+		void fillConvPositron(const G4Track* trk);
 		int getStatusCode(){return StatusCode;}
 	private:
 		//Singleton
@@ -91,6 +94,7 @@ class HistoManager
 		int nConvPhoton;
 		int nTotalOptPhoton;
 		int apd_nphoton;
+		int isconv;
 		float init_x;
 		float init_y;
 		float init_z;
@@ -99,6 +103,8 @@ class HistoManager
 		float init_Pz;
 		float init_E;
 		float init_Ke;
+		std::vector<float> conve_kinematic;
+		std::vector<float> convp_kinematic;
 		std::vector<int> ecal_cellid;
 		std::vector<float> ecal_celle;
 		std::vector<float> apd_celle;
@@ -108,6 +114,7 @@ class HistoManager
 		std::map<int,float> apd_mape;
 		std::map<int,int> ecal_npmap;
 		float ecal_e;
+		
 };
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
