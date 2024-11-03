@@ -69,6 +69,10 @@ class HistoManager
 		void fillConvElectron(const G4Track* trk);
 		void fillConvPositron(const G4Track* trk);
 		int getStatusCode(){return StatusCode;}
+		int getsize_ECALe(){return conve_ECAL_kinematic.size();}
+		int getsize_ECALp(){return convp_ECAL_kinematic.size();}
+		void fillECALeHit(const G4Track* trk);
+		void fillECALpHit(const G4Track* trk);
 	private:
 		//Singleton
 		HistoManager();
@@ -103,6 +107,8 @@ class HistoManager
 		float init_Pz;
 		float init_E;
 		float init_Ke;
+		std::vector<float> conve_ECAL_kinematic;
+		std::vector<float> convp_ECAL_kinematic;
 		std::vector<float> conve_kinematic;
 		std::vector<float> convp_kinematic;
 		std::vector<int> ecal_cellid;

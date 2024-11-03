@@ -70,6 +70,8 @@ void HistoManager::book(const std::string& foutname,const bool &savegeo)
 	vTree->Branch("nTotalOptPhoton",		&nTotalOptPhoton);
 	vTree->Branch("apd_celle",				&apd_celle);
 	vTree->Branch("isconv",					&isconv);
+	vTree->Branch("conve_ECAL_kinematic",   &conve_ECAL_kinematic);
+	vTree->Branch("convp_ECAL_kinematic",    &convp_ECAL_kinematic);
 	fSaveGeo = savegeo;
 }
 
@@ -102,6 +104,32 @@ void HistoManager::fill(const int& _eventNo){
 void HistoManager::fillEcalHit(const G4int &copyNo,const G4double &edep,const G4double &time,const G4int &pdgid,const G4int &trackid){
 	// ecal_e+=edep;
 	ecal_mape[copyNo]+=edep;
+}
+
+void HistoManager::fillECALeHit(const G4Track* trk){
+	//Kinematic x y z px py pz E theta phi
+	G4ThreeVector position = trk->GetVertexPosition();
+	conve_ECAL_kinematic.emplace_back(position.x());
+	conve_ECAL_kinematic.emplace_back(position.y());
+	conve_ECAL_kinematic.emplace_back(position.z());
+	auto momentum = trk->GetVertexMomentumDirection();
+	conve_ECAL_kinematic.emplace_back(momentum.x());
+	conve_ECAL_kinematic.emplace_back(momentum.y());
+	conve_ECAL_kinematic.emplace_back(momentum.z());
+	conve_ECAL_kinematic.emplace_back(trk->GetTotalEnergy());
+}
+
+void HistoManager::fillECALpHit(const G4Track* trk){
+	//Kinematic x y z px py pz E theta phi
+	G4ThreeVector position = trk->GetVertexPosition();
+	convp_ECAL_kinematic.emplace_back(position.x());
+	convp_ECAL_kinematic.emplace_back(position.y());
+	convp_ECAL_kinematic.emplace_back(position.z());
+	auto momentum = trk->GetVertexMomentumDirection();
+	convp_ECAL_kinematic.emplace_back(momentum.x());
+	convp_ECAL_kinematic.emplace_back(momentum.y());
+	convp_ECAL_kinematic.emplace_back(momentum.z());
+	convp_ECAL_kinematic.emplace_back(trk->GetTotalEnergy());
 }
 
 void HistoManager::fillAPDHit(const G4int &copyNo,const G4double &edep,const G4double &time,const G4int &pdgid,const G4int &trackid){
@@ -155,9 +183,12 @@ void HistoManager::clear(){
 	std::vector<int>().swap(ecal_cellid);
 	std::vector<float>().swap(ecal_celle);
 	std::vector<float>().swap(apd_optime);
+	std::vector<float>().swap(apd_celle);
 	std::vector<float>().swap(ecal_convtime);
 	std::vector<float>().swap(conve_kinematic);
 	std::vector<float>().swap(convp_kinematic);
+	std::vector<float>().swap(conve_ECAL_kinematic);
+	std::vector<float>().swap(convp_ECAL_kinematic);
 	apd_nphoton=0;
 	isconv=0;
 	ecal_mape.clear();

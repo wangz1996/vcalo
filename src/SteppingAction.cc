@@ -120,6 +120,16 @@ void SteppingAction::UserSteppingAction(const G4Step* aStep) {
     }
   }
 
+  // 处理ECAL表面的电子对信息
+  if (postStepLVName == "logicCsI" ){
+    if (track->GetDefinition()->GetPDGEncoding() == 11 && track->GetParentID() == 1 && HistoManager::getInstance().getsize_ECALe() == 0) {
+      HistoManager::getInstance().fillECALeHit(track);
+    }
+    else if(track->GetDefinition()->GetPDGEncoding() == -11 && track->GetParentID() == 1 && HistoManager::getInstance().getsize_ECALp() == 0) {
+      HistoManager::getInstance().fillECALpHit(track);
+    }
+  }
+
   // 处理光子信息
   if (particleDef == G4OpticalPhoton::OpticalPhotonDefinition()) {
     if (stepNumber == 1) {
