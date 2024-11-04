@@ -110,6 +110,7 @@ void SteppingAction::UserSteppingAction(const G4Step* aStep) {
   if (processName == "conv" && postStepLVName == "logicConv" && track->GetParentID() == 0) {
     HistoManager::getInstance().setConv();
     const std::vector<const G4Track*>* secondaries = aStep->GetSecondaryInCurrentStep();
+    // std::cout<<"conversion secondaries: "<<secondaries->size()<<std::endl;
     for(auto trk:*secondaries){
       if(trk->GetDefinition()->GetPDGEncoding() == 11){
         HistoManager::getInstance().fillConvElectron(trk);
@@ -117,11 +118,14 @@ void SteppingAction::UserSteppingAction(const G4Step* aStep) {
       else if(trk->GetDefinition()->GetPDGEncoding() == -11){
         HistoManager::getInstance().fillConvPositron(trk);
       }
+      else{
+        // std::cout<<"Nucleus name: "<<trk->GetDefinition()->GetParticleName()<<std::endl;
+      }
     }
   }
 
   // 处理ECAL表面的电子对信息
-  if (postStepLVName == "logicCsI" ){
+  if (postStepPVName.find("physicCsI")!=std::string::npos){
     if (track->GetDefinition()->GetPDGEncoding() == 11 && track->GetParentID() == 1 && HistoManager::getInstance().getsize_ECALe() == 0) {
       HistoManager::getInstance().fillECALeHit(track);
     }

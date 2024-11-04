@@ -71,7 +71,7 @@ void HistoManager::book(const std::string& foutname,const bool &savegeo)
 	vTree->Branch("apd_celle",				&apd_celle);
 	vTree->Branch("isconv",					&isconv);
 	vTree->Branch("conve_ECAL_kinematic",   &conve_ECAL_kinematic);
-	vTree->Branch("convp_ECAL_kinematic",    &convp_ECAL_kinematic);
+	vTree->Branch("convp_ECAL_kinematic",   &convp_ECAL_kinematic);
 	fSaveGeo = savegeo;
 }
 
@@ -107,29 +107,35 @@ void HistoManager::fillEcalHit(const G4int &copyNo,const G4double &edep,const G4
 }
 
 void HistoManager::fillECALeHit(const G4Track* trk){
-	//Kinematic x y z px py pz E theta phi
-	G4ThreeVector position = trk->GetVertexPosition();
+	//Kinematic x y z px py pz E theta phi Ke
+	G4ThreeVector position = trk->GetPosition();
 	conve_ECAL_kinematic.emplace_back(position.x());
 	conve_ECAL_kinematic.emplace_back(position.y());
 	conve_ECAL_kinematic.emplace_back(position.z());
-	auto momentum = trk->GetVertexMomentumDirection();
+	auto momentum = trk->GetMomentumDirection();
 	conve_ECAL_kinematic.emplace_back(momentum.x());
 	conve_ECAL_kinematic.emplace_back(momentum.y());
 	conve_ECAL_kinematic.emplace_back(momentum.z());
 	conve_ECAL_kinematic.emplace_back(trk->GetTotalEnergy());
+	conve_ECAL_kinematic.emplace_back(trk->GetMomentumDirection().theta());
+	conve_ECAL_kinematic.emplace_back(trk->GetMomentumDirection().phi());
+	conve_ECAL_kinematic.emplace_back(trk->GetKineticEnergy());
 }
 
 void HistoManager::fillECALpHit(const G4Track* trk){
-	//Kinematic x y z px py pz E theta phi
-	G4ThreeVector position = trk->GetVertexPosition();
+	//Kinematic x y z px py pz E theta phi Ke
+	G4ThreeVector position = trk->GetPosition();
 	convp_ECAL_kinematic.emplace_back(position.x());
 	convp_ECAL_kinematic.emplace_back(position.y());
 	convp_ECAL_kinematic.emplace_back(position.z());
-	auto momentum = trk->GetVertexMomentumDirection();
+	auto momentum = trk->GetMomentumDirection();
 	convp_ECAL_kinematic.emplace_back(momentum.x());
 	convp_ECAL_kinematic.emplace_back(momentum.y());
 	convp_ECAL_kinematic.emplace_back(momentum.z());
 	convp_ECAL_kinematic.emplace_back(trk->GetTotalEnergy());
+	convp_ECAL_kinematic.emplace_back(trk->GetMomentumDirection().theta());
+	convp_ECAL_kinematic.emplace_back(trk->GetMomentumDirection().phi());
+	convp_ECAL_kinematic.emplace_back(trk->GetKineticEnergy());
 }
 
 void HistoManager::fillAPDHit(const G4int &copyNo,const G4double &edep,const G4double &time,const G4int &pdgid,const G4int &trackid){
@@ -138,7 +144,7 @@ void HistoManager::fillAPDHit(const G4int &copyNo,const G4double &edep,const G4d
 }
 
 void HistoManager::fillConvElectron(const G4Track* trk){
-	//Kinematic x y z px py pz E theta phi
+	//Kinematic x y z px py pz E theta phi Ke
 	G4ThreeVector position = trk->GetPosition();
 	conve_kinematic.emplace_back(position.x());
 	conve_kinematic.emplace_back(position.y());
@@ -150,10 +156,11 @@ void HistoManager::fillConvElectron(const G4Track* trk){
 	conve_kinematic.emplace_back(trk->GetTotalEnergy());
 	conve_kinematic.emplace_back(trk->GetMomentumDirection().theta());
 	conve_kinematic.emplace_back(trk->GetMomentumDirection().phi());
+	conve_kinematic.emplace_back(trk->GetKineticEnergy());
 }
 
 void HistoManager::fillConvPositron(const G4Track* trk){
-	//Kinematic x y z px py pz E theta phi
+	//Kinematic x y z px py pz E theta phi Ke
 	G4ThreeVector position = trk->GetPosition();
 	convp_kinematic.emplace_back(position.x());
 	convp_kinematic.emplace_back(position.y());
@@ -165,6 +172,7 @@ void HistoManager::fillConvPositron(const G4Track* trk){
 	convp_kinematic.emplace_back(trk->GetTotalEnergy());
 	convp_kinematic.emplace_back(trk->GetMomentumDirection().theta());
 	convp_kinematic.emplace_back(trk->GetMomentumDirection().phi());
+	convp_kinematic.emplace_back(trk->GetKineticEnergy());
 }
 
 void HistoManager::fillPrimary(const G4Track* trk){
