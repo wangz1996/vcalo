@@ -73,6 +73,7 @@ class HistoManager
 		int getsize_ECALp(){return convp_ECAL_kinematic.size();}
 		void fillECALeHit(const G4Track* trk);
 		void fillECALpHit(const G4Track* trk);
+		void fillConvHit(const G4double& edep){conv_e+=edep;}
 	private:
 		//Singleton
 		HistoManager();
@@ -92,6 +93,8 @@ class HistoManager
 		Config* config;
 
 		int StatusCode;
+
+		TRandom3 *rand;
 
 	private:
 		int eventNo;
@@ -120,6 +123,7 @@ class HistoManager
 		std::map<int,float> apd_mape;
 		std::map<int,int> ecal_npmap;
 		float ecal_e;
+		float conv_e;
 		
 };
 

@@ -161,6 +161,9 @@ void SteppingAction::UserSteppingAction(const G4Step* aStep) {
   } else if (postStepLVName == "logicCsI") {
     HistoManager::getInstance().fillEcalHit(copyNo, edep, time, pdgid, trackid);
   }
+  else if(postStepLVName == "logicConv"){
+    HistoManager::getInstance().fillConvHit(edep);
+  }
 }
 
 

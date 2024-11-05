@@ -38,10 +38,12 @@
 
 HistoManager& HistoManager::getInstance(){
 	static HistoManager HM;
+	
 	return HM;
 }
 
 HistoManager::HistoManager():vFile(0),vTree(0){
+	rand = new TRandom3();
 }
 
 void HistoManager::book(const std::string& foutname,const bool &savegeo)
@@ -53,6 +55,7 @@ void HistoManager::book(const std::string& foutname,const bool &savegeo)
   vTree->Branch("ecal_cellid",               &ecal_cellid);
   vTree->Branch("ecal_celle",               &ecal_celle);
   vTree->Branch("ecal_e",					&ecal_e);
+  vTree->Branch("conv_e",					&conv_e);
 	vTree->Branch("apd_nphoton",			&apd_nphoton);
 	vTree->Branch("apd_optime",			&apd_optime);
 	vTree->Branch("init_x",					&init_x);
@@ -76,12 +79,17 @@ void HistoManager::book(const std::string& foutname,const bool &savegeo)
 }
 
 void HistoManager::fill(const int& _eventNo){
-	TRandom3 *rand = new TRandom3();
+	// rand->SetSeed(_eventNo);
 	for(auto i:ecal_mape){
 		float ecell = i.second;
 		float apdcell = apd_mape[i.first];
-		ecell = ecell + rand->Gaus(0,config->conf["ECAL"]["Crystal-Nonuniformity"].as<double>()*ecell);
+		if(config->conf["ECAL"]["Crystal-Nonuniformity"].as<double>()!=0.0){
+			// std::cout<<"Non-uniformity fluctuation"<<std::endl;
+			ecell = ecell + rand->Gaus(0,config->conf["ECAL"]["Crystal-Nonuniformity"].as<double>()*ecell);
+		}
+		
 		if(config->conf["ECAL"]["light-yield-effect"].as<bool>()){
+			// std::cout<<"Light yield effect"<<std::endl;
 			double yield = ecell*1000.; //pe
 			double apdyield = apdcell*1e6/3.6;
 			yield = yield + rand->Gaus(0,TMath::Sqrt(yield)) 
@@ -90,6 +98,7 @@ void HistoManager::fill(const int& _eventNo){
 			ecell = yield/1000.; //MeV
 		}
 		if(config->conf["ECAL"]["Digi"].as<bool>()){
+			// std::cout<<"Digitization"<<std::endl;
 			ecell = ecell*0.999841;
 		}
 		ecell = ecell > 0. ? ecell : 0.;
@@ -204,6 +213,7 @@ void HistoManager::clear(){
 	apd_mape.clear();
 	ecal_npmap.clear();
 	ecal_e=0.;
+	conv_e=0.;
 	init_x=0.;
 	init_y=0.;
 	init_z=0.;

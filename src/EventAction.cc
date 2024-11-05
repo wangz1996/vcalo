@@ -45,6 +45,7 @@ EventAction::EventAction(Config *c)
  fEventEdep(0),fPrintModulo(100),fDecayChain(),config(c)
 {
   fGParticleSource  = new G4GeneralParticleSource();
+  fPrintModulo = c->conf["Global"]["beamon"].as<int>()/100;
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......

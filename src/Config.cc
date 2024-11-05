@@ -96,17 +96,11 @@ int Config::Run()
 	UI->ApplyCommand(G4String("/event/verbose ")+G4String(conf["Verbose"]["event"].as<std::string>()));
 
 	G4VisManager* visManager = new G4VisExecutive();
-	std::cout<<"Check 0"<<std::endl;
     visManager->Initialize();
 	if(conf["Global"]["vis"].as<bool>()){
-		std::cout<<"Check 1"<<std::endl;
 		G4UIExecutive* uie = new G4UIExecutive(1,nullptr,"Qt");
-		std::cout<<"Check 2"<<std::endl;
 		SetupVisualization();
-		std::cout<<"Check 3"<<std::endl;
-
 		uie->SessionStart();
-		std::cout<<"Check 4"<<std::endl;
 		// delete uie;
 	}
 	//Initialize G4 kernel
