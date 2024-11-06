@@ -107,6 +107,17 @@ void HistoManager::fill(const int& _eventNo){
 		apd_celle.emplace_back(apdcell);
 		ecal_e+=ecell;
 	}
+	if(config->conf["Converter"]["Crystal-Nonuniformity"].as<double>()!=0.0){
+		// std::cout<<"Non-uniformity fluctuation"<<std::endl;
+		conv_e = conv_e + rand->Gaus(0,config->conf["Converter"]["Crystal-Nonuniformity"].as<double>()*conv_e);
+	}
+	if(config->conf["Converter"]["light-yield-effect"].as<bool>()){
+		// std::cout<<"Light yield effect"<<std::endl;
+		double yield = conv_e*2000.; //pe
+		yield = yield + rand->Gaus(0,TMath::Sqrt(yield)) 
+						+ (config->conf["Converter"]["E-Noise"].as<bool>() ? rand->Gaus(0,1000.) : 0.);
+		conv_e = yield/2000.; //MeV
+	}
 	eventNo = _eventNo;
 	vTree->Fill();
 }

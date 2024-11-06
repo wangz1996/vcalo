@@ -45,25 +45,31 @@ Parameter:
                 SigmaAlpha: 0.1
 #Construct Converter
 Converter:
-        build: False
+        build: True
+        Crystal-Nonuniformity: 0.05
+        light-yield-effect: True
+        E-Noise: True
         
 #Construct Calorimeter
 ECAL:
+        nCryX: 5
+        nCryY: 5
         ECALShield: True
         build: True
         Crystal-Nonuniformity: 0.02
         light-yield-effect: True
         E-Noise: True
         APD-Ionisation: True
+        Digi: True
 
 #Particle source setup
 Source:
-        type: Point
-        size: 30. # For Plane type source only (cm)
-        angtype: planar
+        type: Plane
+        size: 15. # For Plane type source only (cm)
+        angtype: iso
         particle: gamma
         energy: ENERGYHERE  # Unit is in MeV
-        position: [ 0., 0., -500.]   # Unit is in mm
+        position: [ 0., 0., -289.]   # Unit is in mm #Converter upper plane -287.5 mm
         direction: [ 0., 0., 1.]
 #Verbose
 Verbose:
