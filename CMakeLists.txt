@@ -2,7 +2,7 @@
 # Setup the project
 cmake_minimum_required(VERSION 3.11 FATAL_ERROR)
 project(vcalo VERSION 1.0.0 LANGUAGES C CXX )
-add_definitions(-std=c++20)
+add_definitions(-std=c++17)
 
 option(WITH_GEANT4_UIVIS "Build example with Geant4 UI and Vis drivers" ON)
 if(WITH_GEANT4_UIVIS)

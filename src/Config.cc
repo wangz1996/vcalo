@@ -1,6 +1,6 @@
 #include "Config.hh"
 
-using namespace std;
+using std::ofstream,std::cout,std::endl,std::ifstream;
 
 Config::Config()
 {}
@@ -147,41 +147,76 @@ void Config::SetupVisualization()
 
 void Config::Print()
 {
-	ofstream fout("./default.yaml");
-	fout<<"#Project information"<<endl;
-	fout<<"Project: Vlast-CALO"<<endl;
-	fout<<"Contact: Zhen Wang < wangz1996@sjtu.edu.cn >"<<endl;
-	fout<<"\n"<<endl;
-	fout<<"Global:"<<endl;
-	fout<<"        useseed: False # default: system time in nano-second"<<endl;
-	fout<<"        seed: 1234"<<endl;
-	fout<<"\n"<<endl;
-	fout<<"        usemac: False # Currently not applicable"<<endl;
-	fout<<"        mac: ./vis.mac"<<endl;
-	fout<<"\n"<<endl;
-	fout<<"        output: ./test.root # Output root file name"<<endl;
-	fout<<"        beamon: 1"<<endl;
-	fout<<"        savegeo: True"<<endl;
-	fout<<"        optical: True"<<endl;
-	fout<<"\n"<<endl;
-	fout<<"#Construct Calorimeter"<<endl;
-	fout<<"ECAL:"<<endl;
-	fout<<"        ECALShield: True"<<endl;
-	fout<<"        build: True"<<endl;
-	fout<<"\n"<<endl;
-	fout<<"#Particle source setup"<<endl;
-	fout<<"Source:"<<endl;
-	fout<<"        particle: mu-"<<endl;
-	fout<<"        energy: 3000  # Unit is in MeV"<<endl;
-	fout<<"        position: [ 0., 0., -100.]   # Unit is in cm"<<endl;
-	fout<<"        direction: [ 0., 0., 1.]"<<endl;
-	fout<<"\n"<<endl;
-	fout<<"#Verbose"<<endl;
-	fout<<"Verbose:"<<endl;
-	fout<<"        run: 0"<<endl;
-	fout<<"        control: 0"<<endl;
-	fout<<"        event: 0"<<endl;
-	fout<<"        tracking: 0"<<endl;
-	fout.close();
+    ofstream fout("./default.yaml");
+    fout << "# Project information" << endl;
+    fout << "Project: Vlast-CALO" << endl;
+    fout << "Contact: Zhen Wang < wangz1996@sjtu.edu.cn >" << endl;
+    fout << "\n" << endl;
 
+    fout << "Global:" << endl;
+    fout << "    vis: False" << endl;
+    fout << "    useseed: False" << endl;
+    fout << "    seed: 100" << endl;
+    fout << "    usemac: False" << endl;
+    fout << "    mac: ./primaryproton.mac" << endl;
+    fout << "    optical: False" << endl;
+    fout << "    output: ./test.root" << endl;
+    fout << "    beamon: 20" << endl;
+    fout << "    savegeo: False" << endl;
+    fout << "    savetrack: 1" << endl;
+    fout << "    trackEnergy_threshold: 2.0" << endl;
+    fout << "\n" << endl;
+
+    fout << "Parameter:" << endl;
+    fout << "    CsI:" << endl;
+    fout << "        Rayleigh: 0.6" << endl;
+    fout << "    TiO2:" << endl;
+    fout << "        Reflectivity: 0.8" << endl;
+    fout << "        AbsLength: 1.0" << endl;
+    fout << "    Surface:" << endl;
+    fout << "        SpecularLobe: 0.8" << endl;
+    fout << "        SpecularSpike: 0.2" << endl;
+    fout << "        Reflectivity: 0.98" << endl;
+    fout << "        Type: dielectric_dielectric" << endl;
+    fout << "        Model: unified" << endl;
+    fout << "        Finish: ground" << endl;
+    fout << "        SigmaAlpha: 0.1" << endl;
+    fout << "\n" << endl;
+
+    fout << "Converter:" << endl;
+    fout << "    build: True" << endl;
+    fout << "    Crystal-Nonuniformity: 0.05" << endl;
+    fout << "    light-yield-effect: True" << endl;
+    fout << "    E-Noise: True" << endl;
+    fout << "\n" << endl;
+
+    fout << "ECAL:" << endl;
+    fout << "    nCryX: 5" << endl;
+    fout << "    nCryY: 5" << endl;
+    fout << "    ECALShield: True" << endl;
+    fout << "    build: True" << endl;
+    fout << "    Crystal-Nonuniformity: 0.02" << endl;
+    fout << "    light-yield-effect: True" << endl;
+    fout << "    E-Noise: True" << endl;
+    fout << "    APD-Ionisation: True" << endl;
+    fout << "    Digi: True" << endl;
+    fout << "\n" << endl;
+
+    fout << "Source:" << endl;
+    fout << "    type: Point" << endl;
+    fout << "    size: 15.0" << endl;
+    fout << "    angtype: planar" << endl;
+    fout << "    particle: gamma" << endl;
+    fout << "    energy: 100" << endl;
+    fout << "    position: [0.0, 0.0, -289.0]" << endl;
+    fout << "    direction: [0.0, 0.0, 1.0]" << endl;
+    fout << "\n" << endl;
+
+    fout << "Verbose:" << endl;
+    fout << "    run: 0" << endl;
+    fout << "    control: 0" << endl;
+    fout << "    event: 0" << endl;
+    fout << "    tracking: 0" << endl;
+
+    fout.close();
 }
