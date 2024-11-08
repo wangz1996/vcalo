@@ -47,13 +47,13 @@ class DetectorConstruction;
 class EventAction;
 class G4LogicalVolume;
 class HistoManager;
+class Config;
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 class SteppingAction : public G4UserSteppingAction
 {
 public:
-  SteppingAction(DetectorConstruction*, EventAction*);
-  //SteppingAction();
+  SteppingAction(DetectorConstruction*, EventAction*, Config*);
   virtual ~SteppingAction();
   
   static SteppingAction* Instance();
@@ -62,25 +62,14 @@ public:
     
   void Reset();
 
-  //set methods
-  void SetVolume(G4LogicalVolume* volume) {fVolume = volume;}
-
-  // get methods
-  G4LogicalVolume* GetVolume() const {return fVolume;}
-  //G4double GetEnergy() const { return fEnergy;}
-  double preEnergy;
-
 private:
   static SteppingAction* fgInstance;
   G4LogicalVolume* fVolume;
   DetectorConstruction* fDetector;
-  EventAction*          fEventAction_Step;  
+  EventAction*          fEventAction_Step; 
   G4double BirksAttenuation(const G4Step* aStep);
-    G4GeneralParticleSource * fGParticleSource;
-    G4double kineticEn;
-    G4String volume1;
-    G4String volume2;
-  //G4double fEnergy; 
+  G4GeneralParticleSource * fGParticleSource;
+  Config* config;
 
 };
 

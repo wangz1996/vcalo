@@ -18,7 +18,7 @@ include(${Geant4_USE_FILE})
 #----------------------------------------------------------------------------
 # Find ROOT (required package)
 #
-find_package(ROOT REQUIRED COMPONENTS TMVA ROOTVecOps ROOTDataFrame Geom)
+find_package(ROOT REQUIRED COMPONENTS TMVA ROOTVecOps ROOTDataFrame Geom Eve)
 find_package(yaml-cpp REQUIRED)
 
 #----------------------------------------------------------------------------

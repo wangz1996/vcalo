@@ -6,6 +6,8 @@
 #include "Randomize.hh"
 #include "G4OpBoundaryProcess.hh"
 #include "DetectorConstruction.hh"
+#include "TList.h"
+#include "TPolyLine3D.h"
 // #include "PhysicsList.hh"
 #include "SteppingVerbose.hh"
 #include "RunAction.hh"

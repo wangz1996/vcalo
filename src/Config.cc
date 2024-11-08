@@ -85,7 +85,7 @@ int Config::Run()
 	TrackingAction* trackingAction = new TrackingAction(runAction,eventAction,this);
 	runManager->SetUserAction(trackingAction);
 
-	SteppingAction* steppingAction = new SteppingAction(detector,eventAction);
+	SteppingAction* steppingAction = new SteppingAction(detector,eventAction,this);
 	runManager->SetUserAction(steppingAction);
 
 	runManager->SetVerboseLevel(conf["Verbose"]["run"].as<int>());

@@ -51,15 +51,12 @@ SteppingAction* SteppingAction::Instance()
 }
 //
 SteppingAction::SteppingAction(DetectorConstruction* det,
-			       EventAction* event) 
+			       EventAction* event, Config* config) 
   : G4UserSteppingAction(),
     fVolume(0),
-    fDetector(det), fEventAction_Step(event)                                         
+    fDetector(det), fEventAction_Step(event), config(config)                                       
 {
   fgInstance = this;
-  kineticEn=0;
-  volume1="none";
-  volume2="none";
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
@@ -105,7 +102,6 @@ void SteppingAction::UserSteppingAction(const G4Step* aStep) {
   G4int pdgid = track->GetDefinition()->GetPDGEncoding();
   G4int copyNo = preStepPoint->GetPhysicalVolume()->GetCopyNo();
   auto particleDef = track->GetDefinition();
-
   // 处理Converter信息
   if (processName == "conv" && postStepLVName == "logicConv" && track->GetParentID() == 0) {
     HistoManager::getInstance().setConv();
@@ -123,6 +119,38 @@ void SteppingAction::UserSteppingAction(const G4Step* aStep) {
       }
     }
   }
+  // 处理track信息
+  G4int savetrack = config->conf["Global"]["savetrack"].as<int>();
+  G4double trackEnergy_threshold = config->conf["Global"]["trackEnergy_threshold"].as<double>();
+  // std::cout<<"Vertex Kinetic Energy: "<<track->GetVertexKineticEnergy()<<std::endl;
+  //savetrack :
+  //0: no save
+  //1: save conversion electron tracks
+  //2: save all tracks
+  if(track->GetVertexKineticEnergy() < trackEnergy_threshold) savetrack=0;
+
+  if (savetrack!=0)
+  {
+    if (track->GetParentID() == 1 && track->GetCreatorProcess()->GetProcessName() == "conv" || savetrack > 1)
+    {
+      if (track->GetDefinition()->GetPDGEncoding() == 11)
+        HistoManager::getInstance().fillTracks(trackid, preStepPoint->GetPosition(), 2);
+      else if (track->GetDefinition()->GetPDGEncoding() == -11)
+        HistoManager::getInstance().fillTracks(trackid, preStepPoint->GetPosition(), 4);
+      else
+      {
+        HistoManager::getInstance().fillTracks(trackid, preStepPoint->GetPosition());
+      }
+    }
+    if (track->GetParentID() == 0){
+      HistoManager::getInstance().fillTracks(trackid, preStepPoint->GetPosition(),3);
+    }
+  }
+
+  // if(track->GetParentID() == 1 && track->GetCreatorProcess()->GetProcessName() == "conv"){
+  //   if(track->GetDefinition()->GetPDGEncoding() == 11)HistoManager::getInstance().fillConveTrack(preStepPoint->GetPosition());
+  //   else if(track->GetDefinition()->GetPDGEncoding() == -11)HistoManager::getInstance().fillConvpTrack(preStepPoint->GetPosition());
+  // }
 
   // 处理ECAL表面的电子对信息
   if (postStepPVName.find("physicCsI")!=std::string::npos){
@@ -133,7 +161,6 @@ void SteppingAction::UserSteppingAction(const G4Step* aStep) {
       HistoManager::getInstance().fillECALpHit(track);
     }
   }
-
   // 处理光子信息
   if (particleDef == G4OpticalPhoton::OpticalPhotonDefinition()) {
     if (stepNumber == 1) {
@@ -154,7 +181,6 @@ void SteppingAction::UserSteppingAction(const G4Step* aStep) {
       // std::cout<<"CsI to World"<<std::endl;
     }
   }
-
   // 处理能量沉积和命中
   if (postStepLVName == "logicAPD") {
     HistoManager::getInstance().fillAPDHit(copyNo, edep, time, pdgid, trackid);

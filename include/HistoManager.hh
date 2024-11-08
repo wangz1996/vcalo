@@ -31,11 +31,14 @@
 
 #ifndef HistoManager_h
 #define HistoManager_h
-
+#include "TList.h"
+#include "TPolyLine3D.h"
 #include "globals.hh"
 #include <TRandom3.h>
 #include "TSystem.h"
+#include <TEveManager.h>
 #include "TGeoManager.h"
+#include <TEveGeoNode.h>
 #include "TMath.h"
 #include "TRandom.h"
 #include "Config.hh"
@@ -74,6 +77,7 @@ class HistoManager
 		void fillECALeHit(const G4Track* trk);
 		void fillECALpHit(const G4Track* trk);
 		void fillConvHit(const G4double& edep){conv_e+=edep;}
+		void fillTracks(const int& track_id,const G4ThreeVector& pos,const int& color=0);
 	private:
 		//Singleton
 		HistoManager();
@@ -124,6 +128,8 @@ class HistoManager
 		std::map<int,int> ecal_npmap;
 		float ecal_e;
 		float conv_e;
+		TList tracks;
+		std::map<int, TPolyLine3D*> map_track;
 		
 };
 
