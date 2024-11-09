@@ -56,6 +56,8 @@ SteppingAction::SteppingAction(DetectorConstruction* det,
     fVolume(0),
     fDetector(det), fEventAction_Step(event), config(config)                                       
 {
+  savetrack = config->conf["Global"]["savetrack"].as<int>();
+  trackEnergy_threshold = config->conf["Global"]["trackEnergy_threshold"].as<double>();
   fgInstance = this;
 }
 
@@ -120,8 +122,6 @@ void SteppingAction::UserSteppingAction(const G4Step* aStep) {
     }
   }
   // 处理track信息
-  G4int savetrack = config->conf["Global"]["savetrack"].as<int>();
-  G4double trackEnergy_threshold = config->conf["Global"]["trackEnergy_threshold"].as<double>();
   //savetrack :
   //0: no save
   //1: save conversion electron tracks
@@ -147,11 +147,11 @@ void SteppingAction::UserSteppingAction(const G4Step* aStep) {
   }
 
   // 处理ECAL表面的电子对信息
-  if (postStepPVName.find("physicCsI")!=std::string::npos){
-    if (track->GetDefinition()->GetPDGEncoding() == 11 && track->GetParentID() == 1 && HistoManager::getInstance().getsize_ECALe() == 0) {
+  if (postStepLVName == "logicCsI" && track->GetParentID() == 1 && (HistoManager::getInstance().getsize_ECALe() == 0 || HistoManager::getInstance().getsize_ECALp() == 0)) {
+    if (track->GetDefinition()->GetPDGEncoding() == 11) {
       HistoManager::getInstance().fillECALeHit(track);
     }
-    else if(track->GetDefinition()->GetPDGEncoding() == -11 && track->GetParentID() == 1 && HistoManager::getInstance().getsize_ECALp() == 0) {
+    else if(track->GetDefinition()->GetPDGEncoding() == -11) {
       HistoManager::getInstance().fillECALpHit(track);
     }
   }

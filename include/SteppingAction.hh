@@ -70,6 +70,8 @@ private:
   G4double BirksAttenuation(const G4Step* aStep);
   G4GeneralParticleSource * fGParticleSource;
   Config* config;
+  G4int savetrack;
+  G4double trackEnergy_threshold;
 
 };
 

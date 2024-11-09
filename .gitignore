@@ -2,6 +2,7 @@ build/
 build/*
 jobs/
 test/
+tmp/
 *.root
 *log
 log
