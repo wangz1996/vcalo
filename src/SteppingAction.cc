@@ -122,7 +122,6 @@ void SteppingAction::UserSteppingAction(const G4Step* aStep) {
   // 处理track信息
   G4int savetrack = config->conf["Global"]["savetrack"].as<int>();
   G4double trackEnergy_threshold = config->conf["Global"]["trackEnergy_threshold"].as<double>();
-  // std::cout<<"Vertex Kinetic Energy: "<<track->GetVertexKineticEnergy()<<std::endl;
   //savetrack :
   //0: no save
   //1: save conversion electron tracks
@@ -146,11 +145,6 @@ void SteppingAction::UserSteppingAction(const G4Step* aStep) {
       HistoManager::getInstance().fillTracks(trackid, preStepPoint->GetPosition(),3);
     }
   }
-
-  // if(track->GetParentID() == 1 && track->GetCreatorProcess()->GetProcessName() == "conv"){
-  //   if(track->GetDefinition()->GetPDGEncoding() == 11)HistoManager::getInstance().fillConveTrack(preStepPoint->GetPosition());
-  //   else if(track->GetDefinition()->GetPDGEncoding() == -11)HistoManager::getInstance().fillConvpTrack(preStepPoint->GetPosition());
-  // }
 
   // 处理ECAL表面的电子对信息
   if (postStepPVName.find("physicCsI")!=std::string::npos){
