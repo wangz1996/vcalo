@@ -100,12 +100,12 @@ void ana(){
 		fpre->SetParameters(1000.,xmax,sqrt(xmax));
 		fpre->SetParLimits(1,10.,1.2*xmax);
 		fpre->SetParLimits(2,0.5*sqrt(xmax),1.2*sqrt(xmax));
-		h->Fit("fpre","s","",0.8*xmax,1.2*xmax);
+		h->Fit("fpre","sq","",0.8*xmax,1.2*xmax);
 		auto f1 = new TF1("f1","[0]*ROOT::Math::crystalball_function(x, [1], [2], [3], [4])",0.2*e,1.2*e);
 		f1->SetParameters(1000.,1.,1.,fpre->GetParameter(2),fpre->GetParameter(1));
 		f1->SetParLimits(3,0.,1.5*h->GetRMS());
 		//f1->SetParLimits(4,0.8*h->GetMean(),1.2*e);
-		auto fr = h->Fit("f1","s+","",0.2*e,1.2*e);
+		auto fr = h->Fit("f1","s","",0.2*e,1.2*e);
 		cout<<fr->Chi2()/fr->Ndf()<<endl;
 		
 		double mean=f1->GetParameter(4);
