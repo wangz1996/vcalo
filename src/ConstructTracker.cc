@@ -69,6 +69,6 @@ void DetectorConstruction::constructTracker()
 	defineTrackerMaterial();
 	auto solidHex = constructSolidHex();
 	auto logicHex = new G4LogicalVolume(solidHex, Si, "logicHex");
-	new G4PVPlacement(0, G4ThreeVector(0, 0, Conv_PosZ + ConvTiO2_Z*0.5 + Hex_Z*0.5), logicHex, "physHex", logicWorld, false, 0);
+	new G4PVPlacement(0, G4ThreeVector(0, 0, Conv_PosZ + ConvTiO2_Z*0.5 + Hex_Z*0.5), logicHex, "physHex", logicWorld, false,0, true);
 }
 

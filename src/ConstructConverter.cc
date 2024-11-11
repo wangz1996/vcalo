@@ -93,7 +93,7 @@ G4SubtractionSolid* DetectorConstruction::constructSolidConvTiO2(){
 
 void DetectorConstruction::constructConverter()
 {
-    G4bool checkOverlaps = false;
+    G4bool checkOverlaps = true;
 	std::cout<<"Starting to construct Converter"<<std::endl;
     defineConvParameter();
 
