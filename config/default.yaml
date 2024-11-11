@@ -16,9 +16,9 @@ Global:
         #output: ./priproton.root # Output root file name
         #output: ./secproton.root # Output root file name
         output: ./test.root # Output root file name
-        beamon: 20
-        savegeo: False
-        savetrack: 1
+        beamon: 1
+        savegeo: True
+        savetrack: 0
         trackEnergy_threshold: 2.0
 Parameter:
         CsI:
@@ -44,6 +44,9 @@ Parameter:
                 Finish: ground
                 # Roughness of the surface (0~1)
                 SigmaAlpha: 0.1
+#Construct Tracker
+Tracker:
+        build: True
 #Construct Converter
 Converter:
         build: True

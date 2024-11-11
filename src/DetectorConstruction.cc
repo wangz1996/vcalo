@@ -87,6 +87,9 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
     if(config->conf["ECAL"]["ECALShield"].as<bool>()){
         constructECALShield();
     }
+    if(config->conf["Tracker"]["build"].as<bool>()){
+        constructTracker();
+    }
     return physiWorld;
 }
 G4VPhysicalVolume* DetectorConstruction::ConstructWorld()

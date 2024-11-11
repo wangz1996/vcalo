@@ -73,14 +73,20 @@ class DetectorConstruction : public G4VUserDetectorConstruction
 	G4VisAttributes* visAttributes;
 	void constructECAL();
 	void constructConverter();
+	void constructTracker();
 	G4SubtractionSolid* constructSolidTiO2();
 	G4SubtractionSolid* constructSolidConvTiO2();
 	G4VSolid* constructECALShield();
 	G4VSolid* constructCushion();
 	G4SubtractionSolid* constructSolidSiliconeRubber();
+
+	G4VSolid* constructSolidHex();
 	void defineECALParameter();
 	void defineECALMaterial();
 	void defineConvParameter();
+
+	void defineTrackerMaterial();
+	void defineTrackerParameter();
 	
 
 	int nCryX;
@@ -104,6 +110,7 @@ class DetectorConstruction : public G4VUserDetectorConstruction
 	G4double APD_Z;
 	G4double Conv_XY;
 	G4double Conv_Z;
+	G4double Conv_PosZ;
 	G4double ConvTiO2_XY;
 	G4double ConvTiO2_Z;
 	G4double ConvAir_XY;
@@ -111,10 +118,18 @@ class DetectorConstruction : public G4VUserDetectorConstruction
 	G4double ConvPolish_XY;
 	G4double ConvPolish_Z;
 
+	//Tracker
+	G4double Hex_XY;
+	G4double Hex_Z;
+	G4double HexCell_XY;
+	G4double HexCell_Z;
+
 	G4Material* Vacuum;
 	G4Material* CsI;
 	G4Material* TiO2;
 	G4Material* fAir;
+	G4Material* Si;
+	G4Material* Al;
 
 	G4Material* carbonFiber;
 	G4Material* siliconeRubber;
