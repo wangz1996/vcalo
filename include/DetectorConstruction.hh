@@ -123,6 +123,12 @@ class DetectorConstruction : public G4VUserDetectorConstruction
 	G4double Hex_Z;
 	G4double HexCell_XY;
 	G4double HexCell_Z;
+	G4double Tray_XY;
+	G4double Tray_Z;
+	G4double Tracker_XY;
+	G4double Tracker_Z;
+	std::vector<G4double> TrayPosZ;
+	std::vector<G4double> TrackerPosZ;
 
 	G4Material* Vacuum;
 	G4Material* CsI;
@@ -130,6 +136,7 @@ class DetectorConstruction : public G4VUserDetectorConstruction
 	G4Material* fAir;
 	G4Material* Si;
 	G4Material* Al;
+	G4Material* Kapton;
 
 	G4Material* carbonFiber;
 	G4Material* siliconeRubber;

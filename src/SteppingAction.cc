@@ -126,9 +126,9 @@ void SteppingAction::UserSteppingAction(const G4Step* aStep) {
   //0: no save
   //1: save conversion electron tracks
   //2: save all tracks
-  if(track->GetVertexKineticEnergy() < trackEnergy_threshold) savetrack=0;
+  bool energy_pass_threshold = (track->GetVertexKineticEnergy() > trackEnergy_threshold);
 
-  if (savetrack!=0)
+  if (savetrack!=0 && energy_pass_threshold)
   {
     if (track->GetParentID() == 1 && track->GetCreatorProcess()->GetProcessName() == "conv" || savetrack > 1)
     {

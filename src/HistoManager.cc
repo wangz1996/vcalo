@@ -117,6 +117,7 @@ void HistoManager::fill(const int& _eventNo){
 		conv_e = yield/2000.; //MeV
 	}
 	eventNo = _eventNo;
+	std::cout<<"Ntracks: "<<map_track.size()<<std::endl;
 	for(auto i:map_track){
 		tracks.Add(i.second);
 	}
