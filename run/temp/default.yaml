@@ -18,7 +18,7 @@ Global:
         output: ./test.root # Output root file name
         beamon: EVENTNUMBERHERE
         savegeo: False
-        savetrack: 0
+        savetrack: 1
         trackEnergy_threshold: 2.0
 Parameter:
         CsI:
@@ -50,7 +50,9 @@ Converter:
         Crystal-Nonuniformity: 0.05
         light-yield-effect: True
         E-Noise: True
-        
+#Construct Tracker
+Tracker:
+        build: True        
 #Construct Calorimeter
 ECAL:
         nCryX: 5

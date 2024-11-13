@@ -73,7 +73,7 @@ G4VSolid* DetectorConstruction::constructSolidHex(){
 			}
 		}
 	}
-	auto solidHex = new G4SubtractionSolid("solidHex",solidHexMother,unionHexCellSolid, 0, G4ThreeVector(0.,0.,0.));
+	auto solidHex = new G4SubtractionSolid("solidHex",solidHexMother,solidHexMother, 0, G4ThreeVector(0.,0.,0.));
 
 	auto solidHexLid = new G4Box("solidHexLid", 0.5*Hex_XY, 0.5*Hex_XY, 0.5*mm);
 	auto solidHexCarbonFiber = new G4UnionSolid("solidHexCarbonFiber",solidHex,solidHexLid,0,G4ThreeVector(0.,0.,0.5*Hex_Z+0.5*mm));
@@ -89,6 +89,9 @@ void DetectorConstruction::constructTracker()
 	//Hex and Tray
 	auto solidHex = constructSolidHex();
 	auto logicHex = new G4LogicalVolume(solidHex, Si, "logicHex");
+	//TrayLid
+	auto solidTrayLid = new G4Box("solidTrayLid", 0.5*Tray_XY, 0.5*Tray_XY, 0.5*mm);
+	auto logicTrayLid = new G4LogicalVolume(solidTrayLid, carbonFiber, "logicTrayLid");
 
 	//tracker
 	auto solidTracker = new G4Box("solidTracker", 0.5*Tracker_XY, 0.5*Tracker_XY, 0.5*Tracker_Z);
@@ -97,9 +100,15 @@ void DetectorConstruction::constructTracker()
 	auto solidKapton = new G4Box("solidKapton", 0.5*Tracker_XY, 0.5*Tracker_XY, 0.5*Tracker_Z);
 	auto logicKapton = new G4LogicalVolume(solidKapton, Kapton, "logicKapton");
 
+	
+
 	//Placement
 	//Tray 0
-	new G4PVPlacement(0, G4ThreeVector(0, 0, TrayPosZ.at(0)), logicHex, "physHex", logicWorld, false,0, true);
+	// new G4PVPlacement(0, G4ThreeVector(0, 0, TrayPosZ.at(0)), logicHex, "physHex", logicWorld, false,0, true);
+	//TrayLid top bottom
+	new G4PVPlacement(0, G4ThreeVector(0, 0, TrayPosZ.at(0) + 0.5*Hex_Z + 0.5*mm), logicTrayLid, "physTrayLid", logicWorld, false,0, true);
+	new G4PVPlacement(0, G4ThreeVector(0, 0, TrayPosZ.at(0) - 0.5*Hex_Z - 0.5*mm), logicTrayLid, "physTrayLid", logicWorld, false,0, true);
+
 	//X Tracker + Kapton
 	new G4PVPlacement(0, G4ThreeVector(0, 0, TrackerPosZ.at(0)), logicTracker, "physTracker_0", logicWorld, false,0, true);
 	new G4PVPlacement(0, G4ThreeVector(0, 0, TrackerPosZ.at(0) + 0.5*Tracker_Z + 0.5*Tracker_Z), logicKapton, "physKapton_0", logicWorld, false,0, true);
@@ -109,7 +118,10 @@ void DetectorConstruction::constructTracker()
 	new G4PVPlacement(0, G4ThreeVector(0, 0, TrackerPosZ.at(1) + 0.5*Tracker_Z + 0.5*Tracker_Z), logicKapton, "physKapton_1", logicWorld, false,0, true);
 
 	//Tray 1
-	new G4PVPlacement(0, G4ThreeVector(0, 0, TrayPosZ.at(1)), logicHex, "physHex", logicWorld, false,0, true);
+	// new G4PVPlacement(0, G4ThreeVector(0, 0, TrayPosZ.at(1)), logicHex, "physHex", logicWorld, false,0, true);
+	//TrayLid top bottom
+	new G4PVPlacement(0, G4ThreeVector(0, 0, TrayPosZ.at(1) + 0.5*Hex_Z + 0.5*mm), logicTrayLid, "physTrayLid", logicWorld, false,0, true);
+	new G4PVPlacement(0, G4ThreeVector(0, 0, TrayPosZ.at(1) - 0.5*Hex_Z - 0.5*mm), logicTrayLid, "physTrayLid", logicWorld, false,0, true);
 
 	//X Tracker + Kapton
 	new G4PVPlacement(0, G4ThreeVector(0, 0, TrackerPosZ.at(2)), logicTracker, "physTracker_2", logicWorld, false,0, true);
@@ -120,7 +132,10 @@ void DetectorConstruction::constructTracker()
 	new G4PVPlacement(0, G4ThreeVector(0, 0, TrackerPosZ.at(3) + 0.5*Tracker_Z + 0.5*Tracker_Z), logicKapton, "physKapton_3", logicWorld, false,0, true);
 
 	//Tray 2
-	new G4PVPlacement(0, G4ThreeVector(0, 0, TrayPosZ.at(2)), logicHex, "physHex", logicWorld, false,0, true);
+	// new G4PVPlacement(0, G4ThreeVector(0, 0, TrayPosZ.at(2)), logicHex, "physHex", logicWorld, false,0, true);
+	//TrayLid top bottom
+	new G4PVPlacement(0, G4ThreeVector(0, 0, TrayPosZ.at(2) + 0.5*Hex_Z + 0.5*mm), logicTrayLid, "physTrayLid", logicWorld, false,0, true);
+	new G4PVPlacement(0, G4ThreeVector(0, 0, TrayPosZ.at(2) - 0.5*Hex_Z - 0.5*mm), logicTrayLid, "physTrayLid", logicWorld, false,0, true);
 
 	//X Tracker + Kapton
 	new G4PVPlacement(0, G4ThreeVector(0, 0, TrackerPosZ.at(4)), logicTracker, "physTracker_4", logicWorld, false,0, true);
@@ -131,7 +146,10 @@ void DetectorConstruction::constructTracker()
 	new G4PVPlacement(0, G4ThreeVector(0, 0, TrackerPosZ.at(5) + 0.5*Tracker_Z + 0.5*Tracker_Z), logicKapton, "physKapton_5", logicWorld, false,0, true);
 
 	//Tray 3
-	new G4PVPlacement(0, G4ThreeVector(0, 0, TrayPosZ.at(3)), logicHex, "physHex", logicWorld, false,0, true);
+	// new G4PVPlacement(0, G4ThreeVector(0, 0, TrayPosZ.at(3)), logicHex, "physHex", logicWorld, false,0, true);
+	//TrayLid top bottom
+	new G4PVPlacement(0, G4ThreeVector(0, 0, TrayPosZ.at(3) + 0.5*Hex_Z + 0.5*mm), logicTrayLid, "physTrayLid", logicWorld, false,0, true);
+	new G4PVPlacement(0, G4ThreeVector(0, 0, TrayPosZ.at(3) - 0.5*Hex_Z - 0.5*mm), logicTrayLid, "physTrayLid", logicWorld, false,0, true);
 
 }
 

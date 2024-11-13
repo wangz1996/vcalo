@@ -18,7 +18,7 @@ Global:
         output: ./test.root # Output root file name
         beamon: 1
         savegeo: True
-        savetrack: 0
+        savetrack: 1
         trackEnergy_threshold: 2.0
 Parameter:
         CsI:
