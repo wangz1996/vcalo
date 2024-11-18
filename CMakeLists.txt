@@ -22,6 +22,7 @@ include(${Geant4_USE_FILE})
 #
 find_package(ROOT REQUIRED COMPONENTS TMVA ROOTVecOps ROOTDataFrame Geom Eve)
 find_package(yaml-cpp REQUIRED)
+find_package(Acts REQUIRED COMPONENTS Core)
 
 #----------------------------------------------------------------------------
 # Locate sources and headers for this project
@@ -29,7 +30,9 @@ find_package(yaml-cpp REQUIRED)
 include_directories(${YAML_CPP_INCLUDE_DIR})
 include_directories(${PROJECT_SOURCE_DIR}/include 
                     ${Geant4_INCLUDE_DIR}
-		    ${ROOT_INCLUDE_DIR})
+		    ${ROOT_INCLUDE_DIRS})
+INCLUDE_DIRECTORIES(${Acts_include})
+
 file(GLOB sources ${PROJECT_SOURCE_DIR}/src/*.cc)
 file(GLOB headers ${PROJECT_SOURCE_DIR}/include/*.hh)
 
@@ -37,7 +40,13 @@ file(GLOB headers ${PROJECT_SOURCE_DIR}/include/*.hh)
 # Add the executable, and link it to the Geant4 libraries
 #
 add_executable(vcalo vcalo.cc ${sources} ${headers})
-target_link_libraries(vcalo ${Geant4_LIBRARIES} ${ROOT_LIBRARIES} yaml-cpp )
+target_link_libraries(vcalo 
+    ${ROOT_LIBRARIES}
+    ROOT::Geom
+    yaml-cpp
+    ${Geant4_LIBRARIES}
+    ActsCore
+)
 
 #----------------------------------------------------------------------------
 # Install the executable to 'bin' directory under CMAKE_INSTALL_PREFIX
