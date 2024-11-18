@@ -71,6 +71,7 @@ SteppingAction::~SteppingAction()
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 void SteppingAction::UserSteppingAction(const G4Step* aStep) {
+  
   // 获取 PreStep 和 PostStep 信息
   auto preStepPoint = aStep->GetPreStepPoint();
   auto postStepPoint = aStep->GetPostStepPoint();
@@ -147,14 +148,14 @@ void SteppingAction::UserSteppingAction(const G4Step* aStep) {
   }
 
   // 处理ECAL表面的电子对信息
-  if (postStepLVName == "logicCsI" && track->GetParentID() == 1 && (HistoManager::getInstance().getsize_ECALe() == 0 || HistoManager::getInstance().getsize_ECALp() == 0)) {
-    if (track->GetDefinition()->GetPDGEncoding() == 11) {
-      HistoManager::getInstance().fillECALeHit(track);
-    }
-    else if(track->GetDefinition()->GetPDGEncoding() == -11) {
-      HistoManager::getInstance().fillECALpHit(track);
-    }
-  }
+  // if (postStepLVName == "logicCsI" && track->GetParentID() == 1 && (HistoManager::getInstance().getsize_ECALe() == 0 || HistoManager::getInstance().getsize_ECALp() == 0)) {
+  //   if (track->GetDefinition()->GetPDGEncoding() == 11) {
+  //     HistoManager::getInstance().fillECALeHit(track);
+  //   }
+  //   else if(track->GetDefinition()->GetPDGEncoding() == -11) {
+  //     HistoManager::getInstance().fillECALpHit(track);
+  //   }
+  // }
   // 处理光子信息
   if (particleDef == G4OpticalPhoton::OpticalPhotonDefinition()) {
     if (stepNumber == 1) {
@@ -184,6 +185,18 @@ void SteppingAction::UserSteppingAction(const G4Step* aStep) {
   else if(postStepLVName == "logicConv"){
     HistoManager::getInstance().fillConvHit(edep);
   }
+  else if(postStepLVName == "logicTracker"){
+    G4int tracker_index = postStepPVName[12]-'0';
+    G4float posX = postStepPoint->GetPosition().x();
+    G4float posY = postStepPoint->GetPosition().y();
+    HistoManager::getInstance().fillTrackerHit(tracker_index, posX, posY, edep, trackid);
+    if(track->GetParentID() == 1 && track->GetCreatorProcess()->GetProcessName() == "conv"){
+      if(pdgid==11 || pdgid==-11){
+        HistoManager::getInstance().fillTrackerEPHit(edep);
+      }
+    }
+  }
+  
 }
 
 

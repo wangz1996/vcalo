@@ -73,9 +73,10 @@ void HistoManager::book(const std::string& foutname,const bool &savegeo)
 	vTree->Branch("nTotalOptPhoton",		&nTotalOptPhoton);
 	vTree->Branch("apd_celle",				&apd_celle);
 	vTree->Branch("isconv",					&isconv);
-	vTree->Branch("conve_ECAL_kinematic",   &conve_ECAL_kinematic);
-	vTree->Branch("convp_ECAL_kinematic",   &convp_ECAL_kinematic);
 	vTree->Branch("tracks",                 &tracks);
+	vTree->Branch("tracker_hitpos",             &tracker_hitpos);
+	vTree->Branch("tracker_edep",            &tracker_hite);
+	vTree->Branch("tracker_ephite",			 &tracker_ephite);
 	fSaveGeo = savegeo;
 }
 
@@ -121,6 +122,19 @@ void HistoManager::fill(const int& _eventNo){
 	for(auto i:map_track){
 		tracks.Add(i.second);
 	}
+
+	//Tracker hit merge
+	for(auto hit:tracker_hitmap){
+		int xid = std::get<0>(hit.first);
+		int yid = std::get<1>(hit.first);
+		int zid = std::get<2>(hit.first);
+		float edep = hit.second;
+		float posX = (zid%2==0) ? -95.+xid*95. : -141.4+xid*0.121;
+		float posY = (zid%2==0) ? -141.4+yid*0.121 : -95.+yid*95.;
+		float posZ = TrackerPosZ[zid];
+		tracker_hitpos.emplace_back(std::vector<float>{posX,posY,posZ});
+		tracker_hite.emplace_back(edep);
+	}
 	vTree->Fill();
 }
 
@@ -129,36 +143,14 @@ void HistoManager::fillEcalHit(const G4int &copyNo,const G4double &edep,const G4
 	ecal_mape[copyNo]+=edep;
 }
 
-void HistoManager::fillECALeHit(const G4Track* trk){
-	//Kinematic x y z px py pz E theta phi Ke
-	G4ThreeVector position = trk->GetPosition();
-	conve_ECAL_kinematic.emplace_back(position.x());
-	conve_ECAL_kinematic.emplace_back(position.y());
-	conve_ECAL_kinematic.emplace_back(position.z());
-	auto momentum = trk->GetMomentumDirection();
-	conve_ECAL_kinematic.emplace_back(momentum.x());
-	conve_ECAL_kinematic.emplace_back(momentum.y());
-	conve_ECAL_kinematic.emplace_back(momentum.z());
-	conve_ECAL_kinematic.emplace_back(trk->GetTotalEnergy());
-	conve_ECAL_kinematic.emplace_back(trk->GetMomentumDirection().theta());
-	conve_ECAL_kinematic.emplace_back(trk->GetMomentumDirection().phi());
-	conve_ECAL_kinematic.emplace_back(trk->GetKineticEnergy());
-}
+void HistoManager::fillTrackerHit(const int& tracker_id, const float& posX, const float& posY, const float& edep, const int& trkid){
+	//x starts at -141.4 mm
+	//y starts at -95. mm
 
-void HistoManager::fillECALpHit(const G4Track* trk){
-	//Kinematic x y z px py pz E theta phi Ke
-	G4ThreeVector position = trk->GetPosition();
-	convp_ECAL_kinematic.emplace_back(position.x());
-	convp_ECAL_kinematic.emplace_back(position.y());
-	convp_ECAL_kinematic.emplace_back(position.z());
-	auto momentum = trk->GetMomentumDirection();
-	convp_ECAL_kinematic.emplace_back(momentum.x());
-	convp_ECAL_kinematic.emplace_back(momentum.y());
-	convp_ECAL_kinematic.emplace_back(momentum.z());
-	convp_ECAL_kinematic.emplace_back(trk->GetTotalEnergy());
-	convp_ECAL_kinematic.emplace_back(trk->GetMomentumDirection().theta());
-	convp_ECAL_kinematic.emplace_back(trk->GetMomentumDirection().phi());
-	convp_ECAL_kinematic.emplace_back(trk->GetKineticEnergy());
+	int xid = (tracker_id%2==0) ? round((posX+95.)/95.) : round((posX+141.4)/0.121);
+	int yid = (tracker_id%2==0) ? round((posY+141.4)/0.121) : round((posY+95.)/95.);
+	int zid = tracker_id;
+	tracker_hitmap[std::make_tuple(xid,yid,zid)]+=edep;
 }
 
 void HistoManager::fillAPDHit(const G4int &copyNo,const G4double &edep,const G4double &time,const G4int &pdgid,const G4int &trackid){
@@ -226,14 +218,16 @@ void HistoManager::clear(){
 	std::vector<float>().swap(ecal_convtime);
 	std::vector<float>().swap(conve_kinematic);
 	std::vector<float>().swap(convp_kinematic);
-	std::vector<float>().swap(conve_ECAL_kinematic);
-	std::vector<float>().swap(convp_ECAL_kinematic);
+	std::vector<std::vector<float>>().swap(tracker_hitpos);
+	std::vector<float>().swap(tracker_hite);
+	std::vector<float>().swap(tracker_ephite);
 	apd_nphoton=0;
 	isconv=0;
 	ecal_mape.clear();
 	apd_mape.clear();
 	ecal_npmap.clear();
 	map_track.clear();
+	tracker_hitmap.clear();
 	ecal_e=0.;
 	conv_e=0.;
 	init_x=0.;

@@ -32,8 +32,7 @@ void DetectorConstruction::defineTrackerParameter(){
 	Tracker_XY = 285.*mm;
 	Tracker_Z = 0.35*mm;
 	//Conv_PosZ = -270.5; ConvTiO2_Z=16.4;  Upper surface = -262.3 mm;
-	TrackerPosZ = std::vector<G4double>{25.175,30.135,55.835,60.795,86.495,91.455};
-	for(auto &i:TrackerPosZ)i-=262.3;
+	TrackerPosZ = HistoManager::getInstance().getTrackerPosZ<float>();
 	TrayPosZ = std::vector<G4double>{12.5,43.16,73.82,104.48};
 	for(auto &i:TrayPosZ)i-=262.3;
 }
@@ -84,8 +83,6 @@ G4VSolid* DetectorConstruction::constructSolidHex(){
 
 void DetectorConstruction::constructTracker()
 {
-	defineTrackerParameter();
-	defineTrackerMaterial();
 	//Hex and Tray
 	auto solidHex = constructSolidHex();
 	auto logicHex = new G4LogicalVolume(solidHex, Si, "logicHex");
@@ -106,50 +103,71 @@ void DetectorConstruction::constructTracker()
 	//Tray 0
 	// new G4PVPlacement(0, G4ThreeVector(0, 0, TrayPosZ.at(0)), logicHex, "physHex", logicWorld, false,0, true);
 	//TrayLid top bottom
-	new G4PVPlacement(0, G4ThreeVector(0, 0, TrayPosZ.at(0) + 0.5*Hex_Z + 0.5*mm), logicTrayLid, "physTrayLid", logicWorld, false,0, true);
-	new G4PVPlacement(0, G4ThreeVector(0, 0, TrayPosZ.at(0) - 0.5*Hex_Z - 0.5*mm), logicTrayLid, "physTrayLid", logicWorld, false,0, true);
+	auto TrayLid_0 = new G4PVPlacement(0, G4ThreeVector(0, 0, TrayPosZ.at(0) + 0.5*Hex_Z + 0.5*mm), logicTrayLid, "physTrayLid", logicWorld, false,0, true);
+	auto TrayLid_1 = new G4PVPlacement(0, G4ThreeVector(0, 0, TrayPosZ.at(0) - 0.5*Hex_Z - 0.5*mm), logicTrayLid, "physTrayLid", logicWorld, false,0, true);
 
 	//X Tracker + Kapton
-	new G4PVPlacement(0, G4ThreeVector(0, 0, TrackerPosZ.at(0)), logicTracker, "physTracker_0", logicWorld, false,0, true);
-	new G4PVPlacement(0, G4ThreeVector(0, 0, TrackerPosZ.at(0) + 0.5*Tracker_Z + 0.5*Tracker_Z), logicKapton, "physKapton_0", logicWorld, false,0, true);
+	auto Tracker_0 = new G4PVPlacement(0, G4ThreeVector(0, 0, TrackerPosZ.at(0)), logicTracker, "physTracker_0", logicWorld, false,0, true);
+	auto Kapton_0 = new G4PVPlacement(0, G4ThreeVector(0, 0, TrackerPosZ.at(0) + 0.5*Tracker_Z + 0.5*Tracker_Z), logicKapton, "physKapton_0", logicWorld, false,0, true);
 
 	//Y Tracker + Kapton
-	new G4PVPlacement(0, G4ThreeVector(0, 0, TrackerPosZ.at(1)), logicTracker, "physTracker_1", logicWorld, false,0, true);
-	new G4PVPlacement(0, G4ThreeVector(0, 0, TrackerPosZ.at(1) + 0.5*Tracker_Z + 0.5*Tracker_Z), logicKapton, "physKapton_1", logicWorld, false,0, true);
+	auto Tracker_1 = new G4PVPlacement(0, G4ThreeVector(0, 0, TrackerPosZ.at(1)), logicTracker, "physTracker_1", logicWorld, false,0, true);
+	auto Kapton_1 = new G4PVPlacement(0, G4ThreeVector(0, 0, TrackerPosZ.at(1) + 0.5*Tracker_Z + 0.5*Tracker_Z), logicKapton, "physKapton_1", logicWorld, false,0, true);
 
 	//Tray 1
 	// new G4PVPlacement(0, G4ThreeVector(0, 0, TrayPosZ.at(1)), logicHex, "physHex", logicWorld, false,0, true);
 	//TrayLid top bottom
-	new G4PVPlacement(0, G4ThreeVector(0, 0, TrayPosZ.at(1) + 0.5*Hex_Z + 0.5*mm), logicTrayLid, "physTrayLid", logicWorld, false,0, true);
-	new G4PVPlacement(0, G4ThreeVector(0, 0, TrayPosZ.at(1) - 0.5*Hex_Z - 0.5*mm), logicTrayLid, "physTrayLid", logicWorld, false,0, true);
+	auto TrayLid_2 = new G4PVPlacement(0, G4ThreeVector(0, 0, TrayPosZ.at(1) + 0.5*Hex_Z + 0.5*mm), logicTrayLid, "physTrayLid", logicWorld, false,0, true);
+	auto TrayLid_3 = new G4PVPlacement(0, G4ThreeVector(0, 0, TrayPosZ.at(1) - 0.5*Hex_Z - 0.5*mm), logicTrayLid, "physTrayLid", logicWorld, false,0, true);
 
 	//X Tracker + Kapton
-	new G4PVPlacement(0, G4ThreeVector(0, 0, TrackerPosZ.at(2)), logicTracker, "physTracker_2", logicWorld, false,0, true);
-	new G4PVPlacement(0, G4ThreeVector(0, 0, TrackerPosZ.at(2) + 0.5*Tracker_Z + 0.5*Tracker_Z), logicKapton, "physKapton_2", logicWorld, false,0, true);
+	auto Tracker_2 = new G4PVPlacement(0, G4ThreeVector(0, 0, TrackerPosZ.at(2)), logicTracker, "physTracker_2", logicWorld, false,0, true);
+	auto Kapton_2 = new G4PVPlacement(0, G4ThreeVector(0, 0, TrackerPosZ.at(2) + 0.5*Tracker_Z + 0.5*Tracker_Z), logicKapton, "physKapton_2", logicWorld, false,0, true);
 
 	//Y Tracker + Kapton
-	new G4PVPlacement(0, G4ThreeVector(0, 0, TrackerPosZ.at(3)), logicTracker, "physTracker_3", logicWorld, false,0, true);
-	new G4PVPlacement(0, G4ThreeVector(0, 0, TrackerPosZ.at(3) + 0.5*Tracker_Z + 0.5*Tracker_Z), logicKapton, "physKapton_3", logicWorld, false,0, true);
+	auto Tracker_3 = new G4PVPlacement(0, G4ThreeVector(0, 0, TrackerPosZ.at(3)), logicTracker, "physTracker_3", logicWorld, false,0, true);
+	auto Kapton_3 = new G4PVPlacement(0, G4ThreeVector(0, 0, TrackerPosZ.at(3) + 0.5*Tracker_Z + 0.5*Tracker_Z), logicKapton, "physKapton_3", logicWorld, false,0, true);
 
 	//Tray 2
 	// new G4PVPlacement(0, G4ThreeVector(0, 0, TrayPosZ.at(2)), logicHex, "physHex", logicWorld, false,0, true);
 	//TrayLid top bottom
-	new G4PVPlacement(0, G4ThreeVector(0, 0, TrayPosZ.at(2) + 0.5*Hex_Z + 0.5*mm), logicTrayLid, "physTrayLid", logicWorld, false,0, true);
-	new G4PVPlacement(0, G4ThreeVector(0, 0, TrayPosZ.at(2) - 0.5*Hex_Z - 0.5*mm), logicTrayLid, "physTrayLid", logicWorld, false,0, true);
+	auto TrayLid_4 = new G4PVPlacement(0, G4ThreeVector(0, 0, TrayPosZ.at(2) + 0.5*Hex_Z + 0.5*mm), logicTrayLid, "physTrayLid", logicWorld, false,0, true);
+	auto TrayLid_5 = new G4PVPlacement(0, G4ThreeVector(0, 0, TrayPosZ.at(2) - 0.5*Hex_Z - 0.5*mm), logicTrayLid, "physTrayLid", logicWorld, false,0, true);
 
 	//X Tracker + Kapton
-	new G4PVPlacement(0, G4ThreeVector(0, 0, TrackerPosZ.at(4)), logicTracker, "physTracker_4", logicWorld, false,0, true);
-	new G4PVPlacement(0, G4ThreeVector(0, 0, TrackerPosZ.at(4) + 0.5*Tracker_Z + 0.5*Tracker_Z), logicKapton, "physKapton_4", logicWorld, false,0, true);
+	auto Tracker_4 = new G4PVPlacement(0, G4ThreeVector(0, 0, TrackerPosZ.at(4)), logicTracker, "physTracker_4", logicWorld, false,0, true);
+	auto Kapton_4 = new G4PVPlacement(0, G4ThreeVector(0, 0, TrackerPosZ.at(4) + 0.5*Tracker_Z + 0.5*Tracker_Z), logicKapton, "physKapton_4", logicWorld, false,0, true);
 
 	//Y Tracker + Kapton
-	new G4PVPlacement(0, G4ThreeVector(0, 0, TrackerPosZ.at(5)), logicTracker, "physTracker_5", logicWorld, false,0, true);
-	new G4PVPlacement(0, G4ThreeVector(0, 0, TrackerPosZ.at(5) + 0.5*Tracker_Z + 0.5*Tracker_Z), logicKapton, "physKapton_5", logicWorld, false,0, true);
+	auto Tracker_5 = new G4PVPlacement(0, G4ThreeVector(0, 0, TrackerPosZ.at(5)), logicTracker, "physTracker_5", logicWorld, false,0, true);
+	auto Kapton_5 = new G4PVPlacement(0, G4ThreeVector(0, 0, TrackerPosZ.at(5) + 0.5*Tracker_Z + 0.5*Tracker_Z), logicKapton, "physKapton_5", logicWorld, false,0, true);
 
 	//Tray 3
 	// new G4PVPlacement(0, G4ThreeVector(0, 0, TrayPosZ.at(3)), logicHex, "physHex", logicWorld, false,0, true);
 	//TrayLid top bottom
-	new G4PVPlacement(0, G4ThreeVector(0, 0, TrayPosZ.at(3) + 0.5*Hex_Z + 0.5*mm), logicTrayLid, "physTrayLid", logicWorld, false,0, true);
-	new G4PVPlacement(0, G4ThreeVector(0, 0, TrayPosZ.at(3) - 0.5*Hex_Z - 0.5*mm), logicTrayLid, "physTrayLid", logicWorld, false,0, true);
+	auto TrayLid_6 = new G4PVPlacement(0, G4ThreeVector(0, 0, TrayPosZ.at(3) + 0.5*Hex_Z + 0.5*mm), logicTrayLid, "physTrayLid", logicWorld, false,0, true);
+	auto TrayLid_7 = new G4PVPlacement(0, G4ThreeVector(0, 0, TrayPosZ.at(3) - 0.5*Hex_Z - 0.5*mm), logicTrayLid, "physTrayLid", logicWorld, false,0, true);
+
+	//Calculate tracker total radiation length
+	G4double tracker_thickness = Tracker_Z * 6./cm;
+	G4double Si_X0 = Si->GetRadlen()/cm;
+	std::cout<<"Si X0: "<<Si_X0<<std::endl;
+	std::cout<<"Si Rad Length: "<<tracker_thickness/Si_X0<<std::endl;
+
+	//Calculate Kapton total radiation length
+	G4double Kapton_thickness = Tracker_Z * 6./cm;
+	G4double Kapton_X0 = Kapton->GetRadlen()/cm;
+	std::cout<<"Kapton X0: "<<Kapton_X0<<std::endl;
+	std::cout<<"Kapton Rad Length: "<<Kapton_thickness/Kapton_X0<<std::endl;
+
+	//Calculate TrayLid total radiation length
+	G4double TrayLid_thickness = 1.*mm * 9./cm;
+	G4double TrayLid_X0 = carbonFiber->GetRadlen()/cm;
+	std::cout<<"TrayLid X0: "<<TrayLid_X0<<std::endl;
+	std::cout<<"TrayLid Rad Length: "<<TrayLid_thickness/TrayLid_X0<<std::endl;
+
+	//Calculate total radiation length
+	std::cout<<"Total Rad Length: "<<tracker_thickness/Si_X0 + Kapton_thickness/Kapton_X0 + TrayLid_thickness/TrayLid_X0<<std::endl;
 
 }
 

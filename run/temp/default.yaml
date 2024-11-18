@@ -18,7 +18,7 @@ Global:
         output: ./test.root # Output root file name
         beamon: EVENTNUMBERHERE
         savegeo: False
-        savetrack: 1
+        savetrack: 0
         trackEnergy_threshold: 2.0
 Parameter:
         CsI:

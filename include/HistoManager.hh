@@ -43,6 +43,7 @@
 #include "TRandom.h"
 #include "Config.hh"
 #include <vector>
+#include <tuple>
 #include <G4ThreeVector.hh>
 #include <unordered_map>
 #include <filesystem>
@@ -78,6 +79,12 @@ class HistoManager
 		void fillECALpHit(const G4Track* trk);
 		void fillConvHit(const G4double& edep){conv_e+=edep;}
 		void fillTracks(const int& track_id,const G4ThreeVector& pos,const int& color=0);
+		void fillTrackerHit(const int& tracker_id, const float& posX, const float& posY, const float& edep, const int& trkid);
+		void fillTrackerEPHit(const float& e){tracker_ephite.emplace_back(e);}
+
+		template<class T>
+		constexpr std::array<T, 6> getTrackerPosZ() const { return TrackerPosZ; }
+
 	private:
 		//Singleton
 		HistoManager();
@@ -130,6 +137,40 @@ class HistoManager
 		float conv_e;
 		TList tracks;
 		std::map<int, TPolyLine3D*> map_track;
+		std::vector<std::vector<float>> tracker_hitpos;
+		std::vector<float> tracker_hite;
+		std::vector<int> tracker_trkid;
+		std::vector<float> tracker_ephite;
+		template<class T>
+		struct TupleHash {
+    		constexpr std::size_t operator()(const std::tuple<T, T, T>& t) const noexcept {
+        		auto [x, y, z] = t;
+        		// 使用质数组合哈希值
+        		return std::hash<int>{}(x) + 31 * std::hash<int>{}(y) + 57 * std::hash<int>{}(z);
+    		}
+		};
+		std::unordered_map<std::tuple<int,int,int>,float,TupleHash<int>> tracker_hitmap;
+		static constexpr std::array<float, 6> TrackerPosZ = {
+    		25.175 - 262.3, 30.135 - 262.3, 55.835 - 262.3,
+    		60.795 - 262.3, 86.495 - 262.3, 91.455 - 262.3
+		};
+		// template<typename T>
+		// constexpr std::map<std::tuple<int,int,int>,std::array<T,3>> getTrackerCoor(){
+		// 	for(int z=0;z<6;z++){
+		// 		for(int x=0;x< (z%2==0) ? 3 : 768*3 ; x++){
+		// 			const T posX = (z%2==0) ? -95.+x*95. : -141.4+x*0.121;
+		// 			for(int y=0;y< (z%2==0) ? 768*3 : 3 ; y++){
+		// 				const T posY = (z%2==0) ? -141.4+y*0.121 : -95.+y*95.;
+		// 				const T posZ = TrackerPosZ<T>[z];
+		// 				tracker_hitpos[std::make_tuple(x,y,z)] = {posX,posY,posZ};
+		// 			}
+		// 		}
+		// 	}
+		// }
+
+		// template<typename T>
+		// static constexpr std::map<std::tuple<int,int,int>,std::array<T,3>> tracker_hitpos = getTrackerCoor<T>();
+		// static_assert(tracker_hitpos<float>[std::make_tuple(0,0,0)][0]==-95., "Coordinate error");
 		
 };
 

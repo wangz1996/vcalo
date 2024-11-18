@@ -33,9 +33,7 @@
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 #include "DetectorConstruction.hh"
-
 #include "SteppingAction.hh"
-#include "G4UserLimits.hh"
 #include "G4NistManager.hh"
 #include "G4Box.hh"
 #include "G4Orb.hh"
@@ -88,31 +86,29 @@ G4SubtractionSolid* DetectorConstruction::constructSolidConvTiO2(){
 
     // 返回最终的固体
     return solidConvTiO2;
-
 }
 
 void DetectorConstruction::constructConverter()
 {
     G4bool checkOverlaps = true;
 	std::cout<<"Starting to construct Converter"<<std::endl;
-    defineConvParameter();
 
 	// Construct CsI solid;
 	auto solidConv = new G4Box("solidConv", 0.5*Conv_XY, 0.5*Conv_XY, 0.5*Conv_Z);
 	//Construct logical CsI;
 	auto logicConv = new G4LogicalVolume(solidConv, CsI, "logicConv");
-    logicConv->SetUserLimits(userLimits);
 	//Construct TiO2 reflector;
 	auto solidConvTiO2 = constructSolidConvTiO2();
 	//Construct logical TiO2 reflector;
 	auto logicConvTiO2 = new G4LogicalVolume(solidConvTiO2, TiO2, "logicConvTiO2");
-    logicConvTiO2->SetUserLimits(userLimits);
-    // std::cout<<"Minimum step length for TiO2 is :"<<logicConvTiO2->GetUserLimits()->GetUserMaxTrackLength()<<std::endl;
 
 	//Construct APD
 	auto solidAPD = new G4Box("solidConvAPD", 0.5*APD_XY, 0.5*APD_XY, 0.5*APD_Z);
 	auto logicConvAPD = new G4LogicalVolume(solidAPD, G4NistManager::Instance()->FindOrBuildMaterial("G4_Si"), "logicConvAPD");
-    logicConvAPD->SetUserLimits(userLimits);
+
+    //Converter Lid
+    auto solidConvLid = new G4Box("solidConvLid", 0.5*Hex_XY, 0.5*Hex_XY, 0.5*mm);
+    auto logicConvLid = new G4LogicalVolume(solidConvLid, carbonFiber, "logicConvLid");
 
 	//Placement
     G4String ConvName = "physicConv";
@@ -138,6 +134,8 @@ void DetectorConstruction::constructConverter()
         // Create physical border surface between APD and world
         new G4LogicalSkinSurface("ConvAPDGalacticSkinSurface", logicConvAPD, APD_Galactic_Surface);
     }
+    //Converter Lid Placement
+    new G4PVPlacement(0, G4ThreeVector(0., 0., Conv_PosZ-0.5*Conv_Z-0.5*mm), logicConvLid, "ConvLid", logicWorld, false, 0, checkOverlaps);
     std::cout<<"Converter constructed at : "<<Conv_PosZ<<std::endl;
 }
 

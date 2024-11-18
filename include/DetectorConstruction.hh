@@ -65,7 +65,6 @@ class DetectorConstruction : public G4VUserDetectorConstruction
     
   private:
   	Config *config;
-	G4UserLimits* userLimits;
     G4double fWorldSize;
 	G4LogicalVolume* logicWorld;
 	G4VPhysicalVolume* ConstructWorld(); 
@@ -128,7 +127,7 @@ class DetectorConstruction : public G4VUserDetectorConstruction
 	G4double Tracker_XY;
 	G4double Tracker_Z;
 	std::vector<G4double> TrayPosZ;
-	std::vector<G4double> TrackerPosZ;
+	std::array<float,6> TrackerPosZ;
 
 	G4Material* Vacuum;
 	G4Material* CsI;

@@ -349,6 +349,9 @@ void DetectorConstruction::constructECAL()
         	G4String TiO2Name = "physicTiO2_" + std::to_string(CopyNo);
 			G4String APDName = "physicAPD_" + std::to_string(CopyNo);
 			// Create physical volumes
+			// G4VPhysicalVolume* physicCsI = nullptr;
+			// G4VPhysicalVolume* physicTiO2 = nullptr;
+			// G4VPhysicalVolume* physiAPD = nullptr;
         	G4VPhysicalVolume* physicCsI = new G4PVPlacement(0, G4ThreeVector(x, y, 0.), logicCsI, CsIName, logicWorld, false, CopyNo, true);
 			std::cout<<CopyNo<<" "<<x<<" "<<y<<std::endl;
         	G4VPhysicalVolume* physicTiO2 = new G4PVPlacement(0, G4ThreeVector(x, y, 0.), logicTiO2, TiO2Name, logicWorld, false, CopyNo, true);
