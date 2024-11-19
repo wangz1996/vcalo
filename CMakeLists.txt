@@ -22,7 +22,10 @@ include(${Geant4_USE_FILE})
 #
 find_package(ROOT REQUIRED COMPONENTS TMVA ROOTVecOps ROOTDataFrame Geom Eve)
 find_package(yaml-cpp REQUIRED)
+find_package(Eigen3 REQUIRED)
 find_package(Acts REQUIRED COMPONENTS Core)
+
+# message(STATUS "Eigen include: " ${EIGEN3_INCLUDE_DIR})
 
 #----------------------------------------------------------------------------
 # Locate sources and headers for this project
@@ -30,7 +33,8 @@ find_package(Acts REQUIRED COMPONENTS Core)
 include_directories(${YAML_CPP_INCLUDE_DIR})
 include_directories(${PROJECT_SOURCE_DIR}/include 
                     ${Geant4_INCLUDE_DIR}
-		    ${ROOT_INCLUDE_DIRS})
+		    ${ROOT_INCLUDE_DIRS}
+        ${EIGEN3_INCLUDE_DIR})
 INCLUDE_DIRECTORIES(${Acts_include})
 
 file(GLOB sources ${PROJECT_SOURCE_DIR}/src/*.cc)
@@ -40,7 +44,14 @@ file(GLOB headers ${PROJECT_SOURCE_DIR}/include/*.hh)
 # Add the executable, and link it to the Geant4 libraries
 #
 add_executable(vcalo vcalo.cc ${sources} ${headers})
+add_executable(vana vana.cc ${sources} ${headers})
 target_link_libraries(vcalo 
+    ${ROOT_LIBRARIES}
+    ROOT::Geom
+    yaml-cpp
+    ${Geant4_LIBRARIES}
+)
+target_link_libraries(vana
     ${ROOT_LIBRARIES}
     ROOT::Geom
     yaml-cpp
