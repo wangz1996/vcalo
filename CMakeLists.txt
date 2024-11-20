@@ -1,9 +1,10 @@
 #----------------------------------------------------------------------------
 # Setup the project
-cmake_minimum_required(VERSION 3.11 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.20 FATAL_ERROR)
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 project(vcalo VERSION 1.0.0 LANGUAGES C CXX )
 add_compile_options(-w)
-# add_definitions(-std=c++17)
 
 option(WITH_GEANT4_UIVIS "Build example with Geant4 UI and Vis drivers" ON)
 if(WITH_GEANT4_UIVIS)
@@ -25,7 +26,9 @@ find_package(yaml-cpp REQUIRED)
 find_package(Eigen3 REQUIRED)
 find_package(Acts REQUIRED COMPONENTS Core)
 
-# message(STATUS "Eigen include: " ${EIGEN3_INCLUDE_DIR})
+message(STATUS "Acts include: " ${Acts_include})
+# get_target_property(ACTS_INCLUDE_DIR Acts::Core INTERFACE_INCLUDE_DIRECTORIES)
+# message(STATUS "ACTS Core Include Directory: ${ACTS_INCLUDE_DIR}")
 
 #----------------------------------------------------------------------------
 # Locate sources and headers for this project
@@ -35,10 +38,9 @@ include_directories(${PROJECT_SOURCE_DIR}/include
                     ${Geant4_INCLUDE_DIR}
 		    ${ROOT_INCLUDE_DIRS}
         ${EIGEN3_INCLUDE_DIR})
-INCLUDE_DIRECTORIES(${Acts_include})
 
-file(GLOB sources ${PROJECT_SOURCE_DIR}/src/*.cc)
-file(GLOB headers ${PROJECT_SOURCE_DIR}/include/*.hh)
+file(GLOB_RECURSE sources ${PROJECT_SOURCE_DIR}/src/*)
+file(GLOB_RECURSE headers ${PROJECT_SOURCE_DIR}/include/*)
 
 #----------------------------------------------------------------------------
 # Add the executable, and link it to the Geant4 libraries
@@ -50,6 +52,7 @@ target_link_libraries(vcalo
     ROOT::Geom
     yaml-cpp
     ${Geant4_LIBRARIES}
+    ActsCore
 )
 target_link_libraries(vana
     ${ROOT_LIBRARIES}

@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://service-spi.web.cern.ch/service-spi/app/releases/GDML/schema/gdml.xsd">
+
+  <define>
+    <matrix coldim="2" name="RINDEX0x3fc3230" values="1e-06 3.95 6e-06 3.95"/>
+    <matrix coldim="2" name="GROUPVEL0x3fc3310" values="1e-06 75.8968 6e-06 75.8968"/>
+    <matrix coldim="2" name="RINDEX0x3fa8c20" values="2.034e-06 1 2.068e-06 1 2.103e-06 1 2.139e-06 1 2.177e-06 1 2.216e-06 1 2.256e-06 1 2.298e-06 1 2.341e-06 1 2.386e-06 1 2.433e-06 1 2.481e-06 1 2.532e-06 1 2.585e-06 1 2.64e-06 1 2.697e-06 1 2.757e-06 1 2.82e-06 1 2.885e-06 1 2.954e-06 1 3.026e-06 1 3.102e-06 1 3.181e-06 1 3.265e-06 1 3.353e-06 1 3.446e-06 1 3.545e-06 1 3.649e-06 1 3.76e-06 1 3.877e-06 1 4.002e-06 1 4.136e-06 1"/>
+    <matrix coldim="2" name="GROUPVEL0x3facf30" values="2.034e-06 299.792 2.051e-06 299.792 2.0855e-06 299.792 2.121e-06 299.792 2.158e-06 299.792 2.1965e-06 299.792 2.236e-06 299.792 2.277e-06 299.792 2.3195e-06 299.792 2.3635e-06 299.792 2.4095e-06 299.792 2.457e-06 299.792 2.5065e-06 299.792 2.5585e-06 299.792 2.6125e-06 299.792 2.6685e-06 299.792 2.727e-06 299.792 2.7885e-06 299.792 2.8525e-06 299.792 2.9195e-06 299.792 2.99e-06 299.792 3.064e-06 299.792 3.1415e-06 299.792 3.223e-06 299.792 3.309e-06 299.792 3.3995e-06 299.792 3.4955e-06 299.792 3.597e-06 299.792 3.7045e-06 299.792 3.8185e-06 299.792 3.9395e-06 299.792 4.136e-06 299.792"/>
+  </define>
+
+  <materials>
+    <isotope N="12" Z="6" name="C120x3fba2d0">
+      <atom unit="g/mole" value="12"/>
+    </isotope>
+    <isotope N="13" Z="6" name="C130x3fba620">
+      <atom unit="g/mole" value="13.0034"/>
+    </isotope>
+    <element name="C0x3fba670">
+      <fraction n="0.9893" ref="C120x3fba2d0"/>
+      <fraction n="0.0107" ref="C130x3fba620"/>
+    </element>
+    <isotope N="16" Z="8" name="O160x3f94e10">
+      <atom unit="g/mole" value="15.9949"/>
+    </isotope>
+    <isotope N="17" Z="8" name="O170x3f94e60">
+      <atom unit="g/mole" value="16.9991"/>
+    </isotope>
+    <isotope N="18" Z="8" name="O180x3f94eb0">
+      <atom unit="g/mole" value="17.9992"/>
+    </isotope>
+    <element name="Oxygen0x3f94cd0">
+      <fraction n="0.99757" ref="O160x3f94e10"/>
+      <fraction n="0.00038" ref="O170x3f94e60"/>
+      <fraction n="0.00205" ref="O180x3f94eb0"/>
+    </element>
+    <material name="carbonFiber0x3fba770" state="solid">
+      <T unit="K" value="293.15"/>
+      <MEE unit="eV" value="82.3027700267269"/>
+      <D unit="g/cm3" value="1.75"/>
+      <fraction n="0.9" ref="C0x3fba670"/>
+      <fraction n="0.1" ref="Oxygen0x3f94cd0"/>
+    </material>
+    <isotope N="28" Z="14" name="Si280x3fbaed0">
+      <atom unit="g/mole" value="27.9769"/>
+    </isotope>
+    <isotope N="29" Z="14" name="Si290x3fbab30">
+      <atom unit="g/mole" value="28.9765"/>
+    </isotope>
+    <isotope N="30" Z="14" name="Si300x3fbab80">
+      <atom unit="g/mole" value="29.9738"/>
+    </isotope>
+    <element name="Si0x3fbb280">
+      <fraction n="0.922296077703922" ref="Si280x3fbaed0"/>
+      <fraction n="0.0468319531680468" ref="Si290x3fbab30"/>
+      <fraction n="0.0308719691280309" ref="Si300x3fbab80"/>
+    </element>
+    <material name="G4_Si0x3fc3430" state="solid">
+      <property name="RINDEX" ref="RINDEX0x3fc3230"/>
+      <property name="GROUPVEL" ref="GROUPVEL0x3fc3310"/>
+      <T unit="K" value="293.15"/>
+      <MEE unit="eV" value="173"/>
+      <D unit="g/cm3" value="2.33"/>
+      <fraction n="1" ref="Si0x3fbb280"/>
+    </material>
+    <isotope N="1" Z="1" name="H10x3fa64c0">
+      <atom unit="g/mole" value="1.00782503081372"/>
+    </isotope>
+    <isotope N="2" Z="1" name="H20x3fa6a60">
+      <atom unit="g/mole" value="2.01410199966617"/>
+    </isotope>
+    <element name="H0x3fa6ab0">
+      <fraction n="0.999885" ref="H10x3fa64c0"/>
+      <fraction n="0.000115" ref="H20x3fa6a60"/>
+    </element>
+    <isotope N="14" Z="7" name="N140x3f94b50">
+      <atom unit="g/mole" value="14.0031"/>
+    </isotope>
+    <isotope N="15" Z="7" name="N150x3f94bc0">
+      <atom unit="g/mole" value="15.0001"/>
+    </isotope>
+    <element name="Nitrogen0x3f74270">
+      <fraction n="0.99632" ref="N140x3f94b50"/>
+      <fraction n="0.00368" ref="N150x3f94bc0"/>
+    </element>
+    <material name="Kapton0x3fcf6b0" state="solid">
+      <T unit="K" value="293.15"/>
+      <MEE unit="eV" value="77.8219282751242"/>
+      <D unit="g/cm3" value="1.42"/>
+      <fraction n="0.69113" ref="C0x3fba670"/>
+      <fraction n="0.02636" ref="H0x3fa6ab0"/>
+      <fraction n="0.07327" ref="Nitrogen0x3f74270"/>
+      <fraction n="0.20924" ref="Oxygen0x3f94cd0"/>
+    </material>
+    <material name="G4_Galactic0x3fa6920" state="gas">
+      <property name="RINDEX" ref="RINDEX0x3fa8c20"/>
+      <property name="GROUPVEL" ref="GROUPVEL0x3facf30"/>
+      <T unit="K" value="2.73"/>
+      <P unit="pascal" value="3e-18"/>
+      <MEE unit="eV" value="21.8"/>
+      <D unit="g/cm3" value="1e-25"/>
+      <fraction n="1" ref="H0x3fa6ab0"/>
+    </material>
+  </materials>
+
+  <solids>
+    <box lunit="mm" name="solidTrayLid0x3fe2200" x="287" y="287" z="1"/>
+    <box lunit="mm" name="solidTracker0x3fe2450" x="285" y="285" z="0.35"/>
+    <box lunit="mm" name="solidKapton0x3fe26c0" x="285" y="285" z="0.35"/>
+    <orb lunit="mm" name="World0x3fad110" r="5000"/>
+  </solids>
+
+  <structure>
+    <volume name="logicTrayLid0x3fe22e0">
+      <materialref ref="carbonFiber0x3fba770"/>
+      <solidref ref="solidTrayLid0x3fe2200"/>
+    </volume>
+    <volume name="logicTracker0x3fe2550">
+      <materialref ref="G4_Si0x3fc3430"/>
+      <solidref ref="solidTracker0x3fe2450"/>
+    </volume>
+    <volume name="logicKapton0x3fe27c0">
+      <materialref ref="Kapton0x3fcf6b0"/>
+      <solidref ref="solidKapton0x3fe26c0"/>
+    </volume>
+    <volume name="World0x3fad010">
+      <materialref ref="G4_Galactic0x3fa6920"/>
+      <solidref ref="World0x3fad110"/>
+      <physvol name="physTrayLid0x3fe2930">
+        <volumeref ref="logicTrayLid0x3fe22e0"/>
+        <position name="physTrayLid0x3fe2930_pos" unit="mm" x="0" y="0" z="-237.8"/>
+      </physvol>
+      <physvol name="physTrayLid0x3fe2a10">
+        <volumeref ref="logicTrayLid0x3fe22e0"/>
+        <position name="physTrayLid0x3fe2a10_pos" unit="mm" x="0" y="0" z="-261.8"/>
+      </physvol>
+      <physvol name="physTracker_00x3fe2a90">
+        <volumeref ref="logicTracker0x3fe2550"/>
+        <position name="physTracker_00x3fe2a90_pos" unit="mm" x="0" y="0" z="-237.125"/>
+      </physvol>
+      <physvol name="physKapton_00x3fe2bd0">
+        <volumeref ref="logicKapton0x3fe27c0"/>
+        <position name="physKapton_00x3fe2bd0_pos" unit="mm" x="0" y="0" z="-236.775"/>
+      </physvol>
+      <physvol name="physTracker_10x3fe2cc0">
+        <volumeref ref="logicTracker0x3fe2550"/>
+        <position name="physTracker_10x3fe2cc0_pos" unit="mm" x="0" y="0" z="-232.164993286133"/>
+      </physvol>
+      <physvol name="physKapton_10x3fe2dd0">
+        <volumeref ref="logicKapton0x3fe27c0"/>
+        <position name="physKapton_10x3fe2dd0_pos" unit="mm" x="0" y="0" z="-231.814993286133"/>
+      </physvol>
+      <physvol name="physTrayLid0x3fe2eb0">
+        <volumeref ref="logicTrayLid0x3fe22e0"/>
+        <position name="physTrayLid0x3fe2eb0_pos" unit="mm" x="0" y="0" z="-207.14"/>
+      </physvol>
+      <physvol name="physTrayLid0x3fe2f70">
+        <volumeref ref="logicTrayLid0x3fe22e0"/>
+        <position name="physTrayLid0x3fe2f70_pos" unit="mm" x="0" y="0" z="-231.14"/>
+      </physvol>
+      <physvol name="physTracker_20x3fe3000">
+        <volumeref ref="logicTracker0x3fe2550"/>
+        <position name="physTracker_20x3fe3000_pos" unit="mm" x="0" y="0" z="-206.464996337891"/>
+      </physvol>
+      <physvol name="physKapton_20x3fe3180">
+        <volumeref ref="logicKapton0x3fe27c0"/>
+        <position name="physKapton_20x3fe3180_pos" unit="mm" x="0" y="0" z="-206.114996337891"/>
+      </physvol>
+      <physvol name="physTracker_30x3fe3290">
+        <volumeref ref="logicTracker0x3fe2550"/>
+        <position name="physTracker_30x3fe3290_pos" unit="mm" x="0" y="0" z="-201.505004882812"/>
+      </physvol>
+      <physvol name="physKapton_30x3fe34f0">
+        <volumeref ref="logicKapton0x3fe27c0"/>
+        <position name="physKapton_30x3fe34f0_pos" unit="mm" x="0" y="0" z="-201.155004882812"/>
+      </physvol>
+      <physvol name="physTrayLid0x3fe3600">
+        <volumeref ref="logicTrayLid0x3fe22e0"/>
+        <position name="physTrayLid0x3fe3600_pos" unit="mm" x="0" y="0" z="-176.48"/>
+      </physvol>
+      <physvol name="physTrayLid0x3fe3690">
+        <volumeref ref="logicTrayLid0x3fe22e0"/>
+        <position name="physTrayLid0x3fe3690_pos" unit="mm" x="0" y="0" z="-200.48"/>
+      </physvol>
+      <physvol name="physTracker_40x3fe36f0">
+        <volumeref ref="logicTracker0x3fe2550"/>
+        <position name="physTracker_40x3fe36f0_pos" unit="mm" x="0" y="0" z="-175.804992675781"/>
+      </physvol>
+      <physvol name="physKapton_40x3fe3800">
+        <volumeref ref="logicKapton0x3fe27c0"/>
+        <position name="physKapton_40x3fe3800_pos" unit="mm" x="0" y="0" z="-175.454992675781"/>
+      </physvol>
+      <physvol name="physTracker_50x3fe3910">
+        <volumeref ref="logicTracker0x3fe2550"/>
+        <position name="physTracker_50x3fe3910_pos" unit="mm" x="0" y="0" z="-170.845001220703"/>
+      </physvol>
+      <physvol name="physKapton_50x3fe30f0">
+        <volumeref ref="logicKapton0x3fe27c0"/>
+        <position name="physKapton_50x3fe30f0_pos" unit="mm" x="0" y="0" z="-170.495001220703"/>
+      </physvol>
+      <physvol name="physTrayLid0x3fe3bb0">
+        <volumeref ref="logicTrayLid0x3fe22e0"/>
+        <position name="physTrayLid0x3fe3bb0_pos" unit="mm" x="0" y="0" z="-145.82"/>
+      </physvol>
+      <physvol name="physTrayLid0x3fe3c40">
+        <volumeref ref="logicTrayLid0x3fe22e0"/>
+        <position name="physTrayLid0x3fe3c40_pos" unit="mm" x="0" y="0" z="-169.82"/>
+      </physvol>
+    </volume>
+  </structure>
+
+  <setup name="Default" version="1.0">
+    <world ref="World0x3fad010"/>
+  </setup>
+
+</gdml>

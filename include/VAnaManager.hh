@@ -11,12 +11,19 @@
 #include "TSystem.h"
 #include "TGeoManager.h"
 #include <fstream>
+#include <memory>
+#include <ranges>
 #include <filesystem>
 
 //Acts
-#include <Acts/Plugins/TGeo/TGeoDetectorElement.hpp>
-#include <Acts/Plugins/TGeo/TGeoParser.hpp>
 #include <Acts/Geometry/TrackingGeometry.hpp>
+#include <Acts/Surfaces/PlaneSurface.hpp>
+#include <Acts/TrackFitting/KalmanFitter.hpp>
+#include <Acts/Utilities/Logger.hpp>
+#include <Acts/EventData/TrackParameters.hpp>
+// #include <Acts/EventData/Measurement.hpp>
+#include <Acts/Surfaces/RectangleBounds.hpp>
+using namespace Acts::UnitLiterals;
 
 using std::cout;
 using std::endl;
