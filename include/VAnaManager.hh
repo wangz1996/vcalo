@@ -1,29 +1,22 @@
 #ifndef VANAMANAGER_HH
 #define VANAMANAGER_HH
 
-#include <iostream>
-#include <string>
-#include <vector>
-#include "TFile.h"
-#include "TTree.h"
-#include "TString.h"
-#include "TROOT.h"
-#include "TSystem.h"
-#include "TGeoManager.h"
-#include <fstream>
+#include <cstddef>
 #include <memory>
-#include <ranges>
-#include <filesystem>
+#include <optional>
+#include <stdexcept>
+#include <string>
+#include <typeinfo>
+#include <unordered_map>
+#include <utility>
+#include <vector>
 
 //Acts
-#include <Acts/Geometry/TrackingGeometry.hpp>
-#include <Acts/Surfaces/PlaneSurface.hpp>
-#include <Acts/TrackFitting/KalmanFitter.hpp>
 #include <Acts/Utilities/Logger.hpp>
-#include <Acts/EventData/TrackParameters.hpp>
-// #include <Acts/EventData/Measurement.hpp>
-#include <Acts/Surfaces/RectangleBounds.hpp>
-using namespace Acts::UnitLiterals;
+#include "TFile.h"
+#include "TTree.h"
+#include "TGeoManager.h"
+#include "Sequencer.hh"
 
 using std::cout;
 using std::endl;
@@ -39,7 +32,7 @@ public:
 private:
     TFile *fInputFile;
     TTree *fTree;
-
+    Sequencer *fSequencer;
 };
 
 #endif

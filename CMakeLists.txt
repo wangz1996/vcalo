@@ -24,9 +24,9 @@ include(${Geant4_USE_FILE})
 find_package(ROOT REQUIRED COMPONENTS TMVA ROOTVecOps ROOTDataFrame Geom Eve)
 find_package(yaml-cpp REQUIRED)
 find_package(Eigen3 REQUIRED)
-find_package(Acts REQUIRED COMPONENTS Core)
+find_package(Acts REQUIRED COMPONENTS Core PluginTGeo)
 
-message(STATUS "Acts include: " ${Acts_include})
+# message(STATUS "Acts include: " ${Acts_include})
 # get_target_property(ACTS_INCLUDE_DIR Acts::Core INTERFACE_INCLUDE_DIRECTORIES)
 # message(STATUS "ACTS Core Include Directory: ${ACTS_INCLUDE_DIR}")
 
@@ -60,6 +60,8 @@ target_link_libraries(vana
     yaml-cpp
     ${Geant4_LIBRARIES}
     ActsCore
+    Eigen3::Eigen
+    ActsPluginTGeo
 )
 
 #----------------------------------------------------------------------------

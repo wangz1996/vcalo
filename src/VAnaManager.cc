@@ -1,5 +1,7 @@
 #include "VAnaManager.hh"
+#include "Sequencer.hh"
 VAnaManager::VAnaManager() {
+  fSequencer = new Sequencer(Sequencer::Config());
   //std::cout << "VAnaManager::VAnaManager()" << std::endl;
 }
 
@@ -16,9 +18,6 @@ int VAnaManager::run(){
     fTree->GetEntry(0);
     TGeoManager::Import("../config/tracker.gdml");
     //Test
-    auto siliconSurface = Acts::Surface::makeShared<Acts::PlaneSurface>(
-        Acts::Vector3(0., 0., 0.), // 中心位置
-        Acts::RectangleBounds(285.0 / 2.0, 285.0 / 2.0) // 几何尺寸
-    );
+    
     return 1;
 }
