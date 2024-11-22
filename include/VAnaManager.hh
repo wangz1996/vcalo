@@ -17,6 +17,7 @@
 #include "TTree.h"
 #include "TGeoManager.h"
 #include "Sequencer.hh"
+#include "Measurement.hh"
 
 using std::cout;
 using std::endl;
@@ -33,6 +34,7 @@ private:
     TFile *fInputFile;
     TTree *fTree;
     Sequencer *fSequencer;
+    MeasurementCreator *fMeasurementCreator;
 };
 
 #endif

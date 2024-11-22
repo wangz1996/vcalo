@@ -4,7 +4,7 @@
 
 int main(int argc,char** argv) {
 	if(argc!=2){
-		std::cout<<"Wrong arguments! Use vana -h(--help) to view help message"<<std::endl;
+		std::cout<<"Wrong arguments! Please use ./vana test.root"<<std::endl;
 		return 1;
 	}
 	std::string arg(argv[1]);

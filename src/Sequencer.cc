@@ -66,12 +66,18 @@ std::unique_ptr<const Acts::TrackingGeometry> Sequencer::buildDetector()
   {
     layVec.push_back(layers[i]);
   }
+//   std::cout<<"Layer number: "<<layVec.size()<<std::endl;
 
   // Create the layer array
   Acts::GeometryContext genGctx{TelescopeDetectorElement::ContextType()};
   std::unique_ptr<const Acts::LayerArray> layArr(layArrCreator.layerArray(
       genGctx, layVec, TrackerPosZ[0] - 2._mm, TrackerPosZ[5] + 2._mm,
-      Acts::BinningType::arbitrary, Acts::BinningValue::binZ));
+      Acts::BinningType::equidistant, Acts::BinningValue::binZ));
+
+  auto layContainer = layArr->arrayObjects();
+//   for(auto layer:layContainer){
+//     std::cout<<"Layer ptr: "<<layer-> <<std::endl;
+//   }
   // Build the tracking volume
   auto trackVolume =
       Acts::TrackingVolume::create(trafoVol, boundsVol, nullptr,
