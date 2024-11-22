@@ -13,6 +13,7 @@
 #include "SequenceElement.hh"
 #include "DetectorInclude.hh"
 #include "TelescopeDetectorElement.hh"
+#include "IndexSourceLink.hh"
 
 using namespace Acts::UnitLiterals;
 class Sequencer{
