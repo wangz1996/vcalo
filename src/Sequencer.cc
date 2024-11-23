@@ -4,7 +4,7 @@ Sequencer::Sequencer(const Config &cfg) : m_cfg(cfg)
 {
 }
 
-std::unique_ptr<const Acts::TrackingGeometry> Sequencer::buildDetector()
+std::shared_ptr<const Acts::TrackingGeometry> Sequencer::buildDetector()
 {
   // Material of the surfaces
   Acts::Material silicon = Acts::Material::fromMassDensity(
@@ -72,7 +72,7 @@ std::unique_ptr<const Acts::TrackingGeometry> Sequencer::buildDetector()
   Acts::GeometryContext genGctx{TelescopeDetectorElement::ContextType()};
   std::unique_ptr<const Acts::LayerArray> layArr(layArrCreator.layerArray(
       genGctx, layVec, TrackerPosZ[0] - 2._mm, TrackerPosZ[5] + 2._mm,
-      Acts::BinningType::equidistant, Acts::BinningValue::binZ));
+      Acts::BinningType::arbitrary, Acts::BinningValue::binZ));
     m_geoctx = genGctx;
   auto layContainer = layArr->arrayObjects();
 //   for(auto layer:layContainer){
@@ -83,7 +83,7 @@ std::unique_ptr<const Acts::TrackingGeometry> Sequencer::buildDetector()
       Acts::TrackingVolume::create(trafoVol, boundsVol, nullptr,
                                    std::move(layArr), nullptr, {}, "Telescope");
   // Build and return tracking geometry
-  return std::make_unique<Acts::TrackingGeometry>(trackVolume);
+  return std::make_shared<Acts::TrackingGeometry>(trackVolume);
 }
 
 int Sequencer::run()

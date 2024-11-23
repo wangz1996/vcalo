@@ -12,6 +12,7 @@
 #include "Acts/TrackFitting/GainMatrixUpdater.hpp"
 #include "Acts/Surfaces/PerigeeSurface.hpp"
 #include "Acts/MagneticField/NullBField.hpp"
+#include <Acts/Utilities/Logger.hpp>
 #include "ProcessCode.hh"
 
 using Updater = Acts::GainMatrixUpdater;

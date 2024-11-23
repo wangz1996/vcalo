@@ -16,7 +16,9 @@ TrackFinderResult TrackFinder::FindTracks(std::shared_ptr<const Acts::TrackingGe
     const TrackFinderOptions &options,
     TrackContainer &tracks)
 {
-    auto magneticField = std::make_shared<const Acts::MagneticFieldProvider>(Acts::NullBField());
+    // auto magneticField = std::make_shared<const Acts::NullBField>(Acts::NullBField());
+    Acts::Vector3 magneticFieldVector(0, 0, 1 * Acts::UnitConstants::T);
+    auto magneticField = std::make_shared<const Acts::ConstantBField>(magneticFieldVector);
     Stepper stepper(std::move(magneticField));
     Navigator::Config cfg{std::move(trackingGeometry)};
     cfg.resolvePassive = false;
@@ -24,7 +26,7 @@ TrackFinderResult TrackFinder::FindTracks(std::shared_ptr<const Acts::TrackingGe
     cfg.resolveSensitive = true;
     Navigator navigator(cfg);
     Propagator propagator(std::move(stepper), std::move(navigator));
-    CKF trackFinder(std::move(propagator));
+    CKF trackFinder(std::move(propagator), Acts::getDefaultLogger("CKF",Acts::Logging::VERBOSE));
     return trackFinder.findTracks(initialParameter, options, tracks);
 }
 

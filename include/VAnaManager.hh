@@ -20,6 +20,7 @@
 #include "Measurement.hh"
 #include "TrackFinder.hh"
 #include "IndexSourceLink.hh"
+#include <variant>
 
 using std::cout;
 using std::endl;

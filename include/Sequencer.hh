@@ -24,7 +24,7 @@ public:
     ~Sequencer() = default;
 
     void addElement(std::shared_ptr<SequenceElement>& element);
-    std::unique_ptr<const Acts::TrackingGeometry> buildDetector();
+    std::shared_ptr<const Acts::TrackingGeometry> buildDetector();
 
     int run();
 
