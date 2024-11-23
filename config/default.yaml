@@ -16,8 +16,8 @@ Global:
         #output: ./priproton.root # Output root file name
         #output: ./secproton.root # Output root file name
         output: ./test.root # Output root file name
-        beamon: 1
-        savegeo: True
+        beamon: 20
+        savegeo: False
         savetrack: 1
         trackEnergy_threshold: 2.0
 Parameter:
