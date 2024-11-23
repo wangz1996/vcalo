@@ -28,6 +28,8 @@ public:
 
     int run();
 
+    Acts::GeometryContext getGeoContext() const { return m_geoctx; }
+
 private:
     Config m_cfg;
     std::vector<std::shared_ptr<SequenceElement>> m_sequenceElements;
@@ -36,6 +38,7 @@ private:
     		60.795 - 262.3, 86.495 - 262.3, 91.455 - 262.3
 		};
     std::vector<std::shared_ptr<TelescopeDetectorElement>> detectorStore;
+    Acts::GeometryContext m_geoctx;
 };
 
 #endif

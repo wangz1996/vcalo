@@ -73,7 +73,7 @@ std::unique_ptr<const Acts::TrackingGeometry> Sequencer::buildDetector()
   std::unique_ptr<const Acts::LayerArray> layArr(layArrCreator.layerArray(
       genGctx, layVec, TrackerPosZ[0] - 2._mm, TrackerPosZ[5] + 2._mm,
       Acts::BinningType::equidistant, Acts::BinningValue::binZ));
-
+    m_geoctx = genGctx;
   auto layContainer = layArr->arrayObjects();
 //   for(auto layer:layContainer){
 //     std::cout<<"Layer ptr: "<<layer-> <<std::endl;

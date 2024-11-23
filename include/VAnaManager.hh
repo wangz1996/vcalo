@@ -18,6 +18,8 @@
 #include "TGeoManager.h"
 #include "Sequencer.hh"
 #include "Measurement.hh"
+#include "TrackFinder.hh"
+#include "IndexSourceLink.hh"
 
 using std::cout;
 using std::endl;
@@ -35,6 +37,7 @@ private:
     TTree *fTree;
     Sequencer *fSequencer;
     MeasurementCreator *fMeasurementCreator;
+    TrackFinder *fTrackFinder;
 };
 
 #endif

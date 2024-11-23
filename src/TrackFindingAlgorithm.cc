@@ -6,6 +6,9 @@
 #include "Acts/Surfaces/PerigeeSurface.hpp"
 #include "Acts/TrackFitting/GainMatrixSmoother.hpp"
 #include "Acts/TrackFitting/GainMatrixUpdater.hpp"
+#include "Measurement.hh"
+#include "Track.hh"
+#include "ProcessCode.hh"
 
 #include <stdexcept>
 
@@ -14,8 +17,8 @@
 TrackFindingAlgorithm::TrackFindingAlgorithm(
     Config config, Acts::Logging::Level level)
     : IAlgorithm("TrackFindingAlgorithm", level),
-      m_cfg(std::move(config))
-{
+    m_cfg(std::move(config)),
+    m_outputTracks(std::make_shared<Acts::ConstVectorTrackContainer>(),std::make_shared<Acts::ConstVectorMultiTrajectory>()){
 }
 ProcessCode TrackFindingAlgorithm::execute(const AlgorithmContext &ctx) const
 {
@@ -96,7 +99,7 @@ ProcessCode TrackFindingAlgorithm::execute(const AlgorithmContext &ctx) const
   ConstTrackContainer constTracks{constTrackContainer,
                                   constTrackStateContainer};
     
-    // m_outputTracks=constTracks;
+    // m_outputTracks=std::move(constTracks);
     return ProcessCode::SUCCESS;
 }
 }
