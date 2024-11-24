@@ -12,7 +12,6 @@
 #include "Acts/Surfaces/Surface.hpp"
 #include "GeometryContainers.hh"
 #include "Index.hh"
-
 #include <cassert>
 
 class IndexSourceLink final {

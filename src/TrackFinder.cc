@@ -35,7 +35,7 @@ TrackFinderResult TrackFinder::FindTracks(std::shared_ptr<const Acts::TrackingGe
 
 ProcessCode TrackFinder::execute(const Acts::GeometryContext& geoctx,const IndexSourceLinkContainer& sourceLinks, 
 std::shared_ptr<const Acts::TrackingGeometry> trackingGeometry,
-    const std::vector<Acts::CurvilinearTrackParameters>& initialParameters){
+    const std::vector<Acts::CurvilinearTrackParameters>& initialParameters, const MeasurementContainer& measurements){
     // Construct a perigee surface as the target surface
     // auto pSurface = Acts::Surface::makeShared<Acts::PerigeeSurface>(
     //     Acts::Vector3{0., 0., 0.});
@@ -43,34 +43,37 @@ std::shared_ptr<const Acts::TrackingGeometry> trackingGeometry,
       Acts::Vector3{0., 0., 1._m}, Acts::Vector3{0., 0., 1.});
     Acts::PropagatorPlainOptions pOptions;
     pOptions.maxSteps = 100000;
-
+    PassThroughCalibrator pcalibrator;
+    MeasurementCalibratorAdapter calibrator(pcalibrator, measurements);
     Acts::GainMatrixUpdater kfUpdater;
     Acts::GainMatrixSmoother kfSmoother;
     Acts::MeasurementSelector measSel{Acts::MeasurementSelector::Config()};
 
     Acts::CombinatorialKalmanFilterExtensions<Acts::VectorMultiTrajectory>
         extensions;
-
+    extensions.calibrator.connect<&MeasurementCalibratorAdapter::calibrate>(
+      &calibrator);
     extensions.updater.connect<
         &Acts::GainMatrixUpdater::operator()<Acts::VectorMultiTrajectory>>(
         &kfUpdater);
     extensions.smoother.connect<
         &Acts::GainMatrixSmoother::operator()<Acts::VectorMultiTrajectory>>(
         &kfSmoother);
-    extensions.measurementSelector
-        .connect<&Acts::MeasurementSelector::select<Acts::VectorMultiTrajectory>>(
-            &measSel);
+    // extensions.measurementSelector
+    //     .connect<&Acts::MeasurementSelector::select<Acts::VectorMultiTrajectory>>(
+    //         &measSel);
 
     IndexSourceLinkAccessor slAccessor;
   slAccessor.container = &sourceLinks;
   Acts::SourceLinkAccessorDelegate<IndexSourceLinkAccessor::Iterator>
       slAccessorDelegate;
   slAccessorDelegate.connect<&IndexSourceLinkAccessor::range>(&slAccessor);
-    Acts::CalibrationContext calibContext = std::any{};
-    std::reference_wrapper<const Acts::CalibrationContext> calibrationContextRef(calibContext);
+  WhiteBoard WB;
+  AlgorithmContext algoctx(1, 1, WB);
+    // std::reference_wrapper<const Acts::CalibrationContext> calibrationContext;
 //Set Finding options
     TrackFinderOptions options(
-      geoctx, Acts::MagneticFieldContext(), calibrationContextRef, slAccessorDelegate,
+      geoctx, Acts::MagneticFieldContext(), algoctx.calibContext, slAccessorDelegate,
       extensions, pOptions, &(*pSurface));
 
     options.propagatorPlainOptions.direction = Acts::Direction::Forward;
@@ -93,7 +96,10 @@ std::shared_ptr<const Acts::TrackingGeometry> trackingGeometry,
         std::cout<<result.error()<<" "<<result.error().message()<<std::endl;
       }
   }
+    
+    std::cout<<"N Tracks found: "<<tracks.size()<<std::endl;
 
+    
     return ProcessCode::SUCCESS;
 
 }

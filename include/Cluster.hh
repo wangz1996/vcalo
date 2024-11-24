@@ -1,7 +1,7 @@
 #ifndef CLUSTER_HPP
 #define CLUSTER_HPP
 
-#include "ActsFatras/Digitization/Channelizer.hpp"
+#include "Channelizer.hh"
 
 #include <vector>
 

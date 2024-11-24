@@ -26,6 +26,7 @@ std::shared_ptr<const Acts::TrackingGeometry> Sequencer::buildDetector()
         std::make_shared<const Acts::Transform3>(trafo), pBounds, 0.35_mm, surfaceMaterial);
     // Get the surface
     auto surface = detElement->surface().getSharedPtr();
+    // std::cout<<"Surface gid: "<<surface->geometryId().value()<<std::endl;
     detectorStore.emplace_back(std::move(detElement));
 
     // Construct the surface array (one surface contained)
@@ -33,8 +34,10 @@ std::shared_ptr<const Acts::TrackingGeometry> Sequencer::buildDetector()
     // Construct the layer
     layers[i] =
         Acts::PlaneLayer::create(trafo, pBounds, std::move(surArray), 0.35_mm);
+    // std::cout<<"Layer gid: "<<layers[i]->geometryId().value()<<std::endl;
     auto mutableSurface = const_cast<Acts::Surface *>(surface.get());
     mutableSurface->associateLayer(*layers[i]);
+    // std::cout<<"Surface gid: "<<mutableSurface->geometryId().value()<<std::endl;
   }
 
   // Define volume
@@ -72,17 +75,28 @@ std::shared_ptr<const Acts::TrackingGeometry> Sequencer::buildDetector()
   Acts::GeometryContext genGctx{TelescopeDetectorElement::ContextType()};
   std::unique_ptr<const Acts::LayerArray> layArr(layArrCreator.layerArray(
       genGctx, layVec, TrackerPosZ[0] - 2._mm, TrackerPosZ[5] + 2._mm,
-      Acts::BinningType::arbitrary, Acts::BinningValue::binZ));
+      Acts::BinningType::equidistant, Acts::BinningValue::binZ));
     m_geoctx = genGctx;
   auto layContainer = layArr->arrayObjects();
-//   for(auto layer:layContainer){
-//     std::cout<<"Layer ptr: "<<layer-> <<std::endl;
-//   }
+  // for(auto layer:layContainer){
+  //   std::cout<<"Layer gid: "<<layer->geometryId().value() <<std::endl;
+  // }
   // Build the tracking volume
   auto trackVolume =
       Acts::TrackingVolume::create(trafoVol, boundsVol, nullptr,
                                    std::move(layArr), nullptr, {}, "Telescope");
   // Build and return tracking geometry
+  auto printgid = [](const auto& gid){
+    std::cout<<"Volume gid: "<<gid.volume()<<" "<<gid.boundary()<<" "<<gid.layer()<<" "<<gid.approach()<<" "<<gid.sensitive()<<" "<<gid.extra()<<std::endl;
+  };
+  auto trackGeometry = std::make_shared<Acts::TrackingGeometry>(trackVolume);
+  for(int i=0;i<6;i++){
+    auto layer = trackGeometry->associatedLayer(genGctx, Acts::Vector3(0.,0.,TrackerPosZ[i]));
+    printgid(layer->geometryId());
+    auto surface = layer->surfaceArray()->surfaces().at(0);
+    printgid(surface->geometryId());
+    m_surfacegids.emplace_back(std::move(surface->geometryId()));
+  }
   return std::make_shared<Acts::TrackingGeometry>(trackVolume);
 }
 

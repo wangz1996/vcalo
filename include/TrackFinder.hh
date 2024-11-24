@@ -13,6 +13,9 @@
 #include "Acts/Surfaces/PerigeeSurface.hpp"
 #include "Acts/MagneticField/NullBField.hpp"
 #include <Acts/Utilities/Logger.hpp>
+#include "MeasurementCalibration.hh"
+#include "WhiteBoard.hh"
+#include "Measurement.hh"
 #include "SequenceElement.hh"
 #include "ProcessCode.hh"
 using namespace Acts::UnitLiterals;
@@ -53,7 +56,7 @@ public:
 
     ProcessCode execute(const Acts::GeometryContext& geoctx,const IndexSourceLinkContainer& sourceLinks,
     std::shared_ptr<const Acts::TrackingGeometry> trackingGeometry,
-    const std::vector<Acts::CurvilinearTrackParameters>& initialParameters);
+    const std::vector<Acts::CurvilinearTrackParameters>& initialParameters,const MeasurementContainer& measurements);
 
 private:
     // CKF trkFinder(Propagator());

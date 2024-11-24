@@ -27,7 +27,7 @@ public:
     std::shared_ptr<const Acts::TrackingGeometry> buildDetector();
 
     int run();
-
+    std::vector<Acts::GeometryIdentifier> getSurfaceGids() const { return m_surfacegids; }
     Acts::GeometryContext getGeoContext() const { return m_geoctx; }
 
 private:
@@ -39,6 +39,7 @@ private:
 		};
     std::vector<std::shared_ptr<TelescopeDetectorElement>> detectorStore;
     Acts::GeometryContext m_geoctx;
+    std::vector<Acts::GeometryIdentifier> m_surfacegids;
 };
 
 #endif
