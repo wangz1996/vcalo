@@ -1,10 +1,10 @@
 #----------------------------------------------------------------------------
 # Setup the project
-cmake_minimum_required(VERSION 3.20 FATAL_ERROR)
-set(CMAKE_CXX_STANDARD 20)
+cmake_minimum_required(VERSION 3.11 FATAL_ERROR)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 project(vcalo VERSION 1.0.0 LANGUAGES C CXX )
-add_compile_options(-w)
+# add_compile_options(-w)
 
 option(WITH_GEANT4_UIVIS "Build example with Geant4 UI and Vis drivers" ON)
 if(WITH_GEANT4_UIVIS)
@@ -26,7 +26,7 @@ find_package(yaml-cpp REQUIRED)
 find_package(Eigen3 REQUIRED)
 find_package(Acts REQUIRED COMPONENTS Core PluginTGeo)
 
-# message(STATUS "Acts include: " ${Acts_include})
+message(STATUS "ROOT include: " ${ROOT_INCLUDE_DIRS})
 # get_target_property(ACTS_INCLUDE_DIR Acts::Core INTERFACE_INCLUDE_DIRECTORIES)
 # message(STATUS "ACTS Core Include Directory: ${ACTS_INCLUDE_DIR}")
 
@@ -61,7 +61,6 @@ target_link_libraries(vana
     ${Geant4_LIBRARIES}
     ActsCore
     Eigen3::Eigen
-    ActsPluginTGeo
 )
 
 #----------------------------------------------------------------------------

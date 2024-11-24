@@ -13,14 +13,18 @@
 #include "Acts/Surfaces/PerigeeSurface.hpp"
 #include "Acts/MagneticField/NullBField.hpp"
 #include <Acts/Utilities/Logger.hpp>
+#include "SequenceElement.hh"
 #include "ProcessCode.hh"
-
+using namespace Acts::UnitLiterals;
 using Updater = Acts::GainMatrixUpdater;
 using Smoother = Acts::GainMatrixSmoother;
 
 using Stepper = Acts::EigenStepper<>;
 using Navigator = Acts::Navigator;
+using ConstantFieldStepper = Acts::EigenStepper<>;
 using Propagator = Acts::Propagator<Stepper, Navigator>;
+using ConstantFieldPropagator =
+      Acts::Propagator<ConstantFieldStepper, Acts::Navigator>;
 using CKF =
     Acts::CombinatorialKalmanFilter<Propagator, Acts::VectorMultiTrajectory>;
 
@@ -43,13 +47,13 @@ public:
     //                                      TrackContainer &) const ;
     TrackFinderResult FindTracks(std::shared_ptr<const Acts::TrackingGeometry> trackingGeometry,
                             // std::shared_ptr<const Acts::MagneticFieldProvider> magneticField,
-                            const TrackParameters &initialParameters,
+                            const Acts::CurvilinearTrackParameters &initialParameters,
     const TrackFinderOptions &options,
     TrackContainer &tracks);
 
     ProcessCode execute(const Acts::GeometryContext& geoctx,const IndexSourceLinkContainer& sourceLinks,
     std::shared_ptr<const Acts::TrackingGeometry> trackingGeometry,
-    const TrackParametersContainer& initialParameters);
+    const std::vector<Acts::CurvilinearTrackParameters>& initialParameters);
 
 private:
     // CKF trkFinder(Propagator());

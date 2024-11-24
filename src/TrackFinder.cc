@@ -12,31 +12,35 @@
 
 TrackFinderResult TrackFinder::FindTracks(std::shared_ptr<const Acts::TrackingGeometry> trackingGeometry,
                             //  std::shared_ptr<const Acts::MagneticFieldProvider> magneticField,
-                             const TrackParameters &initialParameter,
+                             const Acts::CurvilinearTrackParameters &initialParameter,
     const TrackFinderOptions &options,
     TrackContainer &tracks)
 {
     // auto magneticField = std::make_shared<const Acts::NullBField>(Acts::NullBField());
-    Acts::Vector3 magneticFieldVector(0, 0, 1 * Acts::UnitConstants::T);
-    auto magneticField = std::make_shared<const Acts::ConstantBField>(magneticFieldVector);
-    Stepper stepper(std::move(magneticField));
+    // Acts::Vector3 magneticFieldVector(0, 0, 1 * Acts::UnitConstants::T);
+    // auto magneticField = std::make_shared<const Acts::ConstantBField>(magneticFieldVector);
+    // Stepper stepper(std::move(magneticField));
+    auto field =
+        std::make_shared<Acts::ConstantBField>(Acts::Vector3(0.0, 0.0, 0.0));
+    ConstantFieldStepper stepper(std::move(field));
     Navigator::Config cfg{std::move(trackingGeometry)};
     cfg.resolvePassive = false;
     cfg.resolveMaterial = true;
     cfg.resolveSensitive = true;
     Navigator navigator(cfg);
-    Propagator propagator(std::move(stepper), std::move(navigator));
+    ConstantFieldPropagator propagator(std::move(stepper), std::move(navigator));
     CKF trackFinder(std::move(propagator), Acts::getDefaultLogger("CKF",Acts::Logging::VERBOSE));
     return trackFinder.findTracks(initialParameter, options, tracks);
 }
 
 ProcessCode TrackFinder::execute(const Acts::GeometryContext& geoctx,const IndexSourceLinkContainer& sourceLinks, 
 std::shared_ptr<const Acts::TrackingGeometry> trackingGeometry,
-    const TrackParametersContainer& initialParameters){
+    const std::vector<Acts::CurvilinearTrackParameters>& initialParameters){
     // Construct a perigee surface as the target surface
-    auto pSurface = Acts::Surface::makeShared<Acts::PerigeeSurface>(
-        Acts::Vector3{0., 0., 0.});
-
+    // auto pSurface = Acts::Surface::makeShared<Acts::PerigeeSurface>(
+    //     Acts::Vector3{0., 0., 0.});
+    auto pSurface = Acts::Surface::makeShared<Acts::PlaneSurface>(
+      Acts::Vector3{0., 0., 1._m}, Acts::Vector3{0., 0., 1.});
     Acts::PropagatorPlainOptions pOptions;
     pOptions.maxSteps = 100000;
 
@@ -69,6 +73,8 @@ std::shared_ptr<const Acts::TrackingGeometry> trackingGeometry,
       geoctx, Acts::MagneticFieldContext(), calibrationContextRef, slAccessorDelegate,
       extensions, pOptions, &(*pSurface));
 
+    options.propagatorPlainOptions.direction = Acts::Direction::Forward;
+
     // Perform the track finding for all initial parameters
 
     auto trackContainer = std::make_shared<Acts::VectorTrackContainer>();
@@ -82,6 +88,10 @@ std::shared_ptr<const Acts::TrackingGeometry> trackingGeometry,
   for (size_t iseed=0; iseed < initialParameters.size(); ++iseed) {
       auto result = 
       this->FindTracks(trackingGeometry,initialParameters.at(iseed), options, tracks);
+      if(not result.ok()){
+        std::cout<<"Following error info"<<std::endl;
+        std::cout<<result.error()<<" "<<result.error().message()<<std::endl;
+      }
   }
 
     return ProcessCode::SUCCESS;
