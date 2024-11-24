@@ -52,16 +52,14 @@ int VAnaManager::run()
   Acts::ActsSymMatrix<2> measurementCovariance = Acts::ActsSymMatrix<2>::Zero();
   measurementCovariance(0, 0) = (1_mm) * (1_mm);
   measurementCovariance(1, 1) = (1_mm) * (1_mm);
-  Acts::SourceLink sl{gid,IndexSourceLink{gid, index}};
+  inputSourceLinks.emplace(IndexSourceLink{gid,index-1});
 
-  auto fAddMeas = [&sl,measurementCovariance,&vec_meas,&index,this,&inputSourceLinks](const double& x,const double& y,const auto& gid){
+  auto fAddMeas = [measurementCovariance,&vec_meas,&index,this,&inputSourceLinks](const double& x,const double& y,const auto& gid){
     auto meas = this->fMeasurementCreator->createMeasurement(
-        Acts::SourceLink{gid, IndexSourceLink{gid, index}},
-        
+        Acts::SourceLink{gid, inputSourceLinks.end()},
         std::array<Acts::BoundIndices, 2>{Acts::eBoundLoc0, Acts::eBoundLoc1},
         Acts::ActsVector<2>(x,y),
         measurementCovariance);
-        sl = Acts::SourceLink{gid,IndexSourceLink{gid, index}};
         vec_meas.emplace_back(meas);
         IndexSourceLink isl(gid, index);
         inputSourceLinks.emplace(std::move(isl));
@@ -122,13 +120,13 @@ int VAnaManager::run()
     Acts::BoundSymMatrix cov = stddev.cwiseProduct(stddev).asDiagonal();
 // Start parameters
 std::vector<Acts::CurvilinearTrackParameters> startParameters;
-    Acts::Vector4 mStartPos0(0., 0.0, TrackerPosZ[0], 1_ns);
+    Acts::Vector4 mStartPos0(0., 0.0, -300._mm, 1_ns);
     Acts::Vector4 mStartPos1(1._um, 0., TrackerPosZ[0], 2_ns);
     Acts::Vector4 mStartPos2(0., 1._um, TrackerPosZ[0], -1_ns);
     startParameters = {
-        {mStartPos0, 0_degree, 0_degree, 1_GeV, 1_e, cov},
-        {mStartPos1, -1_degree, 1_degree, 1_GeV, 1_e, cov},
-        {mStartPos2, 1_degree, -1_degree, 1_GeV, -1_e, cov},
+        {mStartPos0, 0.1_degree, 0.1_degree, 1_GeV, 1_e, cov},
+        // {mStartPos1, -1_degree, 1_degree, 1_GeV, 1_e, cov},
+        // {mStartPos2, 1_degree, -1_degree, 1_GeV, -1_e, cov},
     };
 
 
@@ -159,7 +157,6 @@ std::vector<Acts::CurvilinearTrackParameters> startParameters;
 
   // std::cout<<"Do Track Finding"<<std::endl;
   fTrackFinder->execute(geoContext, inputSourceLinks, det_geometry, startParameters);
-  fTrackFinder->execute(geoContext, inputSourceLinks, det_geometry, endParameters);
 
   // std::cout<<"Value : "<<gid.value()<<std::endl;
   // auto det_trkvolume = det_tracker->findVolume(gid);
