@@ -35,18 +35,21 @@ message(STATUS "ROOT include: " ${ROOT_INCLUDE_DIRS})
 #
 include_directories(${YAML_CPP_INCLUDE_DIR})
 include_directories(${PROJECT_SOURCE_DIR}/include 
+${PROJECT_SOURCE_DIR}/include/visual
                     ${Geant4_INCLUDE_DIR}
 		    ${ROOT_INCLUDE_DIRS}
         ${EIGEN3_INCLUDE_DIR})
 
-file(GLOB_RECURSE sources ${PROJECT_SOURCE_DIR}/src/*)
-file(GLOB_RECURSE headers ${PROJECT_SOURCE_DIR}/include/*)
+file(GLOB_RECURSE calo_sources ${PROJECT_SOURCE_DIR}/src/*)
+file(GLOB_RECURSE calo_headers ${PROJECT_SOURCE_DIR}/include/*)
+file(GLOB_RECURSE ana_sources ${PROJECT_SOURCE_DIR}/src/*)
+file(GLOB_RECURSE ana_headers ${PROJECT_SOURCE_DIR}/include/* ${PROJECT_SOURCE_DIR}/include/visual/*)
 
 #----------------------------------------------------------------------------
 # Add the executable, and link it to the Geant4 libraries
 #
-add_executable(vcalo vcalo.cc ${sources} ${headers})
-add_executable(vana vana.cc ${sources} ${headers})
+add_executable(vcalo vcalo.cc ${calo_sources} ${calo_headers})
+add_executable(vana vana.cc ${ana_sources} ${ana_headers})
 target_link_libraries(vcalo 
     ${ROOT_LIBRARIES}
     ROOT::Geom

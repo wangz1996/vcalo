@@ -14,6 +14,7 @@
 #include "Acts/MagneticField/NullBField.hpp"
 #include <Acts/Utilities/Logger.hpp>
 #include "MeasurementCalibration.hh"
+#include "AmbiguityResolutionAlgorithm.hh"
 #include "WhiteBoard.hh"
 #include "Measurement.hh"
 #include "SequenceElement.hh"
@@ -42,7 +43,7 @@ using TrackFinderResult =
 class TrackFinder
 {
 public:
-    TrackFinder() = default;
+    TrackFinder(): AmbiguitySolver(new AmbiguityResolutionAlgorithm(AmbiguityResolutionAlgorithm::Config())){}
     virtual ~TrackFinder() = default;
     virtual void Print(){std::cout<<"Hello World"<<std::endl;}
     // TrackFinderResult operator()(const TrackParameters &,
@@ -59,6 +60,7 @@ public:
     const std::vector<Acts::CurvilinearTrackParameters>& initialParameters,const MeasurementContainer& measurements);
 
 private:
+    AmbiguityResolutionAlgorithm *AmbiguitySolver;
     // CKF trkFinder(Propagator());
 };
 

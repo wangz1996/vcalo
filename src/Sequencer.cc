@@ -1,4 +1,5 @@
 #include "Sequencer.hh"
+#include "TrackingGeometryView3DBase.hh"
 
 Sequencer::Sequencer(const Config &cfg) : m_cfg(cfg)
 {
@@ -23,10 +24,10 @@ std::shared_ptr<const Acts::TrackingGeometry> Sequencer::buildDetector()
     Acts::Transform3 trafo(rotation * trans);
     // Create the detector element
     std::shared_ptr<TelescopeDetectorElement> detElement = std::make_shared<TelescopeDetectorElement>(
-        std::make_shared<const Acts::Transform3>(trafo), pBounds, 0.35_mm, surfaceMaterial);
+        std::make_shared<const Acts::Transform3>(trafo), pBounds, 0.1_mm, surfaceMaterial);
     // Get the surface
     auto surface = detElement->surface().getSharedPtr();
-    // std::cout<<"Surface gid: "<<surface->geometryId().value()<<std::endl;
+    // std::cout<<"Surface z: "<<surface->center(Acts::GeometryContext()).z()<<std::endl;
     detectorStore.emplace_back(std::move(detElement));
 
     // Construct the surface array (one surface contained)
@@ -57,9 +58,9 @@ std::shared_ptr<const Acts::TrackingGeometry> Sequencer::buildDetector()
   Acts::Translation3 transVol(0., 0.,
                               (TrackerPosZ[0] + TrackerPosZ[5]) * 0.5);
   Acts::Transform3 trafoVol(rotation * transVol);
-  auto length = TrackerPosZ[5] - TrackerPosZ[0];
+  auto length = (TrackerPosZ[5] - TrackerPosZ[0]);
   Acts::VolumeBoundsPtr boundsVol = std::make_shared<const Acts::CuboidVolumeBounds>(
-      142.5_mm + 5._mm, 142.5_mm + 5._mm, length + 10._mm);
+      142.5_mm + 5._mm, 142.5_mm + 5._mm, length + 100._mm);
   Acts::LayerArrayCreator::Config lacConfig;
   Acts::LayerArrayCreator layArrCreator(
       lacConfig,
@@ -78,9 +79,7 @@ std::shared_ptr<const Acts::TrackingGeometry> Sequencer::buildDetector()
       Acts::BinningType::equidistant, Acts::BinningValue::binZ));
     m_geoctx = genGctx;
   auto layContainer = layArr->arrayObjects();
-  // for(auto layer:layContainer){
-  //   std::cout<<"Layer gid: "<<layer->geometryId().value() <<std::endl;
-  // }
+  // 
   // Build the tracking volume
   auto trackVolume =
       Acts::TrackingVolume::create(trafoVol, boundsVol, nullptr,
@@ -91,12 +90,23 @@ std::shared_ptr<const Acts::TrackingGeometry> Sequencer::buildDetector()
   };
   auto trackGeometry = std::make_shared<Acts::TrackingGeometry>(trackVolume);
   for(int i=0;i<6;i++){
-    auto layer = trackGeometry->associatedLayer(genGctx, Acts::Vector3(0.,0.,TrackerPosZ[i]));
-    printgid(layer->geometryId());
-    auto surface = layer->surfaceArray()->surfaces().at(0);
-    printgid(surface->geometryId());
-    m_surfacegids.emplace_back(std::move(surface->geometryId()));
+    Acts::GeometryIdentifier genGid;
+    genGid.setVolume(1);genGid.setLayer(i+1);genGid.setSensitive(1);
+    // auto layer = trackGeometry->associatedLayer(genGctx, Acts::Vector3(0.,0.,TrackerPosZ[i]));
+    // // printgid(layer->geometryId());
+    // auto surface = layer->surfaceArray()->surfaces().at(0);
+    // std::cout<<"Surface z: "<<surface->center(genGctx).z()<<" ";
+    // auto sid = surface->geometryId();
+    // sid.setLayer(i+1);
+    auto corsurface = trackGeometry->findSurface(genGid);
+    // printgid(genGid);
+    m_surfacegids.emplace_back(std::move(genGid));
   }
+
+  //Visualization
+  Acts::ObjVisualization3D obj;
+  // std::cout<<"Start to run 3D viewer"<<std::endl;
+  // std::cout<<Acts::TrackingGeometryView3DTest::run(*(trackVolume.get()),obj,true,"")<<std::endl;
   return std::make_shared<Acts::TrackingGeometry>(trackVolume);
 }
 

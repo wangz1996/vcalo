@@ -96,9 +96,32 @@ std::shared_ptr<const Acts::TrackingGeometry> trackingGeometry,
         std::cout<<result.error()<<" "<<result.error().message()<<std::endl;
       }
   }
-    
-    std::cout<<"N Tracks found: "<<tracks.size()<<std::endl;
+  auto constTrackStateContainer =
+      std::make_shared<Acts::ConstVectorMultiTrajectory>(
+          std::move(*trackStateContainer));
 
+  auto constTrackContainer = std::make_shared<Acts::ConstVectorTrackContainer>(
+      std::move(*trackContainer));
+
+  ConstTrackContainer constTracks{constTrackContainer,
+                                  constTrackStateContainer};
+    
+    std::cout<<"N Tracks found: "<<constTracks.size()<<std::endl;
+    std::cout<<"Starting to resolve the ambiguity"<<std::endl;
+    for(size_t i=0;i<constTracks.size();i++){
+        auto track = constTracks.getTrack(i);
+        std::cout<<"has ref surface: "<<track.hasReferenceSurface()<<std::endl;
+        auto *sur = &track.referenceSurface();
+        auto planesur = dynamic_cast<const Acts::PlaneSurface*>(sur);
+        auto poscen = planesur->center(geoctx);
+        std::cout<<"ref surface center: "<<poscen.x()<<" "<<poscen.y()<<" "<<poscen.z()<<std::endl;
+        auto unitDir = track.unitDirection();
+        std::cout<<"unit direction"<<unitDir.x()<<" "<<unitDir.y()<<" "<<unitDir.z()<<std::endl;
+        auto nmeas = track.nMeasurements();
+        std::cout<<"n meas: "<<nmeas<<std::endl;
+    }
+
+    AmbiguitySolver->execute(constTracks);
     
     return ProcessCode::SUCCESS;
 

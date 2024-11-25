@@ -41,7 +41,7 @@ int VAnaManager::run()
   // auto det_tracker = std::make_shared<Acts::TrackingGeometry>(std::move(fSequencer->buildDetector()));
   auto det_volume = det_geometry->highestTrackingVolume();
   auto gid = det_volume->geometryId();
-  std::cout<<"det_volume gid: "<< gid.value()<<std::endl;
+  // std::cout<<"det_volume gid: "<< gid.value()<<std::endl;
   auto vec_meas = MeasurementContainer();
   auto layArrObjs = det_geometry->findVolume(gid)->confinedLayers()->arrayObjects();
   Index index = 0;
@@ -58,7 +58,7 @@ int VAnaManager::run()
 
   auto fAddMeas = [measurementCovariance,&vec_meas,&index,this,&inputSourceLinks](const double& x,const double& y,const auto& gid){
     auto meas = this->fMeasurementCreator->createMeasurement(
-        Acts::SourceLink{gid, inputSourceLinks.end()},
+        Acts::SourceLink{gid, IndexSourceLink{gid,index}},
         std::array<Acts::BoundIndices, 2>{Acts::eBoundLoc0, Acts::eBoundLoc1},
         Acts::ActsVector<2>(x,y),
         measurementCovariance);
@@ -70,11 +70,16 @@ int VAnaManager::run()
   // std::cout<<"Creating Measurements"<<std::endl;
   //TODO change to for loop initialization with C++ 20
   auto sgids = fSequencer->getSurfaceGids();
+  auto printgid = [](const auto& gid){
+    std::cout<<"Surface gid: "<<gid.volume()<<" "<<gid.boundary()<<" "<<gid.layer()<<" "<<gid.approach()<<" "<<gid.sensitive()<<" "<<gid.extra()<<std::endl;
+  };
   for (int i=0;i<sgids.size();i++)
   {
     // auto surgid = lay->surfaceArray()->surfaces();
     // std::cout<<surgid.size()<<std::endl;
     auto gid = sgids.at(i);
+    std::cout<<"surface z: "<<det_geometry->findSurface(gid)->center(geoContext).z()<<std::endl;
+    // printgid(gid);
     //Generate random x y positions in a plane;
     for (int i = 0; i < 1; i++){
         double x = random.Uniform(-10,10);
@@ -115,46 +120,24 @@ int VAnaManager::run()
   TrackParametersContainer initialParams;
   auto seedSurface = Acts::Surface::makeShared<Acts::PerigeeSurface>(
       Acts::Vector3(0., 0., TrackerPosZ[0]));
-  // 设置初始参数
   Acts::BoundVector stddev;
-    stddev[Acts::eBoundLoc0] = 0.01_um;
-    stddev[Acts::eBoundLoc1] = 0.01_um;
-    stddev[Acts::eBoundTime] = 25_ns;
-    stddev[Acts::eBoundPhi] = 0.1_degree;
-    stddev[Acts::eBoundTheta] = 0.1_degree;
-    stddev[Acts::eBoundQOverP] = 1 / 100_GeV;
+    stddev[Acts::eBoundLoc0] = 1_mm;
+    stddev[Acts::eBoundLoc1] = 1_mm;
+    // stddev[Acts::eBoundTime] = 25_ns;
+    stddev[Acts::eBoundPhi] = 1_degree;
+    stddev[Acts::eBoundTheta] = 1_degree;
+    stddev[Acts::eBoundQOverP] = 1 / 100._GeV;
     Acts::BoundSymMatrix cov = stddev.cwiseProduct(stddev).asDiagonal();
 // Start parameters
 std::vector<Acts::CurvilinearTrackParameters> startParameters;
-    Acts::Vector4 mStartPos0(0.01_um, 0.01_um, TrackerPosZ[0], 1_ns);
-    Acts::Vector4 mStartPos1(1._um, 0., TrackerPosZ[0], 2_ns);
-    Acts::Vector4 mStartPos2(0., 1._um, TrackerPosZ[0], -1_ns);
+    Acts::Vector4 mStartPos0(0.01_um, -0.01_um, -237.125_mm, 0_ns);
     startParameters = {
-        {mStartPos0, 0.1_degree, 0.1_degree, 1_GeV, 1_e, cov},
-        // {mStartPos1, -1_degree, 1_degree, 1_GeV, 1_e, cov},
-        // {mStartPos2, 1_degree, -1_degree, 1_GeV, -1_e, cov},
+        {mStartPos0, 0.001_degree, 0.001_degree, 1_GeV, 1_e, cov},
     };
-
-
-  // Acts::BoundVector seedParams = Acts::BoundVector::Zero();
-  // seedParams[Acts::eBoundLoc0] = 0.;
-  // seedParams[Acts::eBoundLoc1] = 0.;
-  // seedParams[Acts::eBoundPhi] = 0.1_mrad;       // ϕ = 0，沿 x-z 平面
-  // seedParams[Acts::eBoundTheta] = 0.1_mrad;     // θ = 0，沿正 z 方向
-  // seedParams[Acts::eBoundQOverP] = 1 / (1_GeV); // 假设动量为 1 GeV/c，电荷为 +1 e
-  
-  // for(int i=0;i<1;i++){
-  //   double x = random.Uniform(-10,10);
-  //   double y = random.Uniform(-10,10);
-  //   seedParams[Acts::eBoundLoc0] = x;
-  //   seedParams[Acts::eBoundLoc1] = y;
-  //   initialParams.emplace_back(seedSurface, seedParams, 1, cov);
-  // }
-  // initialParams.emplace_back(seedSurface, seedParams, 1, cov);
 
   // std::cout<<"Do Track Finding"<<std::endl;
   fTrackFinder->execute(geoContext, inputSourceLinks, det_geometry, startParameters, vec_meas);
-
+  
 
   // std::cout<<"Value : "<<gid.value()<<std::endl;
   // auto det_trkvolume = det_tracker->findVolume(gid);
