@@ -4,7 +4,7 @@
 #include "Acts/SpacePointFormation/SpacePointBuilder.hpp"
 #include "IndexSourceLink.hh"
 #include "Measurement.hh"
-#include "SimSpacePoint.hpp"
+#include "SimSpacePoint.hh"
 #include "DataHandle.hh"
 #include "IAlgorithm.hh"
 

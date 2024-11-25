@@ -6,7 +6,6 @@
 #include "GeometryContainers.hh"
 #include "IndexSourceLink.hh"
 #include "Measurement.hh"
-#include "SimSpacePoint.hpp"
 #include "WhiteBoard.hh"
 
 #include <algorithm>

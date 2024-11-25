@@ -34,7 +34,9 @@ public:
 private:
     Config m_cfg;
     std::vector<std::shared_ptr<SequenceElement>> m_sequenceElements;
-    static constexpr std::array<double, 6> TrackerPosZ = {
+    static constexpr int nTracker = 6;
+    static constexpr std::array<double, nTracker> TrackerPosZ = {
+            // 25.175 - 262.3 - 20. , 
     		25.175 - 262.3, 30.135 - 262.3, 55.835 - 262.3,
     		60.795 - 262.3, 86.495 - 262.3, 91.455 - 262.3
 		};

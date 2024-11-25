@@ -21,7 +21,7 @@ TrackFinderResult TrackFinder::FindTracks(std::shared_ptr<const Acts::TrackingGe
     // auto magneticField = std::make_shared<const Acts::ConstantBField>(magneticFieldVector);
     // Stepper stepper(std::move(magneticField));
     auto field =
-        std::make_shared<Acts::ConstantBField>(Acts::Vector3(0.0, 0.0, 0.0));
+        std::make_shared<Acts::ConstantBField>(Acts::Vector3(0.0, 0.0, 0.0 * Acts::UnitConstants::T));
     ConstantFieldStepper stepper(std::move(field));
     Navigator::Config cfg{std::move(trackingGeometry)};
     cfg.resolvePassive = false;
@@ -40,7 +40,7 @@ std::shared_ptr<const Acts::TrackingGeometry> trackingGeometry,
     // auto pSurface = Acts::Surface::makeShared<Acts::PerigeeSurface>(
     //     Acts::Vector3{0., 0., 0.});
     auto pSurface = Acts::Surface::makeShared<Acts::PlaneSurface>(
-      Acts::Vector3{0., 0., 1._m}, Acts::Vector3{0., 0., 1.});
+      Acts::Vector3{0., 0., 0._m}, Acts::Vector3{0., 0., 1.});
     Acts::PropagatorPlainOptions pOptions;
     pOptions.maxSteps = 100000;
     PassThroughCalibrator pcalibrator;
