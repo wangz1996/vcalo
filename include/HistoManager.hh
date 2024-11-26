@@ -134,7 +134,9 @@ class HistoManager
 		float conv_e;
 		TList tracks;
 		std::map<int, TPolyLine3D*> map_track;
-		std::vector<std::array<float,3>> tracker_hitpos;
+		std::vector<float> tracker_hitx;
+		std::vector<float> tracker_hity;
+		std::vector<float> tracker_hitz;
 		std::vector<float> tracker_hite;
 		std::vector<int> tracker_trkid;
 		std::vector<float> tracker_ephite;
@@ -147,8 +149,8 @@ class HistoManager
     		}
 		};
 		static constexpr std::array<float, 6> TrackerPosZ = {
-    	-237.125, -232.165, -206.465,
-    	-201.505, -175.805, -170.845
+    	-218.425, -213.125, -187.425,
+    	-182.125, -156.425, -151.125
 		};
 		std::unordered_map<std::tuple<int,int,int>,float,TupleHash<int>> tracker_hitmap;
 		

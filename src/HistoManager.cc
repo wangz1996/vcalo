@@ -74,8 +74,10 @@ void HistoManager::book(const std::string& foutname,const bool &savegeo)
 	vTree->Branch("apd_celle",				&apd_celle);
 	vTree->Branch("isconv",					&isconv);
 	vTree->Branch("tracks",                 &tracks);
-	vTree->Branch("tracker_hitpos",             &tracker_hitpos);
-	vTree->Branch("tracker_edep",            &tracker_hite);
+	vTree->Branch("tracker_hitx",            &tracker_hitx);
+	vTree->Branch("tracker_hity",            &tracker_hity);
+	vTree->Branch("tracker_hitz",            &tracker_hitz);
+	vTree->Branch("tracker_hite",            &tracker_hite);
 	vTree->Branch("tracker_ephite",			 &tracker_ephite);
 	fSaveGeo = savegeo;
 }
@@ -133,7 +135,9 @@ void HistoManager::fill(const int& _eventNo){
 		float posX = (zid%2==0) ? -95.+xid*95. : -141.4+xid*0.121;
 		float posY = (zid%2==0) ? -141.4+yid*0.121 : -95.+yid*95.;
 		float posZ = TrackerPosZ[zid];
-		tracker_hitpos.emplace_back(std::array<float,3>{posX,posY,posZ});
+		tracker_hitx.emplace_back(posX/1000.); // Convert to mm
+		tracker_hity.emplace_back(posY/1000.); // Convert to mm
+		tracker_hitz.emplace_back(posZ);
 		tracker_hite.emplace_back(edep);
 	}
 	vTree->Fill();
@@ -219,7 +223,9 @@ void HistoManager::clear(){
 	std::vector<float>().swap(ecal_convtime);
 	std::vector<float>().swap(conve_kinematic);
 	std::vector<float>().swap(convp_kinematic);
-	std::vector<std::array<float,3>>().swap(tracker_hitpos);
+	std::vector<float>().swap(tracker_hitx);
+	std::vector<float>().swap(tracker_hity);
+	std::vector<float>().swap(tracker_hitz);
 	std::vector<float>().swap(tracker_hite);
 	std::vector<float>().swap(tracker_ephite);
 	apd_nphoton=0;
