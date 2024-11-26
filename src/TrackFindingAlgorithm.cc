@@ -31,7 +31,7 @@ ProcessCode TrackFindingAlgorithm::execute(const AlgorithmContext &ctx) const
         Acts::Vector3{0., 0., 0.});
 
     Acts::PropagatorPlainOptions pOptions;
-    pOptions.maxSteps = 100000;
+    pOptions.maxSteps = 1000;
 
     Acts::GainMatrixUpdater kfUpdater;
     Acts::GainMatrixSmoother kfSmoother;

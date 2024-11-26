@@ -2,6 +2,7 @@
 
 #include "Acts/Geometry/GeometryIdentifier.hpp"
 #include "Acts/SpacePointFormation/SpacePointBuilder.hpp"
+#include "Acts/SpacePointFormation/SpacePointBuilderConfig.hpp"
 #include "IndexSourceLink.hh"
 #include "Measurement.hh"
 #include "SimSpacePoint.hh"

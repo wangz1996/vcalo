@@ -40,9 +40,11 @@ std::shared_ptr<const Acts::TrackingGeometry> trackingGeometry,
     // auto pSurface = Acts::Surface::makeShared<Acts::PerigeeSurface>(
     //     Acts::Vector3{0., 0., 0.});
     auto pSurface = Acts::Surface::makeShared<Acts::PlaneSurface>(
-      Acts::Vector3{0., 0., 0._m}, Acts::Vector3{0., 0., 1.});
+      Acts::Vector3{0., 0., -100._mm}, Acts::Vector3{0., 0., 1.});
     Acts::PropagatorPlainOptions pOptions;
-    pOptions.maxSteps = 100000;
+    // pOptions.pathLimit = 1000._mm;
+    // pOptions.maxStepSize = 5._mm;
+    pOptions.maxSteps = 1000;
     PassThroughCalibrator pcalibrator;
     MeasurementCalibratorAdapter calibrator(pcalibrator, measurements);
     Acts::GainMatrixUpdater kfUpdater;

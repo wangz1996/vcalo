@@ -53,7 +53,7 @@ std::shared_ptr<const Acts::TrackingGeometry> Sequencer::buildDetector()
   Acts::LayerArrayCreator::Config lacConfig;
   Acts::LayerArrayCreator layArrCreator(
       lacConfig,
-      Acts::getDefaultLogger("LayerArrayCreator", Acts::Logging::VERBOSE));
+      Acts::getDefaultLogger("LayerArrayCreator", Acts::Logging::INFO));
   Acts::LayerVector layVec;
   for (unsigned int i = 0; i < nTracker; i++)
   {

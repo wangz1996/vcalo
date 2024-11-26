@@ -34,12 +34,12 @@ public:
 private:
     Config m_cfg;
     std::vector<std::shared_ptr<SequenceElement>> m_sequenceElements;
-    static constexpr int nTracker = 6;
+    static constexpr int nTracker = 7;
     static constexpr std::array<double, nTracker> TrackerPosZ = {
-            // 25.175 - 262.3 - 20. , 
-    		25.175 - 262.3, 30.135 - 262.3, 55.835 - 262.3,
-    		60.795 - 262.3, 86.495 - 262.3, 91.455 - 262.3
-		};
+        -257.125,
+    -237.125, -232.165, -206.465, 
+    -201.505, -175.805, -170.845
+};
     std::vector<std::shared_ptr<TelescopeDetectorElement>> detectorStore;
     Acts::GeometryContext m_geoctx;
     std::vector<Acts::GeometryIdentifier> m_surfacegids;

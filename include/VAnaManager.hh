@@ -27,6 +27,7 @@
 #include "SpacePointMaker.hh"
 #include "MeasurementCreation.hh"
 #include "SpacePointMaker.hh"
+#include "HoughVectors.hh"
 
 #include <variant>
 #include <algorithm>
@@ -55,11 +56,24 @@ private:
     MeasurementCreator *fMeasurementCreator;
     TrackFinder *fTrackFinder;
 
-    static constexpr std::array<double, 6> TrackerPosZ = {
-        // 25.175 - 262.3 - 20. , 
-    		25.175 - 262.3, 30.135 - 262.3, 55.835 - 262.3,
-    		60.795 - 262.3, 86.495 - 262.3, 91.455 - 262.3
-		};
+    static constexpr std::array<double, 7> TrackerPosZ = {
+        -257.125,
+    -237.125, -232.165, -206.465, 
+    -201.505, -175.805, -170.845
 };
+};
+
+namespace std {
+    template <>
+    struct hash<std::array<double, 3>> {
+        size_t operator()(const std::array<double, 3>& arr) const {
+            size_t h1 = std::hash<double>{}(arr[0]);
+            size_t h2 = std::hash<double>{}(arr[1]);
+            size_t h3 = std::hash<double>{}(arr[2]);
+            // 使用简单的合并策略，结合哈希值
+            return h1 ^ (h2 << 1) ^ (h3 << 2); 
+        }
+    };
+}
 
 #endif
