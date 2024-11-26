@@ -191,6 +191,11 @@ void Config::Print()
 	fout << "        SigmaAlpha: 0.1" << endl;
 	fout << "\n"
 		 << endl;
+	
+	fout << "Tracker:" << endl;
+	fout << "    build: True" << endl;
+	fout << "\n"
+		 << endl;
 
 	fout << "Converter:" << endl;
 	fout << "    build: True" << endl;

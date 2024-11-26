@@ -133,7 +133,7 @@ void HistoManager::fill(const int& _eventNo){
 		float posX = (zid%2==0) ? -95.+xid*95. : -141.4+xid*0.121;
 		float posY = (zid%2==0) ? -141.4+yid*0.121 : -95.+yid*95.;
 		float posZ = TrackerPosZ[zid];
-		tracker_hitpos.emplace_back(std::vector<float>{posX,posY,posZ});
+		tracker_hitpos.emplace_back(std::array<float,3>{posX,posY,posZ});
 		tracker_hite.emplace_back(edep);
 	}
 	vTree->Fill();
@@ -219,7 +219,7 @@ void HistoManager::clear(){
 	std::vector<float>().swap(ecal_convtime);
 	std::vector<float>().swap(conve_kinematic);
 	std::vector<float>().swap(convp_kinematic);
-	std::vector<std::vector<float>>().swap(tracker_hitpos);
+	std::vector<std::array<float,3>>().swap(tracker_hitpos);
 	std::vector<float>().swap(tracker_hite);
 	std::vector<float>().swap(tracker_ephite);
 	apd_nphoton=0;

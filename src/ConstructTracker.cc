@@ -23,18 +23,6 @@
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 void DetectorConstruction::defineTrackerParameter(){
-	Hex_XY = 287. * mm;
-	Hex_Z = 23. * mm;
-	HexCell_XY = 25. * mm;
-	HexCell_Z = Hex_Z;
-	Tray_XY = Hex_XY;
-	Tray_Z = Hex_Z + 2.*mm;
-	Tracker_XY = 285.*mm;
-	Tracker_Z = 0.35*mm;
-	//Conv_PosZ = -270.5; ConvTiO2_Z=16.4;  Upper surface = -262.3 mm;
-	TrackerPosZ = HistoManager::getInstance().getTrackerPosZ<float>();
-	TrayPosZ = std::vector<G4double>{12.5,43.16,73.82,104.48};
-	for(auto &i:TrayPosZ)i-=262.3;
 }
 
 void DetectorConstruction::defineTrackerMaterial(){
@@ -103,8 +91,8 @@ void DetectorConstruction::constructTracker()
 	//Tray 0
 	// new G4PVPlacement(0, G4ThreeVector(0, 0, TrayPosZ.at(0)), logicHex, "physHex", logicWorld, false,0, true);
 	//TrayLid top bottom
-	auto TrayLid_0 = new G4PVPlacement(0, G4ThreeVector(0, 0, TrayPosZ.at(0) + 0.5*Hex_Z + 0.5*mm), logicTrayLid, "physTrayLid", logicWorld, false,0, true);
-	auto TrayLid_1 = new G4PVPlacement(0, G4ThreeVector(0, 0, TrayPosZ.at(0) - 0.5*Hex_Z - 0.5*mm), logicTrayLid, "physTrayLid", logicWorld, false,0, true);
+	auto TrayLid_0 = new G4PVPlacement(0, G4ThreeVector(0, 0, TrayPosZ.at(0) - 0.5*Hex_Z - 0.5*mm), logicTrayLid, "physTrayLid_0", logicWorld, false,0, true);
+	auto TrayLid_1 = new G4PVPlacement(0, G4ThreeVector(0, 0, TrayPosZ.at(0) + 0.5*Hex_Z + 0.5*mm), logicTrayLid, "physTrayLid_1", logicWorld, false,0, true);
 
 	//X Tracker + Kapton
 	auto Tracker_0 = new G4PVPlacement(0, G4ThreeVector(0, 0, TrackerPosZ.at(0)), logicTracker, "physTracker_0", logicWorld, false,0, true);
@@ -117,8 +105,8 @@ void DetectorConstruction::constructTracker()
 	//Tray 1
 	// new G4PVPlacement(0, G4ThreeVector(0, 0, TrayPosZ.at(1)), logicHex, "physHex", logicWorld, false,0, true);
 	//TrayLid top bottom
-	auto TrayLid_2 = new G4PVPlacement(0, G4ThreeVector(0, 0, TrayPosZ.at(1) + 0.5*Hex_Z + 0.5*mm), logicTrayLid, "physTrayLid", logicWorld, false,0, true);
-	auto TrayLid_3 = new G4PVPlacement(0, G4ThreeVector(0, 0, TrayPosZ.at(1) - 0.5*Hex_Z - 0.5*mm), logicTrayLid, "physTrayLid", logicWorld, false,0, true);
+	auto TrayLid_2 = new G4PVPlacement(0, G4ThreeVector(0, 0, TrayPosZ.at(1) - 0.5*Hex_Z - 0.5*mm), logicTrayLid, "physTrayLid_2", logicWorld, false,0, true);
+	auto TrayLid_3 = new G4PVPlacement(0, G4ThreeVector(0, 0, TrayPosZ.at(1) + 0.5*Hex_Z + 0.5*mm), logicTrayLid, "physTrayLid_3", logicWorld, false,0, true);
 
 	//X Tracker + Kapton
 	auto Tracker_2 = new G4PVPlacement(0, G4ThreeVector(0, 0, TrackerPosZ.at(2)), logicTracker, "physTracker_2", logicWorld, false,0, true);
@@ -131,8 +119,8 @@ void DetectorConstruction::constructTracker()
 	//Tray 2
 	// new G4PVPlacement(0, G4ThreeVector(0, 0, TrayPosZ.at(2)), logicHex, "physHex", logicWorld, false,0, true);
 	//TrayLid top bottom
-	auto TrayLid_4 = new G4PVPlacement(0, G4ThreeVector(0, 0, TrayPosZ.at(2) + 0.5*Hex_Z + 0.5*mm), logicTrayLid, "physTrayLid", logicWorld, false,0, true);
-	auto TrayLid_5 = new G4PVPlacement(0, G4ThreeVector(0, 0, TrayPosZ.at(2) - 0.5*Hex_Z - 0.5*mm), logicTrayLid, "physTrayLid", logicWorld, false,0, true);
+	auto TrayLid_4 = new G4PVPlacement(0, G4ThreeVector(0, 0, TrayPosZ.at(2) - 0.5*Hex_Z - 0.5*mm), logicTrayLid, "physTrayLid_4", logicWorld, false,0, true);
+	auto TrayLid_5 = new G4PVPlacement(0, G4ThreeVector(0, 0, TrayPosZ.at(2) + 0.5*Hex_Z + 0.5*mm), logicTrayLid, "physTrayLid_5", logicWorld, false,0, true);
 
 	//X Tracker + Kapton
 	auto Tracker_4 = new G4PVPlacement(0, G4ThreeVector(0, 0, TrackerPosZ.at(4)), logicTracker, "physTracker_4", logicWorld, false,0, true);
@@ -145,8 +133,8 @@ void DetectorConstruction::constructTracker()
 	//Tray 3
 	// new G4PVPlacement(0, G4ThreeVector(0, 0, TrayPosZ.at(3)), logicHex, "physHex", logicWorld, false,0, true);
 	//TrayLid top bottom
-	auto TrayLid_6 = new G4PVPlacement(0, G4ThreeVector(0, 0, TrayPosZ.at(3) + 0.5*Hex_Z + 0.5*mm), logicTrayLid, "physTrayLid", logicWorld, false,0, true);
-	auto TrayLid_7 = new G4PVPlacement(0, G4ThreeVector(0, 0, TrayPosZ.at(3) - 0.5*Hex_Z - 0.5*mm), logicTrayLid, "physTrayLid", logicWorld, false,0, true);
+	auto TrayLid_6 = new G4PVPlacement(0, G4ThreeVector(0, 0, TrayPosZ.at(3) - 0.5*Hex_Z - 0.5*mm), logicTrayLid, "physTrayLid_6", logicWorld, false,0, true);
+	auto TrayLid_7 = new G4PVPlacement(0, G4ThreeVector(0, 0, TrayPosZ.at(3) + 0.5*Hex_Z + 0.5*mm), logicTrayLid, "physTrayLid_7", logicWorld, false,0, true);
 
 	//Calculate tracker total radiation length
 	G4double tracker_thickness = Tracker_Z * 6./cm;

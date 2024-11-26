@@ -45,6 +45,8 @@
 #include "Config.hh"
 
 using CLHEP::eV;
+using CLHEP::mm;
+using CLHEP::um;
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 class Config;
 class DetectorConstruction : public G4VUserDetectorConstruction
@@ -91,43 +93,48 @@ class DetectorConstruction : public G4VUserDetectorConstruction
 	int nCryX;
 	int nCryY;
 
-	G4double CsI_XY;
-	G4double CsI_Z;
-	G4double TiO2_XY;
-	G4double TiO2_Z;
-	G4double Polish_XY;
-	G4double Polish_Z;
-	G4double Cushion_XY;
-	G4double CushionInner_XY;
-	G4double Cushion_Z;
+	static constexpr double CsI_Z = 200.*mm;
+	static constexpr double CsI_XY = 60. * mm;
+	static constexpr double TiO2_XY = 61.2 * mm;
+	static constexpr double TiO2_Z = 201.2 * mm;
+	static constexpr double Polish_XY = 35. * mm;
+	static constexpr double Polish_Z = (TiO2_Z - CsI_Z)/2.;
+
+	static constexpr double APD_XY = 10. *mm;
+	static constexpr double APD_Z = 10. *um;
+	static constexpr double Cushion_XY = TiO2_XY;
+	static constexpr double CushionInner_XY = 40. *mm;
+	static constexpr double Cushion_Z = 1. *mm;
+
+	static constexpr double Hole_Z = TiO2_Z;
+	static constexpr double ECALShield_Z = TiO2_Z;
 	G4double CryGap;
 	G4double ECALShield_XY;
-	G4double ECALShield_Z;
 	G4double Hole_XY;
-	G4double Hole_Z;
-	G4double APD_XY;
-	G4double APD_Z;
-	G4double Conv_XY;
-	G4double Conv_Z;
-	G4double Conv_PosZ;
-	G4double ConvTiO2_XY;
-	G4double ConvTiO2_Z;
-	G4double ConvAir_XY;
-	G4double ConvAir_Z;
-	G4double ConvPolish_XY;
-	G4double ConvPolish_Z;
+
+	static constexpr double Conv_XY = 150.*mm;
+    static constexpr double Conv_Z = 15*mm;
+    static constexpr double ConvAir_XY = 150.2*mm;
+    static constexpr double ConvAir_Z = 15.2*mm;
+    static constexpr double ConvTiO2_XY = 151.4*mm;
+    static constexpr double ConvTiO2_Z = 16.4*mm;
+    static constexpr double ConvPolish_XY = 15*mm;
+    static constexpr double ConvPolish_Z = 0.6*mm;
+    static constexpr double Conv_PosZ = -0.5*CsI_Z-160.*mm+0.5*ConvTiO2_Z;
 
 	//Tracker
-	G4double Hex_XY;
-	G4double Hex_Z;
-	G4double HexCell_XY;
-	G4double HexCell_Z;
-	G4double Tray_XY;
-	G4double Tray_Z;
-	G4double Tracker_XY;
-	G4double Tracker_Z;
-	std::vector<G4double> TrayPosZ;
-	std::array<float,6> TrackerPosZ;
+	static constexpr double Hex_XY = 287. * mm;
+	static constexpr double Hex_Z = 23. * mm;
+	static constexpr double HexCell_XY = 25. * mm;
+	static constexpr double HexCell_Z = Hex_Z;
+	static constexpr double Tray_XY = Hex_XY;
+	static constexpr double Tray_Z = Hex_Z + 2.*mm;
+	static constexpr double Tracker_XY = 285.*mm;
+	static constexpr double Tracker_Z = 0.35*mm;
+	static constexpr std::array<float, 6> TrackerPosZ = {
+    -218.425, -213.125, -187.425,
+    -182.125, -156.425, -151.125
+	};
 
 	G4Material* Vacuum;
 	G4Material* CsI;
@@ -203,7 +210,7 @@ class DetectorConstruction : public G4VUserDetectorConstruction
 	G4double TiO2_Transmission[TiO2_NEntries];
 	G4double TiO2_AbsLength[TiO2_NEntries];
 
-
+	static constexpr std::array<double,4> TrayPosZ = {-231.1, -200.1, -169.1, -138.1};
 	G4double CsI_RIndex[CsI_NEntries];
 	G4double CsI_AbsLength[CsI_NEntries];
 	G4double CsI_Rayleigh[CsI_NEntries];

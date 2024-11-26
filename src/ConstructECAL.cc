@@ -74,25 +74,8 @@ const std::unordered_map<std::string, G4OpticalSurfaceFinish> DetectorConstructi
 };
 
 void DetectorConstruction::defineECALParameter(){
-	CsI_XY = 60. * mm;
-	CsI_Z = 200. * mm;
-
-	TiO2_XY = 61.2 * mm;
-	TiO2_Z = 201.2 * mm;
-
-	Polish_XY = 35. * mm;
-	Polish_Z = (TiO2_Z - CsI_Z)/2.;
-
-	APD_XY = 10. *mm;
-	APD_Z = 10. *um;
-	
 	nCryX = config->conf["ECAL"]["nCryX"].as<int>();
 	nCryY = config->conf["ECAL"]["nCryY"].as<int>();
-
-	Cushion_XY = TiO2_XY;
-	CushionInner_XY = 40. *mm;
-	Cushion_Z = 1. *mm;
-
 	if(config->conf["ECAL"]["ECALShield"].as<bool>()){
 		CryGap = 1.5 * mm;
 		Hole_XY = 62. * mm;
@@ -101,13 +84,7 @@ void DetectorConstruction::defineECALParameter(){
 		CryGap = 0. * mm;
 		Hole_XY = TiO2_XY;
 	}
-
-	
-	Hole_Z = TiO2_Z;
 	ECALShield_XY = 6*CryGap + 5*Hole_XY; // 6*CryGap + 5*TiO2_XY = 336.;
-	ECALShield_Z = TiO2_Z; // TiO2_Z + 2mm carbone fiber
-
-
 }
 
 void DetectorConstruction::defineECALMaterial(){
@@ -353,7 +330,7 @@ void DetectorConstruction::constructECAL()
 			// G4VPhysicalVolume* physicTiO2 = nullptr;
 			// G4VPhysicalVolume* physiAPD = nullptr;
         	G4VPhysicalVolume* physicCsI = new G4PVPlacement(0, G4ThreeVector(x, y, 0.), logicCsI, CsIName, logicWorld, false, CopyNo, true);
-			std::cout<<CopyNo<<" "<<x<<" "<<y<<std::endl;
+			// std::cout<<CopyNo<<" "<<x<<" "<<y<<std::endl;
         	G4VPhysicalVolume* physicTiO2 = new G4PVPlacement(0, G4ThreeVector(x, y, 0.), logicTiO2, TiO2Name, logicWorld, false, CopyNo, true);
 			G4VPhysicalVolume* physicAPD = new G4PVPlacement(0, G4ThreeVector(x, y, CsI_Z/2. + 5.*mm +0.5*APD_Z), logicAPD, APDName, logicWorld, false, CopyNo, true);
 			if(config->conf["Global"]["optical"].as<bool>()){

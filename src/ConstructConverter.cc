@@ -52,15 +52,7 @@
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 void DetectorConstruction::defineConvParameter(){
-    Conv_XY = 150.*mm;
-    Conv_Z = 15*mm;
-    ConvAir_XY = 150.2*mm;
-    ConvAir_Z = 15.2*mm;
-    ConvTiO2_XY = 151.4*mm;
-    ConvTiO2_Z = 16.4*mm;
-    ConvPolish_XY = 15*mm;
-    ConvPolish_Z = 0.6*mm;
-    Conv_PosZ = -0.5*CsI_Z-162.3*mm-0.5*ConvTiO2_Z;
+    
 }
 G4SubtractionSolid* DetectorConstruction::constructSolidConvTiO2(){
 	auto ConvTiO2_box = new G4Box("ConvTiO2", 0.5*ConvTiO2_XY, 0.5*ConvTiO2_XY, 0.5*ConvTiO2_Z);

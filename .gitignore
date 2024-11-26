@@ -1,5 +1,6 @@
 build/
 build/*
+build*/
 jobs/
 test/
 tmp/
