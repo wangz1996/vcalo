@@ -68,6 +68,7 @@ int VAnaManager::run()
         auto seeds = std::get<0>(houghseeds);
         auto seedposs = std::get<1>(houghseeds);
         seed_size = std::get<2>(houghseeds);
+        std::cout<<"NTracks: "<<seeds.size()<<std::endl;
         // std::cout<<"Entry: "<<ientry<<" "<<seeds.size()<<" seeds "<<seedposs.size()<<" dirs"<<std::endl;
         for(size_t iseed=0;iseed<seeds.size();iseed++){
             auto seed = seeds[iseed];
@@ -89,14 +90,14 @@ int VAnaManager::run()
 
 HoughSeeds VAnaManager::getHoughSeeds(const int &entry)
 {
-
-    // TString hname = TString("h")+TString(std::to_string(entry));
-    // TFile *fout=new TFile(hname+TString(".root"),"RECREATE");
-    // TH2D *h2=new TH2D(hname,"h2",nXbin,Xmin,Xmax,nYbin,Ymin,Ymax);
-    // TH3D *h3=new TH3D(hname+TString("3d"),"h3",100,-150,150,100,-150,150,100,-220.,-150);
-    // TH2D *hhit = new TH2D(hname+TString("hit"),"hit",100,-150,150,100,-150,150);
-    // std::cout<<"Enter"<<std::endl;
+    
+    TString hname = TString("h")+TString(std::to_string(entry));
+    TFile *fout=new TFile(hname+TString(".root"),"RECREATE");
+    TH2D *h2=new TH2D(hname,"h2",nXbin,Xmin,Xmax,nYbin,Ymin,Ymax);
+    TH3D *h3=new TH3D(hname+TString("3d"),"h3",100,-150,150,100,-150,150,100,-220.,-150);
+    TH2D *hhit = new TH2D(hname+TString("hit"),"hit",100,-150,150,100,-150,150);
     fTree->GetEntry(entry);
+    std::cout<<"Start processing entry: "<<entry<<" with "<<tracker_hitx->size()<<" hits"<<std::endl;
     //  if(init_Pz<0.7)return SpacePoints();
     HoughHist h_HT(nXbin, nYbin);
     SpacePoints sps; // initial space points
@@ -109,8 +110,8 @@ HoughSeeds VAnaManager::getHoughSeeds(const int &entry)
         float x = tracker_hitx->at(ihit);
         float y = tracker_hity->at(ihit);
         float z = tracker_hitz->at(ihit);
-        // hhit->Fill(x,y);
-        // h3->Fill(x,y,z);
+        hhit->Fill(x,y);
+        h3->Fill(x,y,z);
         sps.emplace_back(SpacePoint{x, y, z});
         for (size_t ibin = 0; ibin < nXbin; ibin++)
         {
@@ -127,9 +128,9 @@ HoughSeeds VAnaManager::getHoughSeeds(const int &entry)
     {
         for (size_t jbin = 0; jbin < nYbin; jbin++)
         {
-            // h2->SetBinContent(ibin+1,jbin+1,h_HT(ibin,jbin).first);
+            h2->SetBinContent(ibin+1,jbin+1,h_HT(ibin,jbin).first);
             // std::cout<<h_HT(ibin,jbin).first<<std::endl;
-            if (h_HT(ibin, jbin).first > 5)
+            if (h_HT(ibin, jbin).first > 60.)
             {
                 // std::cout<<h_HT(ibin,jbin).first<<std::endl;
                 double theta = Xgap * ibin;
@@ -153,8 +154,16 @@ HoughSeeds VAnaManager::getHoughSeeds(const int &entry)
 
                 std::sort(online_sps.begin(), online_sps.end(), [&](const SpacePoint &a, const SpacePoint &b)
                           { return a[2] < b[2]; });
-                if (online_sps[0][2] > TrackerPosZ[0] || online_sps[sps_size - 1][2] < TrackerPosZ[5])
+                if (online_sps[0][2] > TrackerPosZ[0] || online_sps[sps_size - 1][2] < TrackerPosZ[5]){
                     continue;
+                    if(online_sps[0][2] > TrackerPosZ[0]){
+                        std::cout<<"Seed start at "<<online_sps[0][2]<<" which is larger than "<<TrackerPosZ[0]<<std::endl;
+                    }
+                    else{
+                        std::cout<<"Seed end at "<<online_sps[sps_size - 1][2]<<" which is smaller than "<<TrackerPosZ[5]<<std::endl;
+                    }
+                    continue;
+                }
                 if (seed_set.count(online_sps[0]) == 0)
                 {
                     seed_size.emplace_back(sps_size);
@@ -173,11 +182,11 @@ HoughSeeds VAnaManager::getHoughSeeds(const int &entry)
         }
     } // End of seed finding
     // std::cout<<"End of finding seeds "<<seeds.size()<<std::endl;
-    // fout->cd();
-    // h2->Write();
-    // hhit->Write();
-    // h3->Write();
-    // fout->Close();
+    fout->cd();
+    h2->Write();
+    hhit->Write();
+    h3->Write();
+    fout->Close();
 
     // Select the seed with most points
     //  int max_size = 0;

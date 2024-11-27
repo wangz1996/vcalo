@@ -128,7 +128,7 @@ class DetectorConstruction : public G4VUserDetectorConstruction
 	static constexpr double HexCell_XY = 25. * mm;
 	static constexpr double HexCell_Z = Hex_Z;
 	static constexpr double Tray_XY = Hex_XY;
-	static constexpr double Tray_Z = Hex_Z + 2.*mm;
+	static constexpr double Tray_Z = Hex_Z;
 	static constexpr double Tracker_XY = 285.*mm;
 	static constexpr double Tracker_Z = 0.35*mm;
 	static constexpr std::array<float, 6> TrackerPosZ = {

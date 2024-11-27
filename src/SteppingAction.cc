@@ -177,26 +177,38 @@ void SteppingAction::UserSteppingAction(const G4Step* aStep) {
     }
   }
   // 处理能量沉积和命中
-  if (postStepLVName == "logicAPD") {
-    HistoManager::getInstance().fillAPDHit(copyNo, edep, time, pdgid, trackid);
-  } else if (postStepLVName == "logicCsI") {
-    HistoManager::getInstance().fillEcalHit(copyNo, edep, time, pdgid, trackid);
+  if((edep<1e-20)){
+    // std::cout<<particleDef->GetParticleName()<<" "<<edep<<std::endl;
   }
-  else if(postStepLVName == "logicConv"){
-    HistoManager::getInstance().fillConvHit(edep);
-  }
-  else if(postStepLVName == "logicTracker"){
-    G4int tracker_index = postStepPVName[12]-'0';
-    G4float posX = postStepPoint->GetPosition().x();
-    G4float posY = postStepPoint->GetPosition().y();
-    HistoManager::getInstance().fillTrackerHit(tracker_index, posX, posY, edep, trackid);
-    if(track->GetParentID() == 1 && track->GetCreatorProcess()->GetProcessName() == "conv"){
-      if(pdgid==11 || pdgid==-11){
-        HistoManager::getInstance().fillTrackerEPHit(edep);
+  else 
+  {
+    if (postStepLVName == "logicAPD")
+    {
+      HistoManager::getInstance().fillAPDHit(copyNo, edep, time, pdgid, trackid);
+    }
+    else if (postStepLVName == "logicCsI")
+    {
+      HistoManager::getInstance().fillEcalHit(copyNo, edep, time, pdgid, trackid);
+    }
+    else if (postStepLVName == "logicConv")
+    {
+      HistoManager::getInstance().fillConvHit(edep);
+    }
+    else if (postStepLVName == "logicTracker")
+    {
+      G4int tracker_index = postStepPVName[12] - '0';
+      G4float posX = postStepPoint->GetPosition().x();
+      G4float posY = postStepPoint->GetPosition().y();
+      HistoManager::getInstance().fillTrackerHit(tracker_index, posX, posY, edep, trackid);
+      if (track->GetParentID() == 1 && track->GetCreatorProcess()->GetProcessName() == "conv")
+      {
+        if (pdgid == 11 || pdgid == -11)
+        {
+          HistoManager::getInstance().fillTrackerEPHit(edep);
+        }
       }
     }
   }
-  
 }
 
 
