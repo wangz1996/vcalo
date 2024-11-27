@@ -103,7 +103,7 @@ void DetectorConstruction::defineECALMaterial(){
 	//ECAL Shield
 	G4Element* elC = G4NistManager::Instance()->FindOrBuildElement("C");
 	G4Element* elO = G4NistManager::Instance()->FindOrBuildElement("O");
-	carbonFiber = new G4Material("carbonFiber", 1.75*g/cm3, 2);
+	carbonFiber = new G4Material("carbonFiber", 1.65*g/cm3, 2);
 	carbonFiber->AddElement(elC, 0.9); 
 	carbonFiber->AddElement(elO, 0.1);
 

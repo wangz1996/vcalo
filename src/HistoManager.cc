@@ -127,19 +127,20 @@ void HistoManager::fill(const int& _eventNo){
 	}
 
 	//Tracker hit merge
-	for(auto hit:tracker_hitmap){
-		int xid = std::get<0>(hit.first);
-		int yid = std::get<1>(hit.first);
-		int zid = std::get<2>(hit.first);
-		float edep = hit.second;
-		float posX = (zid%2==0) ? -95.+xid*95. : -141.4+xid*0.121;
-		float posY = (zid%2==0) ? -141.4+yid*0.121 : -95.+yid*95.;
-		float posZ = TrackerPosZ[zid];
-		tracker_hitx.emplace_back(posX/1000.); // Convert to mm
-		tracker_hity.emplace_back(posY/1000.); // Convert to mm
-		tracker_hitz.emplace_back(posZ);
-		tracker_hite.emplace_back(edep);
-	}
+	// for(auto hit:tracker_hitmap){
+	// 	int xid = std::get<0>(hit.first);
+	// 	int yid = std::get<1>(hit.first);
+	// 	int zid = std::get<2>(hit.first);
+	// 	float edep = hit.second;
+	// 	float posX = (zid%2==0) ? -95.+xid*95. : -141.4+xid*0.121;
+	// 	float posY = (zid%2==0) ? -141.4+yid*0.121 : -95.+yid*95.;
+	// 	float posZ = TrackerPosZ[zid];
+	// 	tracker_hitx.emplace_back(posX); 
+	// 	tracker_hity.emplace_back(posY); 
+	// 	tracker_hitz.emplace_back(posZ);
+	// 	tracker_hite.emplace_back(edep);
+	// }
+	// std::cout<<"Set size: "<<tracker_hitset.size()<<" Map size: "<<tracker_hitmap.size()<<std::endl;
 	vTree->Fill();
 }
 
@@ -152,10 +153,15 @@ void HistoManager::fillTrackerHit(const int& tracker_id, const float& posX, cons
 	//x starts at -141.4 mm
 	//y starts at -95. mm
 
-	int xid = (tracker_id%2==0) ? round((posX+95.)/95.) : round((posX+141.4)/0.121);
-	int yid = (tracker_id%2==0) ? round((posY+141.4)/0.121) : round((posY+95.)/95.);
-	int zid = tracker_id;
-	tracker_hitmap[std::make_tuple(xid,yid,zid)]+=edep;
+	// int xid = (tracker_id%2==0) ? round((posX+95.)/95.) : round((posX+141.4)/0.121);
+	// int yid = (tracker_id%2==0) ? round((posY+141.4)/0.121) : round((posY+95.)/95.);
+	// int zid = tracker_id;
+	// tracker_hitmap[std::make_tuple(xid,yid,zid)]+=edep;
+	tracker_hitx.emplace_back(posX);
+	tracker_hity.emplace_back(posY);
+	tracker_hitz.emplace_back(TrackerPosZ[tracker_id]);
+	// std::string tracker_hit_str = std::to_string(xid)+" "+std::to_string(yid)+" "+std::to_string(zid);
+	// tracker_hitset.insert(tracker_hit_str);
 }
 
 void HistoManager::fillAPDHit(const G4int &copyNo,const G4double &edep,const G4double &time,const G4int &pdgid,const G4int &trackid){

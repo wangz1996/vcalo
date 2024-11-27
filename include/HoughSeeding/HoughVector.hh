@@ -42,7 +42,7 @@ class vector2D {
       std::stringstream s;
       s << "vector2D out of bounds: request (" << i << "," << j << ") size ("
         << m_d1 << "," << m_d2 << ")";
-    throw(s.str());
+    std::cout<<s.str()<<std::endl;
     }
     return m_data[i * m_d2 + j];
   }
@@ -52,7 +52,7 @@ class vector2D {
       std::stringstream s;
       s << "vector2D out of bounds: request (" << i << "," << j << ") size ("
         << m_d1 << "," << m_d2 << ")";
-      throw(s.str());
+      std::cout<<s.str()<<std::endl;
     }
     return m_data[i * m_d2 + j];
   }
@@ -62,7 +62,7 @@ class vector2D {
       std::stringstream s;
       s << "vector2D out of bounds: request " << i << " size (" << m_d1 << ","
         << m_d2 << ")";
-      throw(s.str());
+      std::cout<<s.str()<<std::endl;
     }
     return m_data.data() + (i * m_d2);
   }
@@ -72,7 +72,7 @@ class vector2D {
       std::stringstream s;
       s << "vector2D out of bounds: request " << i << " size (" << m_d1 << ","
         << m_d2 << ")";
-      throw(s.str());
+      std::cout<<s.str()<<std::endl;
     }
     return m_data.data() + (i * m_d2);
   }
@@ -101,7 +101,7 @@ class vector3D {
       std::stringstream s;
       s << "vector3D out of bounds: request (" << i << "," << j << "," << k
         << ") size (" << m_d1 << "," << m_d2 << "," << m_d3 << ")";
-      throw(s.str());
+      std::cout<<s.str()<<std::endl;
     }
     return m_data[i * m_d2 * m_d3 + j * m_d3 + k];
   }
@@ -111,7 +111,7 @@ class vector3D {
       std::stringstream s;
       s << "vector3D out of bounds: request (" << i << "," << j << "," << k
         << ") size (" << m_d1 << "," << m_d2 << "," << m_d3 << ")";
-      throw(s.str());
+      std::cout<<s.str()<<std::endl;
     }
     return m_data[i * m_d2 * m_d3 + j * m_d3 + k];
   }

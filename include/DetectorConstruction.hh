@@ -124,7 +124,7 @@ class DetectorConstruction : public G4VUserDetectorConstruction
 
 	//Tracker
 	static constexpr double Hex_XY = 287. * mm;
-	static constexpr double Hex_Z = 23. * mm;
+	static constexpr double Hex_Z = 20. * mm;
 	static constexpr double HexCell_XY = 25. * mm;
 	static constexpr double HexCell_Z = Hex_Z;
 	static constexpr double Tray_XY = Hex_XY;
@@ -146,6 +146,7 @@ class DetectorConstruction : public G4VUserDetectorConstruction
 
 	G4Material* carbonFiber;
 	G4Material* siliconeRubber;
+	G4Material* mat_Tray;
 
 	//Optical Properties
 	G4MaterialPropertiesTable *CsIMPT;

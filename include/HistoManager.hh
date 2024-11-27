@@ -31,6 +31,7 @@
 
 #ifndef HistoManager_h
 #define HistoManager_h
+#include <boost/container/small_vector.hpp>
 #include "TList.h"
 #include "TPolyLine3D.h"
 #include "globals.hh"
@@ -44,9 +45,12 @@
 #include "Config.hh"
 #include <vector>
 #include <tuple>
+#include <unordered_set>
 #include <G4ThreeVector.hh>
 #include <unordered_map>
 #include <filesystem>
+
+using TrackerHit = boost::container::small_vector<int,3>;
 
 class TTree;
 class TFile;
@@ -152,9 +156,12 @@ class HistoManager
     	-218.425, -213.125, -187.425,
     	-182.125, -156.425, -151.125
 		};
+		std::unordered_set<std::string> tracker_hitset;
 		std::unordered_map<std::tuple<int,int,int>,float,TupleHash<int>> tracker_hitmap;
 		
 };
+
+
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
