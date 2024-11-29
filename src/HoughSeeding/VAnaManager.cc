@@ -58,7 +58,7 @@ int VAnaManager::run()
     tout->Branch("init_Pz", &init_Pz);
     tout->Branch("conve_inECAL",&conve_inECAL);
     tout->Branch("convp_inECAL",&convp_inECAL);
-    tout->Branch("conve_kinemaitc", &conve_kinematic);
+    tout->Branch("conve_kinematic", &conve_kinematic);
     tout->Branch("convp_kinematic", &convp_kinematic);
 
     tout->Branch("reco_x", &reco_x);
