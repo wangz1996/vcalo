@@ -33,6 +33,7 @@ public:
 
 private:
   HoughSeeds getHoughSeeds(const int& entry);
+  void clearEvent();
   
 
 private:
@@ -61,19 +62,22 @@ private:
   std::vector<int> seed_size;
 
   //Hough
-  static constexpr int nXbin = 7000;
+  static constexpr int nXbin = 1000;
   static constexpr double Xmin = 0.;
   static constexpr double Xmax = M_PI;
   static constexpr double Xgap = (Xmax-Xmin)/nXbin;
-  static constexpr int nYbin = 200;
+  static constexpr int nYbin = 600;
   static constexpr double Ymin = -300.;
   static constexpr double Ymax = 300.;
   static constexpr double Ygap = (Ymax-Ymin)/nYbin;
-
-  static constexpr std::array<float, 6> TrackerPosZ = {
-    	-218.425, -213.125, -187.425,
-    	-182.125, -156.425, -151.125
+  static constexpr int NTracker = 3;
+  static constexpr std::array<float, NTracker> TrackerPosZ = {
+    	-215.775, -184.775, -153.775
 	};
+  std::unordered_map<int,TH2D*> Cluster_umap;
+  std::unordered_map<int,std::vector<int>> ClusterHitID_umap;
+  static constexpr int NClusterBin = 300;
+
 };
 
 namespace std {

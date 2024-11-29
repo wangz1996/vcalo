@@ -32,6 +32,10 @@ VAnaManager::VAnaManager()
     fTree->SetBranchAddress("init_Px", &init_Px);
     fTree->SetBranchAddress("init_Py", &init_Py);
     fTree->SetBranchAddress("init_Pz", &init_Pz);
+
+    Cluster_umap[0] = new TH2D("hCluster0","Cluster0", NClusterBin,-150.,150.,NClusterBin,-150.,150.);
+    Cluster_umap[1] = new TH2D("hCluster1","Cluster1", NClusterBin,-150.,150.,NClusterBin,-150.,150.);
+    Cluster_umap[2] = new TH2D("hCluster2","Cluster2", NClusterBin,-150.,150.,NClusterBin,-150.,150.);
 }
 
 int VAnaManager::run()
@@ -56,7 +60,7 @@ int VAnaManager::run()
     tout->Branch("seed_size", &seed_size);
     for (size_t ientry = 0; ientry < fTree->GetEntries(); ientry++)
     {
-        // if(ientry>10)break;
+        if(ientry>10)break;
         std::vector<float>().swap(reco_x);
         std::vector<float>().swap(reco_y);
         std::vector<float>().swap(reco_z);
@@ -90,36 +94,53 @@ int VAnaManager::run()
 
 HoughSeeds VAnaManager::getHoughSeeds(const int &entry)
 {
-    
+    clearEvent();
     TString hname = TString("h")+TString(std::to_string(entry));
     TFile *fout=new TFile(hname+TString(".root"),"RECREATE");
     TH2D *h2=new TH2D(hname,"h2",nXbin,Xmin,Xmax,nYbin,Ymin,Ymax);
-    TH3D *h3=new TH3D(hname+TString("3d"),"h3",100,-150,150,100,-150,150,100,-220.,-150);
-    TH2D *hhit = new TH2D(hname+TString("hit"),"hit",100,-150,150,100,-150,150);
+    TH3D *h3=new TH3D(hname+TString("3d"),"h3",300,-150,150,300,-150,150,10,-220.,-150);
+    TH2D *hhit = new TH2D(hname+TString("hit"),"hit",300,-150,150,300,-150,150);
     fTree->GetEntry(entry);
-    std::cout<<"Start processing entry: "<<entry<<" with "<<tracker_hitx->size()<<" hits"<<std::endl;
-    //  if(init_Pz<0.7)return SpacePoints();
+    for(size_t ihit =0;ihit<tracker_hitx->size();ihit++){
+        auto x = tracker_hitx->at(ihit);
+        auto y = tracker_hity->at(ihit);
+        auto z = tracker_hitz->at(ihit);
+        int zid=-1;
+        if(z==float(-215.775))zid=0;
+        else if(z==float(-184.775))zid=1;
+        else if(z==float(-153.775))zid=2;
+        else{std::cout<<z<<std::endl;throw("UNKNOWN Z");}
+        Cluster_umap[zid]->Fill(x,y);
+        ClusterHitID_umap[zid].emplace_back(Cluster_umap[zid]->FindBin(x,y));
+    }
+
     HoughHist h_HT(nXbin, nYbin);
     SpacePoints sps; // initial space points
     std::unordered_set<SpacePoint> seed_set;
     std::vector<int> seed_size;
     SpacePoints seedposs; // Create empty container for output seed positions
     SpacePoints seeds;    // Create empty container for output seeds
-    for (size_t ihit = 0; ihit < tracker_hitx->size(); ihit++)
-    {
-        float x = tracker_hitx->at(ihit);
-        float y = tracker_hity->at(ihit);
-        float z = tracker_hitz->at(ihit);
-        hhit->Fill(x,y);
-        h3->Fill(x,y,z);
-        sps.emplace_back(SpacePoint{x, y, z});
-        for (size_t ibin = 0; ibin < nXbin; ibin++)
-        {
+    //Using clusters to find seeds
+    for(size_t ilayer=0;ilayer<NTracker;ilayer++){
+        auto &Cluster = Cluster_umap[ilayer];
+        auto &ClusterHitID = ClusterHitID_umap[ilayer];
+        for(auto &hitid:ClusterHitID){
+            int binX, binY, binZ;
+            Cluster->GetBinXYZ(hitid, binX, binY, binZ);
+            float x = Cluster->GetXaxis()->GetBinCenter(binX);
+            float y = Cluster->GetYaxis()->GetBinCenter(binY);
+            float z = TrackerPosZ[ilayer];
+            hhit->Fill(x,y);
+            h3->Fill(x,y,z);
+            sps.emplace_back(SpacePoint{x, y, z});
+            for (size_t ibin = 0; ibin < nXbin; ibin++)
+            {
             float theta = Xgap * ibin;
             float rho = z * cos(theta) + x * sin(theta);
             // std::cout<<rho<<std::endl;
             int jbin = int((rho - Ymin) / Ygap);
             h_HT(ibin, jbin).first++;
+            }
         }
     }
     // std::cout<<"End of adding points starting to find seeds"<<std::endl;
@@ -130,7 +151,7 @@ HoughSeeds VAnaManager::getHoughSeeds(const int &entry)
         {
             h2->SetBinContent(ibin+1,jbin+1,h_HT(ibin,jbin).first);
             // std::cout<<h_HT(ibin,jbin).first<<std::endl;
-            if (h_HT(ibin, jbin).first > 60.)
+            if (h_HT(ibin, jbin).first > 4.)
             {
                 // std::cout<<h_HT(ibin,jbin).first<<std::endl;
                 double theta = Xgap * ibin;
@@ -141,26 +162,26 @@ HoughSeeds VAnaManager::getHoughSeeds(const int &entry)
                     // std::cout<<sp[0]<<" "<<sp[1]<<" "<<sp[2]<<std::endl;
                     double distance = abs(fz<double>(theta, rho, sp[2]) - sp[0]);
                     // std::cout<<distance<<std::endl;
-                    if (distance < 1.)
+                    if (distance <1.)
                     {
                         online_sps.emplace_back(sp);
                     }
                 }
                 auto sps_size = online_sps.size();
 
-                if (sps_size < 5)
+                if (sps_size < 3)
                     continue;
                 // std::cout<<"Seed size: "<<sps_size<<std::endl;
 
                 std::sort(online_sps.begin(), online_sps.end(), [&](const SpacePoint &a, const SpacePoint &b)
                           { return a[2] < b[2]; });
-                if (online_sps[0][2] > TrackerPosZ[0] || online_sps[sps_size - 1][2] < TrackerPosZ[5]){
+                if (online_sps[0][2] > TrackerPosZ[0] || online_sps[sps_size - 1][2] < TrackerPosZ[NTracker-1]){
                     continue;
                     if(online_sps[0][2] > TrackerPosZ[0]){
                         std::cout<<"Seed start at "<<online_sps[0][2]<<" which is larger than "<<TrackerPosZ[0]<<std::endl;
                     }
                     else{
-                        std::cout<<"Seed end at "<<online_sps[sps_size - 1][2]<<" which is smaller than "<<TrackerPosZ[5]<<std::endl;
+                        std::cout<<"Seed end at "<<online_sps[sps_size - 1][2]<<" which is smaller than "<<TrackerPosZ[NTracker-1]<<std::endl;
                     }
                     continue;
                 }
@@ -199,4 +220,11 @@ HoughSeeds VAnaManager::getHoughSeeds(const int &entry)
     //  }
 
     return std::make_tuple(seeds, seedposs, seed_size);
+}
+
+void VAnaManager::clearEvent(){
+    Cluster_umap[0]->Reset();
+    Cluster_umap[1]->Reset();
+    Cluster_umap[2]->Reset();
+    ClusterHitID_umap.clear();
 }

@@ -45,17 +45,30 @@
 #include "Config.hh"
 #include <vector>
 #include <tuple>
+#include <any>
 #include <unordered_set>
 #include <G4ThreeVector.hh>
 #include <unordered_map>
 #include <filesystem>
 
-using TrackerHit = boost::container::small_vector<int,3>;
+using TrackerHit = boost::container::small_vector<size_t,2>;
+
+template<class T>
+struct HitIDHash {
+    constexpr T operator()(const TrackerHit& t) const noexcept {
+        if (t.size() < 2) {
+            throw std::invalid_argument("TrackerHit must have at least 2 elements");
+        }
+        return std::hash<T>{}(t[0]) ^ (std::hash<T>{}(t[1]) << 1);
+    }
+};
+
+using TrackerHits = std::unordered_set<TrackerHit,HitIDHash<size_t>>;
+using TrackerHitMap = std::unordered_map<size_t,TrackerHits>; //TrackerHit collections per layer -> 0,1,2,3,4,5
 
 class TTree;
 class TFile;
 class Config;
-//const G4int kMAXTrack=5000;//should be checked!!!
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 class HistoManager
 {
@@ -87,7 +100,7 @@ class HistoManager
 		void fillTrackerEPHit(const float& e){tracker_ephite.emplace_back(e);}
 
 	private:
-		//Singleton
+		//Singleton design mode
 		HistoManager();
 		~HistoManager();
 		Double_t SiPMDigi(const Double_t &edep) const;
@@ -108,6 +121,7 @@ class HistoManager
 
 		TRandom3 *rand;
 
+		void createHit(const TrackerHit& ehit,const TrackerHit& ohit,const size_t& layer);
 	private:
 		int eventNo;
 		int nConvPhoton;
@@ -144,20 +158,30 @@ class HistoManager
 		std::vector<float> tracker_hite;
 		std::vector<int> tracker_trkid;
 		std::vector<float> tracker_ephite;
-		template<class T>
-		struct TupleHash {
-    		constexpr std::size_t operator()(const std::tuple<T, T, T>& t) const noexcept {
-        		auto [x, y, z] = t;
-        		// 使用质数组合哈希值
-        		return std::hash<int>{}(x) + 31 * std::hash<int>{}(y) + 57 * std::hash<int>{}(z);
-    		}
-		};
+
+		//Constants
 		static constexpr std::array<float, 6> TrackerPosZ = {
     	-218.425, -213.125, -187.425,
     	-182.125, -156.425, -151.125
 		};
-		std::unordered_set<std::string> tracker_hitset;
-		std::unordered_map<std::tuple<int,int,int>,float,TupleHash<int>> tracker_hitmap;
+		template <class DT, size_t N>
+		static constexpr std::array<DT, N> Temp_StripT()
+		{
+			std::array<DT, N> StripT;
+			for (size_t i = 0; i < N; i++)
+			{
+				StripT[i] = -141.4 + i * 0.121;
+			}
+			return StripT;
+		}
+		template<class TT=std::any>
+    	static const std::array<float,2404> StripT;
+		static constexpr std::array<float, 3> StripL = { // Strip positions in longitudinal direction
+			-95.,0.,95.
+		};
+
+		TrackerHitMap tracker_hitmap;
+		TrackerHits tracker_hits;
 		
 };
 

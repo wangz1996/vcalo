@@ -71,7 +71,6 @@ SteppingAction::~SteppingAction()
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 void SteppingAction::UserSteppingAction(const G4Step* aStep) {
-  
   // 获取 PreStep 和 PostStep 信息
   auto preStepPoint = aStep->GetPreStepPoint();
   auto postStepPoint = aStep->GetPostStepPoint();
