@@ -16,19 +16,28 @@ TrackFinderResult TrackFinder::FindTracks(std::shared_ptr<const Acts::TrackingGe
     const TrackFinderOptions &options,
     TrackContainer &tracks)
 {
+    Acts::Navigator::Config cfg{std::move(trackingGeometry)};
+    cfg.resolvePassive = false;
+    cfg.resolveMaterial = true;
+    cfg.resolveSensitive = true;
+    Acts::Navigator navigator{cfg};
+    auto field =
+        std::make_shared<Acts::ConstantBField>(Acts::Vector3(0.0, 0.0, 0.));
+    ConstantFieldStepper stepper(std::move(field));
+    ConstantFieldPropagator propagator(std::move(stepper), std::move(navigator));
     // auto magneticField = std::make_shared<const Acts::NullBField>(Acts::NullBField());
     // Acts::Vector3 magneticFieldVector(0, 0, 1 * Acts::UnitConstants::T);
     // auto magneticField = std::make_shared<const Acts::ConstantBField>(magneticFieldVector);
     // Stepper stepper(std::move(magneticField));
-    auto field =
-        std::make_shared<Acts::ConstantBField>(Acts::Vector3(0.0, 0.0, 0.0 * Acts::UnitConstants::T));
-    ConstantFieldStepper stepper(std::move(field));
-    Navigator::Config cfg{std::move(trackingGeometry)};
-    cfg.resolvePassive = false;
-    cfg.resolveMaterial = true;
-    cfg.resolveSensitive = true;
-    Navigator navigator(cfg);
-    ConstantFieldPropagator propagator(std::move(stepper), std::move(navigator));
+    // auto field =
+    //     std::make_shared<Acts::ConstantBField>(Acts::Vector3(0.0, 0.0, 0.0 * Acts::UnitConstants::T));
+    // ConstantFieldStepper stepper(std::move(field));
+    // Navigator::Config cfg{std::move(trackingGeometry)};
+    // cfg.resolvePassive = false;
+    // cfg.resolveMaterial = true;
+    // cfg.resolveSensitive = true;
+    // Navigator navigator(cfg);
+    // ConstantFieldPropagator propagator(std::move(stepper), std::move(navigator));
     CKF trackFinder(std::move(propagator), Acts::getDefaultLogger("CKF",Acts::Logging::VERBOSE));
     return trackFinder.findTracks(initialParameter, options, tracks);
 }
@@ -40,7 +49,7 @@ std::shared_ptr<const Acts::TrackingGeometry> trackingGeometry,
     // auto pSurface = Acts::Surface::makeShared<Acts::PerigeeSurface>(
     //     Acts::Vector3{0., 0., 0.});
     auto pSurface = Acts::Surface::makeShared<Acts::PlaneSurface>(
-      Acts::Vector3{0., 0., 0._mm}, Acts::Vector3{1., 0., 0.});
+      Acts::Vector3{-3._m, 0., 0._mm}, Acts::Vector3{1., 0., 0.});
     Acts::PropagatorPlainOptions pOptions;
     // pOptions.pathLimit = 1000._mm;
     // pOptions.maxStepSize = 5._mm;

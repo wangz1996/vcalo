@@ -14,7 +14,9 @@
 #include "Acts/MagneticField/NullBField.hpp"
 #include <Acts/Utilities/Logger.hpp>
 #include "MeasurementCalibration.hh"
+#include "Acts/EventData/NeutralTrackParameters.hpp"
 #include "AmbiguityResolutionAlgorithm.hh"
+#include "Acts/Propagator/StraightLineStepper.hpp"
 #include "WhiteBoard.hh"
 #include "Measurement.hh"
 #include "SequenceElement.hh"
@@ -40,6 +42,8 @@ using TrackFinderOptions =
                                            Acts::VectorMultiTrajectory>;
 using TrackFinderResult =
     Acts::Result<std::vector<TrackContainer::TrackProxy>>;
+using StraightPropagator =
+      Acts::Propagator<Acts::StraightLineStepper, Acts::Navigator>;
 class TrackFinder
 {
 public:

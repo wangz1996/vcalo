@@ -86,6 +86,7 @@ int VAnaManager::run()
   // std::vector<std::array<double,3>> sps;
   for (int i=0;i<sgids.size();i++)
   {
+    if(i==0)continue;
     auto gid = sgids.at(i);
     
     // std::cout<<"surface x: "<<det_geometry->findSurface(gid)->center(geoContext).x()<<std::endl;
@@ -180,11 +181,22 @@ int VAnaManager::run()
 //   startParameters.push_back({mStartPos, mStartDir, 1_GeV, 1_e});
 //   break;
 // }
+// global direction for reference
+  // const Vector3 dir{1.,1e-5,1e-5};
+  // // convert local-to-global for reference
+  // const Vector2 loc(10._mm, 10._mm);
+  // const Vector3 pos = surface->localToGlobal(geoContext, loc, dir);
+  // global four-position as input
+  // Vector4 pos4;
+  // pos4.segment<3>(ePos0) = pos;
+  // pos4[eTime] = 0_ns;
 std::vector<Acts::CurvilinearTrackParameters> startParameters;
-    Acts::Vector4 mStartPos0(-250.125_mm, 10._mm, 10._mm, 0_ns);
+    Acts::Vector4 mStartPos0(-250.775_mm, 10._mm, 10._mm, 0_ns);
     Acts::Vector3 mStartDir0(0.9999, 1e-5, 1e-5);
     startParameters = {
-        {mStartPos0, mStartDir0, 1_GeV, 1_e, cov},
+        {mStartPos0, 0_degree, 90_degree, 1_GeV, 1_e, cov},
+        // {mStartPos1, -1_degree, 91_degree, 1_GeV, 1_e, cov},
+        // {mStartPos2, 1_degree, 89_degree, 1_GeV, -1_e, cov},
     };
   // std::cout<<"Do Track Finding"<<std::endl;
   fTrackFinder->execute(geoContext, inputSourceLinks, det_geometry, startParameters, vec_meas);
