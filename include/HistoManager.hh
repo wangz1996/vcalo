@@ -98,6 +98,8 @@ class HistoManager
 		void fillTracks(const int& track_id,const G4ThreeVector& pos,const int& color=0);
 		void fillTrackerHit(const int& tracker_id, const float& posX, const float& posY, const float& edep, const int& trkid);
 		void fillTrackerEPHit(const float& e){tracker_ephite.emplace_back(e);}
+		void setEinECAL(){conve_inECAL=1;}
+		void setPinECAL(){convp_inECAL=1;}
 
 	private:
 		//Singleton design mode
@@ -136,6 +138,8 @@ class HistoManager
 		float init_Pz;
 		float init_E;
 		float init_Ke;
+		int conve_inECAL;
+		int convp_inECAL;
 		std::vector<float> conve_ECAL_kinematic;
 		std::vector<float> convp_ECAL_kinematic;
 		std::vector<float> conve_kinematic;

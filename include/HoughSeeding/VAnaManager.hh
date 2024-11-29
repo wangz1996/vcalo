@@ -45,12 +45,16 @@ private:
   std::vector<float>* tracker_hity;
   std::vector<float>* tracker_hitz;
   std::vector<float>* tracker_hite;
+  int conve_inECAL;
+  int convp_inECAL;
   float init_x;
   float init_y;
   float init_z;
   float init_Px;
   float init_Py;
   float init_Pz;
+  std::vector<float> *conve_kinematic;
+  std::vector<float> *convp_kinematic;
 
   //Output branches
   std::vector<float> reco_x;

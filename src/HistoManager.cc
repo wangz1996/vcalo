@@ -73,6 +73,8 @@ void HistoManager::book(const std::string& foutname,const bool &savegeo)
 	vTree->Branch("nTotalOptPhoton",		&nTotalOptPhoton);
 	vTree->Branch("apd_celle",				&apd_celle);
 	vTree->Branch("isconv",					&isconv);
+	vTree->Branch("conve_inECAL",           &conve_inECAL);
+	vTree->Branch("convp_inECAL",           &convp_inECAL);
 	vTree->Branch("tracks",                 &tracks);
 	vTree->Branch("tracker_hitx",            &tracker_hitx);
 	vTree->Branch("tracker_hity",            &tracker_hity);
@@ -246,6 +248,8 @@ void HistoManager::clear(){
 	std::vector<float>().swap(tracker_ephite);
 	apd_nphoton=0;
 	isconv=0;
+	conve_inECAL=0;
+	convp_inECAL=0;
 	ecal_mape.clear();
 	apd_mape.clear();
 	ecal_npmap.clear();

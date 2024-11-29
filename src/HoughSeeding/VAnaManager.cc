@@ -20,6 +20,13 @@ VAnaManager::VAnaManager()
     tracker_hity = nullptr;
     tracker_hitz = nullptr;
     tracker_hite = nullptr;
+    conve_kinematic = nullptr;
+    convp_kinematic = nullptr;
+
+    fTree->SetBranchAddress("conve_inECAL", &conve_inECAL);
+    fTree->SetBranchAddress("convp_inECAL", &convp_inECAL);
+    fTree->SetBranchAddress("conve_kinematic",&conve_kinematic);
+    fTree->SetBranchAddress("convp_kinematic", &convp_kinematic);
 
     fTree->SetBranchAddress("tracker_hitx", &tracker_hitx);
     fTree->SetBranchAddress("tracker_hity", &tracker_hity);
@@ -49,6 +56,10 @@ int VAnaManager::run()
     tout->Branch("init_Px", &init_Px);
     tout->Branch("init_Py", &init_Py);
     tout->Branch("init_Pz", &init_Pz);
+    tout->Branch("conve_inECAL",&conve_inECAL);
+    tout->Branch("convp_inECAL",&convp_inECAL);
+    tout->Branch("conve_kinemaitc", &conve_kinematic);
+    tout->Branch("convp_kinematic", &convp_kinematic);
 
     tout->Branch("reco_x", &reco_x);
     tout->Branch("reco_y", &reco_y);
@@ -58,9 +69,11 @@ int VAnaManager::run()
     tout->Branch("reco_Pz", &reco_Pz);
 
     tout->Branch("seed_size", &seed_size);
+    size_t Nentry = fTree->GetEntries();
     for (size_t ientry = 0; ientry < fTree->GetEntries(); ientry++)
     {
-        if(ientry>10)break;
+        // if(ientry>10)break;
+        if(ientry%10==0)std::cout<<"Entry: "<<ientry<<std::endl;
         std::vector<float>().swap(reco_x);
         std::vector<float>().swap(reco_y);
         std::vector<float>().swap(reco_z);
@@ -72,7 +85,7 @@ int VAnaManager::run()
         auto seeds = std::get<0>(houghseeds);
         auto seedposs = std::get<1>(houghseeds);
         seed_size = std::get<2>(houghseeds);
-        std::cout<<"NTracks: "<<seeds.size()<<std::endl;
+        // std::cout<<"NTracks: "<<seeds.size()<<std::endl;
         // std::cout<<"Entry: "<<ientry<<" "<<seeds.size()<<" seeds "<<seedposs.size()<<" dirs"<<std::endl;
         for(size_t iseed=0;iseed<seeds.size();iseed++){
             auto seed = seeds[iseed];
@@ -95,11 +108,11 @@ int VAnaManager::run()
 HoughSeeds VAnaManager::getHoughSeeds(const int &entry)
 {
     clearEvent();
-    TString hname = TString("h")+TString(std::to_string(entry));
-    TFile *fout=new TFile(hname+TString(".root"),"RECREATE");
-    TH2D *h2=new TH2D(hname,"h2",nXbin,Xmin,Xmax,nYbin,Ymin,Ymax);
-    TH3D *h3=new TH3D(hname+TString("3d"),"h3",300,-150,150,300,-150,150,10,-220.,-150);
-    TH2D *hhit = new TH2D(hname+TString("hit"),"hit",300,-150,150,300,-150,150);
+    // TString hname = TString("h")+TString(std::to_string(entry));
+    // TFile *fout=new TFile(hname+TString(".root"),"RECREATE");
+    // TH2D *h2=new TH2D(hname,"h2",nXbin,Xmin,Xmax,nYbin,Ymin,Ymax);
+    // TH3D *h3=new TH3D(hname+TString("3d"),"h3",300,-150,150,300,-150,150,10,-220.,-150);
+    // TH2D *hhit = new TH2D(hname+TString("hit"),"hit",300,-150,150,300,-150,150);
     fTree->GetEntry(entry);
     for(size_t ihit =0;ihit<tracker_hitx->size();ihit++){
         auto x = tracker_hitx->at(ihit);
@@ -130,8 +143,8 @@ HoughSeeds VAnaManager::getHoughSeeds(const int &entry)
             float x = Cluster->GetXaxis()->GetBinCenter(binX);
             float y = Cluster->GetYaxis()->GetBinCenter(binY);
             float z = TrackerPosZ[ilayer];
-            hhit->Fill(x,y);
-            h3->Fill(x,y,z);
+            // hhit->Fill(x,y);
+            // h3->Fill(x,y,z);
             sps.emplace_back(SpacePoint{x, y, z});
             for (size_t ibin = 0; ibin < nXbin; ibin++)
             {
@@ -149,7 +162,7 @@ HoughSeeds VAnaManager::getHoughSeeds(const int &entry)
     {
         for (size_t jbin = 0; jbin < nYbin; jbin++)
         {
-            h2->SetBinContent(ibin+1,jbin+1,h_HT(ibin,jbin).first);
+            // h2->SetBinContent(ibin+1,jbin+1,h_HT(ibin,jbin).first);
             // std::cout<<h_HT(ibin,jbin).first<<std::endl;
             if (h_HT(ibin, jbin).first > 4.)
             {
@@ -169,7 +182,7 @@ HoughSeeds VAnaManager::getHoughSeeds(const int &entry)
                 }
                 auto sps_size = online_sps.size();
 
-                if (sps_size < 3)
+                if (sps_size < 2)
                     continue;
                 // std::cout<<"Seed size: "<<sps_size<<std::endl;
 
@@ -203,11 +216,11 @@ HoughSeeds VAnaManager::getHoughSeeds(const int &entry)
         }
     } // End of seed finding
     // std::cout<<"End of finding seeds "<<seeds.size()<<std::endl;
-    fout->cd();
-    h2->Write();
-    hhit->Write();
-    h3->Write();
-    fout->Close();
+    // fout->cd();
+    // h2->Write();
+    // hhit->Write();
+    // h3->Write();
+    // fout->Close();
 
     // Select the seed with most points
     //  int max_size = 0;
