@@ -18,17 +18,20 @@ std::shared_ptr<const Acts::TrackingGeometry> Sequencer::buildDetector()
   const auto pBounds =
       std::make_shared<const Acts::RectangleBounds>(142.5_mm, 142.5_mm);
   Acts::RotationMatrix3 rotation = Acts::RotationMatrix3::Identity();
+  //binX
+  rotation.col(0) = Acts::Vector3(0, 0, -1);
+    rotation.col(1) = Acts::Vector3(0, 1, 0);
+    rotation.col(2) = Acts::Vector3(1, 0, 0);
   std::vector<Acts::LayerPtr> layers(nTracker);
   for (size_t i = 0; i < nTracker; ++i)
   {
-    Acts::Translation3 trans(0., 0., TrackerPosZ[i]);
+    Acts::Translation3 trans(0,0., TrackerPosZ[i]);
     Acts::Transform3 trafo(rotation * trans);
     // Create the detector element
     std::shared_ptr<TelescopeDetectorElement> detElement = std::make_shared<TelescopeDetectorElement>(
         std::make_shared<const Acts::Transform3>(trafo), pBounds, 0.35_mm, surfaceMaterial);
     // Get the surface
     auto surface = detElement->surface().getSharedPtr();
-    // std::cout<<"Surface z: "<<surface->center(Acts::GeometryContext()).z()<<std::endl;
     detectorStore.emplace_back(std::move(detElement));
 
     // Construct the surface array (one surface contained)
@@ -43,8 +46,8 @@ std::shared_ptr<const Acts::TrackingGeometry> Sequencer::buildDetector()
   }
 
   // The volume transform
-  Acts::Translation3 transVol(0., 0.,// -213.985_mm);
-                              (TrackerPosZ[0] + TrackerPosZ[nTracker-1]) * 0.5);
+  Acts::Translation3 transVol(0., 0.,(TrackerPosZ[0] + TrackerPosZ[nTracker-1]) * 0.5
+                              );
   Acts::Transform3 trafoVol(rotation * transVol);
   auto length = (TrackerPosZ[nTracker-1] - TrackerPosZ[0]);
   // length = 86.28_mm;
@@ -65,7 +68,7 @@ std::shared_ptr<const Acts::TrackingGeometry> Sequencer::buildDetector()
   Acts::GeometryContext genGctx{TelescopeDetectorElement::ContextType()};
   std::unique_ptr<const Acts::LayerArray> layArr(layArrCreator.layerArray(
       genGctx, layVec, TrackerPosZ[0] - 2._mm, TrackerPosZ[nTracker-1] + 2._mm,
-      Acts::BinningType::equidistant, Acts::BinningValue::binZ));
+      Acts::BinningType::equidistant, Acts::BinningValue::binX));
   // std::unique_ptr<const Acts::LayerArray> layArr(layArrCreator.layerArray(
   //     genGctx, layVec, -259.125_mm, -168.845_mm,
   //     Acts::BinningType::equidistant, Acts::BinningValue::binZ));
@@ -86,7 +89,8 @@ std::shared_ptr<const Acts::TrackingGeometry> Sequencer::buildDetector()
     Acts::GeometryIdentifier genGid;
     genGid.setVolume(1);genGid.setLayer(i+1);genGid.setSensitive(1);
     auto corsurface = trackGeometry->findSurface(genGid);
-    m_surfacegids.emplace_back(std::move(genGid));
+    // printgid(genGid);
+    m_surfacegids.emplace_back(genGid);
   }
 
   //Visualization

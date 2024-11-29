@@ -2,6 +2,7 @@ build/
 build*/
 build/*
 jobs/
+jobs*/
 test/
 tmp/
 *.root

@@ -56,8 +56,8 @@ private:
     MeasurementCreator *fMeasurementCreator;
     TrackFinder *fTrackFinder;
 
-    static constexpr std::array<double, 7> TrackerPosZ = {
-        -257.125,
+    static constexpr std::array<double, 6> TrackerPosZ = {
+        // -257.125,
     -237.125, -232.165, -206.465, 
     -201.505, -175.805, -170.845
 };
