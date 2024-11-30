@@ -25,7 +25,7 @@ using namespace Acts::UnitLiterals;
 using Updater = Acts::GainMatrixUpdater;
 using Smoother = Acts::GainMatrixSmoother;
 
-using Stepper = Acts::EigenStepper<>;
+using Stepper = Acts::StraightLineStepper;
 using Navigator = Acts::Navigator;
 using ConstantFieldStepper = Acts::EigenStepper<>;
 using Propagator = Acts::Propagator<Stepper, Navigator>;

@@ -54,9 +54,9 @@ int VAnaManager::run()
   std::cout<<"Creating SourceLinks "<<layArrObjs.size()<<std::endl;
   IndexSourceLinkContainer inputSourceLinks;
   Acts::ActsSymMatrix<2> measurementCovariance = Acts::ActsSymMatrix<2>::Zero();
-  measurementCovariance(0, 0) = (1_mm) * (1_mm);
+  measurementCovariance(0, 0) = (50_um) * (50_um);
   // measurementCovariance(0, 1) = (0.5_mm) * (0.5_mm);
-  measurementCovariance(1, 1) = (1_mm) * (1_mm);
+  measurementCovariance(1, 1) = (50_um) * (50_um);
   // measurementCovariance(1, 0) = (0.5_mm) * (0.5_mm);
   // inputSourceLinks.emplace(IndexSourceLink{gid,index-1});
 
@@ -76,7 +76,7 @@ int VAnaManager::run()
   // std::cout<<"Creating Measurements"<<std::endl;
   //TODO change to for loop initialization with C++ 20
   auto sgids = fSequencer->getSurfaceGids();
- 
+  
   std::cout<<"Check size: "<<sgids.size()<<std::endl;
   
   // HoughHist h_HT(1000,1000);
@@ -86,7 +86,8 @@ int VAnaManager::run()
   // std::vector<std::array<double,3>> sps;
   for (int i=0;i<sgids.size();i++)
   {
-    if(i==0)continue;
+    // if(i==0)continue;
+    // if(i==1)continue;
     auto gid = sgids.at(i);
     
     // std::cout<<"surface x: "<<det_geometry->findSurface(gid)->center(geoContext).x()<<std::endl;
@@ -94,79 +95,57 @@ int VAnaManager::run()
     // double zinit = det_geometry->findSurface(sgids.at(0))->center(geoContext).z();
     double x = det_geometry->findSurface(gid)->center(geoContext).x();
     //Generate random x y positions in a plane;
-    for (int ipp = 0; ipp < 1; ipp++){
-        double z = random.Uniform(0.1,0.2);
-        double y = random.Uniform(0.1,0.2);
-        z = 10._mm;
-        y = 10._mm;
-        // sps.emplace_back(std::array<double,3>{x,y,z});
-        //Add Hough points
-        // for(int ibin=0;ibin<1000;ibin++){
-        //   double theta = 3.1415926/1000.*ibin;
-        //   double rho = z*cos(theta) + x*sin(theta);
-        //   // std::cout<<theta<<" "<<rho<<std::endl;
-        //   int jbin = int(rho+500.);
-        //   h_HT(ibin,jbin).first++;
-        // }
-
-        fAddMeas(z,y,gid);
-    }
+    double u = 10_mm;
+    double v = 10_mm;
+    fAddMeas(u,v,gid);
+    // if(i==0)for(int j=0;j<100;j++)fAddMeas(u-j,v,gid);
   }
   auto fz = [](const double& theta,const double& rho,const double& z){
           return -1./tan(theta)*z+rho/sin(theta);
         };
-  
-  // std::unordered_set<std::array<double,3>> seeds;
-  // std::vector<std::array<double,3>> seed_order;
-  // std::vector<std::array<double,3>> seed_poss;
-  // for(int ibin=0;ibin<1000;ibin++){
-  //   for(int jbin=0;jbin<1000;jbin++){
-  //     if(h_HT(ibin,jbin).first>5){
-  //       double theta = 3.1415926/1000.*ibin;
-  //       double rho = jbin-500.;
-  //       // std::cout<<"SEED par: "<<theta<<" "<<rho<<std::endl
-  //       std::array<double,3> seed_pos{0.,0.,0.};
-  //       double minz=1000.;
-  //       std::vector<double> dis;
-  //       std::vector<std::array<double,3>> online_sps;
-  //       for(auto sp:sps){
-  //         double disx = abs(fz(theta,rho,sp[2])-sp[0]);
-  //         if(disx<1.){
-  //           online_sps.emplace_back(sp);
-  //         }
-  //       }
-  //       std::sort(online_sps.begin(),online_sps.end(),[&](const std::array<double,3>& a,const std::array<double,3>& b){
-  //         return a[2]<b[2];
-  //       });
-  //       if(seeds.count(online_sps[0])==0){
-  //         size_t nsp = online_sps.size();
-  //         std::array<double,3> dir{online_sps[nsp-1][0]-online_sps[0][0],online_sps[nsp-1][1]-online_sps[0][1],online_sps[nsp-1][2]-online_sps[0][2]};
-  //         double mag = sqrt(dir[0]*dir[0]+dir[1]*dir[1]+dir[2]*dir[2]);
-  //         dir[0] = dir[0]/mag;
-  //         dir[1] = dir[1]/mag;
-  //         dir[2] = dir[2]/mag;
-  //         dir[0] = dir[0]==0. ? 1e-3 : dir[0];
-  //         dir[1] = dir[1]==0. ? 1e-3 : dir[1];
+  //Check measurments by looking at spacepoints
+  // SimSpacePointContainer spacePoints;
+  // Acts::SpacePointBuilderOptions spOpt;
+  // spOpt.paramCovAccessor = [&vec_meas](Acts::SourceLink slink) {
+  //   const auto islink = slink.get<IndexSourceLink>();
+  //   const auto& meas = vec_meas[islink.index()];
 
-  //         seed_poss.emplace_back(dir);
-  //         seeds.insert(online_sps[0]);
-  //         seed_order.emplace_back(online_sps[0]);
-  //       }
-  //     }
-  //   }
+  //   return std::visit(
+  //       [](const auto& measurement) {
+  //         auto expander = measurement.expander();
+  //         Acts::BoundVector par = expander * measurement.parameters();
+  //         Acts::BoundSymMatrix cov =
+  //             expander * measurement.covariance() * expander.transpose();
+  //         return std::make_pair(par, cov);
+  //       },
+  //       meas);
+  // };
+  // auto spBuilderConfig = Acts::SpacePointBuilderConfig();
+  // spBuilderConfig.trackingGeometry = det_geometry;
+  // auto spConstructor =
+  //     [](const Acts::Vector3& pos, const Acts::Vector2& cov,
+  //        boost::container::static_vector<Acts::SourceLink, 2> slinks)
+  //     -> SimSpacePoint {
+  //   return SimSpacePoint(pos, cov[0], cov[1], std::move(slinks));
+  // };
+  // auto m_spacePointBuilder = Acts::SpacePointBuilder<SimSpacePoint>(
+  //     spBuilderConfig, spConstructor,
+  //     Acts::getDefaultLogger("SpacePointBuilder", Acts::Logging::VERBOSE));
+
+  // for(auto sl: inputSourceLinks){
+  //   m_spacePointBuilder.buildSpacePoint(geoContext,{Acts::SourceLink{sl}},spOpt,std::back_inserter(spacePoints));
   // }
-  // std::cout<<"Number of seeds: "<<seeds.size()<<std::endl;
-  // for(auto seed:seeds){
-  //   std::cout<<seed[0]<<" "<<seed[1]<<" "<<seed[2]<<std::endl;
+  // for(auto sp:spacePoints){
+  //   std::cout<<"SpacePoint: "<<sp.x()<<" "<<sp.y()<<" "<<sp.z()<<std::endl;
   // }
 
    std::cout<<"Creating Initial Parameters"<<std::endl;
   Acts::BoundVector stddev;
-    stddev[Acts::eBoundLoc0] = 1_mm;
-    stddev[Acts::eBoundLoc1] = 1_mm;
+    stddev[Acts::eBoundLoc0] = 50_um;
+    stddev[Acts::eBoundLoc1] = 50_um;
     // stddev[Acts::eBoundTime] = 25_ns;
-    stddev[Acts::eBoundPhi] = 1_degree;
-    stddev[Acts::eBoundTheta] = 1_degree;
+    stddev[Acts::eBoundPhi] = 0.1_degree;
+    stddev[Acts::eBoundTheta] = 0.1_degree;
     stddev[Acts::eBoundQOverP] = 1 / 100._GeV;
     Acts::BoundSymMatrix cov = stddev.cwiseProduct(stddev).asDiagonal();
 // Start parameters
@@ -191,8 +170,15 @@ int VAnaManager::run()
   // pos4.segment<3>(ePos0) = pos;
   // pos4[eTime] = 0_ns;
 std::vector<Acts::CurvilinearTrackParameters> startParameters;
-    Acts::Vector4 mStartPos0(-250.775_mm, 10._mm, 10._mm, 0_ns);
+    Acts::Vector4 mStartPos0(-2500.775_mm, 10, -10, 1_ns);
     Acts::Vector3 mStartDir0(0.9999, 1e-5, 1e-5);
+    Acts::CurvilinearTrackParameters mStartPar(mStartPos0,0_degree,90_degree,1_GeV,1_e,cov);
+    auto planesur = dynamic_cast<const Acts::PlaneSurface*>(&mStartPar.referenceSurface());
+
+        auto poscen = planesur->center(geoContext);
+    std::cout<<"start surface center: "<<poscen.x()<<" "<<poscen.y()<<" "<<poscen.z()<<std::endl;
+    auto normvec = planesur->normal(geoContext);
+    std::cout<<"start surface normal: "<<normvec.x()<<" "<<normvec.y()<<" "<<normvec.z()<<std::endl;
     startParameters = {
         {mStartPos0, 0_degree, 90_degree, 1_GeV, 1_e, cov},
         // {mStartPos1, -1_degree, 91_degree, 1_GeV, 1_e, cov},
