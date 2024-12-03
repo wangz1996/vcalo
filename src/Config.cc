@@ -66,7 +66,10 @@ int Config::Run()
 	}
 	runManager->SetUserInitialization(detector);
 
-	G4VModularPhysicsList *physics = new FTFP_BERT();
+	G4VModularPhysicsList *physics = new QGSP_BERT();
+	G4StepLimiterPhysics* stepLimitPhys = new G4StepLimiterPhysics();
+	stepLimitPhys->SetApplyToAll(true);
+	physics->RegisterPhysics(stepLimitPhys);
 	physics->ReplacePhysics(new G4EmStandardPhysics_option4());
 	if (conf["Global"]["optical"].as<bool>())
 	{

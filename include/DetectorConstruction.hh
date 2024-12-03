@@ -42,6 +42,8 @@
 #include "G4OpticalSurface.hh"
 #include "globals.hh"
 #include "SteppingAction.hh"
+#include "G4UserLimits.hh"
+#include "G4StepLimiterPhysics.hh"
 #include "Config.hh"
 
 using CLHEP::eV;
@@ -93,6 +95,8 @@ class DetectorConstruction : public G4VUserDetectorConstruction
 	int nCryX;
 	int nCryY;
 
+	G4double CsI_MSL = 1.0* cm;
+	G4double APD_MSL = 5.0* um;
 	static constexpr double CsI_Z = 200.*mm;
 	static constexpr double CsI_XY = 60. * mm;
 	static constexpr double TiO2_XY = 61.2 * mm;

@@ -54,7 +54,6 @@ DetectorConstruction::DetectorConstruction(Config *c)
  : G4VUserDetectorConstruction(),
    config(c)
 {
-
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
