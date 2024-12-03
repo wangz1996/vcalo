@@ -106,7 +106,7 @@ void HistoManager::fill(const int& _eventNo){
 		if(config->conf["ECAL"]["Digi"].as<bool>()){
 			ecell = ecell*0.999841;
 		}
-		ecell = ecell > 3. ? ecell : 0.;
+		//ecell = ecell > 3. ? ecell : 0.;
 		ecal_cellid.emplace_back(i.first);
 		ecal_celle.emplace_back(ecell);
 		apd_celle.emplace_back(apdcell);
@@ -121,7 +121,7 @@ void HistoManager::fill(const int& _eventNo){
 						+ (config->conf["Converter"]["E-Noise"].as<bool>() ? rand->Gaus(0,1000.) : 0.);
 		conv_e = yield/2000.; //MeV
 	}
-	conv_e = conv_e > 3. ? conv_e : 0.;
+	//conv_e = conv_e > 3. ? conv_e : 0.;
 	eventNo = _eventNo;
 	// std::cout<<"Ntracks: "<<map_track.size()<<std::endl;
 	for(auto i:map_track){

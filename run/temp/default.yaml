@@ -48,8 +48,8 @@ Parameter:
 Converter:
         build: True
         Crystal-Nonuniformity: 0.05
-        light-yield-effect: True
-        E-Noise: True
+        light-yield-effect: False
+        E-Noise: False
 #Construct Tracker
 Tracker:
         build: True        
@@ -60,10 +60,10 @@ ECAL:
         ECALShield: True
         build: True
         Crystal-Nonuniformity: 0.02
-        light-yield-effect: True
-        E-Noise: True
-        APD-Ionisation: True
-        Digi: True
+        light-yield-effect: False
+        E-Noise: False
+        APD-Ionisation: False
+        Digi: False
 
 #Particle source setup
 Source:

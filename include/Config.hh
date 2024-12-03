@@ -25,6 +25,7 @@
 #include "G4VisExecutive.hh"
 #include "G4OpticalPhysics.hh"
 #include "G4OpticalPhoton.hh"
+#include "G4StepLimiterPhysics.hh"
 #include "G4UIExecutive.hh"
 #include <iostream>
 #include <string>
