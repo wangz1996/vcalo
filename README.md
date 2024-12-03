@@ -1,9 +1,10 @@
-/cvmf# CEPC-CALO
-Simulation Framework for CEPC calorimeters
+/cvmf# VLAST-P
+Simulation Framework for VLAST-P`
 
 ## Contact
-Zhen Wang < wangz1996@sjtu.edu.cn >
+Zhen Wang < wangz1996@ustc.edu.cn >
 Borong Peng < pbr7outsider@mail.ustc.edu.cn > 
+Renjun Wang < miaomaimi@mail.ustc.edu.cn >
 ## Environment
 Use cvmfs
 ```
@@ -25,5 +26,4 @@ Print help message
 ```
 	vcalo -h
 ```
-
 
