@@ -27,12 +27,14 @@ find_package(yaml-cpp REQUIRED)
 # Locate sources and headers for this project
 #
 include_directories(${YAML_CPP_INCLUDE_DIR})
-include_directories(${PROJECT_SOURCE_DIR}/include 
+include_directories(${PROJECT_SOURCE_DIR}/include
+                    ${PROJECT_SOURCE_DIR}/include/Simulation
+                    ${PROJECT_SOURCE_DIR}/include/Analysis
                     ${Geant4_INCLUDE_DIR}
 		    ${ROOT_INCLUDE_DIR})
 
-file(GLOB sources ${PROJECT_SOURCE_DIR}/src/*.cc)
-file(GLOB headers ${PROJECT_SOURCE_DIR}/include/*.hh)
+file(GLOB sources ${PROJECT_SOURCE_DIR}/src/Simulation/*.cc)
+file(GLOB headers ${PROJECT_SOURCE_DIR}/include/Simulation/*.hh)
 
 file(GLOB anasrc ${PROJECT_SOURCE_DIR}/src/Analysis/*.cc)
 file(GLOB anainc ${PROJECT_SOURCE_DIR}/include/Analysis/*.hh)
