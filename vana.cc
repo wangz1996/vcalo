@@ -5,6 +5,7 @@
 int main(int argc,char** argv) {
 	VAnaManager<float>::getInstance().Initialize();
 	VAnaManager<float>::getInstance().Execute();
+	VAnaManager<float>::getInstance().Finalize();
 	return 1;
 }
 
