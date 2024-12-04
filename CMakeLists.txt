@@ -34,8 +34,8 @@ include_directories(${PROJECT_SOURCE_DIR}/include
 file(GLOB sources ${PROJECT_SOURCE_DIR}/src/*.cc)
 file(GLOB headers ${PROJECT_SOURCE_DIR}/include/*.hh)
 
-file(GLOB anasrc ${PROJECT_SOURCE_DIR}/src/HoughSeeding/*.cc)
-file(GLOB anainc ${PROJECT_SOURCE_DIR}/include/HoughSeeding/*.hh)
+file(GLOB anasrc ${PROJECT_SOURCE_DIR}/src/Analysis/*.cc)
+file(GLOB anainc ${PROJECT_SOURCE_DIR}/include/Analysis/*.hh)
 
 #----------------------------------------------------------------------------
 # Add the executable, and link it to the Geant4 libraries

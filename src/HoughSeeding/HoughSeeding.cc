@@ -1,4 +1,4 @@
-#include "HoughSeeding/VAnaManager.hh"
+#include "HoughSeeding/HoughSeeding.hh"
 
 template <class T>
 static inline auto fz(const T &theta, const T &rho, const T &z) -> T
@@ -6,12 +6,12 @@ static inline auto fz(const T &theta, const T &rho, const T &z) -> T
     return -1. / tan(theta) * z + rho / sin(theta);
 };
 
-VAnaManager::~VAnaManager(){
+HoughSeeding::~HoughSeeding(){
     // fout->Close();
     // fFile->Close();
 }
 
-VAnaManager::VAnaManager()
+HoughSeeding::HoughSeeding()
 {
     fFile = TFile::Open("test.root", "READ");
     fTree = static_cast<TTree *>(fFile->Get("vtree"));
@@ -45,7 +45,7 @@ VAnaManager::VAnaManager()
     Cluster_umap[2] = new TH2D("hCluster2","Cluster2", NClusterBin,-150.,150.,NClusterBin,-150.,150.);
 }
 
-int VAnaManager::run()
+int HoughSeeding::run()
 {
     auto fout = std::unique_ptr<TFile>(TFile::Open("vana.root", "RECREATE"));
     auto tout = std::unique_ptr<TTree>(new TTree("tout", "tout"));
@@ -105,7 +105,7 @@ int VAnaManager::run()
     return 1;
 }
 
-HoughSeeds VAnaManager::getHoughSeeds(const int &entry)
+HoughSeeds HoughSeeding::getHoughSeeds(const int &entry)
 {
     clearEvent();
     // TString hname = TString("h")+TString(std::to_string(entry));
@@ -235,7 +235,7 @@ HoughSeeds VAnaManager::getHoughSeeds(const int &entry)
     return std::make_tuple(seeds, seedposs, seed_size);
 }
 
-void VAnaManager::clearEvent(){
+void HoughSeeding::clearEvent(){
     Cluster_umap[0]->Reset();
     Cluster_umap[1]->Reset();
     Cluster_umap[2]->Reset();
