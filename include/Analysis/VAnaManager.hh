@@ -13,6 +13,7 @@
 #include "AlgoBase.hh"
 #include "ECALBaseline.hh"
 #include "TruthBaseline.hh"
+#include "TrackerBaseline.hh"
 
 template<class T=float>
 class VAnaManager{
