@@ -12,6 +12,7 @@
 #include "TTree.h"
 #include "AlgoBase.hh"
 #include "ECALBaseline.hh"
+#include "TruthBaseline.hh"
 
 template<class T=float>
 class VAnaManager{
@@ -31,6 +32,7 @@ public:
 
     //Register algorithm
     RegisterAlgorithm<ECALBaseline<float>>(new ECALBaseline<float>("ECALBaseline"));
+    RegisterAlgorithm<TruthBaseline<float>>(new TruthBaseline<float>("TruthBaseline"));
 
     for(auto &alg: fAlgorithms){
         if(!alg->init(fTree,fOutTree)){

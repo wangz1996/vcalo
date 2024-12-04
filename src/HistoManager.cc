@@ -217,9 +217,9 @@ void HistoManager::fillPrimary(const G4Track* trk){
 	init_x = trk->GetPosition().x();
 	init_y = trk->GetPosition().y();
 	init_z = trk->GetPosition().z();
-	init_Px = trk->GetMomentumDirection().x();
-	init_Py = trk->GetMomentumDirection().y();
-	init_Pz = trk->GetMomentumDirection().z();
+	init_Px = trk->GetMomentum().x();
+	init_Py = trk->GetMomentum().y();
+	init_Pz = trk->GetMomentum().z();
 	init_E = trk->GetTotalEnergy();
 	init_Ke = trk->GetKineticEnergy();
 }

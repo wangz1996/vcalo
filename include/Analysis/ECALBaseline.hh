@@ -18,6 +18,8 @@ public:
         ECAL_maxid=-1; ECAL_recoE=0.;
         fOutTree->Branch("ECAL_maxid",&ECAL_maxid);
         fOutTree->Branch("ECAL_recoE", &ECAL_recoE);
+
+        return 1;
     }
     int run(const int& ientry) override{
         //Reset branchs
@@ -40,6 +42,7 @@ public:
         ECAL_recoE += (umap_celle[maxid-6] + umap_celle[maxid-5] + umap_celle[maxid-4]
                     + umap_celle[maxid-1] + umap_celle[maxid] + umap_celle[maxid+1]
                     + umap_celle[maxid+4] + umap_celle[maxid+5] + umap_celle[maxid+6]);
+        return 1;
     }
 
 private:
