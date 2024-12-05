@@ -60,7 +60,8 @@ EventAction::~EventAction()
 void EventAction::BeginOfEventAction(const G4Event* evt)
 {
 	HistoManager::getInstance().clear();
-  std::cout<<"Begin of event: "<<evt->GetEventID()<<std::endl;
+  G4int evtNb = evt->GetEventID(); 
+  if (evtNb%fPrintModulo == 0) std::cout<<"Begin of event: "<<evt->GetEventID()<<std::endl;
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......

@@ -266,25 +266,22 @@ void DetectorConstruction::constructECAL()
 {
     G4bool checkOverlaps = false;
 	std::cout<<"Starting to construct ECAL"<<std::endl;
-	//Step Limits
-	G4UserLimits* userLimits = new G4UserLimits(maxStepLength);
 
 	// Construct CsI solid;
 	auto solidCsI = new G4Box("solidCsI", 0.5*CsI_XY, 0.5*CsI_XY, 0.5*CsI_Z);
 	//Construct logical CsI;
 	auto logicCsI = new G4LogicalVolume(solidCsI, CsI, "logicCsI");
-	logicCsI->SetUserLimits(userLimits);
+	logicCsI->SetUserLimits(new G4UserLimits(CsI_MSL));
 
 	//Construct TiO2 reflector;
 	auto solidTiO2 = constructSolidTiO2();
 	//Construct logical TiO2 reflector;
 	auto logicTiO2 = new G4LogicalVolume(solidTiO2, TiO2, "logicTiO2");
-	logicTiO2->SetUserLimits(userLimits);
 
 	//Construct APD
 	auto solidAPD = new G4Box("solidAPD", 0.5*APD_XY, 0.5*APD_XY, 0.5*APD_Z);
 	auto logicAPD = new G4LogicalVolume(solidAPD, G4NistManager::Instance()->FindOrBuildMaterial("G4_Si"), "logicAPD");
-	logicAPD->SetUserLimits(APD_MSL);
+	logicAPD->SetUserLimits(new G4UserLimits(APD_MSL));
 
 	//Construct Carbon Fiber Shield, silicone rubber;
 	G4LogicalVolume* logicECALShield = nullptr;

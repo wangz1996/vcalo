@@ -47,6 +47,7 @@
 #include "Config.hh"
 
 using CLHEP::eV;
+using CLHEP::cm;
 using CLHEP::mm;
 using CLHEP::um;
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......

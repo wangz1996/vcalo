@@ -165,12 +165,15 @@ void Config::Print()
 
 	fout << "Global:" << endl;
 	fout << "    vis: False" << endl;
-	fout << "    useseed: False" << endl;
+	fout << "    useseed: False # default: system time in nano-second" << endl;
 	fout << "    seed: 100" << endl;
-	fout << "    usemac: False" << endl;
+	fout << "    usemac: False # Currently not applicable" << endl;
 	fout << "    mac: ./primaryproton.mac" << endl;
+	fout << "    #mac: ./secondaryproton.mac" << endl;
 	fout << "    optical: False" << endl;
-	fout << "    output: ./test.root" << endl;
+	fout << "    #output: ./priproton.root # Output root file name" << endl;
+	fout << "    #output: ./secproton.root # Output root file name" << endl;
+	fout << "    output: ./test.root # Output root file name" << endl;
 	fout << "    beamon: 20" << endl;
 	fout << "    savegeo: False" << endl;
 	fout << "    savetrack: 1" << endl;
@@ -180,26 +183,38 @@ void Config::Print()
 
 	fout << "Parameter:" << endl;
 	fout << "    CsI:" << endl;
+	fout << "        # Rayleigh in meter" << endl;
 	fout << "        Rayleigh: 0.6" << endl;
 	fout << "    TiO2:" << endl;
+	fout << "        # Reflectivity (0~1)" << endl;
 	fout << "        Reflectivity: 0.8" << endl;
+	fout << "        # Absorption Length in meter" << endl;
 	fout << "        AbsLength: 1.0" << endl;
 	fout << "    Surface:" << endl;
+	fout << "        # Specular reflection parameter (0~1)" << endl;
 	fout << "        SpecularLobe: 0.8" << endl;
+	fout << "        # Ideal specular reflection parameter (0~1)" << endl;
 	fout << "        SpecularSpike: 0.2" << endl;
+	fout << "        # Reflectivity (0~1)" << endl;
 	fout << "        Reflectivity: 0.98" << endl;
+	fout << "        #dielectric_dielectric dielectric_metal" << endl;
 	fout << "        Type: dielectric_dielectric" << endl;
+	fout << "        #glisur unified LUT dichroic" << endl;
 	fout << "        Model: unified" << endl;
+	fout << "        #polished polishedfrontpainted polishedbackpainted ground groundbackpainted polishedtioair groundtioair" << endl;
 	fout << "        Finish: ground" << endl;
+	fout << "        # Roughness of the surface (0~1)" << endl;
 	fout << "        SigmaAlpha: 0.1" << endl;
 	fout << "\n"
 		 << endl;
 	
+	fout << "#Construct Tracker" << endl;
 	fout << "Tracker:" << endl;
 	fout << "    build: True" << endl;
 	fout << "\n"
 		 << endl;
 
+	fout << "#Construct Converter" << endl;
 	fout << "Converter:" << endl;
 	fout << "    build: True" << endl;
 	fout << "    Crystal-Nonuniformity: 0.05" << endl;
@@ -208,6 +223,7 @@ void Config::Print()
 	fout << "\n"
 		 << endl;
 
+	fout << "#Construct Calorimeter" << endl;
 	fout << "ECAL:" << endl;
 	fout << "    nCryX: 5" << endl;
 	fout << "    nCryY: 5" << endl;
@@ -221,17 +237,19 @@ void Config::Print()
 	fout << "\n"
 		 << endl;
 
+	fout << "#Particle source setup" << endl;
 	fout << "Source:" << endl;
 	fout << "    type: Point" << endl;
-	fout << "    size: 15.0" << endl;
+	fout << "    size: 15.0 # For Plane type source only (cm)" << endl;
 	fout << "    angtype: planar" << endl;
 	fout << "    particle: gamma" << endl;
-	fout << "    energy: 100" << endl;
-	fout << "    position: [0.0, 0.0, -289.0]" << endl;
+	fout << "    energy: 100 # Unit is in MeV" << endl;
+	fout << "    position: [0.0, 0.0, -289.0] # Unit is in mm #Converter upper plane -287.5 mm" << endl;
 	fout << "    direction: [0.0, 0.0, 1.0]" << endl;
 	fout << "\n"
 		 << endl;
 
+	fout << "#Verbose" << endl;
 	fout << "Verbose:" << endl;
 	fout << "    run: 0" << endl;
 	fout << "    control: 0" << endl;

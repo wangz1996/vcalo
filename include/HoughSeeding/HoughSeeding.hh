@@ -1,5 +1,5 @@
-#ifndef VANAMANAGER_HH
-#define VANAMANAGER_HH
+#ifndef HOUGHSEEDING_HH
+#define HOUGHSEEDING_HH
 
 #include <boost/container/small_vector.hpp>
 #include <string>
@@ -24,10 +24,10 @@ using HoughHist = vector2D<std::pair<int, std::unordered_set<unsigned>>>;
 using HoughSeeds = std::tuple<SpacePoints,SpacePoints,std::vector<int>>;
 
 
-class VAnaManager{
+class HoughSeeding{
 public:
-  VAnaManager();
-  virtual ~VAnaManager();
+  HoughSeeding();
+  virtual ~HoughSeeding();
 
   int run();
 
