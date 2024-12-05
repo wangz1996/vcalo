@@ -146,33 +146,15 @@ void SteppingAction::UserSteppingAction(const G4Step* aStep) {
     }
   }
 
-  // 处理ECAL表面的电子对信息
-  // if (postStepLVName == "logicCsI" && track->GetParentID() == 1 && (HistoManager::getInstance().getsize_ECALe() == 0 || HistoManager::getInstance().getsize_ECALp() == 0)) {
-  //   if (track->GetDefinition()->GetPDGEncoding() == 11) {
-  //     HistoManager::getInstance().fillECALeHit(track);
-  //   }
-  //   else if(track->GetDefinition()->GetPDGEncoding() == -11) {
-  //     HistoManager::getInstance().fillECALpHit(track);
-  //   }
-  // }
   // 处理光子信息
   if (particleDef == G4OpticalPhoton::OpticalPhotonDefinition()) {
-    if (stepNumber == 1) {
-      HistoManager::getInstance().addTotalOptPhoton();
-    }
-    else if (preStepPVName == "physicConv" && postStepPVName.find("World") != std::string::npos) {
-      HistoManager::getInstance().fillConvOptHit(time);
-    }
-    else if ((preStepPVName.find("World") != std::string::npos) && postStepLVName == "logicAPD") {
+    if ((preStepPVName.find("World") != std::string::npos) && postStepLVName == "logicAPD") {
       // std::cout<<"APD detected"<<std::endl;
         HistoManager::getInstance().fillAPDOptHit(time);
     }
     else if ((preStepPVName.find("World") != std::string::npos) && postStepLVName == "logicConvAPD") {
       // std::cout<<"APD detected"<<std::endl;
         HistoManager::getInstance().fillConvOptHit(time);
-    }
-    else if (preStepLVName.find("logicCsI") != std::string::npos && postStepLVName == "World") {
-      // std::cout<<"CsI to World"<<std::endl;
     }
   }
   // 处理能量沉积和命中
@@ -183,13 +165,13 @@ void SteppingAction::UserSteppingAction(const G4Step* aStep) {
   {
     if (postStepLVName == "logicAPD")
     {
-      HistoManager::getInstance().fillAPDHit(copyNo, edep, time, pdgid, trackid);
+      HistoManager::getInstance().fillAPDHit(copyNo,edep);
     }
     else if (postStepLVName == "logicCsI")
     {
       if(particleDef->GetPDGEncoding() == 11 && track->GetParentID() == 1 && track->GetCreatorProcess()->GetProcessName() == "conv"){HistoManager::getInstance().setEinECAL();}
       else if(particleDef->GetPDGEncoding() == -11 && track->GetParentID() == 1 && track->GetCreatorProcess()->GetProcessName() == "conv"){HistoManager::getInstance().setPinECAL();}
-      HistoManager::getInstance().fillEcalHit(copyNo, edep, time, pdgid, trackid);
+      HistoManager::getInstance().fillEcalHit(copyNo,edep);
     }
     else if (postStepLVName == "logicConv")
     {
@@ -200,14 +182,7 @@ void SteppingAction::UserSteppingAction(const G4Step* aStep) {
       G4int tracker_index = postStepPVName[12] - '0';
       G4float posX = postStepPoint->GetPosition().x();
       G4float posY = postStepPoint->GetPosition().y();
-      HistoManager::getInstance().fillTrackerHit(tracker_index, posX, posY, edep, trackid);
-      if (track->GetParentID() == 1 && track->GetCreatorProcess()->GetProcessName() == "conv")
-      {
-        if (pdgid == 11 || pdgid == -11)
-        {
-          HistoManager::getInstance().fillTrackerEPHit(edep);
-        }
-      }
+      HistoManager::getInstance().fillTrackerHit(tracker_index, posX, posY);
     }
   }
 }
