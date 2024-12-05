@@ -26,4 +26,12 @@ Print help message
 ```
 	vcalo -h
 ```
-
+## How to run :
+        -  set enviorment 'source env.sh'
+        - mkdir build
+        - cd build && cmake .. && make -j10
+        - ./vcalo   then    vcalo -h
+        - vcalo -p   
+        - Modify the file default.yaml and then   vcalo -c default.yaml
+        - root -l test.root
+        - new TBrowser   
