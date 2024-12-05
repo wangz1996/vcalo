@@ -14,6 +14,7 @@
 #include "ECALBaseline.hh"
 #include "TruthBaseline.hh"
 #include "TrackerBaseline.hh"
+#include "ConvBaseline.hh"
 
 template<class T=float>
 class VAnaManager{
@@ -32,8 +33,10 @@ public:
     fOutTree = new TTree("vtree","vtree");
 
     //Register algorithm
+    RegisterAlgorithm<ConvBaseline<float>>(new ConvBaseline<float>("ConvBaseline"));
     RegisterAlgorithm<ECALBaseline<float>>(new ECALBaseline<float>("ECALBaseline"));
     RegisterAlgorithm<TruthBaseline<float>>(new TruthBaseline<float>("TruthBaseline"));
+    RegisterAlgorithm<TrackerBaseline<float>>(new TrackerBaseline<float>("TrackerBaseline"));
 
     for(auto &alg: fAlgorithms){
         if(!alg->init(fTree,fOutTree)){
