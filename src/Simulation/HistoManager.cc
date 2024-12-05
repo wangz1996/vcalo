@@ -44,8 +44,14 @@ HistoManager &HistoManager::getInstance()
 }
 
 void HistoManager::bindConfig(Config* c){
+	m_cfg.Conv_ENoise = c->conf["Converter"]["E-Noise"].as<bool>();
+	m_cfg.Conv_NonUniformity = c->conf["Converter"]["Crystal-Nonuniformity"].as<float>();
+
 	m_cfg.ECAL_NonUniformity = c->conf["ECAL"]["Crystal-Nonuniformity"].as<float>();
-	m_cfg.Conv_ENoise = c->conf["Converter"]["E-Noise"].as<bool>(); 
+	m_cfg.ECAL_LightYield = c->conf["ECAL"]["light-yield-effect"].as<bool>();
+	m_cfg.ECAL_ENoise = c->conf["ECAL"]["E-Noise"].as<bool>();
+	m_cfg.ECAL_APDIon = c->conf["ECAL"]["APD-Ionisation"].as<bool>();
+	m_cfg.ECAL_Digi = c->conf["ECAL"]["Digi"].as<bool>();
 }
 
 HistoManager::HistoManager() : vFile(0), vTree(0)
@@ -55,37 +61,53 @@ HistoManager::HistoManager() : vFile(0), vTree(0)
 
 void HistoManager::book(const std::string &foutname, const bool &savegeo)
 {
-	G4cout << "---->Creating Instance for HistoManager..." << G4endl;
-	vFile = new TFile(TString(foutname), "RECREATE");
-	vTree = new TTree("vtree", "calo events");
-	vTree->Branch("eventNo", &eventNo);
-	vTree->Branch("ecal_cellid", &ecal_cellid);
-	vTree->Branch("ecal_celle", &ecal_celle);
-	vTree->Branch("conv_e", &conv_e);
-	vTree->Branch("apd_nphoton", &apd_nphoton);
-	vTree->Branch("apd_optime", &apd_optime);
-	vTree->Branch("init_x", &init_x);
-	vTree->Branch("init_y", &init_y);
-	vTree->Branch("init_z", &init_z);
-	vTree->Branch("init_Px", &init_Px);
-	vTree->Branch("init_Py", &init_Py);
-	vTree->Branch("init_Pz", &init_Pz);
-	vTree->Branch("init_E", &init_E);
-	vTree->Branch("init_Ke", &init_Ke);
-	vTree->Branch("conve_kinematic", &conve_kinematic);
-	vTree->Branch("convp_kinematic", &convp_kinematic);
-	vTree->Branch("nConvPhoton", &nConvPhoton);
-	vTree->Branch("ecal_convtime", &ecal_convtime);
-	vTree->Branch("apd_celle", &apd_celle);
-	vTree->Branch("isconv", &isconv);
-	vTree->Branch("conve_inECAL", &conve_inECAL);
-	vTree->Branch("convp_inECAL", &convp_inECAL);
-	vTree->Branch("tracks", &tracks);
-	vTree->Branch("tracker_hitx", &tracker_hitx);
-	vTree->Branch("tracker_hity", &tracker_hity);
-	vTree->Branch("tracker_hitz", &tracker_hitz);
-	vTree->Branch("tracker_hite", &tracker_hite);
-	fSaveGeo = savegeo;
+    G4cout << "---->Creating Instance for HistoManager..." << G4endl;
+
+    // Create file and tree
+    vFile = new TFile(TString(foutname), "RECREATE");
+    vTree = new TTree("vtree", "calo events");
+
+    // Event Info
+    vTree->Branch("eventNo", &eventNo);
+
+    // Initial parameters
+    vTree->Branch("init_x", &init_x);
+    vTree->Branch("init_y", &init_y);
+    vTree->Branch("init_z", &init_z);
+    vTree->Branch("init_Px", &init_Px);
+    vTree->Branch("init_Py", &init_Py);
+    vTree->Branch("init_Pz", &init_Pz);
+    vTree->Branch("init_E", &init_E);
+    vTree->Branch("init_Ke", &init_Ke);
+
+    // ECAL 
+    vTree->Branch("ecal_cellid", &ecal_cellid);
+    vTree->Branch("ecal_celle", &ecal_celle);
+    vTree->Branch("ecal_convtime", &ecal_convtime);
+
+    // Converter
+    vTree->Branch("conv_e", &conv_e);
+    vTree->Branch("conve_kinematic", &conve_kinematic);
+    vTree->Branch("convp_kinematic", &convp_kinematic);
+    vTree->Branch("isconv", &isconv);
+    vTree->Branch("nConvPhoton", &nConvPhoton);
+    vTree->Branch("conve_inECAL", &conve_inECAL);
+    vTree->Branch("convp_inECAL", &convp_inECAL);
+
+    // APD 
+    vTree->Branch("apd_nphoton", &apd_nphoton);
+    vTree->Branch("apd_optime", &apd_optime);
+    vTree->Branch("apd_celle", &apd_celle);
+
+    // Tracker
+    vTree->Branch("tracks", &tracks);
+    vTree->Branch("tracker_hitx", &tracker_hitx);
+    vTree->Branch("tracker_hity", &tracker_hity);
+    vTree->Branch("tracker_hitz", &tracker_hitz);
+    vTree->Branch("tracker_hite", &tracker_hite);
+
+    // 保存几何信息标志
+    fSaveGeo = savegeo;
 }
 
 void HistoManager::fill(const int &_eventNo)
@@ -94,22 +116,22 @@ void HistoManager::fill(const int &_eventNo)
 	{
 		float ecell = i.second;
 		float apdcell = apd_mape[i.first];
-		if (config->conf["ECAL"]["Crystal-Nonuniformity"].as<double>() != 0.0)
+		if (m_cfg.ECAL_NonUniformity != 0.0)
 		{
 			// std::cout<<"Non-uniformity fluctuation"<<std::endl;
-			ecell = ecell + rand->Gaus(0, config->conf["ECAL"]["Crystal-Nonuniformity"].as<double>() * ecell);
+			ecell = ecell + rand->Gaus(0, m_cfg.ECAL_NonUniformity * ecell);
 		}
 
-		if (config->conf["ECAL"]["light-yield-effect"].as<bool>() && ecell > 0.)
+		if (m_cfg.ECAL_LightYield && ecell > 0.)
 		{
 			// std::cout<<"Light yield effect"<<std::endl;
 
 			double yield = ecell * 1000.; // pe
 			double apdyield = apdcell * 1e6 / 3.6;
-			yield = yield + rand->Gaus(0, TMath::Sqrt(yield)) + (config->conf["ECAL"]["E-Noise"].as<bool>() ? rand->Gaus(0, 1000.) : 0.) + (config->conf["ECAL"]["APD-Ionisation"].as<bool>() && apdyield > 0. ? rand->Gaus(apdyield, TMath::Sqrt(apdyield)) : 0.);
+			yield = yield + rand->Gaus(0, TMath::Sqrt(yield)) + (m_cfg.ECAL_ENoise ? rand->Gaus(0, 1000.) : 0.) + (m_cfg.ECAL_APDIon && apdyield > 0. ? rand->Gaus(apdyield, TMath::Sqrt(apdyield)) : 0.);
 			ecell = yield / 1000.; // MeV
 		}
-		if (config->conf["ECAL"]["Digi"].as<bool>())
+		if (m_cfg.ECAL_Digi)
 		{
 			ecell = ecell * 0.999841;
 		}
@@ -118,14 +140,14 @@ void HistoManager::fill(const int &_eventNo)
 		ecal_celle.emplace_back(ecell);
 		apd_celle.emplace_back(apdcell);
 	}
-	if (config->conf["Converter"]["Crystal-Nonuniformity"].as<double>() != 0.0)
+	if (m_cfg.Conv_NonUniformity != 0.0)
 	{
-		conv_e = conv_e + rand->Gaus(0, config->conf["Converter"]["Crystal-Nonuniformity"].as<double>() * conv_e);
+		conv_e = conv_e + rand->Gaus(0, m_cfg.Conv_NonUniformity * conv_e);
 	}
-	if (config->conf["Converter"]["light-yield-effect"].as<bool>() && conv_e > 0.)
+	if (m_cfg.Conv_LightYield && conv_e > 0.)
 	{
 		double yield = conv_e * 2000.; // pe
-		yield = yield + rand->Gaus(0, TMath::Sqrt(yield)) + (config->conf["Converter"]["E-Noise"].as<bool>() ? rand->Gaus(0, 1000.) : 0.);
+		yield = yield + rand->Gaus(0, TMath::Sqrt(yield)) + (m_cfg.Conv_ENoise ? rand->Gaus(0, 1000.) : 0.);
 		conv_e = yield / 2000.; // MeV
 	}
 	conv_e = conv_e > 3. ? conv_e : 0.;
@@ -197,38 +219,21 @@ void HistoManager::fillAPDHit(const int &copyNo, const G4double &edep)
 	apd_mape[copyNo] += edep;
 }
 
-void HistoManager::fillConvElectron(const G4Track *trk)
+void HistoManager::fillTruthConverter(const int& id,const G4Track *trk)
 {
 	// Kinematic x y z px py pz E theta phi Ke
 	G4ThreeVector position = trk->GetPosition();
-	conve_kinematic.emplace_back(position.x());
-	conve_kinematic.emplace_back(position.y());
-	conve_kinematic.emplace_back(position.z());
+	umap_id_conv[id]->emplace_back(position.x());
+	umap_id_conv[id]->emplace_back(position.y());
+	umap_id_conv[id]->emplace_back(position.z());
 	auto momentum = trk->GetMomentum();
-	conve_kinematic.emplace_back(momentum.x());
-	conve_kinematic.emplace_back(momentum.y());
-	conve_kinematic.emplace_back(momentum.z());
-	conve_kinematic.emplace_back(trk->GetTotalEnergy());
-	conve_kinematic.emplace_back(trk->GetMomentumDirection().theta());
-	conve_kinematic.emplace_back(trk->GetMomentumDirection().phi());
-	conve_kinematic.emplace_back(trk->GetKineticEnergy());
-}
-
-void HistoManager::fillConvPositron(const G4Track *trk)
-{
-	// Kinematic x y z px py pz E theta phi Ke
-	G4ThreeVector position = trk->GetPosition();
-	convp_kinematic.emplace_back(position.x());
-	convp_kinematic.emplace_back(position.y());
-	convp_kinematic.emplace_back(position.z());
-	auto momentum = trk->GetMomentum();
-	convp_kinematic.emplace_back(momentum.x());
-	convp_kinematic.emplace_back(momentum.y());
-	convp_kinematic.emplace_back(momentum.z());
-	convp_kinematic.emplace_back(trk->GetTotalEnergy());
-	convp_kinematic.emplace_back(trk->GetMomentumDirection().theta());
-	convp_kinematic.emplace_back(trk->GetMomentumDirection().phi());
-	convp_kinematic.emplace_back(trk->GetKineticEnergy());
+	umap_id_conv[id]->emplace_back(momentum.x());
+	umap_id_conv[id]->emplace_back(momentum.y());
+	umap_id_conv[id]->emplace_back(momentum.z());
+	umap_id_conv[id]->emplace_back(trk->GetTotalEnergy());
+	umap_id_conv[id]->emplace_back(trk->GetMomentumDirection().theta());
+	umap_id_conv[id]->emplace_back(trk->GetMomentumDirection().phi());
+	umap_id_conv[id]->emplace_back(trk->GetKineticEnergy());
 }
 
 void HistoManager::fillPrimary(const G4Track *trk)

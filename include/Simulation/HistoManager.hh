@@ -77,6 +77,8 @@ class HistoManager
 		struct HConfig{
 			//Converter configs
 			bool Conv_ENoise=true; //Converter electronic noise
+			float Conv_NonUniformity=0.; //Converter Non uniformity
+			bool Conv_LightYield=true; //Converter Light yield effect
 			//ECAL configs
 			float ECAL_NonUniformity=0.; // ECAL crystal non-uniformity
 			bool ECAL_LightYield=true; //ECAL Light yield effect
@@ -90,7 +92,7 @@ class HistoManager
 		void book(const std::string& foutname,const bool &savegeo);
 		void fill(const int& _eventNo);
 		void bindConfig(Config* c);
-		void changeStatusCode(const int& code){StatusCode = code;}
+		void setStatusCode(const int& code){StatusCode = code;}
 		int getStatusCode(){return StatusCode;}
 
 	//Optical functions
@@ -104,8 +106,7 @@ class HistoManager
 	//Truth functions
 		void fillPrimary(const G4Track* trk);
 		void setConv(){isconv=1;}
-		void fillConvElectron(const G4Track* trk);
-		void fillConvPositron(const G4Track* trk);
+		void fillTruthConverter(const int&,const G4Track*);
 		void setEinECAL(){conve_inECAL=1;}
 		void setPinECAL(){convp_inECAL=1;}
 		
@@ -153,8 +154,10 @@ class HistoManager
 		float init_Ke;
 		int conve_inECAL;
 		int convp_inECAL;
+		
 		std::vector<float> conve_kinematic;
 		std::vector<float> convp_kinematic;
+		std::unordered_map<int,std::vector<float>*> umap_id_conv={{0,&conve_kinematic},{1,&convp_kinematic}};
 	//ECAL
 		std::vector<int> ecal_cellid;
 		std::vector<float> ecal_celle;

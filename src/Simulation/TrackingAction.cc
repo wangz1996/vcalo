@@ -70,7 +70,7 @@ TrackingAction::~TrackingAction()
   */   
   if (track->GetParentID() == 0) {
     if (track->GetMomentum().z() < 0) {
-      HistoManager::getInstance().changeStatusCode(0);
+      HistoManager::getInstance().setStatusCode(0);
       const_cast<G4Track*>(track)->SetTrackStatus(fStopAndKill);
       G4RunManager::GetRunManager()->AbortEvent();
     }
