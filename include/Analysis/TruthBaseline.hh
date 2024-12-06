@@ -41,10 +41,11 @@ public:
         Truth_init.clear();
         Truth_conve.clear();
         Truth_convp.clear();
-        Truth_conve.reserve(10);
-        Truth_convp.reserve(10);
+        
 
         fTree->GetEntry(ientry);
+        Truth_conve.reserve(conve_kinematic->size());
+        Truth_convp.reserve(convp_kinematic->size());
         Truth_isconv = isconv;
         Truth_conv_inECAL = (conve_inECAL && convp_inECAL) ? 1 : 0;
         Truth_init.emplace_back(init_x);
