@@ -17,7 +17,7 @@ void ana(){
 	std::set<int> eset;
 	auto theta_bins = createLogBins(20,1e-4,2);
 	auto htemp = new TH1D("theta_temp","theta",20,theta_bins.data());
-	auto dfo = ROOT::RDataFrame("vtree","test_notrk.root");
+	auto dfo = ROOT::RDataFrame("vtree","test.root");
 	auto df = dfo
 	.Define("seed_cellid",[](const std::vector<float>& ecal_celle,const std::vector<int>& ecal_cellid){
 		int id=-1;
@@ -69,7 +69,7 @@ void ana(){
 		if(abs(e_x1)<150. && abs(e_y1)<150. && abs(p_x1)<150. && abs(p_y1)<150.)extra_in=true;
 		return extra_in;
 	},{"conve_kinematic","convp_kinematic","isconv"})
-	.Filter("extra_in")
+	//.Filter("extra_in")
 	.Define("e_total","ecal_recoe+conv_e")
 	.Define("epangle",[](const std::vector<float>& conve_kinematic,const std::vector<float>& convp_kinematic,const int& isconv){
 		//Kinematic x y z px py pz E theta phi Ke
@@ -92,7 +92,7 @@ void ana(){
 	// std::cout<<"Sel: "<<*df.Count()<<" "<<*dfo.Count()<<" eff: "<<double(*df.Count())/double(*dfo.Count())<<std::endl;
 	std::vector<float> x,y;
 	std::vector<float> convx,convy;
-	TFile *fout=new TFile("result_notrk.root","RECREATE");
+	TFile *fout=new TFile("result.root","RECREATE");
 	fout->cd();
 	for(auto e:eset){
 		auto dff = df.Filter([e=e](float init_E){return int(init_E)==e;},{"init_E"});

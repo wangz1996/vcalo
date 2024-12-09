@@ -391,7 +391,7 @@ def plot_epangle():
 def plot_reso():
 	# Load some histos from the example file
 	# (Gaussian limits from 2016 TLA conf)
-	infile = ROOT.TFile.Open("result_notrk.root","READ")
+	infile = ROOT.TFile.Open("result.root","READ")
 	histos = []
 	legendLines = []
 	
@@ -504,7 +504,7 @@ def plot_reso():
 	c.Update()
 	
 	# Save the output as a .eps, a .C, and a .root
-	c.SaveAs("reso_notrk.png")
+	c.SaveAs("reso.png")
 
 if __name__=="__main__":
 	plot_reso()
