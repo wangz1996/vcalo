@@ -28,7 +28,8 @@ public:
         //Output variables
         fOutTree->Branch("Truth_init",&Truth_init);
         fOutTree->Branch("Truth_isconv",&Truth_isconv);
-        fOutTree->Branch("Truth_conv_inECAL",&Truth_conv_inECAL);
+        fOutTree->Branch("Truth_conve_inECAL",&Truth_conve_inECAL);
+        fOutTree->Branch("Truth_convp_inECAL",&Truth_convp_inECAL);
         fOutTree->Branch("Truth_conve",&Truth_conve);
         fOutTree->Branch("Truth_convp",&Truth_convp);
         return 1;
@@ -37,7 +38,8 @@ public:
     int run(const int& ientry) override{
         //Reset branchs
         Truth_isconv=0;
-        Truth_conv_inECAL=0;
+        Truth_conve_inECAL=0;
+        Truth_convp_inECAL=0;
         Truth_init.clear();
         Truth_conve.clear();
         Truth_convp.clear();
@@ -47,7 +49,8 @@ public:
         Truth_conve.reserve(conve_kinematic->size());
         Truth_convp.reserve(convp_kinematic->size());
         Truth_isconv = isconv;
-        Truth_conv_inECAL = (conve_inECAL && convp_inECAL) ? 1 : 0;
+        Truth_conve_inECAL = conve_inECAL;
+        Truth_convp_inECAL = convp_inECAL;
         Truth_init.emplace_back(init_x);
         Truth_init.emplace_back(init_y);
         Truth_init.emplace_back(init_z);
@@ -85,7 +88,8 @@ private:
     //Output treee branchs
     std::vector<T> Truth_init; //x y z Px Py Pz E Ke
     int Truth_isconv;
-    int Truth_conv_inECAL;
+    int Truth_conve_inECAL;
+    int Truth_convp_inECAL;
     std::vector<T> Truth_conve; //x y z Px Py Pz E theta phi Ke
     std::vector<T> Truth_convp; //x y z Px Py Pz E theta phi Ke
 

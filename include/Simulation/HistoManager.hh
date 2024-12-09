@@ -106,9 +106,12 @@ class HistoManager
 	//Truth functions
 		void fillPrimary(const G4Track* trk);
 		void setConv(){isconv=1;}
+		int getConv(){return isconv;}
 		void fillTruthConverter(const int&,const G4Track*);
 		void setEinECAL(){conve_inECAL=1;}
+		int getEinECAL(){return conve_inECAL;}
 		void setPinECAL(){convp_inECAL=1;}
+		int getPinECAL(){return convp_inECAL;}
 		
 	//Converter functions
 		void fillConvHit(const G4double& edep){conv_e+=edep;}

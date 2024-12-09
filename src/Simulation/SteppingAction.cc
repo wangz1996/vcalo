@@ -157,6 +157,19 @@ void SteppingAction::UserSteppingAction(const G4Step* aStep) {
         HistoManager::getInstance().fillConvOptHit(time);
     }
   }
+
+  // 处理真实EP进入ECAL信息
+  if(particleDef->GetPDGEncoding() == 11 && track->GetParentID() == 1 && HistoManager::getInstance().getConv() == 1 && HistoManager::getInstance().getEinECAL() == 0 ){
+    auto pos = track->GetPosition();
+    if(pos.z()>-102.6 && abs(pos.x())<120. && abs(pos.y())<120.){
+    HistoManager::getInstance().setEinECAL();}
+  }
+  if(particleDef->GetPDGEncoding() == -11 && track->GetParentID() == 1 && HistoManager::getInstance().getConv() == 1 && HistoManager::getInstance().getPinECAL() == 0 ){
+    auto pos = track->GetPosition();
+    if(pos.z()>-102.6 && abs(pos.x())<120. && abs(pos.y())<120.){
+      HistoManager::getInstance().setPinECAL();
+    }
+  }
   // 处理能量沉积和命中
   if((edep==0.)){
     // std::cout<<particleDef->GetParticleName()<<" "<<edep<<std::endl;
@@ -169,8 +182,6 @@ void SteppingAction::UserSteppingAction(const G4Step* aStep) {
     }
     else if (postStepLVName == "logicCsI")
     {
-      if(particleDef->GetPDGEncoding() == 11 && track->GetParentID() == 1 && track->GetCreatorProcess()->GetProcessName() == "conv"){HistoManager::getInstance().setEinECAL();}
-      else if(particleDef->GetPDGEncoding() == -11 && track->GetParentID() == 1 && track->GetCreatorProcess()->GetProcessName() == "conv"){HistoManager::getInstance().setPinECAL();}
       HistoManager::getInstance().fillEcalHit(copyNo,edep);
     }
     else if (postStepLVName == "logicConv")

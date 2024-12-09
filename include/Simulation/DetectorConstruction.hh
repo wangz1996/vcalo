@@ -125,7 +125,7 @@ class DetectorConstruction : public G4VUserDetectorConstruction
     static constexpr double ConvTiO2_Z = 16.4*mm;
     static constexpr double ConvPolish_XY = 15*mm;
     static constexpr double ConvPolish_Z = 0.6*mm;
-    static constexpr double Conv_PosZ = -0.5*CsI_Z-160.*mm+0.5*ConvTiO2_Z;
+    static constexpr double Conv_PosZ = -0.5*CsI_Z-160.*mm+0.5*ConvTiO2_Z; //-251.8*mm;
 
 	//Tracker
 	static constexpr double Hex_XY = 287. * mm;
