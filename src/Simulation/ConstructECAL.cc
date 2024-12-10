@@ -332,7 +332,7 @@ void DetectorConstruction::constructECAL()
 			// G4VPhysicalVolume* physicTiO2 = nullptr;
 			// G4VPhysicalVolume* physiAPD = nullptr;
         	G4VPhysicalVolume* physicCsI = new G4PVPlacement(0, G4ThreeVector(x, y, 0.), logicCsI, CsIName, logicWorld, false, CopyNo, true);
-			// std::cout<<CopyNo<<" "<<x<<" "<<y<<std::endl;
+			// std::cout<<"CsI : "<<CopyNo<<" "<<x<<" "<<y<<std::endl;
         	G4VPhysicalVolume* physicTiO2 = new G4PVPlacement(0, G4ThreeVector(x, y, 0.), logicTiO2, TiO2Name, logicWorld, false, CopyNo, true);
 			G4VPhysicalVolume* physicAPD = new G4PVPlacement(0, G4ThreeVector(x, y, CsI_Z/2. + 5.*mm +0.5*APD_Z), logicAPD, APDName, logicWorld, false, CopyNo, true);
 			if(config->conf["Global"]["optical"].as<bool>()){
