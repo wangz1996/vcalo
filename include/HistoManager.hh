@@ -31,6 +31,7 @@
 
 #ifndef HistoManager_h
 #define HistoManager_h
+#include <boost/container/small_vector.hpp>
 #include "TList.h"
 #include "TPolyLine3D.h"
 #include "globals.hh"
@@ -44,14 +45,30 @@
 #include "Config.hh"
 #include <vector>
 #include <tuple>
+#include <any>
+#include <unordered_set>
 #include <G4ThreeVector.hh>
 #include <unordered_map>
 #include <filesystem>
 
+using TrackerHit = boost::container::small_vector<size_t,2>;
+
+template<class T>
+struct HitIDHash {
+    constexpr T operator()(const TrackerHit& t) const noexcept {
+        if (t.size() < 2) {
+            throw std::invalid_argument("TrackerHit must have at least 2 elements");
+        }
+        return std::hash<T>{}(t[0]) ^ (std::hash<T>{}(t[1]) << 1);
+    }
+};
+
+using TrackerHits = std::unordered_set<TrackerHit,HitIDHash<size_t>>;
+using TrackerHitMap = std::unordered_map<size_t,TrackerHits>; //TrackerHit collections per layer -> 0,1,2,3,4,5
+
 class TTree;
 class TFile;
 class Config;
-//const G4int kMAXTrack=5000;//should be checked!!!
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 class HistoManager
 {
@@ -81,12 +98,11 @@ class HistoManager
 		void fillTracks(const int& track_id,const G4ThreeVector& pos,const int& color=0);
 		void fillTrackerHit(const int& tracker_id, const float& posX, const float& posY, const float& edep, const int& trkid);
 		void fillTrackerEPHit(const float& e){tracker_ephite.emplace_back(e);}
-
-		template<class T>
-		constexpr std::array<T, 6> getTrackerPosZ() const { return TrackerPosZ; }
+		void setEinECAL(){conve_inECAL=1;}
+		void setPinECAL(){convp_inECAL=1;}
 
 	private:
-		//Singleton
+		//Singleton design mode
 		HistoManager();
 		~HistoManager();
 		Double_t SiPMDigi(const Double_t &edep) const;
@@ -107,6 +123,7 @@ class HistoManager
 
 		TRandom3 *rand;
 
+		void createHit(const TrackerHit& ehit,const TrackerHit& ohit,const size_t& layer);
 	private:
 		int eventNo;
 		int nConvPhoton;
@@ -121,6 +138,8 @@ class HistoManager
 		float init_Pz;
 		float init_E;
 		float init_Ke;
+		int conve_inECAL;
+		int convp_inECAL;
 		std::vector<float> conve_ECAL_kinematic;
 		std::vector<float> convp_ECAL_kinematic;
 		std::vector<float> conve_kinematic;
@@ -137,42 +156,40 @@ class HistoManager
 		float conv_e;
 		TList tracks;
 		std::map<int, TPolyLine3D*> map_track;
-		std::vector<std::vector<float>> tracker_hitpos;
+		std::vector<float> tracker_hitx;
+		std::vector<float> tracker_hity;
+		std::vector<float> tracker_hitz;
 		std::vector<float> tracker_hite;
 		std::vector<int> tracker_trkid;
 		std::vector<float> tracker_ephite;
-		template<class T>
-		struct TupleHash {
-    		constexpr std::size_t operator()(const std::tuple<T, T, T>& t) const noexcept {
-        		auto [x, y, z] = t;
-        		// 使用质数组合哈希值
-        		return std::hash<int>{}(x) + 31 * std::hash<int>{}(y) + 57 * std::hash<int>{}(z);
-    		}
-		};
-		std::unordered_map<std::tuple<int,int,int>,float,TupleHash<int>> tracker_hitmap;
-		static constexpr std::array<float, 6> TrackerPosZ = {
-    		25.175 - 262.3, 30.135 - 262.3, 55.835 - 262.3,
-    		60.795 - 262.3, 86.495 - 262.3, 91.455 - 262.3
-		};
-		// template<typename T>
-		// constexpr std::map<std::tuple<int,int,int>,std::array<T,3>> getTrackerCoor(){
-		// 	for(int z=0;z<6;z++){
-		// 		for(int x=0;x< (z%2==0) ? 3 : 768*3 ; x++){
-		// 			const T posX = (z%2==0) ? -95.+x*95. : -141.4+x*0.121;
-		// 			for(int y=0;y< (z%2==0) ? 768*3 : 3 ; y++){
-		// 				const T posY = (z%2==0) ? -141.4+y*0.121 : -95.+y*95.;
-		// 				const T posZ = TrackerPosZ<T>[z];
-		// 				tracker_hitpos[std::make_tuple(x,y,z)] = {posX,posY,posZ};
-		// 			}
-		// 		}
-		// 	}
-		// }
 
-		// template<typename T>
-		// static constexpr std::map<std::tuple<int,int,int>,std::array<T,3>> tracker_hitpos = getTrackerCoor<T>();
-		// static_assert(tracker_hitpos<float>[std::make_tuple(0,0,0)][0]==-95., "Coordinate error");
+		//Constants
+		static constexpr std::array<float, 6> TrackerPosZ = {
+    	-218.425, -213.125, -187.425,
+    	-182.125, -156.425, -151.125
+		};
+		template <class DT, size_t N>
+		static constexpr std::array<DT, N> Temp_StripT()
+		{
+			std::array<DT, N> StripT;
+			for (size_t i = 0; i < N; i++)
+			{
+				StripT[i] = -141.4 + i * 0.121;
+			}
+			return StripT;
+		}
+		template<class TT=std::any>
+    	static const std::array<float,2404> StripT;
+		static constexpr std::array<float, 3> StripL = { // Strip positions in longitudinal direction
+			-95.,0.,95.
+		};
+
+		TrackerHitMap tracker_hitmap;
+		TrackerHits tracker_hits;
 		
 };
+
+
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 

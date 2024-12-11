@@ -17,7 +17,7 @@ void ana(){
 	std::set<int> eset;
 	auto theta_bins = createLogBins(20,1e-4,2);
 	auto htemp = new TH1D("theta_temp","theta",20,theta_bins.data());
-	auto dfo = ROOT::RDataFrame("vtree","test.root");
+	auto dfo = ROOT::RDataFrame("vtree","test_7.root");
 	auto df = dfo
 	.Define("seed_cellid",[](const std::vector<float>& ecal_celle,const std::vector<int>& ecal_cellid){
 		int id=-1;
@@ -91,7 +91,7 @@ void ana(){
 	// std::cout<<"Sel: "<<*df.Count()<<" "<<*dfo.Count()<<" eff: "<<double(*df.Count())/double(*dfo.Count())<<std::endl;
 	std::vector<float> x,y;
 	std::vector<float> convx,convy;
-	TFile *fout=new TFile("result.root","RECREATE");
+	TFile *fout=new TFile("result_7.root","RECREATE");
 	fout->cd();
 	for(auto e:eset){
 		auto dff = df.Filter([e=e](float init_E){return int(init_E)==e;},{"init_E"});
@@ -104,13 +104,13 @@ void ana(){
 		fpre->SetParameters(1000.,xmax,sqrt(xmax));
 		fpre->SetParLimits(1,5.,1.2*xmax);
 		fpre->SetParLimits(2,0.5*sqrt(xmax),1.5*sqrt(xmax));
-		h->Fit("fpre","sq","",0.8*xmax,1.2*xmax);
+		h->Fit("fpre","q","",0.8*xmax,1.2*xmax);
 		auto f1 = new TF1("f1","[0]*ROOT::Math::crystalball_function(x, [1], [2], [3], [4])",0.01*e,1.2*e);
 		f1->SetParameters(1000.,1.,1.,fpre->GetParameter(2),fpre->GetParameter(1));
 		f1->SetParLimits(3,0.,2.5*h->GetRMS());
 		//f1->SetParLimits(4,0.8*h->GetMean(),1.2*e);
-		auto fr = h->Fit("f1","s+","",0.01*e,1.2*e);
-		cout<<fr->Chi2()/fr->Ndf()<<endl;
+		auto fr = h->Fit("f1","Q","",0.01*e,1.2*e);
+		//cout<<fr->Chi2()/fr->Ndf()<<endl;
 		
 		double mean=f1->GetParameter(4);
 		double rms=f1->GetParameter(3);

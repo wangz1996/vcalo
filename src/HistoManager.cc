@@ -73,9 +73,13 @@ void HistoManager::book(const std::string& foutname,const bool &savegeo)
 	vTree->Branch("nTotalOptPhoton",		&nTotalOptPhoton);
 	vTree->Branch("apd_celle",				&apd_celle);
 	vTree->Branch("isconv",					&isconv);
+	vTree->Branch("conve_inECAL",           &conve_inECAL);
+	vTree->Branch("convp_inECAL",           &convp_inECAL);
 	vTree->Branch("tracks",                 &tracks);
-	vTree->Branch("tracker_hitpos",             &tracker_hitpos);
-	vTree->Branch("tracker_edep",            &tracker_hite);
+	vTree->Branch("tracker_hitx",            &tracker_hitx);
+	vTree->Branch("tracker_hity",            &tracker_hity);
+	vTree->Branch("tracker_hitz",            &tracker_hitz);
+	vTree->Branch("tracker_hite",            &tracker_hite);
 	vTree->Branch("tracker_ephite",			 &tracker_ephite);
 	fSaveGeo = savegeo;
 }
@@ -102,7 +106,7 @@ void HistoManager::fill(const int& _eventNo){
 		if(config->conf["ECAL"]["Digi"].as<bool>()){
 			ecell = ecell*0.999841;
 		}
-		ecell = ecell > 3. ? ecell : 0.;
+		//ecell = ecell > 3. ? ecell : 0.;
 		ecal_cellid.emplace_back(i.first);
 		ecal_celle.emplace_back(ecell);
 		apd_celle.emplace_back(apdcell);
@@ -117,7 +121,7 @@ void HistoManager::fill(const int& _eventNo){
 						+ (config->conf["Converter"]["E-Noise"].as<bool>() ? rand->Gaus(0,1000.) : 0.);
 		conv_e = yield/2000.; //MeV
 	}
-	conv_e = conv_e > 3. ? conv_e : 0.;
+	//conv_e = conv_e > 3. ? conv_e : 0.;
 	eventNo = _eventNo;
 	// std::cout<<"Ntracks: "<<map_track.size()<<std::endl;
 	for(auto i:map_track){
@@ -125,16 +129,17 @@ void HistoManager::fill(const int& _eventNo){
 	}
 
 	//Tracker hit merge
-	for(auto hit:tracker_hitmap){
-		int xid = std::get<0>(hit.first);
-		int yid = std::get<1>(hit.first);
-		int zid = std::get<2>(hit.first);
-		float edep = hit.second;
-		float posX = (zid%2==0) ? -95.+xid*95. : -141.4+xid*0.121;
-		float posY = (zid%2==0) ? -141.4+yid*0.121 : -95.+yid*95.;
-		float posZ = TrackerPosZ[zid];
-		tracker_hitpos.emplace_back(std::vector<float>{posX,posY,posZ});
-		tracker_hite.emplace_back(edep);
+	for(size_t i=0;i<6;i++){
+		//Loop over even layers to add digitized hits
+		if(i%2==1)continue; //Odd layers are skipped
+		auto hits_per_layer = tracker_hitmap[i];
+		auto hits_next_layer = tracker_hitmap[i+1];
+		if(hits_per_layer.size()==0 || hits_next_layer.size()==0)continue;
+		for(auto &ehit:hits_per_layer){ //event layer hits
+			for(auto &ohit:hits_next_layer){ //odd layer hits
+				createHit(ehit,ohit,i);
+			}
+		}
 	}
 	vTree->Fill();
 }
@@ -144,14 +149,31 @@ void HistoManager::fillEcalHit(const G4int &copyNo,const G4double &edep,const G4
 	ecal_mape[copyNo]+=edep;
 }
 
+void HistoManager::createHit(const TrackerHit& ehit,const TrackerHit& ohit,const size_t& layer){
+	// std::cout<<ehit[0]<<" "<<ehit[1]<<" "<<ohit[0]<<" "<<ohit[1]<<std::endl;
+	float ex = StripL[ehit[0]];
+	float ey = StripT<float>[ehit[1]];
+	float ox = StripT<float>[ohit[0]];
+	float oy = StripL[ohit[1]];
+	float z = 0.5*(TrackerPosZ[layer]+TrackerPosZ[layer+1]);
+	if(ey>oy-47.5 && ey<oy+47.5 && ox>ex-47.5 && ox<ex+47.5){
+		tracker_hitx.emplace_back(ox);
+		tracker_hity.emplace_back(ey);
+		tracker_hitz.emplace_back(z);
+	}
+}
+
 void HistoManager::fillTrackerHit(const int& tracker_id, const float& posX, const float& posY, const float& edep, const int& trkid){
 	//x starts at -141.4 mm
 	//y starts at -95. mm
-
 	int xid = (tracker_id%2==0) ? round((posX+95.)/95.) : round((posX+141.4)/0.121);
 	int yid = (tracker_id%2==0) ? round((posY+141.4)/0.121) : round((posY+95.)/95.);
 	int zid = tracker_id;
-	tracker_hitmap[std::make_tuple(xid,yid,zid)]+=edep;
+	if(xid<0 || yid<0 || zid<0){
+		return;
+	}
+	TrackerHit hit{xid,yid};
+	tracker_hitmap[zid].insert(std::move(hit));
 }
 
 void HistoManager::fillAPDHit(const G4int &copyNo,const G4double &edep,const G4double &time,const G4int &pdgid,const G4int &trackid){
@@ -219,11 +241,15 @@ void HistoManager::clear(){
 	std::vector<float>().swap(ecal_convtime);
 	std::vector<float>().swap(conve_kinematic);
 	std::vector<float>().swap(convp_kinematic);
-	std::vector<std::vector<float>>().swap(tracker_hitpos);
+	std::vector<float>().swap(tracker_hitx);
+	std::vector<float>().swap(tracker_hity);
+	std::vector<float>().swap(tracker_hitz);
 	std::vector<float>().swap(tracker_hite);
 	std::vector<float>().swap(tracker_ephite);
 	apd_nphoton=0;
 	isconv=0;
+	conve_inECAL=0;
+	convp_inECAL=0;
 	ecal_mape.clear();
 	apd_mape.clear();
 	ecal_npmap.clear();
@@ -268,3 +294,6 @@ void HistoManager::save()
 	G4cout<<"------>close rootfile"<<G4endl;
 }
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
+
+template<class TT=std::any>
+constexpr std::array<float,2404> HistoManager::StripT = Temp_StripT<float,2404>();
