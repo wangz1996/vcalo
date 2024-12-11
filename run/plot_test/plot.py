@@ -11,9 +11,9 @@ import math
 # You have to have set it up first (see README for instructions)
 # You can run it without this but it will have an ugly stats box and so on
 # that you'd have to turn off manually.
-import AtlasStyle
+import VPStyle
 ROOT.gROOT.SetBatch(True)
-ROOT.SetAtlasStyle()
+ROOT.SetVPStyle()
 def plot_etotal():
 	# Load some histos from the example file
 	# (Gaussian limits from 2016 TLA conf)
@@ -508,6 +508,6 @@ def plot_reso():
 
 if __name__=="__main__":
 	plot_reso()
-	#plot_epangle()
-	#plot_conve()
-	#plot_etotal()
+	plot_epangle()
+	plot_conve()
+	plot_etotal()

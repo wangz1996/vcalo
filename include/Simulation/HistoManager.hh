@@ -74,41 +74,57 @@ class HistoManager
 {
 	public:
 		static HistoManager& getInstance();
+		struct HConfig{
+			//Converter configs
+			bool Conv_ENoise=true; //Converter electronic noise
+			float Conv_NonUniformity=0.; //Converter Non uniformity
+			bool Conv_LightYield=true; //Converter Light yield effect
+			//ECAL configs
+			float ECAL_NonUniformity=0.; // ECAL crystal non-uniformity
+			bool ECAL_LightYield=true; //ECAL Light yield effect
+			bool ECAL_ENoise=true; //ECAL electronic noise
+			bool ECAL_APDIon=true; //APD Ionization
+			bool ECAL_Digi=true;
+		};
+	//General functions
 		void save();
 		void clear();
 		void book(const std::string& foutname,const bool &savegeo);
 		void fill(const int& _eventNo);
-		void fillAPDOptHit(const float& time){apd_nphoton++;apd_optime.emplace_back(time);}
-		void fillEcalHit(const G4int &copyNo,const G4double &edep,const G4double &time,const G4int &pdgid,const G4int &trackid);
-		void fillAPDHit(const G4int &copyNo,const G4double &edep,const G4double &time,const G4int &pdgid,const G4int &trackid);
-		void fillPrimary(const G4Track* trk);
-		void fillConvOptHit(const float& t){++nConvPhoton;ecal_convtime.emplace_back(t);}
-		void addTotalOptPhoton(){++nTotalOptPhoton;}
-		void bindConfig(Config* c){config=c;}
-		void changeStatusCode(const int& code){StatusCode = code;}
-		void setConv(){isconv=1;};
-		void fillConvElectron(const G4Track* trk);
-		void fillConvPositron(const G4Track* trk);
+		void bindConfig(Config* c);
+		void setStatusCode(const int& code){StatusCode = code;}
 		int getStatusCode(){return StatusCode;}
-		int getsize_ECALe(){return conve_ECAL_kinematic.size();}
-		int getsize_ECALp(){return convp_ECAL_kinematic.size();}
-		void fillECALeHit(const G4Track* trk);
-		void fillECALpHit(const G4Track* trk);
-		void fillConvHit(const G4double& edep){conv_e+=edep;}
-		void fillTracks(const int& track_id,const G4ThreeVector& pos,const int& color=0);
-		void fillTrackerHit(const int& tracker_id, const float& posX, const float& posY, const float& edep, const int& trkid);
-		void fillTrackerEPHit(const float& e){tracker_ephite.emplace_back(e);}
-		void setEinECAL(){conve_inECAL=1;}
-		void setPinECAL(){convp_inECAL=1;}
 
+	//Optical functions
+		void fillAPDOptHit(const float& time){apd_nphoton++;apd_optime.emplace_back(time);}
+		void fillConvOptHit(const float& t){++nConvPhoton;ecal_convtime.emplace_back(t);}
+
+	//ECAL functions
+		void fillEcalHit(const int& copyNo,const G4double &edep);
+		void fillAPDHit(const int& copyNo,const G4double &edep);
+
+	//Truth functions
+		void fillPrimary(const G4Track* trk);
+		void setConv(){isconv=1;}
+		int getConv(){return isconv;}
+		void fillTruthConverter(const int&,const G4Track*);
+		void setEinECAL(){conve_inECAL=1;}
+		int getEinECAL(){return conve_inECAL;}
+		void setPinECAL(){convp_inECAL=1;}
+		int getPinECAL(){return convp_inECAL;}
+		
+	//Converter functions
+		void fillConvHit(const G4double& edep){conv_e+=edep;}
+		
+	//Tracker functions
+		void fillTracks(const int& track_id,const G4ThreeVector& pos,const int& color=0);
+		void fillTrackerHit(const int& tracker_id, const float& posX, const float& posY);
+		
 	private:
-		//Singleton design mode
+		//Singleton
 		HistoManager();
 		~HistoManager();
-		Double_t SiPMDigi(const Double_t &edep) const;
-		
 		HistoManager(const HistoManager&)=delete;
-
 		const HistoManager &operator=(const HistoManager&)=delete;
 
 		G4bool    fSaveGeo;
@@ -117,17 +133,18 @@ class HistoManager
 		TFile* vFile;
 		TTree* vTree;
 
-		Config* config;
-
 		int StatusCode;
 
 		TRandom3 *rand;
 
+
 		void createHit(const TrackerHit& ehit,const TrackerHit& ohit,const size_t& layer);
 	private:
+		HConfig m_cfg;
+	//General 
 		int eventNo;
+	//Truth
 		int nConvPhoton;
-		int nTotalOptPhoton;
 		int apd_nphoton;
 		int isconv;
 		float init_x;
@@ -140,10 +157,11 @@ class HistoManager
 		float init_Ke;
 		int conve_inECAL;
 		int convp_inECAL;
-		std::vector<float> conve_ECAL_kinematic;
-		std::vector<float> convp_ECAL_kinematic;
+		
 		std::vector<float> conve_kinematic;
 		std::vector<float> convp_kinematic;
+		std::unordered_map<int,std::vector<float>*> umap_id_conv={{0,&conve_kinematic},{1,&convp_kinematic}};
+	//ECAL
 		std::vector<int> ecal_cellid;
 		std::vector<float> ecal_celle;
 		std::vector<float> apd_celle;
@@ -151,8 +169,6 @@ class HistoManager
 		std::vector<float> ecal_convtime;
 		std::map<int,float> ecal_mape;
 		std::map<int,float> apd_mape;
-		std::map<int,int> ecal_npmap;
-		float ecal_e;
 		float conv_e;
 		TList tracks;
 		std::map<int, TPolyLine3D*> map_track;
@@ -161,7 +177,6 @@ class HistoManager
 		std::vector<float> tracker_hitz;
 		std::vector<float> tracker_hite;
 		std::vector<int> tracker_trkid;
-		std::vector<float> tracker_ephite;
 
 		//Constants
 		static constexpr std::array<float, 6> TrackerPosZ = {

@@ -23,58 +23,73 @@
 // * acceptance of all terms of the Geant4 Software license.          *
 // ********************************************************************
 //
-/// \file analysis/shared/include/SteppingAction.hh
-/// \brief Definition of the SteppingAction class
+/// \brief Implementation of the TrackingAction class
 //
 //
-// $Id: SteppingAction.hh 68015 2013-03-13 13:27:27Z gcosmo $
-//
+// $Id: TrackingAction.cc 78307 2013-12-11 10:55:57Z gcosmo $
 // 
-
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-#ifndef SteppingAction_h
-#define SteppingAction_h 1
+#include "TrackingAction.hh"
 
-#include "G4UserSteppingAction.hh"
-#include "globals.hh"
 #include "HistoManager.hh"
-#include "G4GeneralParticleSource.hh"
-#include "Config.hh"
+//#include "Run.hh"
+#include "EventAction.hh"
 
-class DetectorConstruction;
-class EventAction;
-class G4LogicalVolume;
-class HistoManager;
-class Config;
+#include "G4Track.hh"
+#include "G4ParticleTypes.hh"
+#include "G4RunManager.hh"
+#include "SteppingAction.hh"
+#include "RunAction.hh"
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-class SteppingAction : public G4UserSteppingAction
+TrackingAction::TrackingAction(RunAction*runAct,EventAction* EA,Config *c)
+  :G4UserTrackingAction(),
+   fRun(runAct),fEvent(EA),
+   fFullChain(true),config(c)
 {
-public:
-  SteppingAction(DetectorConstruction*, EventAction*, Config*);
-  virtual ~SteppingAction();
-  
-  static SteppingAction* Instance();
+  //fSteppingVerbose_Tracking = new SteppingVerbose();
+}
 
-  virtual void UserSteppingAction(const G4Step*);
-    
-  void Reset();
+  //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-private:
-  static SteppingAction* fgInstance;
-  G4LogicalVolume* fVolume;
-  DetectorConstruction* fDetector;
-  EventAction*          fEventAction_Step; 
-  G4double BirksAttenuation(const G4Step* aStep);
-  G4GeneralParticleSource * fGParticleSource;
-  Config* config;
-  G4int savetrack;
-  G4double trackEnergy_threshold;
-
-};
+TrackingAction::~TrackingAction()
+{
+}
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-#endif
+  void TrackingAction::PreUserTrackingAction(const G4Track* track)
+{
+    // std::cout<<"TrackingAction::PreUserTrackingAction"<<std::endl;
+    fEvent->fStepTag=0;
+  /*
+  Run* run 
+    = static_cast<Run*>(G4RunManager::GetRunManager()->GetCurrentRun());
+  */   
+  if (track->GetParentID() == 0) {
+    if (track->GetMomentum().z() < 0) {
+      HistoManager::getInstance().setStatusCode(0);
+      const_cast<G4Track*>(track)->SetTrackStatus(fStopAndKill);
+      G4RunManager::GetRunManager()->AbortEvent();
+    }
+    HistoManager::getInstance().fillPrimary(track);
+  }
+  G4ParticleDefinition* particle = track->GetDefinition();
+  G4String name   = particle->GetParticleName();
+  G4int ID      = track->GetTrackID();
+  G4double Ekin = track->GetKineticEnergy();
+  fParticleEnCode= particle->GetPDGEncoding();
+  //-----------------update------------------------
+}
+  
+  //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
+
+void TrackingAction::PostUserTrackingAction(const G4Track* track)
+{
+    // std::cout<<"TrackingAction::PostUserTrackingAction"<<std::endl;
+}
+
+//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
+

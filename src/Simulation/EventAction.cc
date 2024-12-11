@@ -23,73 +23,61 @@
 // * acceptance of all terms of the Geant4 Software license.          *
 // ********************************************************************
 //
-/// \brief Implementation of the TrackingAction class
+/// \brief Implementation of the EventAction class
 //
-//
-// $Id: TrackingAction.cc 78307 2013-12-11 10:55:57Z gcosmo $
+// $Id: EventAction.cc 68030 2015-03-13 13:51:27Z gcosmo $
 // 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-#include "TrackingAction.hh"
-
-#include "HistoManager.hh"
-//#include "Run.hh"
 #include "EventAction.hh"
+//#include "EventMessenger.hh"
 
-#include "G4Track.hh"
-#include "G4ParticleTypes.hh"
-#include "G4RunManager.hh"
-#include "SteppingAction.hh"
+#include "G4Event.hh"
+#include <iomanip>
+#include "HistoManager.hh"
+#include <TTree.h>
 #include "RunAction.hh"
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-TrackingAction::TrackingAction(RunAction*runAct,EventAction* EA,Config *c)
-  :G4UserTrackingAction(),
-   fRun(runAct),fEvent(EA),
-   fFullChain(true),config(c)
+EventAction::EventAction(Config *c)
+:G4UserEventAction(),
+ fEventEdep(0),fPrintModulo(100),fDecayChain(),config(c)
 {
-  //fSteppingVerbose_Tracking = new SteppingVerbose();
-}
-
-  //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
-
-TrackingAction::~TrackingAction()
-{
+  fGParticleSource  = new G4GeneralParticleSource();
+  fPrintModulo = c->conf["Global"]["beamon"].as<int>() > 100 ? c->conf["Global"]["beamon"].as<int>()/100: 1;
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-  void TrackingAction::PreUserTrackingAction(const G4Track* track)
+EventAction::~EventAction()
 {
-    // std::cout<<"TrackingAction::PreUserTrackingAction"<<std::endl;
-    fEvent->fStepTag=0;
-  /*
-  Run* run 
-    = static_cast<Run*>(G4RunManager::GetRunManager()->GetCurrentRun());
-  */   
-  if (track->GetParentID() == 0) {
-    if (track->GetMomentum().z() < 0) {
-      HistoManager::getInstance().changeStatusCode(0);
-      const_cast<G4Track*>(track)->SetTrackStatus(fStopAndKill);
-      G4RunManager::GetRunManager()->AbortEvent();
-    }
-    HistoManager::getInstance().fillPrimary(track);
-  }
-  G4ParticleDefinition* particle = track->GetDefinition();
-  G4String name   = particle->GetParticleName();
-  G4int ID      = track->GetTrackID();
-  G4double Ekin = track->GetKineticEnergy();
-  fParticleEnCode= particle->GetPDGEncoding();
-  //-----------------update------------------------
-}
-  
-  //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
-
-void TrackingAction::PostUserTrackingAction(const G4Track* track)
-{
-    // std::cout<<"TrackingAction::PostUserTrackingAction"<<std::endl;
+  delete fGParticleSource;
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
+
+void EventAction::BeginOfEventAction(const G4Event* evt)
+{
+	HistoManager::getInstance().clear();
+  G4int evtNb = evt->GetEventID(); 
+  if (evtNb%fPrintModulo == 0) std::cout<<"Begin of event: "<<evt->GetEventID()<<std::endl;
+}
+
+//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
+
+void EventAction::EndOfEventAction(const G4Event* evt)
+{
+ G4int evtNb = evt->GetEventID(); 
+ //printing survey
+ //
+ if (evtNb%fPrintModulo == 0) 
+   G4cout << "\n end of event " << std::setw(6) << evtNb 
+          << " :" + fDecayChain << G4endl;
+ 
+	if(HistoManager::getInstance().getStatusCode())HistoManager::getInstance().fill(evtNb);
+}
+
+//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
+
 

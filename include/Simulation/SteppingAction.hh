@@ -23,60 +23,58 @@
 // * acceptance of all terms of the Geant4 Software license.          *
 // ********************************************************************
 //
-/// \brief Implementation of the EventAction class
+/// \file analysis/shared/include/SteppingAction.hh
+/// \brief Definition of the SteppingAction class
 //
-// $Id: EventAction.cc 68030 2015-03-13 13:51:27Z gcosmo $
+//
+// $Id: SteppingAction.hh 68015 2013-03-13 13:27:27Z gcosmo $
+//
 // 
+
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-#include "EventAction.hh"
-//#include "EventMessenger.hh"
+#ifndef SteppingAction_h
+#define SteppingAction_h 1
 
-#include "G4Event.hh"
-#include <iomanip>
+#include "G4UserSteppingAction.hh"
+#include "globals.hh"
 #include "HistoManager.hh"
-#include <TTree.h>
-#include "RunAction.hh"
+#include "G4GeneralParticleSource.hh"
+#include "Config.hh"
+
+class DetectorConstruction;
+class EventAction;
+class G4LogicalVolume;
+class HistoManager;
+class Config;
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-EventAction::EventAction(Config *c)
-:G4UserEventAction(),
- fEventEdep(0),fPrintModulo(100),fDecayChain(),config(c)
+class SteppingAction : public G4UserSteppingAction
 {
-  fGParticleSource  = new G4GeneralParticleSource();
-  fPrintModulo = c->conf["Global"]["beamon"].as<int>() > 100 ? c->conf["Global"]["beamon"].as<int>()/100: 1;
-}
+public:
+  SteppingAction(DetectorConstruction*, EventAction*, Config*);
+  virtual ~SteppingAction();
+  
+  static SteppingAction* Instance();
+
+  virtual void UserSteppingAction(const G4Step*);
+    
+  void Reset();
+
+private:
+  static SteppingAction* fgInstance;
+  G4LogicalVolume* fVolume;
+  DetectorConstruction* fDetector;
+  EventAction*          fEventAction_Step; 
+  // G4double BirksAttenuation(const G4Step* aStep);
+  G4GeneralParticleSource * fGParticleSource;
+  Config* config;
+  G4int savetrack;
+  G4double trackEnergy_threshold;
+
+};
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-EventAction::~EventAction()
-{
-  delete fGParticleSource;
-}
-
-//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
-
-void EventAction::BeginOfEventAction(const G4Event* evt)
-{
-	HistoManager::getInstance().clear();
-  std::cout<<"Begin of event: "<<evt->GetEventID()<<std::endl;
-}
-
-//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
-
-void EventAction::EndOfEventAction(const G4Event* evt)
-{
- G4int evtNb = evt->GetEventID(); 
- //printing survey
- //
- if (evtNb%fPrintModulo == 0) 
-   G4cout << "\n end of event " << std::setw(6) << evtNb 
-          << " :" + fDecayChain << G4endl;
- 
-	if(HistoManager::getInstance().getStatusCode())HistoManager::getInstance().fill(evtNb);
-}
-
-//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
-
-
+#endif

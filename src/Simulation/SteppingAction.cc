@@ -78,14 +78,14 @@ void SteppingAction::UserSteppingAction(const G4Step* aStep) {
   // 初始化 PreStep 和 PostStep 的物理/逻辑体名称
   std::string preStepPVName, postStepPVName, preStepLVName, postStepLVName;
 
-  if (preStepPoint) {
+  if (__builtin_expect(preStepPoint!=nullptr,1)) {
     if (auto preVolume = preStepPoint->GetPhysicalVolume()) {
       preStepPVName = preVolume->GetName();
       preStepLVName = preVolume->GetLogicalVolume()->GetName();
     }
   }
 
-  if (postStepPoint) {
+  if (__builtin_expect(postStepPoint!=nullptr,1)) {
     if (auto postVolume = postStepPoint->GetPhysicalVolume()) {
       postStepPVName = postVolume->GetName();
       postStepLVName = postVolume->GetLogicalVolume()->GetName();
@@ -94,7 +94,7 @@ void SteppingAction::UserSteppingAction(const G4Step* aStep) {
 
   // 获取步骤相关的信息
   const G4VProcess *process;
-  process = (postStepPoint) ? postStepPoint->GetProcessDefinedStep(): nullptr;
+  process = __builtin_expect(postStepPoint!=nullptr,1) ? postStepPoint->GetProcessDefinedStep(): nullptr;
   auto processName = process ? process->GetProcessName() : "";
   G4double edep = aStep->GetTotalEnergyDeposit();
   G4Track* track = aStep->GetTrack();
@@ -105,16 +105,16 @@ void SteppingAction::UserSteppingAction(const G4Step* aStep) {
   G4int copyNo = preStepPoint->GetPhysicalVolume()->GetCopyNo();
   auto particleDef = track->GetDefinition();
   // 处理Converter信息
-  if (processName == "conv" && postStepLVName == "logicConv" && track->GetParentID() == 0) {
+  if (__builtin_expect(processName == "conv" && postStepLVName == "logicConv" && track->GetParentID() == 0,0)) {
     HistoManager::getInstance().setConv();
     const std::vector<const G4Track*>* secondaries = aStep->GetSecondaryInCurrentStep();
     // std::cout<<"conversion secondaries: "<<secondaries->size()<<std::endl;
     for(auto trk:*secondaries){
       if(trk->GetDefinition()->GetPDGEncoding() == 11){
-        HistoManager::getInstance().fillConvElectron(trk);
+        HistoManager::getInstance().fillTruthConverter(0,trk);
       }
       else if(trk->GetDefinition()->GetPDGEncoding() == -11){
-        HistoManager::getInstance().fillConvPositron(trk);
+        HistoManager::getInstance().fillTruthConverter(1,trk);
       }
       else{
         // std::cout<<"Nucleus name: "<<trk->GetDefinition()->GetParticleName()<<std::endl;
@@ -146,24 +146,9 @@ void SteppingAction::UserSteppingAction(const G4Step* aStep) {
     }
   }
 
-  // 处理ECAL表面的电子对信息
-  // if (postStepLVName == "logicCsI" && track->GetParentID() == 1 && (HistoManager::getInstance().getsize_ECALe() == 0 || HistoManager::getInstance().getsize_ECALp() == 0)) {
-  //   if (track->GetDefinition()->GetPDGEncoding() == 11) {
-  //     HistoManager::getInstance().fillECALeHit(track);
-  //   }
-  //   else if(track->GetDefinition()->GetPDGEncoding() == -11) {
-  //     HistoManager::getInstance().fillECALpHit(track);
-  //   }
-  // }
   // 处理光子信息
-  if (particleDef == G4OpticalPhoton::OpticalPhotonDefinition()) {
-    if (stepNumber == 1) {
-      HistoManager::getInstance().addTotalOptPhoton();
-    }
-    else if (preStepPVName == "physicConv" && postStepPVName.find("World") != std::string::npos) {
-      HistoManager::getInstance().fillConvOptHit(time);
-    }
-    else if ((preStepPVName.find("World") != std::string::npos) && postStepLVName == "logicAPD") {
+  if (__builtin_expect(particleDef == G4OpticalPhoton::OpticalPhotonDefinition(),0)) {
+    if ((preStepPVName.find("World") != std::string::npos) && postStepLVName == "logicAPD") {
       // std::cout<<"APD detected"<<std::endl;
         HistoManager::getInstance().fillAPDOptHit(time);
     }
@@ -171,8 +156,18 @@ void SteppingAction::UserSteppingAction(const G4Step* aStep) {
       // std::cout<<"APD detected"<<std::endl;
         HistoManager::getInstance().fillConvOptHit(time);
     }
-    else if (preStepLVName.find("logicCsI") != std::string::npos && postStepLVName == "World") {
-      // std::cout<<"CsI to World"<<std::endl;
+  }
+
+  // 处理真实EP进入ECAL信息
+  if(particleDef->GetPDGEncoding() == 11 && track->GetParentID() == 1 && HistoManager::getInstance().getConv() == 1 && HistoManager::getInstance().getEinECAL() == 0 ){
+    auto pos = track->GetPosition();
+    if(pos.z()>-102.6 && abs(pos.x())<120. && abs(pos.y())<120.){
+    HistoManager::getInstance().setEinECAL();}
+  }
+  if(particleDef->GetPDGEncoding() == -11 && track->GetParentID() == 1 && HistoManager::getInstance().getConv() == 1 && HistoManager::getInstance().getPinECAL() == 0 ){
+    auto pos = track->GetPosition();
+    if(pos.z()>-102.6 && abs(pos.x())<120. && abs(pos.y())<120.){
+      HistoManager::getInstance().setPinECAL();
     }
   }
   // 处理能量沉积和命中
@@ -183,13 +178,11 @@ void SteppingAction::UserSteppingAction(const G4Step* aStep) {
   {
     if (postStepLVName == "logicAPD")
     {
-      HistoManager::getInstance().fillAPDHit(copyNo, edep, time, pdgid, trackid);
+      HistoManager::getInstance().fillAPDHit(copyNo,edep);
     }
     else if (postStepLVName == "logicCsI")
     {
-      if(particleDef->GetPDGEncoding() == 11 && track->GetParentID() == 1 && track->GetCreatorProcess()->GetProcessName() == "conv"){HistoManager::getInstance().setEinECAL();}
-      else if(particleDef->GetPDGEncoding() == -11 && track->GetParentID() == 1 && track->GetCreatorProcess()->GetProcessName() == "conv"){HistoManager::getInstance().setPinECAL();}
-      HistoManager::getInstance().fillEcalHit(copyNo, edep, time, pdgid, trackid);
+      HistoManager::getInstance().fillEcalHit(copyNo,edep);
     }
     else if (postStepLVName == "logicConv")
     {
@@ -200,14 +193,7 @@ void SteppingAction::UserSteppingAction(const G4Step* aStep) {
       G4int tracker_index = postStepPVName[12] - '0';
       G4float posX = postStepPoint->GetPosition().x();
       G4float posY = postStepPoint->GetPosition().y();
-      HistoManager::getInstance().fillTrackerHit(tracker_index, posX, posY, edep, trackid);
-      if (track->GetParentID() == 1 && track->GetCreatorProcess()->GetProcessName() == "conv")
-      {
-        if (pdgid == 11 || pdgid == -11)
-        {
-          HistoManager::getInstance().fillTrackerEPHit(edep);
-        }
-      }
+      HistoManager::getInstance().fillTrackerHit(tracker_index, posX, posY);
     }
   }
 }
@@ -219,23 +205,23 @@ void SteppingAction::Reset()
   //fEnergy = 0.;
 }
 
-G4double SteppingAction::BirksAttenuation(const G4Step* aStep)
-{
- //Example of Birk attenuation law in organic scintillators.
- //adapted from Geant3 PHYS337. See MIN 80 (1970) 239-244
- //
- G4Material* material = aStep->GetTrack()->GetMaterial();
- G4double birk1       = material->GetIonisation()->GetBirksConstant();
- G4double destep      = aStep->GetTotalEnergyDeposit();
- G4double stepl       = aStep->GetStepLength();  
- G4double charge      = aStep->GetTrack()->GetDefinition()->GetPDGCharge();
- //
- G4double response = destep;
- if (birk1*destep*stepl*charge != 0.)
-   {
-     response = destep/(1. + birk1*destep/stepl);
-   }
- return response;
-}
+// G4double SteppingAction::BirksAttenuation(const G4Step* aStep)
+// {
+//  //Example of Birk attenuation law in organic scintillators.
+//  //adapted from Geant3 PHYS337. See MIN 80 (1970) 239-244
+//  //
+//  G4Material* material = aStep->GetTrack()->GetMaterial();
+//  G4double birk1       = material->GetIonisation()->GetBirksConstant();
+//  G4double destep      = aStep->GetTotalEnergyDeposit();
+//  G4double stepl       = aStep->GetStepLength();  
+//  G4double charge      = aStep->GetTrack()->GetDefinition()->GetPDGCharge();
+//  //
+//  G4double response = destep;
+//  if (birk1*destep*stepl*charge != 0.)
+//    {
+//      response = destep/(1. + birk1*destep/stepl);
+//    }
+//  return response;
+// }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
