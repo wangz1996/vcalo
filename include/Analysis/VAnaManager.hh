@@ -15,6 +15,7 @@
 #include "TruthBaseline.hh"
 #include "TrackerBaseline.hh"
 #include "ConvBaseline.hh"
+#include "ParticleNet.hh"
 
 template<class T=float>
 class VAnaManager{
@@ -37,6 +38,7 @@ public:
     RegisterAlgorithm<ECALBaseline<float>>(new ECALBaseline<float>("ECALBaseline"));
     RegisterAlgorithm<TruthBaseline<float>>(new TruthBaseline<float>("TruthBaseline"));
     RegisterAlgorithm<TrackerBaseline<float>>(new TrackerBaseline<float>("TrackerBaseline"));
+    RegisterAlgorithm<ParticleNet<float>>(new ParticleNet<float>("ParticleNet"));
 
     for(auto &alg: fAlgorithms){
         if(!alg->init(fTree,fOutTree)){
