@@ -3,6 +3,8 @@
 cmake_minimum_required(VERSION 3.11 FATAL_ERROR)
 project(vcalo VERSION 1.0.0 LANGUAGES C CXX )
 add_compile_options(-w)
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
 # add_definitions(-std=c++17)
 
 option(WITH_GEANT4_UIVIS "Build example with Geant4 UI and Vis drivers" ON)
@@ -37,8 +39,8 @@ link_directories(/cvmfs/sft.cern.ch/lcg/views/LCG_105/x86_64-centos7-gcc12-opt/l
 file(GLOB sources ${PROJECT_SOURCE_DIR}/src/Simulation/*.cc)
 file(GLOB headers ${PROJECT_SOURCE_DIR}/include/Simulation/*.hh)
 
-file(GLOB anasrc ${PROJECT_SOURCE_DIR}/src/Analysis/*.cc)
-file(GLOB anainc ${PROJECT_SOURCE_DIR}/include/Analysis/*.hh)
+file(GLOB_RECURSE anasrc ${PROJECT_SOURCE_DIR}/src/Analysis/*.cc)
+file(GLOB_RECURSE anainc ${PROJECT_SOURCE_DIR}/include/Analysis/*.hh)
 
 #----------------------------------------------------------------------------
 # Add the executable, and link it to the Geant4 libraries
