@@ -19,7 +19,7 @@ public:
     {
         fTree = tin;
         fOutTree = tout;
-
+        fTree->SetBranchAddress("conv_e", &conv_e);
         fTree->SetBranchAddress("ecal_cellid", &ecal_cellid);
         fTree->SetBranchAddress("ecal_celle", &ecal_celle);
         fTree->SetBranchAddress("tracker_hitx", &tracker_hitx);
@@ -140,12 +140,13 @@ public:
         // Reset branchs
         fTree->GetEntry(ientry);
         ortc->reset();
+        ortc->addPoint(0.,0.,-251.8,conv_e);
         for(size_t i=0;i<tracker_hitx->size();i++)
         {
             float x = tracker_hitx->at(i);
             float y = tracker_hity->at(i);
             float z = tracker_hitz->at(i);
-            float e = tracker_hite->at(i);
+            float e = 0.1;
             ortc->addPoint(x,y,z,e);
         }
         for(size_t i=0;i<ecal_celle->size();i++)
@@ -154,10 +155,9 @@ public:
             int id = ecal_cellid->at(i);
             float x = ecal_id_xy[id].first;
             float y = ecal_id_xy[id].second;
-            ortc->addPoint(x,y,0.,e);
+            ortc->addPoint(x,y,0.1,e);
         }
         GNN_isconv = ortc->getScore();
-        std::cout<<"GNN_isconv: "<<GNN_isconv<<std::endl;
         return 1;
     }
 
@@ -173,6 +173,7 @@ private:
     std::vector<T> *tracker_hity = nullptr;
     std::vector<T> *tracker_hitz = nullptr;
     std::vector<T> *tracker_hite = nullptr;
+    T conv_e;
 
     // Output treee branchs
     T GNN_isconv = 0.;

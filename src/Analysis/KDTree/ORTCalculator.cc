@@ -21,7 +21,7 @@ ORTCalculator::ORTCalculator()
     {
         Ort::AllocatedStringPtr input_name = session->GetInputNameAllocated(i, allocator);
         input_node_names.emplace_back(input_name.get()); // 自动复制到 std::string
-        std::cout << "Input Node Name: " << input_node_names[i] << std::endl;
+        // std::cout << "Input Node Name: " << input_node_names[i] << std::endl;
         auto type_info = session->GetInputTypeInfo(i);
         auto tensor_info = type_info.GetTensorTypeAndShapeInfo();
         input_shapes.push_back(tensor_info.GetShape());
@@ -32,20 +32,33 @@ int ORTCalculator::getScore(){
     //KNN edge
     knn_calculator->run(12);
     edge_index = knn_calculator->getEdgeIndex();
+    // for(auto edge: edge_index){
+    //     std::cout<<edge<<" ";
+    // }
+    // std::cout<<std::endl;
 
     auto memory_info = Ort::MemoryInfo::CreateCpu(OrtDeviceAllocator, OrtMemTypeCPU);
+    // for(auto i:input_tensor_data){
+    //     std::cout<<i<<" ";
+    // }
+    // std::cout<<std::endl;
+    // input_tensor_data = {-37.3319,   0.0000,   0.0000,   0.0000,   0.0000,   0.0000,  37.3319};
+    // flat_shape = {1,7};
+    // edge_index_shape = {2,0};
+    // edge_index = {};
     Ort::Value input_tensor = Ort::Value::CreateTensor<float>(
             memory_info, input_tensor_data.data(), input_tensor_data.size(),
             flat_shape.data(), flat_shape.size());
     Ort::Value edge_index_tensor = Ort::Value::CreateTensor<int64_t>(memory_info, edge_index.data(), edge_index.size(), edge_index_shape.data(), edge_index_shape.size());
 
     size_t num_output_nodes = session->GetOutputCount();
+    // std::cout<<"Number of output nodes: "<<num_output_nodes<<std::endl;
     std::vector<std::string> output_node_names;
 
     for (size_t i = 0; i < num_output_nodes; i++)
         {
             output_node_names.push_back(session->GetOutputNameAllocated(i, allocator).get());
-            std::cout << "Output Node Name: " << output_node_names[i] << std::endl;
+            // std::cout << "Output Node Name: " << output_node_names[i] << std::endl;
         }
 
     std::vector<const char *> c_input_node_names;
@@ -82,12 +95,18 @@ int ORTCalculator::getScore(){
 void ORTCalculator::addPoint(const float& x,const float& y,const float& z,const float& e){
     // 计算半径距离 r_t
     double r_t = std::sqrt(x * x + y * y);
-
-    // 计算 θ
-    double theta = std::atan2(r_t, z);
-
+    double theta=0.;
+    double deta=0.;
+    if (r_t == 0 and z == 0){
+        theta = 0.;
+        deta = 0.;
+    }
+    else {
+        theta = std::atan2(r_t,z);
+        theta = theta > 1e-8 ? theta:1e-8;
+    }
     // 计算 η
-    double deta = -std::log(std::tan(theta / 2.0));
+    deta = -std::log(std::tan(theta / 2.0));
 
     // 计算 φ
     double dphi = std::atan2(y, x);
