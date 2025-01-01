@@ -28,9 +28,9 @@ ORTCalculator::ORTCalculator()
     }
 }
 
-int ORTCalculator::getScore(){
+float ORTCalculator::getScore(){
     //KNN edge
-    knn_calculator->run(12);
+    knn_calculator->run(11);
     edge_index = knn_calculator->getEdgeIndex();
     // for(auto edge: edge_index){
     //     std::cout<<edge<<" ";
@@ -55,10 +55,10 @@ int ORTCalculator::getScore(){
     std::vector<std::string> output_node_names;
 
     for (size_t i = 0; i < num_output_nodes; i++)
-        {
-            output_node_names.push_back(session->GetOutputNameAllocated(i, allocator).get());
-            // std::cout << "Output Node Name: " << output_node_names[i] << std::endl;
-        }
+    {
+        output_node_names.push_back(session->GetOutputNameAllocated(i, allocator).get());
+        // std::cout << "Output Node Name: " << output_node_names[i] << std::endl;
+    }
 
     std::vector<const char *> c_input_node_names;
         std::vector<const char *> c_output_node_names;
@@ -89,6 +89,7 @@ int ORTCalculator::getScore(){
         );
         float* output_data = output_tensors[0].GetTensorMutableData<float>();
         GNN_score = output_data[0];
+        // std::cout<<GNN_score<<std::endl;
         if(std::isfinite(GNN_score) == false)std::cout<<GNN_score<<std::endl;
     }
     catch(const Ort::Exception& e){
