@@ -10,7 +10,7 @@ ORTCalculator::ORTCalculator()
     session_options->SetGraphOptimizationLevel(GraphOptimizationLevel::ORT_ENABLE_EXTENDED);
 
     //// Load ONNX model
-    const char *model_path = "particlenet.onnx";
+    const char *model_path = "parN_log.onnx";
     session = new Ort::Session(*env, model_path, *session_options);
     std::cout << "ONNX Model Loaded Successfully!" << std::endl;
 
@@ -38,19 +38,18 @@ int ORTCalculator::getScore(){
     // std::cout<<std::endl;
 
     auto memory_info = Ort::MemoryInfo::CreateCpu(OrtDeviceAllocator, OrtMemTypeCPU);
-    // for(auto i:input_tensor_data){
-    //     std::cout<<i<<" ";
+    // for(int i=0;i<input_tensor_data.size();i++){
+        
+    //     std::cout<<input_tensor_data[i]<<" ";
     // }
     // std::cout<<std::endl;
-    // input_tensor_data = {-37.3319,   0.0000,   0.0000,   0.0000,   0.0000,   0.0000,  37.3319};
-    // flat_shape = {1,7};
-    // edge_index_shape = {2,0};
-    // edge_index = {};
     Ort::Value input_tensor = Ort::Value::CreateTensor<float>(
             memory_info, input_tensor_data.data(), input_tensor_data.size(),
             flat_shape.data(), flat_shape.size());
+    if(flat_shape[0]==1){
+        edge_index_shape[1]=0;
+    }
     Ort::Value edge_index_tensor = Ort::Value::CreateTensor<int64_t>(memory_info, edge_index.data(), edge_index.size(), edge_index_shape.data(), edge_index_shape.size());
-
     size_t num_output_nodes = session->GetOutputCount();
     // std::cout<<"Number of output nodes: "<<num_output_nodes<<std::endl;
     std::vector<std::string> output_node_names;
@@ -73,12 +72,13 @@ int ORTCalculator::getScore(){
         {
             c_output_node_names.push_back(name.c_str());
         }
-    
     std::vector<Ort::Value> inputs;
         inputs.emplace_back(std::move(input_tensor));
         inputs.emplace_back(std::move(edge_index_tensor));
     
     // 调用 session->Run
+    try{
+        
         auto output_tensors = session->Run(
             Ort::RunOptions{nullptr},  // 运行选项
             c_input_node_names.data(), // 输入节点名称
@@ -89,10 +89,24 @@ int ORTCalculator::getScore(){
         );
         float* output_data = output_tensors[0].GetTensorMutableData<float>();
         GNN_score = output_data[0];
+        if(std::isfinite(GNN_score) == false)std::cout<<GNN_score<<std::endl;
+    }
+    catch(const Ort::Exception& e){
+        std::cerr << "ONNX Runtime exception: " << e.what() << std::endl;
+        return -1;
+    }
+    catch (const std::exception& e) {
+        std::cerr << "Standard exception: " << e.what() << std::endl;
+        return -1;
+    }
+    catch (...) {
+        std::cerr << "Unknown exception occurred." << std::endl;
+        return -1;
+    }
         return GNN_score;
 }
 
-void ORTCalculator::addPoint(const float& x,const float& y,const float& z,const float& e){
+void ORTCalculator::addPoint(const float& x,const float& y,const float& z,float& e){
     // 计算半径距离 r_t
     double r_t = std::sqrt(x * x + y * y);
     double theta=0.;
@@ -109,18 +123,21 @@ void ORTCalculator::addPoint(const float& x,const float& y,const float& z,const 
     deta = -std::log(std::tan(theta / 2.0));
 
     // 计算 φ
-    double dphi = std::atan2(y, x);
-
+    float dphi = std::atan2(y, x);
     // 定义其他属性
-    double pt = e;
-    double ptrel = e;
-    double erel = e;
+    // double pt = e;
+    // double ptrel = e;
+    // double erel = e;
+    e = e<0.1 ? 0.1 : e;
+    float pt = std::log(e);
+    float ptrel = std::log(e);
+    float erel = std::log(e);
 
     // 计算 ΔR
-    double dR = std::sqrt(deta * deta + dphi * dphi);
+    float dR = std::sqrt(deta * deta + dphi * dphi);
 
     // 返回结果
-    input_tensor_data.insert(input_tensor_data.end(), {deta,dphi,pt,e,ptrel,erel,dR});
+    input_tensor_data.insert(input_tensor_data.end(), {deta,dphi,pt,std::log(e),ptrel,erel,dR});
     flat_shape[0]++;
     knn_calculator->addPoint(deta,dphi);
     edge_index_shape[1]++;

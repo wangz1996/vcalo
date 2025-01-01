@@ -13,7 +13,7 @@ public:
     ~ORTCalculator();
 
     int getScore();
-    void addPoint(const float& x,const float& y,const float& z,const float& e);
+    void addPoint(const float& x,const float& y,const float& z,float& e);
     void reset();
 
 private:

@@ -1,15 +1,15 @@
 #!/bin/bash
 energy=(20 50 100 200 300 500 800 1000 2000 3000 4000 5000)
 DIR=$PWD
-if [ -d jobs_ecal ];then
-	rm -rf jobs_ecal;
+if [ -d jobs ];then
+	rm -rf jobs;
 fi
-mkdir jobs_ecal
+mkdir jobs
 for i in ${energy[@]};do
-	cp -r $DIR/temp $DIR/jobs_ecal/$i
-	cd $DIR/jobs_ecal/$i
-	sed -i "s:EVENTNUMBERHERE:50000:g" $DIR/jobs_ecal/$i/default.yaml
-	sed -i "s:ENERGYHERE:$i:g" $DIR/jobs_ecal/$i/default.yaml
+	cp -r $DIR/temp $DIR/jobs/$i
+	cd $DIR/jobs/$i
+	sed -i "s:EVENTNUMBERHERE:10000:g" $DIR/jobs/$i/default.yaml
+	sed -i "s:ENERGYHERE:$i:g" $DIR/jobs/$i/default.yaml
 	condor_submit run.condor
 	cd $DIR
 done
