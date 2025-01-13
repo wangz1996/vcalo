@@ -7,15 +7,26 @@ import numpy as np
 ecal_id_xy = {0: [-127, -127], 1: [-127, -63.5], 2: [-127, 0], 3: [-127, 63.5], 4: [-127, 127], 5: [-63.5, -127], 6: [-63.5, -63.5], 7: [-63.5, 0], 8: [-63.5, 63.5], 9: [-63.5, 127], 10: [0, -127], 11: [0, -63.5], 12: [0, 0], 13: [0, 63.5], 14: [0, 127], 15: [63.5, -127], 16: [63.5, -63.5], 17: [63.5, 0], 18: [63.5, 63.5], 19: [63.5, 127], 20: [127, -127], 21: [127, -63.5], 22: [127, 0], 23: [127, 63.5], 24: [127, 127]}
 
 
-def calculate_attributes(x,y,z,e):
+def calculate_attributes(x,y,z,_e):
     r_t = np.sqrt(x**2 + y**2) # radius distance
-    theta = np.arctan2(r_t,z)
-    deta = -np.log(np.tan(theta/2))
+    if r_t == 0 and z == 0:
+        theta = 0.
+        deta = 0.
+    else:
+        theta = np.arctan2(r_t,z)
+        theta_safe = np.maximum(theta,1e-8)
+        deta = -np.log(np.tan(theta_safe/2))
     dphi = np.arctan2(y, x)
-    pt = e
-    e = e
-    ptrel = e
-    erel = e
+    _e = 0.1 if _e < 0.1 else _e
+    # pt = _e
+    # e = _e
+    # ptrel = _e
+    # erel = _e
+    pt = np.log(_e)
+    e = np.log(_e)
+    ptrel = np.log(_e)
+    # print(_e)
+    erel = np.log(_e)
     dR = np.sqrt(deta**2 + dphi**2)
     return [deta, dphi, pt, e, ptrel, erel, dR]
 def fill_attributes(deta_list, dphi_list, pt_list, e_list, ptrel_list, erel_list, dR_list, x, y, z, e):
@@ -64,7 +75,12 @@ for event in tree:
         x = ecal_id_xy[id][0]
         y = ecal_id_xy[id][1]
         z = float(0.1)
+        #if(event.ecal_celle[i]<=0.):
+        #    print(event.ecal_celle[i])
         e = event.ecal_celle[i]
+        # if(e<=0.):
+        #     print(e)
+        fill_attributes(deta_list, dphi_list, pt_list, e_list, ptrel_list, erel_list, dR_list, x, y, z, e)
     df_deta = pd.DataFrame(deta_list, columns=["deta"])
     df_dphi = pd.DataFrame(dphi_list, columns=["dphi"])
     df_pt = pd.DataFrame(pt_list, columns=["pt"])

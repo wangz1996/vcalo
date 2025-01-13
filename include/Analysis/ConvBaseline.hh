@@ -9,7 +9,7 @@ public:
         std::cout<<name<<" algorithm constructed"<<std::endl;
     }
     int init(TTree* tin,TTree* tout) override{
-        fTree = tin;
+        fTree = tin->CloneTree();
         fOutTree = tout;
         fTree->SetBranchAddress("conv_e",&conv_e);
 

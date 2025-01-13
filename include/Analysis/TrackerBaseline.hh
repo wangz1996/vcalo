@@ -9,7 +9,7 @@ public:
         std::cout<<name<<" algorithm constructed"<<std::endl;
     }
     int init(TTree* tin,TTree* tout) override{
-        fTree = tin;
+        fTree = tin->CloneTree();
         fOutTree = tout;
         fTree->SetBranchAddress("tracker_hitx",&tracker_hitx);
         fTree->SetBranchAddress("tracker_hity",&tracker_hity);
@@ -31,11 +31,10 @@ public:
         Tracker_hite.clear();
 
         fTree->GetEntry(ientry);
-
-        Tracker_hitx.reserve(tracker_hitx->size());
-        Tracker_hity.reserve(tracker_hity->size());
-        Tracker_hitz.reserve(tracker_hitz->size());
-        Tracker_hite.reserve(tracker_hite->size());
+        Tracker_hitx.resize(tracker_hitx->size());
+        Tracker_hity.resize(tracker_hity->size());
+        Tracker_hitz.resize(tracker_hitz->size());
+        Tracker_hite.resize(tracker_hite->size());
 
         std::copy(tracker_hitx->begin(),tracker_hitx->end(),Tracker_hitx.begin());
         std::copy(tracker_hity->begin(),tracker_hity->end(),Tracker_hity.begin());

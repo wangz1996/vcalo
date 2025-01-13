@@ -46,13 +46,13 @@ Parameter:
                 SigmaAlpha: 0.1
 #Construct Converter
 Converter:
-        build: False
+        build: True
         Crystal-Nonuniformity: 0.05
         light-yield-effect: True
         E-Noise: True
 #Construct Tracker
 Tracker:
-        build: False
+        build: True
 #Construct Calorimeter
 ECAL:
         nCryX: 5
@@ -72,7 +72,7 @@ Source:
         angtype: planar
         particle: gamma
         energy: ENERGYHERE  # Unit is in MeV
-        position: [ 0., 0., -215.]   # Unit is in mm #Converter upper plane -260. mm
+        position: [ 0., 0., -265.]   # Unit is in mm #Converter upper plane -260. mm
         direction: [ 0., 0., 1.]
 #Verbose
 Verbose:
