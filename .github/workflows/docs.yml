@@ -20,6 +20,7 @@ jobs:
 
     - name: Install dependencies
       run: |
+        echo "Install dependencies"
         python -m pip install --upgrade pip
         pip install sphinx sphinx-rtd-theme myst-parser
 
