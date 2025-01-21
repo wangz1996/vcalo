@@ -233,6 +233,7 @@ void Config::Print()
 	fout << "    light-yield-effect: True" << endl;
 	fout << "    E-Noise: True" << endl;
 	fout << "    APD-Ionisation: True" << endl;
+	fout << "    APD-distance: 5" << endl;
 	fout << "    Digi: True" << endl;
 	fout << "\n"
 		 << endl;
