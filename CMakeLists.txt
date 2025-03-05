@@ -29,18 +29,20 @@ find_package(yaml-cpp REQUIRED)
 #----------------------------------------------------------------------------
 # Locate sources and headers for this project
 #
+option(WITH_VANA "Build analysis module (vana)" ON)
+if(WITH_VANA)
+  file(GLOB_RECURSE anasrc ${PROJECT_SOURCE_DIR}/src/Analysis/*.cc)
+  file(GLOB_RECURSE anainc ${PROJECT_SOURCE_DIR}/include/Analysis/*.hh)
+  link_directories(/cvmfs/sft.cern.ch/lcg/views/LCG_105/x86_64-centos7-gcc12-opt/lib)
+endif()
 include_directories(${YAML_CPP_INCLUDE_DIR})
 include_directories(${PROJECT_SOURCE_DIR}/include
                     ${PROJECT_SOURCE_DIR}/include/Simulation
                     ${PROJECT_SOURCE_DIR}/include/Analysis
                     ${Geant4_INCLUDE_DIR}
 		    ${ROOT_INCLUDE_DIR})
-link_directories(/cvmfs/sft.cern.ch/lcg/views/LCG_105/x86_64-centos7-gcc12-opt/lib)
 file(GLOB sources ${PROJECT_SOURCE_DIR}/src/Simulation/*.cc)
 file(GLOB headers ${PROJECT_SOURCE_DIR}/include/Simulation/*.hh)
-
-file(GLOB_RECURSE anasrc ${PROJECT_SOURCE_DIR}/src/Analysis/*.cc)
-file(GLOB_RECURSE anainc ${PROJECT_SOURCE_DIR}/include/Analysis/*.hh)
 
 #----------------------------------------------------------------------------
 # Add the executable, and link it to the Geant4 libraries
@@ -48,8 +50,10 @@ file(GLOB_RECURSE anainc ${PROJECT_SOURCE_DIR}/include/Analysis/*.hh)
 add_executable(vcalo vcalo.cc ${sources} ${headers})
 target_link_libraries(vcalo ${Geant4_LIBRARIES} ${ROOT_LIBRARIES} yaml-cpp )
 
-add_executable(vana vana.cc ${anasrc} ${anainc})
-target_link_libraries(vana ${ROOT_LIBRARIES} yaml-cpp onnxruntime)
+if(WITH_VANA)
+  add_executable(vana vana.cc  ${anasrc} ${anainc})
+  target_link_libraries(vana ${ROOT_LIBRARIES} yaml-cpp onnxruntime)
+endif()
 
 #----------------------------------------------------------------------------
 # Install the executable to 'bin' directory under CMAKE_INSTALL_PREFIX
