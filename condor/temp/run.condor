@@ -1,0 +1,7 @@
+Universe=vanilla
+Executable=run.sh
+getEnv=True
+Error=err.txt
+Log=log.txt
+request_memory = 1024  
+Queue

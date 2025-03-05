@@ -1,0 +1,2 @@
+/home/pengborong/vcalo/apd-distance/temp/run.sh: line 2: cd: PATHHERE: No such file or directory
+/home/pengborong/vcalo/apd-distance/temp/run.sh: line 3: 1050715 Aborted                 (core dumped) vcalo -c default.yaml > log 2>&1

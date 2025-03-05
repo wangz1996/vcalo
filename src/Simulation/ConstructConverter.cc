@@ -86,7 +86,7 @@ void DetectorConstruction::constructConverter()
 	std::cout<<"Starting to construct Converter"<<std::endl;
 
 	// Construct CsI solid;
-	auto solidConv = new G4Box("solidConv", 0.5*Conv_XY, 0.5*Conv_XY, 0.5*Conv_Z);
+	auto solidConv = new G4Box("solidConv", 0.5*Conv_XY, 0.5*Conv_XY, 0.5*(config->conf["Converter"]["Thickness"].as<float>()));
 	//Construct logical CsI;
 	auto logicConv = new G4LogicalVolume(solidConv, CsI, "logicConv");
 	//Construct TiO2 reflector;
