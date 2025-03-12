@@ -60,13 +60,15 @@ class PrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
 
   public:
     virtual void GeneratePrimaries(G4Event*);
-    G4GeneralParticleSource* GetParticleGun() { return fGParticleSource;}; 
+    // G4GeneralParticleSource* GetParticleGun() { return fGParticleSource;}; 
+    G4ParticleGun* GetParticleGun() { return fGParticleSource;}; 
 
   private:
     G4VPrimaryGenerator* HEPEvt;
 //    G4VPrimaryGenerator* particleGun;
     G4bool useHEPEvt;
-    G4GeneralParticleSource * fGParticleSource;
+    // G4GeneralParticleSource * fGParticleSource;
+    G4ParticleGun* fGParticleSource;
     DetectorConstruction* fDetector;
 	Config *config;
 

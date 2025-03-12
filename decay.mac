@@ -1,0 +1,15 @@
+/control/verbose 2
+###/control/cout/ignoreThreadsExcept 0
+/run/verbose 1
+/tracking/verbose 1
+#
+/run/initialize
+#
+# Set a very high time threshold to allow all decays to happen
+/process/had/rdm/thresholdForVeryLongDecayTime 1.0e+60 year
+#
+/gun/particle ion
+/gun/ion 27 60
+#
+/run/printProgress 10
+/run/beamOn 100

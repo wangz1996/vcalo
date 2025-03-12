@@ -70,10 +70,16 @@ int Config::Run()
 	G4StepLimiterPhysics* stepLimitPhys = new G4StepLimiterPhysics();
 	stepLimitPhys->SetApplyToAll(true);
 	physics->RegisterPhysics(stepLimitPhys);
-	physics->ReplacePhysics(new G4EmStandardPhysics_option4());
+	// physics->ReplacePhysics(new G4EmStandardPhysics_option4());
 	if (conf["Global"]["optical"].as<bool>())
 	{
 		physics->RegisterPhysics(new G4OpticalPhysics());
+	}
+	if(conf["Source"]["isradio"].as<bool>()){
+		physics->RegisterPhysics(new G4RadioactiveDecayPhysics());
+		physics->RegisterPhysics(new G4DecayPhysics());
+		physics->RegisterPhysics(new G4IonPhysics());
+		physics->RegisterPhysics(new G4EmStandardPhysics());
 	}
 	runManager->SetUserInitialization(physics);
 
