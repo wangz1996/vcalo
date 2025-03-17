@@ -5,6 +5,8 @@
 #include "G4UImanager.hh"
 #include "Randomize.hh"
 #include "G4OpBoundaryProcess.hh"
+#include "G4GenericBiasingPhysics.hh"
+#include "G4RadioactiveDecay.hh"
 #include "DetectorConstruction.hh"
 #include "G4RadioactiveDecayPhysics.hh"
 #include "G4DecayPhysics.hh"
