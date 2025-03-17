@@ -88,9 +88,9 @@ int Config::Run()
 		physics->RegisterPhysics(new G4IonPhysics());
 
 		// Biasing 需要在所有物理过程注册之后
-		// G4GenericBiasingPhysics* biasingPhysics = new G4GenericBiasingPhysics();
-		// biasingPhysics->Bias("radioactiveDecay");
-		// physics->RegisterPhysics(biasingPhysics);
+		G4GenericBiasingPhysics* biasingPhysics = new G4GenericBiasingPhysics();
+		biasingPhysics->Bias("radioactiveDecay");
+		physics->RegisterPhysics(biasingPhysics);
 	}
 
 	// 初始化 PhysicsList
@@ -119,6 +119,7 @@ int Config::Run()
 	UI->ApplyCommand(G4String("/control/verbose ") + G4String(conf["Verbose"]["control"].as<std::string>()));
 	UI->ApplyCommand(G4String("/tracking/verbose ") + G4String(conf["Verbose"]["tracking"].as<std::string>()));
 	UI->ApplyCommand(G4String("/event/verbose ") + G4String(conf["Verbose"]["event"].as<std::string>()));
+	
 
 	G4VisManager *visManager = new G4VisExecutive();
 	visManager->Initialize();
@@ -143,6 +144,9 @@ int Config::Run()
 	}
 	else
 	{
+		if(conf["Source"]["isradio"].as<bool>()){
+		UI->ApplyCommand("/process/had/rdm/thresholdForVeryLongDecayTime 1.0e+60 year");
+	}
 		runManager->BeamOn(conf["Global"]["beamon"].as<int>());
 	}
 	// job termination

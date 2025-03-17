@@ -1,7 +1,7 @@
 #ifndef CONFIG_HH
 #define CONFIG_HH
 #include "G4RunManager.hh"
-
+#include "G4PhysicsListHelper.hh"
 #include "G4UImanager.hh"
 #include "Randomize.hh"
 #include "G4OpBoundaryProcess.hh"
