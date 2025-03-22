@@ -180,6 +180,9 @@ void SteppingAction::UserSteppingAction(const G4Step* aStep) {
     {
       HistoManager::getInstance().fillAPDHit(copyNo,edep);
     }
+    else if (postStepLVName == "logicACD"){
+      HistoManager::getInstance().fillACDHit(copyNo,edep);
+    }
     else if (postStepLVName == "logicCsI")
     {
       HistoManager::getInstance().fillEcalHit(copyNo,edep);

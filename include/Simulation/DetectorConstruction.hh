@@ -77,9 +77,11 @@ class DetectorConstruction : public G4VUserDetectorConstruction
 	G4VisAttributes* visAttributes;
 	void constructECAL();
 	void constructConverter();
+	void constructACD();
 	void constructTracker();
 	G4SubtractionSolid* constructSolidTiO2();
 	G4SubtractionSolid* constructSolidConvTiO2();
+	G4SubtractionSolid* constructSolidConvSS(); // Support Structure
 	G4VSolid* constructECALShield();
 	G4VSolid* constructCushion();
 	G4SubtractionSolid* constructSolidSiliconeRubber();
@@ -88,6 +90,7 @@ class DetectorConstruction : public G4VUserDetectorConstruction
 	void defineECALParameter();
 	void defineECALMaterial();
 	void defineConvParameter();
+	void defineACDParameter();
 
 	void defineTrackerMaterial();
 	void defineTrackerParameter();
@@ -126,6 +129,13 @@ class DetectorConstruction : public G4VUserDetectorConstruction
     static constexpr double ConvPolish_XY = 15*mm;
     static constexpr double ConvPolish_Z = 0.6*mm;
     static constexpr double Conv_PosZ = -0.5*CsI_Z-160.*mm+0.5*ConvTiO2_Z; //-251.8*mm;
+	static constexpr double ConvSS_XY = 2.*ConvTiO2_XY + 1.*mm;
+	static constexpr double ConvSS_Z = ConvTiO2_Z;
+
+	//ACD
+	static constexpr double ACD_Z = 1.0*cm;
+	static constexpr double ACD_XY = ConvSS_XY + 1.*mm;
+	static constexpr double ACD_PosZ = Conv_PosZ-0.5*ConvTiO2_Z-1.*mm-0.5*ACD_Z;
 
 	//Tracker
 	static constexpr double Hex_XY = 287. * mm;
@@ -148,6 +158,7 @@ class DetectorConstruction : public G4VUserDetectorConstruction
 	G4Material* Si;
 	G4Material* Al;
 	G4Material* Kapton;
+	G4Material* PSD;
 
 	G4Material* carbonFiber;
 	G4Material* siliconeRubber;

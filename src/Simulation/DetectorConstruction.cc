@@ -71,6 +71,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
     // define materials and parameters 
     // some of the materials are used by converter
     defineConvParameter();
+    defineACDParameter();
     defineECALParameter();
     defineECALMaterial();
     defineTrackerParameter();
@@ -87,6 +88,9 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
     }
     if(config->conf["Tracker"]["build"].as<bool>()){
         constructTracker();
+    }
+    if(config->conf["ACD"]["build"].as<bool>()){
+        constructACD();
     }
     return physiWorld;
 }

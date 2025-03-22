@@ -1,2 +1,2 @@
 #!/bin/bash
-vcalo -c default.yaml > log 2>&1
+/bin/time -v -p vcalo -c default.yaml > log 2>&1

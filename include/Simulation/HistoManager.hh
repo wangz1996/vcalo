@@ -103,6 +103,9 @@ class HistoManager
 		void fillEcalHit(const int& copyNo,const G4double &edep);
 		void fillAPDHit(const int& copyNo,const G4double &edep);
 
+	//ACD functions
+		void fillACDHit(const int& copyNo,const G4double &edep);
+
 	//Truth functions
 		void fillPrimary(const G4Track* trk);
 		void setConv(){isconv=1;}
@@ -177,6 +180,9 @@ class HistoManager
 		std::vector<float> tracker_hitz;
 		std::vector<float> tracker_hite;
 		std::vector<int> tracker_trkid;
+
+	//ACD
+		float acd_e;
 
 		//Constants
 		static constexpr std::array<float, 6> TrackerPosZ = {

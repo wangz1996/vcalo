@@ -85,6 +85,9 @@ void HistoManager::book(const std::string &foutname, const bool &savegeo)
     vTree->Branch("ecal_celle", &ecal_celle);
     vTree->Branch("ecal_convtime", &ecal_convtime);
 
+	//ACD
+	vTree->Branch("acd_e", &acd_e);
+
     // Converter
     vTree->Branch("conv_e", &conv_e);
     vTree->Branch("conve_kinematic", &conve_kinematic);
@@ -219,6 +222,10 @@ void HistoManager::fillAPDHit(const int &copyNo, const G4double &edep)
 	apd_mape[copyNo] += edep;
 }
 
+void HistoManager::fillACDHit(const int &copyNo, const G4double &edep){
+	acd_e += edep;
+}
+
 void HistoManager::fillTruthConverter(const int& id,const G4Track *trk)
 {
 	// Kinematic x y z px py pz E theta phi Ke
@@ -282,6 +289,7 @@ void HistoManager::clear()
 	map_track.clear();
 	tracker_hitmap.clear();
 	conv_e = 0.;
+	acd_e = 0.;
 	init_x = 0.;
 	init_y = 0.;
 	init_z = 0.;

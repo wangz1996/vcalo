@@ -156,9 +156,11 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event *anEvent)
 {
   if (use_gps)
   {
-    double momentum = hspec->GetRandom(); // GeV
+    if(use_spec){
+      double momentum = hspec->GetRandom(); // GeV
     double energy = sqrt(momentum * momentum + par_mass * par_mass) - par_mass; // GeV
     fenedist->SetMonoEnergy(energy * GeV);
+    }
     fGParticleSource->GeneratePrimaryVertex(anEvent);
   }
   else
