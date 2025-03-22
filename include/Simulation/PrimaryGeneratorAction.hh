@@ -43,6 +43,8 @@
 #include "G4ParticleDefinition.hh"
 #include "G4ParticleTable.hh"
 #include "HistoManager.hh"
+#include "TH1D.h"
+#include "TFile.h"
 #include "Config.hh"
 
 class G4VPrimaryGenerator;
@@ -72,7 +74,13 @@ class PrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
   bool use_gps=true;
   int Z;
   int A;
-
+  bool use_spec=false;
+  float par_mass=0.;
+  TH1D *hspec;
+  std::string specfile;
+  std::string spechist;
+  G4SingleParticleSource* fCS;
+  G4SPSEneDistribution* fenedist;
   public:
 };
 

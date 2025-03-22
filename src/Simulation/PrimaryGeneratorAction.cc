@@ -64,7 +64,8 @@ PrimaryGeneratorAction::PrimaryGeneratorAction(DetectorConstruction *det, Config
   particleGun = new G4ParticleGun(1);
   if (use_gps)
   {
-    auto fCS = fGParticleSource->GetCurrentSource();
+    fCS = fGParticleSource->GetCurrentSource();
+    fenedist = fCS->GetEneDist();
     std::string angtype = config->conf["Source"]["angtype"].as<std::string>();
     if (angtype == "iso")
     {
@@ -82,6 +83,7 @@ PrimaryGeneratorAction::PrimaryGeneratorAction(DetectorConstruction *det, Config
     }
     G4ParticleTable* particleTable = G4ParticleTable::GetParticleTable();
     G4ParticleDefinition *particle = particleTable->FindParticle(config->conf["Source"]["particle"].as<std::string>());
+    par_mass = particle->GetPDGMass()/1000.; // GeV
     fCS->SetParticleDefinition(particle);
     fCS->GetEneDist()->SetEnergyDisType("Mono");
     fCS->GetEneDist()->SetMonoEnergy(config->conf["Source"]["energy"].as<double>());
@@ -119,6 +121,25 @@ PrimaryGeneratorAction::PrimaryGeneratorAction(DetectorConstruction *det, Config
     std::vector<double> gun_direction = config->conf["Source"]["direction"].as<std::vector<double>>();
     particleGun->SetParticleMomentumDirection(G4ThreeVector(gun_direction.at(0), gun_direction.at(1), gun_direction.at(2)));
   }
+  //If using spectrum
+  use_spec = config->conf["Global"]["usespec"].as<bool>();
+  if(use_spec){
+    specfile = config->conf["Global"]["specfile"].as<std::string>();
+    spechist = config->conf["Global"]["spechist"].as<std::string>();
+    TFile *file=TFile::Open(TString(specfile),"READ");
+    if(!file){
+      std::cerr<<"Cannot open spectrum file: "<<specfile<<std::endl;
+      exit(1);
+    }
+    hspec = (TH1D*)file->Get(TString(spechist));
+    if(!hspec){
+      std::cerr<<"Cannot find spectrum histogram: "<<spechist<<std::endl;
+      exit(1);
+    }
+    hspec->SetDirectory(0);
+    file->Close();
+    delete file;
+  }
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
@@ -133,25 +154,11 @@ PrimaryGeneratorAction::~PrimaryGeneratorAction()
 
 void PrimaryGeneratorAction::GeneratePrimaries(G4Event *anEvent)
 {
-  // set random particle  position
-  //
-  // create vertex
-  //
-  // auto fCS = fGParticleSource->GetCurrentSource();
-  // if(config->conf["Source"]["isradio"].as<bool>()){
-  //   G4int Z = config->conf["Source"]["radio"]["Z"].as<int>();
-  //   G4int A = config->conf["Source"]["radio"]["A"].as<int>();
-  //   G4double exciteEnergy = 0.*keV;
-  //   G4double ionCharge = 0.*eplus;
-  //   G4ParticleDefinition* ion = G4IonTable::GetIonTable()->GetIon(Z,A,exciteEnergy);
-  //   ion->SetPDGStable(false);
-  //   std::cout<<"Using particle: "<<ion->GetParticleName()<<std::endl;
-  //   fCS->SetParticleDefinition(ion);
-  //   fCS->SetParticleCharge(ionCharge);
-
-  // }
   if (use_gps)
   {
+    double momentum = hspec->GetRandom(); // GeV
+    double energy = sqrt(momentum * momentum + par_mass * par_mass) - par_mass; // GeV
+    fenedist->SetMonoEnergy(energy * GeV);
     fGParticleSource->GeneratePrimaryVertex(anEvent);
   }
   else

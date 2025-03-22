@@ -193,7 +193,9 @@ void Config::Print()
 	fout << "    seed: 100" << endl;
 	fout << "    usemac: False # Currently not applicable" << endl;
 	fout << "    mac: ./primaryproton.mac" << endl;
-	fout << "    #mac: ./secondaryproton.mac" << endl;
+	fout << "    usespec: False # Use spectrum for incident energy" << endl;
+	fout << "    specfile: ./spec.root" << endl;
+	fout << "    spechist: hspec" << endl;
 	fout << "    optical: False" << endl;
 	fout << "    #output: ./priproton.root # Output root file name" << endl;
 	fout << "    #output: ./secproton.root # Output root file name" << endl;
