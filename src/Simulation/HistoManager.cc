@@ -126,16 +126,16 @@ void HistoManager::fill(const int &_eventNo)
 		{
 			// std::cout<<"Light yield effect"<<std::endl;
 
-			double yield = ecell * 1000.; // pe
+			double yield = ecell * 5500.; // pe
 			double apdyield = apdcell * 1e6 / 3.6;
-			yield = yield + rand->Gaus(0, TMath::Sqrt(yield)) + (m_cfg.ECAL_ENoise ? rand->Gaus(0, 1000.) : 0.) + (m_cfg.ECAL_APDIon && apdyield > 0. ? rand->Gaus(apdyield, TMath::Sqrt(apdyield)) : 0.);
-			ecell = yield / 1000.; // MeV
+			yield = yield + rand->Gaus(0, TMath::Sqrt(yield)) + (m_cfg.ECAL_ENoise ? rand->Gaus(0, 550.) : 0.) + (m_cfg.ECAL_APDIon && apdyield > 0. ? rand->Gaus(apdyield, TMath::Sqrt(apdyield)) : 0.);
+			ecell = yield / 5500.; // MeV
 		}
 		if (m_cfg.ECAL_Digi)
 		{
 			ecell = ecell * 0.999841;
 		}
-		ecell = ecell > 3. ? ecell : 0.;
+		// ecell = ecell > 3. ? ecell : 0.;
 		ecal_cellid.emplace_back(i.first);
 		ecal_celle.emplace_back(ecell);
 		apd_celle.emplace_back(apdcell);

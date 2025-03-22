@@ -67,14 +67,33 @@ int Config::Run()
 	runManager->SetUserInitialization(detector);
 
 	G4VModularPhysicsList *physics = new QGSP_BERT();
-	G4StepLimiterPhysics* stepLimitPhys = new G4StepLimiterPhysics();
-	stepLimitPhys->SetApplyToAll(true);
+
+	// StepLimiter 可能影响 radioactiveDecay，建议只对特定粒子生效
+	G4StepLimiterPhysics *stepLimitPhys = new G4StepLimiterPhysics();
+	stepLimitPhys->SetApplyToAll(false); // 只对非放射性粒子生效
 	physics->RegisterPhysics(stepLimitPhys);
-	physics->ReplacePhysics(new G4EmStandardPhysics_option4());
+
+	// 可选：如果涉及光学过程
 	if (conf["Global"]["optical"].as<bool>())
 	{
 		physics->RegisterPhysics(new G4OpticalPhysics());
 	}
+
+	if (conf["Source"]["isradio"].as<bool>())
+	{
+		physics->RegisterPhysics(new G4DecayPhysics());
+		physics->RegisterPhysics(new G4RadioactiveDecayPhysics()); // 自动包含 G4RadioactiveDecay
+
+		// 确保离子物理过程被正确加载
+		physics->RegisterPhysics(new G4IonPhysics());
+
+		// Biasing 需要在所有物理过程注册之后
+		G4GenericBiasingPhysics* biasingPhysics = new G4GenericBiasingPhysics();
+		biasingPhysics->Bias("radioactiveDecay");
+		physics->RegisterPhysics(biasingPhysics);
+	}
+
+	// 初始化 PhysicsList
 	runManager->SetUserInitialization(physics);
 
 	// SteppingVerbose* stepV = new SteppingVerbose();
@@ -100,6 +119,7 @@ int Config::Run()
 	UI->ApplyCommand(G4String("/control/verbose ") + G4String(conf["Verbose"]["control"].as<std::string>()));
 	UI->ApplyCommand(G4String("/tracking/verbose ") + G4String(conf["Verbose"]["tracking"].as<std::string>()));
 	UI->ApplyCommand(G4String("/event/verbose ") + G4String(conf["Verbose"]["event"].as<std::string>()));
+	
 
 	G4VisManager *visManager = new G4VisExecutive();
 	visManager->Initialize();
@@ -122,9 +142,13 @@ int Config::Run()
 		std::cout << "Executing macro file..." << std::endl;
 		UI->ExecuteMacroFile(conf["Global"]["mac"].as<std::string>().c_str());
 	}
-
-	runManager->BeamOn(conf["Global"]["beamon"].as<int>());
-
+	else
+	{
+		if(conf["Source"]["isradio"].as<bool>()){
+		UI->ApplyCommand("/process/had/rdm/thresholdForVeryLongDecayTime 1.0e+60 year");
+	}
+		runManager->BeamOn(conf["Global"]["beamon"].as<int>());
+	}
 	// job termination
 	//
 	delete runManager;
@@ -169,7 +193,9 @@ void Config::Print()
 	fout << "    seed: 100" << endl;
 	fout << "    usemac: False # Currently not applicable" << endl;
 	fout << "    mac: ./primaryproton.mac" << endl;
-	fout << "    #mac: ./secondaryproton.mac" << endl;
+	fout << "    usespec: False # Use spectrum for incident energy" << endl;
+	fout << "    specfile: ./spec.root" << endl;
+	fout << "    spechist: hspec" << endl;
 	fout << "    optical: False" << endl;
 	fout << "    #output: ./priproton.root # Output root file name" << endl;
 	fout << "    #output: ./secproton.root # Output root file name" << endl;
@@ -207,7 +233,7 @@ void Config::Print()
 	fout << "        SigmaAlpha: 0.1" << endl;
 	fout << "\n"
 		 << endl;
-	
+
 	fout << "#Construct Tracker" << endl;
 	fout << "Tracker:" << endl;
 	fout << "    build: True" << endl;
@@ -240,6 +266,10 @@ void Config::Print()
 
 	fout << "#Particle source setup" << endl;
 	fout << "Source:" << endl;
+	fout << "    isradio: False" << endl;
+	fout << "    radio:" << endl;
+	fout << "        Z: 27" << endl;
+	fout << "        A: 60" << endl;
 	fout << "    type: Point" << endl;
 	fout << "    size: 15.0 # For Plane type source only (cm)" << endl;
 	fout << "    angtype: planar" << endl;

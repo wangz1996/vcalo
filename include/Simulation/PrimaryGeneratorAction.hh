@@ -43,6 +43,8 @@
 #include "G4ParticleDefinition.hh"
 #include "G4ParticleTable.hh"
 #include "HistoManager.hh"
+#include "TH1D.h"
+#include "TFile.h"
 #include "Config.hh"
 
 class G4VPrimaryGenerator;
@@ -61,20 +63,25 @@ class PrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
   public:
     virtual void GeneratePrimaries(G4Event*);
     G4GeneralParticleSource* GetParticleGun() { return fGParticleSource;}; 
+    // G4ParticleGun* GetParticleGun() { return fGParticleSource;}; 
 
   private:
-    G4VPrimaryGenerator* HEPEvt;
-//    G4VPrimaryGenerator* particleGun;
-    G4bool useHEPEvt;
+   G4ParticleGun* particleGun;
     G4GeneralParticleSource * fGParticleSource;
     DetectorConstruction* fDetector;
 	Config *config;
-
+  bool use_gun=false;
+  bool use_gps=true;
+  int Z;
+  int A;
+  bool use_spec=false;
+  float par_mass=0.;
+  TH1D *hspec;
+  std::string specfile;
+  std::string spechist;
+  G4SingleParticleSource* fCS;
+  G4SPSEneDistribution* fenedist;
   public:
-    inline void SetHEPEvtGenerator(G4bool f)
-    { useHEPEvt = f;}
-    inline G4bool GetHEPEvtGenerator()
-    { return useHEPEvt;}
 };
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......

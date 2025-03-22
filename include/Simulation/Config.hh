@@ -1,14 +1,26 @@
 #ifndef CONFIG_HH
 #define CONFIG_HH
 #include "G4RunManager.hh"
-
+#include "G4PhysicsListHelper.hh"
 #include "G4UImanager.hh"
 #include "Randomize.hh"
 #include "G4OpBoundaryProcess.hh"
+#include "G4GenericBiasingPhysics.hh"
+#include "G4RadioactiveDecay.hh"
 #include "DetectorConstruction.hh"
+#include "G4RadioactiveDecayPhysics.hh"
+#include "G4DecayPhysics.hh"
+#include "G4EmStandardPhysics.hh"
 #include "TList.h"
 #include "TPolyLine3D.h"
 // #include "PhysicsList.hh"
+#include "G4BosonConstructor.hh"
+#include "G4LeptonConstructor.hh"
+#include "G4MesonConstructor.hh"
+#include "G4BosonConstructor.hh"
+#include "G4BaryonConstructor.hh"
+#include "G4IonConstructor.hh"
+#include "G4ShortLivedConstructor.hh"
 #include "SteppingVerbose.hh"
 #include "RunAction.hh"
 #include "EventAction.hh"
@@ -26,6 +38,7 @@
 #include "G4OpticalPhysics.hh"
 #include "G4OpticalPhoton.hh"
 #include "G4StepLimiterPhysics.hh"
+#include "G4IonPhysics.hh"
 #include "G4UIExecutive.hh"
 #include <iostream>
 #include <string>
