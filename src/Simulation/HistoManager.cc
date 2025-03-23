@@ -46,6 +46,7 @@ HistoManager &HistoManager::getInstance()
 void HistoManager::bindConfig(Config* c){
 	m_cfg.Conv_ENoise = c->conf["Converter"]["E-Noise"].as<bool>();
 	m_cfg.Conv_NonUniformity = c->conf["Converter"]["Crystal-Nonuniformity"].as<float>();
+	m_cfg.CsI_LightYield = c->conf["ECAL"]["light-yield"].as<float>();
 
 	m_cfg.ECAL_NonUniformity = c->conf["ECAL"]["Crystal-Nonuniformity"].as<float>();
 	m_cfg.ECAL_LightYield = c->conf["ECAL"]["light-yield-effect"].as<bool>();
@@ -128,32 +129,37 @@ void HistoManager::fill(const int &_eventNo)
 		if (m_cfg.ECAL_LightYield && ecell > 0.)
 		{
 			// std::cout<<"Light yield effect"<<std::endl;
-
-			double yield = ecell * 5500.; // pe
+			double yield = ecell * m_cfg.CsI_LightYield; // pe
 			double apdyield = apdcell * 1e6 / 3.6;
-			yield = yield + rand->Gaus(0, TMath::Sqrt(yield)) + (m_cfg.ECAL_ENoise ? rand->Gaus(0, 550.) : 0.) + (m_cfg.ECAL_APDIon && apdyield > 0. ? rand->Gaus(apdyield, TMath::Sqrt(apdyield)) : 0.);
-			ecell = yield / 5500.; // MeV
+			yield = yield + rand->Gaus(0, TMath::Sqrt(yield)) + (m_cfg.ECAL_ENoise ? rand->Gaus(0, m_cfg.CsI_LightYield/10.) : 0.) + (m_cfg.ECAL_APDIon && apdyield > 0. ? rand->Gaus(apdyield, TMath::Sqrt(apdyield)) : 0.);
+			ecell = yield / m_cfg.CsI_LightYield; // MeV
 		}
 		if (m_cfg.ECAL_Digi)
 		{
 			ecell = ecell * 0.999841;
 		}
-		// ecell = ecell > 3. ? ecell : 0.;
+		ecell = ecell > 3. ? ecell : 0.;
 		ecal_cellid.emplace_back(i.first);
 		ecal_celle.emplace_back(ecell);
 		apd_celle.emplace_back(apdcell);
 	}
 	if (m_cfg.Conv_NonUniformity != 0.0)
 	{
-		conv_e = conv_e + rand->Gaus(0, m_cfg.Conv_NonUniformity * conv_e);
+		for(auto index:{0,1,2,3}){
+			conv_e[index] = conv_e[index] + rand->Gaus(0, m_cfg.Conv_NonUniformity * conv_e[index]);
+		}
 	}
-	if (m_cfg.Conv_LightYield && conv_e > 0.)
+	if (m_cfg.Conv_LightYield)
 	{
-		double yield = conv_e * 2000.; // pe
-		yield = yield + rand->Gaus(0, TMath::Sqrt(yield)) + (m_cfg.Conv_ENoise ? rand->Gaus(0, 1000.) : 0.);
-		conv_e = yield / 2000.; // MeV
+		for(auto index:{0,1,2,3}){
+			double yield = conv_e[index] * 2000.; // pe
+			yield = yield + rand->Gaus(0, TMath::Sqrt(yield)) + (m_cfg.Conv_ENoise ? rand->Gaus(0, 1000.) : 0.);
+			conv_e[index] = yield / 2000.; // MeV
+		}
 	}
-	conv_e = conv_e > 3. ? conv_e : 0.;
+	for(auto index:{0,1,2,3}){
+		conv_e[index] = conv_e[index] > 3. ? conv_e[index] : 0.;
+	}
 	eventNo = _eventNo;
 	// std::cout<<"Ntracks: "<<map_track.size()<<std::endl;
 	for (auto i : map_track)
@@ -217,13 +223,17 @@ void HistoManager::fillTrackerHit(const int &tracker_id, const float &posX, cons
 	tracker_hitmap[zid].insert(std::move(hit));
 }
 
+void HistoManager::fillConvHit(const int& copyNo, const G4double &edep){
+	conv_e.at(copyNo) += edep;
+}
+
 void HistoManager::fillAPDHit(const int &copyNo, const G4double &edep)
 {
 	apd_mape[copyNo] += edep;
 }
 
 void HistoManager::fillACDHit(const int &copyNo, const G4double &edep){
-	acd_e += edep;
+	acd_e.at(copyNo) += edep;
 }
 
 void HistoManager::fillTruthConverter(const int& id,const G4Track *trk)
@@ -280,6 +290,10 @@ void HistoManager::clear()
 	std::vector<float>().swap(tracker_hity);
 	std::vector<float>().swap(tracker_hitz);
 	std::vector<float>().swap(tracker_hite);
+	std::vector<float>().swap(conv_e);
+	std::vector<float>().swap(acd_e);
+	acd_e.assign(2,0.0f);
+	conv_e.assign(4,0.0f);
 	apd_nphoton = 0;
 	isconv = 0;
 	conve_inECAL = 0;
@@ -288,8 +302,6 @@ void HistoManager::clear()
 	apd_mape.clear();
 	map_track.clear();
 	tracker_hitmap.clear();
-	conv_e = 0.;
-	acd_e = 0.;
 	init_x = 0.;
 	init_y = 0.;
 	init_z = 0.;

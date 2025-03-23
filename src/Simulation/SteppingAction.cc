@@ -181,7 +181,9 @@ void SteppingAction::UserSteppingAction(const G4Step* aStep) {
       HistoManager::getInstance().fillAPDHit(copyNo,edep);
     }
     else if (postStepLVName == "logicACD"){
-      HistoManager::getInstance().fillACDHit(copyNo,edep);
+      //physicACD0
+      int acd_number = postStepPVName[9]-'0';
+      HistoManager::getInstance().fillACDHit(acd_number,edep);
     }
     else if (postStepLVName == "logicCsI")
     {
@@ -189,7 +191,9 @@ void SteppingAction::UserSteppingAction(const G4Step* aStep) {
     }
     else if (postStepLVName == "logicConv")
     {
-      HistoManager::getInstance().fillConvHit(edep);
+      //physicConv
+      int conv_number = postStepPVName[10]-'0';
+      HistoManager::getInstance().fillConvHit(conv_number,edep);
     }
     else if (postStepLVName == "logicTracker")
     {

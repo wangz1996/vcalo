@@ -135,7 +135,8 @@ class DetectorConstruction : public G4VUserDetectorConstruction
 	//ACD
 	static constexpr double ACD_Z = 1.0*cm;
 	static constexpr double ACD_XY = ConvSS_XY + 1.*mm;
-	static constexpr double ACD_PosZ = Conv_PosZ-0.5*ConvTiO2_Z-1.*mm-0.5*ACD_Z;
+	static constexpr double ACD0_PosZ = Conv_PosZ-0.5*ConvTiO2_Z-1.*mm-1.5*ACD_Z;
+	static constexpr double ACD1_PosZ = Conv_PosZ-0.5*ConvTiO2_Z-1.*mm-0.5*ACD_Z;
 
 	//Tracker
 	static constexpr double Hex_XY = 287. * mm;

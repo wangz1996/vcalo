@@ -263,6 +263,7 @@ void Config::Print()
 	fout << "    build: True" << endl;
 	fout << "    Crystal-Nonuniformity: 0.02" << endl;
 	fout << "    light-yield-effect: True" << endl;
+	fout << "    light-yield: 1500" << endl;
 	fout << "    E-Noise: True" << endl;
 	fout << "    APD-Ionisation: True" << endl;
 	fout << "    APD-distance: 5" << endl;

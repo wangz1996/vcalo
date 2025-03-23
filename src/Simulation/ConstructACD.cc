@@ -64,8 +64,9 @@ void DetectorConstruction::constructACD()
 	//Construct ACD solids
     auto solidACD = new G4Box("solidACD", 0.5*ACD_XY, 0.5*ACD_XY, 0.5*ACD_Z);
     auto logicACD = new G4LogicalVolume(solidACD, PSD, "logicACD");
-    auto physicACD = new G4PVPlacement(0, G4ThreeVector(0,0,ACD_PosZ), logicACD, "physicACD", logicWorld, false, 0, checkOverlaps);
-    std::cout<<"ACD constructed at : "<<ACD_PosZ<<std::endl;
-    std::cout<<"Front of ACD at : "<<ACD_PosZ-0.5*ACD_Z<<std::endl;
+    auto physicACD0 = new G4PVPlacement(0, G4ThreeVector(0,0,ACD0_PosZ), logicACD, "physicACD0", logicWorld, false, 0, checkOverlaps);
+    auto physicACD1 = new G4PVPlacement(0, G4ThreeVector(0,0,ACD1_PosZ), logicACD, "physicACD1", logicWorld, false, 0, checkOverlaps);
+
+    std::cout<<"Front of ACD at : "<<ACD1_PosZ-0.5*ACD_Z<<std::endl;
 }
 

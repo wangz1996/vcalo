@@ -79,6 +79,7 @@ class HistoManager
 			bool Conv_ENoise=true; //Converter electronic noise
 			float Conv_NonUniformity=0.; //Converter Non uniformity
 			bool Conv_LightYield=true; //Converter Light yield effect
+			float CsI_LightYield=1500.; //CsI Light yield
 			//ECAL configs
 			float ECAL_NonUniformity=0.; // ECAL crystal non-uniformity
 			bool ECAL_LightYield=true; //ECAL Light yield effect
@@ -117,7 +118,7 @@ class HistoManager
 		int getPinECAL(){return convp_inECAL;}
 		
 	//Converter functions
-		void fillConvHit(const G4double& edep){conv_e+=edep;}
+		void fillConvHit(const int& copyNo,const G4double& edep);
 		
 	//Tracker functions
 		void fillTracks(const int& track_id,const G4ThreeVector& pos,const int& color=0);
@@ -172,7 +173,8 @@ class HistoManager
 		std::vector<float> ecal_convtime;
 		std::map<int,float> ecal_mape;
 		std::map<int,float> apd_mape;
-		float conv_e;
+		std::vector<float> conv_e;
+		float csi_ly; //CsI Light Yield /MeV
 		TList tracks;
 		std::map<int, TPolyLine3D*> map_track;
 		std::vector<float> tracker_hitx;
@@ -182,7 +184,7 @@ class HistoManager
 		std::vector<int> tracker_trkid;
 
 	//ACD
-		float acd_e;
+		std::vector<float> acd_e;
 
 		//Constants
 		static constexpr std::array<float, 6> TrackerPosZ = {
