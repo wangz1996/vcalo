@@ -334,7 +334,9 @@ void DetectorConstruction::constructECAL()
         	G4VPhysicalVolume* physicCsI = new G4PVPlacement(0, G4ThreeVector(x, y, 0.), logicCsI, CsIName, logicWorld, false, CopyNo, true);
 			// std::cout<<"CsI : "<<CopyNo<<" "<<x<<" "<<y<<std::endl;
         	G4VPhysicalVolume* physicTiO2 = new G4PVPlacement(0, G4ThreeVector(x, y, 0.), logicTiO2, TiO2Name, logicWorld, false, CopyNo, true);
-			G4VPhysicalVolume* physicAPD = new G4PVPlacement(0, G4ThreeVector(x, y, CsI_Z/2. + config->conf["ECAL"]["APD-distance"].as<float>()*mm +0.5*APD_Z), logicAPD, APDName, logicWorld, false, CopyNo, true);
+			G4double APD_PosZ = CsI_Z/2. + config->conf["ECAL"]["APD-distance"].as<float>()*mm +0.5*APD_Z;
+			G4VPhysicalVolume* physicAPD = new G4PVPlacement(0, G4ThreeVector(x, y, APD_PosZ), logicAPD, APDName, logicWorld, false, CopyNo, true);
+			std::cout<<"Back of APD at: "<<APD_PosZ + 0.5*APD_Z<<std::endl;
 			if(config->conf["Global"]["optical"].as<bool>()){
 				// Create logical border surface
 				auto logicBorderSurface = new G4LogicalBorderSurface("CsITiO2BorderSurface_" + std::to_string(CopyNo), physicCsI, physicTiO2, CsISurface);

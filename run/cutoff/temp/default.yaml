@@ -92,7 +92,7 @@ Source:
     angtype: iso
     particle: proton
     energy: 100 # Unit is in MeV
-    position: [0.0, 0.0, -282.0] # Unit is in mm 
+    position: [0.0, 0.0, POSITIONHERE.0] # Unit is in mm 
     direction: [0.0, 0.0, 1.0]
 
 

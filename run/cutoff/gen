@@ -9,10 +9,14 @@ for ((i=0;i<100;i++));do
 	sed -i "s:NUMBERHERE:1000000:g" $DIR/jobs/east_$i/default.yaml
 	sed -i "s:SEEDHERE:$i:g" $DIR/jobs/east_$i/default.yaml
 	sed -i "s:SPECHISTHERE:he:g" $DIR/jobs/east_$i/default.yaml
+	sed -i "s:ABORTDIRECTIONHERE:1:g" $DIR/jobs/east_$i/default.yaml
+	sed -i "s:POSITIONHERE:110:g" $DIR/jobs/east_$i/default.yaml
 	cp -r $DIR/temp $DIR/jobs/west_$i
 	sed -i "s:NUMBERHERE:1000000:g" $DIR/jobs/west_$i/default.yaml
 	sed -i "s:SEEDHERE:$i:g" $DIR/jobs/west_$i/default.yaml
 	sed -i "s:SPECHISTHERE:hw:g" $DIR/jobs/west_$i/default.yaml
+	sed -i "s:ABORTDIRECTIONHERE:1:g" $DIR/jobs/west_$i/default.yaml
+	sed -i "s:POSITIONHERE:110:g" $DIR/jobs/west_$i/default.yaml
 	cd $DIR/jobs/east_$i
 	condor_submit run.condor
 	cd $DIR/jobs/west_$i
