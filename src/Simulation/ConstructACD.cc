@@ -67,6 +67,6 @@ void DetectorConstruction::constructACD()
     auto physicACD0 = new G4PVPlacement(0, G4ThreeVector(0,0,ACD0_PosZ), logicACD, "physicACD0", logicWorld, false, 0, checkOverlaps);
     auto physicACD1 = new G4PVPlacement(0, G4ThreeVector(0,0,ACD1_PosZ), logicACD, "physicACD1", logicWorld, false, 0, checkOverlaps);
 
-    std::cout<<"Front of ACD at : "<<ACD1_PosZ-0.5*ACD_Z<<std::endl;
+    std::cout<<"Front of ACD at : "<<ACD0_PosZ-0.5*ACD_Z<<std::endl;
 }
 

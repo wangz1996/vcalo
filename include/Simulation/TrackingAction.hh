@@ -68,7 +68,7 @@ class TrackingAction : public G4UserTrackingAction {
   RunAction* fRun;
   EventAction*        fEvent;
   Config*		config;
-    
+  int fAbort_direction;
   G4double fCharge, fBaryonNo, fMass;
   G4double  fParticleEnCode;        
   G4double fTrackEdep;

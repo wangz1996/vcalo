@@ -49,6 +49,7 @@ TrackingAction::TrackingAction(RunAction*runAct,EventAction* EA,Config *c)
    fRun(runAct),fEvent(EA),
    fFullChain(true),config(c)
 {
+  fAbort_direction = c->conf["Global"]["Abort_direction"].as<int>();
   //fSteppingVerbose_Tracking = new SteppingVerbose();
 }
 
@@ -68,8 +69,9 @@ TrackingAction::~TrackingAction()
   Run* run 
     = static_cast<Run*>(G4RunManager::GetRunManager()->GetCurrentRun());
   */   
-  if (track->GetParentID() == 0) {
-    if (track->GetMomentum().z() < 0) {
+  if (__builtin_expect(track->GetParentID() == 0,0)){
+    bool isAbort= (fAbort_direction > 0 && track->GetMomentum().z() > 0) || (fAbort_direction < 0 && track->GetMomentum().z() < 0);
+    if (isAbort) {
       HistoManager::getInstance().setStatusCode(0);
       const_cast<G4Track*>(track)->SetTrackStatus(fStopAndKill);
       G4RunManager::GetRunManager()->AbortEvent();

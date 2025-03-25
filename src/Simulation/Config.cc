@@ -204,6 +204,7 @@ void Config::Print()
 	fout << "    savegeo: False" << endl;
 	fout << "    savetrack: 1" << endl;
 	fout << "    trackEnergy_threshold: 2.0" << endl;
+	fout << "    Abort_direction: 1" << endl;
 	fout << "\n"
 		 << endl;
 

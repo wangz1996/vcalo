@@ -5,12 +5,14 @@ if [ -d jobs ];then
 fi
 mkdir jobs
 for ((i=0;i<100;i++));do
-	cp -r $DIR/east $DIR/jobs/east_$i
-	sed -i "s:NUMBERHERE:10000:g" $DIR/jobs/east_$i/default.yaml
+	cp -r $DIR/temp $DIR/jobs/east_$i
+	sed -i "s:NUMBERHERE:1000000:g" $DIR/jobs/east_$i/default.yaml
 	sed -i "s:SEEDHERE:$i:g" $DIR/jobs/east_$i/default.yaml
-	cp -r $DIR/west $DIR/jobs/west_$i
-	sed -i "s:NUMBERHERE:10000:g" $DIR/jobs/west_$i/default.yaml
+	sed -i "s:SPECHISTHERE:he:g" $DIR/jobs/east_$i/default.yaml
+	cp -r $DIR/temp $DIR/jobs/west_$i
+	sed -i "s:NUMBERHERE:1000000:g" $DIR/jobs/west_$i/default.yaml
 	sed -i "s:SEEDHERE:$i:g" $DIR/jobs/west_$i/default.yaml
+	sed -i "s:SPECHISTHERE:hw:g" $DIR/jobs/west_$i/default.yaml
 	cd $DIR/jobs/east_$i
 	condor_submit run.condor
 	cd $DIR/jobs/west_$i

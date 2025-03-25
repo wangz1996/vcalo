@@ -11,7 +11,7 @@ Global:
     mac: ./primaryproton.mac
     usespec: True # Use spectrum for incident energy
     specfile: ./cutoff_hist.root
-    spechist: hw
+    spechist: SPECHISTHERE
     optical: False
     #output: ./priproton.root # Output root file name
     #output: ./secproton.root # Output root file name
@@ -20,7 +20,7 @@ Global:
     savegeo: False
     savetrack: 1
     trackEnergy_threshold: 2.0
-
+    Abort_direction: ABORTDIRECTIONHERE
 
 Parameter:
     CsI:
@@ -74,6 +74,7 @@ ECAL:
     build: True
     Crystal-Nonuniformity: 0.02
     light-yield-effect: True
+    light-yield: 1500
     E-Noise: True
     APD-Ionisation: True
     APD-distance: 5
@@ -91,7 +92,7 @@ Source:
     angtype: iso
     particle: proton
     energy: 100 # Unit is in MeV
-    position: [0.0, 0.0, -272.0] # Unit is in mm #Converter upper plane -287.5 mm
+    position: [0.0, 0.0, -282.0] # Unit is in mm 
     direction: [0.0, 0.0, 1.0]
 
 
