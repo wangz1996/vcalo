@@ -196,6 +196,7 @@ void Config::Print()
 	fout << "    usespec: False # Use spectrum for incident energy" << endl;
 	fout << "    specfile: ./spec.root" << endl;
 	fout << "    spechist: hspec" << endl;
+	fout << "    usespherespec: False # Use sphere spectrum for simulation" << endl;
 	fout << "    optical: False" << endl;
 	fout << "    #output: ./priproton.root # Output root file name" << endl;
 	fout << "    #output: ./secproton.root # Output root file name" << endl;
@@ -285,6 +286,8 @@ void Config::Print()
 	fout << "    energy: 100 # Unit is in MeV" << endl;
 	fout << "    position: [0.0, 0.0, -289.0] # Unit is in mm #Converter upper plane -287.5 mm" << endl;
 	fout << "    direction: [0.0, 0.0, 1.0]" << endl;
+	fout << "    spec_anglefile: ./spec_thetaarc.txt" << endl;
+	fout << "    spec_anglehist: ./spec_thetaarc.root" << endl;
 	fout << "\n"
 		 << endl;
 

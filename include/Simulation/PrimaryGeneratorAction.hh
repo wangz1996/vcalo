@@ -34,7 +34,10 @@
 
 #ifndef PrimaryGeneratorAction_h
 #define PrimaryGeneratorAction_h 1
-
+#include <chrono>
+#include <iomanip>
+#include <ctime>
+#include <cmath>
 #include "G4VUserPrimaryGeneratorAction.hh"
 #include "G4ParticleGun.hh"
 #include "globals.hh"
@@ -72,15 +75,24 @@ class PrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
 	Config *config;
   bool use_gun=false;
   bool use_gps=true;
+  bool use_spectrum=false;
+  bool use_spherespec=false;
+  int sphere_count=0;
   int Z;
   int A;
   bool use_spec=false;
   float par_mass=0.;
+  const float spec_R=50.;
   TH1D *hspec;
   std::string specfile;
   std::string spechist;
+  std::string spec_anglefile;
+  std::string spec_anglehist;
   G4SingleParticleSource* fCS;
   G4SPSEneDistribution* fenedist;
+  std::unordered_map<int,std::pair<float,float>> umap_index_thetaarc;
+  std::unordered_map<int,TH1D*> umap_index_anglehist;
+  TRandom3 rnd;
   public:
 };
 

@@ -53,6 +53,7 @@ PrimaryGeneratorAction::PrimaryGeneratorAction(DetectorConstruction *det, Config
       fDetector(det),
       config(c)
 {
+  rnd.SetSeed(0);
   // const char* filename = "pythia_event.data";
   //  HEPEvt = new G4HEPEvtInterface();
   if (config->conf["Source"]["isradio"].as<bool>())
@@ -140,6 +141,34 @@ PrimaryGeneratorAction::PrimaryGeneratorAction(DetectorConstruction *det, Config
     file->Close();
     delete file;
   }
+  use_spherespec = config->conf["Global"]["usespherespec"].as<bool>();
+  if(use_spherespec){
+    std::cout<<"Using sphere spectrum for inputs"<<std::endl;
+    spec_anglefile = config->conf["Source"]["spec_anglefile"].as<std::string>();
+    spec_anglehist = config->conf["Source"]["spec_anglehist"].as<std::string>();
+    std::ifstream file(spec_anglefile);
+    if(!file){
+      std::cerr<<"Cannot open spectrum angle file: "<<spec_anglefile<<std::endl;
+    }
+    int tmp_index;float tmp_theta,tmp_arc;
+    while(file>>tmp_index>>tmp_theta>>tmp_arc){
+      umap_index_thetaarc[tmp_index] = std::pair<float,float>(tmp_theta,tmp_arc);
+      sphere_count++;
+    }
+    file.close();
+
+    TFile *fhist = TFile::Open(TString(spec_anglehist),"READ");
+    if(!fhist){
+      std::cerr<<"Cannot open spectrum angle histogram: "<<spec_anglehist<<std::endl;
+    }
+    for(int i=0;i<sphere_count;i++){
+      auto h = (TH1D*)fhist->Get(TString::Format("h%d",i));
+      h->SetDirectory(0);
+      std::cout<<i<<" "<<h->Integral()<<std::endl;
+      umap_index_anglehist[i] = h;
+    }
+    fhist->Close();
+  }
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
@@ -160,6 +189,25 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event *anEvent)
       double momentum = hspec->GetRandom(); // GeV
     double energy = sqrt(momentum * momentum + par_mass * par_mass) - par_mass; // GeV
     fenedist->SetMonoEnergy(energy * GeV);
+    }
+    if(use_spherespec){
+      int tmp_index = rnd.Integer(sphere_count);
+      float theta = umap_index_thetaarc[tmp_index].first;
+      float arc = umap_index_thetaarc[tmp_index].second;
+      float x0 = rnd.Uniform(-150.,150.);
+      float y0 = rnd.Uniform(-150.,150.);
+      float z0 = rnd.Uniform(-280.,100.);
+      float ux = -sin(theta) * cos(arc);
+      float uy = -sin(theta) * sin(arc);
+      float uz = -cos(theta);
+      float x = x0 + spec_R * sin(theta) * cos(arc);
+      float y = y0 + spec_R * sin(theta) * sin(arc);
+      float z = z0 + spec_R * cos(theta);
+      double momentum = umap_index_anglehist[tmp_index]->GetRandom(); // GeV
+      double energy = sqrt(momentum * momentum + par_mass * par_mass) - par_mass; // GeV
+      fCS->GetPosDist()->SetCentreCoords(G4ThreeVector(x,y,z));
+      fCS->GetAngDist()->SetParticleMomentumDirection(G4ThreeVector(ux,uy,uz));
+      fenedist->SetMonoEnergy(energy * GeV);
     }
     fGParticleSource->GeneratePrimaryVertex(anEvent);
   }
