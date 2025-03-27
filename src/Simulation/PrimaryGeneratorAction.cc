@@ -164,7 +164,6 @@ PrimaryGeneratorAction::PrimaryGeneratorAction(DetectorConstruction *det, Config
     for(int i=0;i<sphere_count;i++){
       auto h = (TH1D*)fhist->Get(TString::Format("h%d",i));
       h->SetDirectory(0);
-      std::cout<<i<<" "<<h->Integral()<<std::endl;
       umap_index_anglehist[i] = h;
     }
     fhist->Close();
@@ -200,12 +199,15 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event *anEvent)
       float ux = -sin(theta) * cos(arc);
       float uy = -sin(theta) * sin(arc);
       float uz = -cos(theta);
+      float su = sqrt(ux * ux + uy * uy + uz * uz);
+      ux /= su; uy /= su; uz /= su;
       float x = x0 + spec_R * sin(theta) * cos(arc);
       float y = y0 + spec_R * sin(theta) * sin(arc);
       float z = z0 + spec_R * cos(theta);
       double momentum = umap_index_anglehist[tmp_index]->GetRandom(); // GeV
       double energy = sqrt(momentum * momentum + par_mass * par_mass) - par_mass; // GeV
-      fCS->GetPosDist()->SetCentreCoords(G4ThreeVector(x,y,z));
+      fCS = fGParticleSource->GetCurrentSource();
+      fCS->GetPosDist()->SetCentreCoords(G4ThreeVector(x*mm,y*mm,z*mm));
       fCS->GetAngDist()->SetParticleMomentumDirection(G4ThreeVector(ux,uy,uz));
       fenedist->SetMonoEnergy(energy * GeV);
     }

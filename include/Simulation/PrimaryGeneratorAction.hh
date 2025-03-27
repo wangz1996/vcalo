@@ -82,7 +82,7 @@ class PrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
   int A;
   bool use_spec=false;
   float par_mass=0.;
-  const float spec_R=50.;
+  const float spec_R=1000.;
   TH1D *hspec;
   std::string specfile;
   std::string spechist;
