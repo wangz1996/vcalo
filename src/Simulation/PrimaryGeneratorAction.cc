@@ -195,7 +195,7 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event *anEvent)
       float arc = umap_index_thetaarc[tmp_index].second;
       float x0 = rnd.Uniform(-150.,150.);
       float y0 = rnd.Uniform(-150.,150.);
-      float z0 = rnd.Uniform(-280.,100.);
+      float z0 = rnd.Uniform(-100.,100.);
       float ux = -sin(theta) * cos(arc);
       float uy = -sin(theta) * sin(arc);
       float uz = -cos(theta);
