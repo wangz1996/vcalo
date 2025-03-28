@@ -288,6 +288,17 @@ void Config::Print()
 	fout << "    direction: [0.0, 0.0, 1.0]" << endl;
 	fout << "    spec_anglefile: ./spec_thetaarc.txt" << endl;
 	fout << "    spec_anglehist: ./spec_thetaarc.root" << endl;
+
+	//Using array for random range
+	fout << "    random_center: [1, 1, 1]" << endl;
+	fout << "    x0_range: [-150.0, 150.0] #Center of sphere" << endl;
+	fout << "    y0_range: [-150.0, 150.0] #Center of sphere" << endl;
+	fout << "    z0_range: [-100.0, 100.0] #Center of sphere" << endl;
+	fout << "    spec_R: 1000." << endl;
+	//Using single value for position
+	fout << "    x0: 0.0" << endl;
+	fout << "    y0: 0.0" << endl;
+	fout << "    z0: 0.0" << endl;
 	fout << "\n"
 		 << endl;
 

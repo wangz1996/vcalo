@@ -12,7 +12,7 @@ Global:
     usespec: False # Use spectrum for incident energy
     specfile: ./cutoff_hist.root
     spechist: anything
-    usespherespec: True # Use sphere spectrum for simulation
+    usespherespec: False # Use sphere spectrum for simulation
     optical: False
     #output: ./priproton.root # Output root file name
     #output: ./secproton.root # Output root file name
@@ -88,16 +88,23 @@ Source:
     radio:
         Z: 27
         A: 60
-    type: Point
+    type: Plane
     size: 31.0 # For Plane type source only (cm)
     angtype: planar
     particle: proton
-    energy: 100 # Unit is in MeV
-    position: [0.0, 0.0, 0.0] # Unit is in mm 
+    energy: 10000 # Unit is in MeV
+    position: [0.0, 0.0, -282.0] # Unit is in mm 
     direction: [0.0, 0.0, 1.0]
     spec_anglefile: /mnt2/VLASTP/cutoff/spectrum/spec_index_thetaarc.txt
     spec_anglehist: /mnt2/VLASTP/cutoff/spectrum/spec_-20_-10.root
-
+    random_center: [1,1,1]
+    x0_range: [-150.0, 150.0] #Center of sphere
+    y0_range: [-150.0, 150.0] #Center of sphere
+    z0_range: [-100.0, 100.0] #Center of sphere
+    spec_R: 1000.
+    x0: 0.0
+    y0: 0.0
+    z0: 0.0
 
 #Verbose
 Verbose:

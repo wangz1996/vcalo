@@ -168,6 +168,14 @@ PrimaryGeneratorAction::PrimaryGeneratorAction(DetectorConstruction *det, Config
     }
     fhist->Close();
   }
+  random_center = config->conf["Source"]["random_center"].as<std::vector<int>>();
+  x0_range = config->conf["Source"]["x0_range"].as<std::vector<float>>();
+  y0_range = config->conf["Source"]["y0_range"].as<std::vector<float>>();
+  z0_range = config->conf["Source"]["z0_range"].as<std::vector<float>>();
+  if(random_center.size()!=3){
+    std::cerr<<"random_center must be a vector of 3 numbers"<<std::endl;
+  }
+  spec_R = config->conf["Source"]["spec_R"].as<float>();
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
@@ -193,9 +201,9 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event *anEvent)
       int tmp_index = rnd.Integer(sphere_count);
       float theta = umap_index_thetaarc[tmp_index].first;
       float arc = umap_index_thetaarc[tmp_index].second;
-      float x0 = rnd.Uniform(-150.,150.);
-      float y0 = rnd.Uniform(-150.,150.);
-      float z0 = rnd.Uniform(-100.,100.);
+      float x0 = rnd.Uniform(x0_range[0],x0_range[1]);
+      float y0 = rnd.Uniform(y0_range[0],y0_range[1]);
+      float z0 = rnd.Uniform(z0_range[0],z0_range[1]);
       float ux = -sin(theta) * cos(arc);
       float uy = -sin(theta) * sin(arc);
       float uz = -cos(theta);
