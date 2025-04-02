@@ -288,6 +288,7 @@ void Config::Print()
 	fout << "    direction: [0.0, 0.0, 1.0]" << endl;
 	fout << "    spec_anglefile: ./spec_thetaarc.txt" << endl;
 	fout << "    spec_anglehist: ./spec_thetaarc.root" << endl;
+	fout << "    SphereRadius: 100.0 #mm" << endl;
 
 	//Using array for random range
 	fout << "    random_center: [1, 1, 1]" << endl;

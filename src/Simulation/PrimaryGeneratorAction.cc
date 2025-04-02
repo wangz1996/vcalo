@@ -102,6 +102,11 @@ PrimaryGeneratorAction::PrimaryGeneratorAction(DetectorConstruction *det, Config
       fCS->GetPosDist()->SetHalfX(size / 2. * cm); // X方向半长度
       fCS->GetPosDist()->SetHalfY(size / 2. * cm); // Y方向半长度
     }
+    else if (postype == "Sphere"){
+      fCS->GetPosDist()->SetPosDisType("Surface");
+      fCS->GetPosDist()->SetPosDisShape("Sphere");
+      fCS->GetPosDist()->SetRadius(config->conf["Source"]["SphereRadius"].as<float>() * mm);
+    }
     else
     {
       std::cerr << "Unknown position distribution type: " << postype << std::endl;
