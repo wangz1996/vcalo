@@ -6,7 +6,7 @@ fi
 mkdir jobs
 for ((i=0;i<100;i++));do
 	cp -r $DIR/temp $DIR/jobs/job_$i
-	sed -i "s:NUMBERHERE:20000000:g" $DIR/jobs/job_$i/default.yaml
+	sed -i "s:NUMBERHERE:1000000:g" $DIR/jobs/job_$i/default.yaml
 	sed -i "s:SEEDHERE:$i:g" $DIR/jobs/job_$i/default.yaml
 	cd $DIR/jobs/job_$i
 	condor_submit run.condor
