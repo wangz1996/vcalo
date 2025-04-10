@@ -38,6 +38,7 @@
 #include <iomanip>
 #include <ctime>
 #include <cmath>
+#include "PointCloud.hh"
 #include "G4VUserPrimaryGeneratorAction.hh"
 #include "G4ParticleGun.hh"
 #include "globals.hh"
@@ -92,6 +93,7 @@ class PrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
   std::vector<float> x0_range;
   std::vector<float> y0_range;
   std::vector<float> z0_range;
+  double wrapTo2Pi(double angle);
   float center_x0=0.;
   float center_y0=0.;
   float center_z0=0.;
@@ -100,6 +102,7 @@ class PrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
   std::unordered_map<int,std::pair<float,float>> umap_index_thetaarc;
   std::unordered_map<int,TH1D*> umap_index_anglehist;
   TRandom3 rnd;
+  PointCloud *pc;
   public:
 };
 

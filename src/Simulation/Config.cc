@@ -280,14 +280,15 @@ void Config::Print()
 	fout << "        Z: 27" << endl;
 	fout << "        A: 60" << endl;
 	fout << "    type: Point" << endl;
+	fout << "    SphereRadius: 1000" << endl;
 	fout << "    size: 15.0 # For Plane type source only (cm)" << endl;
 	fout << "    angtype: planar" << endl;
 	fout << "    particle: gamma" << endl;
 	fout << "    energy: 100 # Unit is in MeV" << endl;
 	fout << "    position: [0.0, 0.0, -289.0] # Unit is in mm #Converter upper plane -287.5 mm" << endl;
 	fout << "    direction: [0.0, 0.0, 1.0]" << endl;
-	fout << "    spec_anglefile: ./spec_thetaarc.txt" << endl;
-	fout << "    spec_anglehist: ./spec_thetaarc.root" << endl;
+	fout << "    spec_anglefile: /mnt2/VLASTP/cutoff/spectrum/spec_index_thetaarc.txt" << endl;
+	fout << "    spec_anglehist: /mnt2/VLASTP/cutoff/spectrum/spec_-20_-10.root" << endl;
 	fout << "    SphereRadius: 100.0 #mm" << endl;
 
 	//Using array for random range

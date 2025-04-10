@@ -263,6 +263,7 @@ void HistoManager::fillPrimary(const G4Track *trk)
 	init_Pz = trk->GetMomentum().z();
 	init_E = trk->GetTotalEnergy();
 	init_Ke = trk->GetKineticEnergy();
+	// std::cout<<init_x<<" "<<init_y<<" "<<init_z<<std::endl;
 }
 
 void HistoManager::fillTracks(const int &track_id, const G4ThreeVector &pos, const int &color)

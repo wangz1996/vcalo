@@ -12,7 +12,7 @@ Global:
     usespec: False # Use spectrum for incident energy
     specfile: ./cutoff_hist.root
     spechist: anything
-    usespherespec: False # Use sphere spectrum for simulation
+    usespherespec: True # Use sphere spectrum for simulation
     optical: False
     #output: ./priproton.root # Output root file name
     #output: ./secproton.root # Output root file name
@@ -88,7 +88,7 @@ Source:
     radio:
         Z: 27
         A: 60
-    type: Plane
+    type: Point
     size: 31.0 # For Plane type source only (cm)
     angtype: planar
     particle: proton

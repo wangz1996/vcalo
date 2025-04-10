@@ -149,6 +149,7 @@ PrimaryGeneratorAction::PrimaryGeneratorAction(DetectorConstruction *det, Config
   use_spherespec = config->conf["Global"]["usespherespec"].as<bool>();
   if(use_spherespec){
     std::cout<<"Using sphere spectrum for inputs"<<std::endl;
+    pc = new PointCloud();
     spec_anglefile = config->conf["Source"]["spec_anglefile"].as<std::string>();
     spec_anglehist = config->conf["Source"]["spec_anglehist"].as<std::string>();
     std::ifstream file(spec_anglefile);
@@ -157,10 +158,13 @@ PrimaryGeneratorAction::PrimaryGeneratorAction(DetectorConstruction *det, Config
     }
     int tmp_index;float tmp_theta,tmp_arc;
     while(file>>tmp_index>>tmp_theta>>tmp_arc){
+      pc->addPoint(tmp_index,tmp_theta,tmp_arc);
       umap_index_thetaarc[tmp_index] = std::pair<float,float>(tmp_theta,tmp_arc);
       sphere_count++;
     }
     file.close();
+    pc->buildTree();
+
 
     TFile *fhist = TFile::Open(TString(spec_anglehist),"READ");
     if(!fhist){
@@ -203,25 +207,39 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event *anEvent)
     fenedist->SetMonoEnergy(energy * GeV);
     }
     if(use_spherespec){
-      int tmp_index = rnd.Integer(sphere_count);
+      float ex = -999.; float ez = -999.; float ey = -285.;
+      float x,y,z,ux,uy,uz,x0,y0,z0;
+      int tmp_index;
+      while(abs(ex)>150. || abs(ez)>150.){
+      tmp_index = rnd.Integer(sphere_count);
       float theta = umap_index_thetaarc[tmp_index].first;
-      float arc = umap_index_thetaarc[tmp_index].second;
-      float x0 = rnd.Uniform(x0_range[0],x0_range[1]);
-      float y0 = rnd.Uniform(y0_range[0],y0_range[1]);
-      float z0 = rnd.Uniform(z0_range[0],z0_range[1]);
-      float ux = -sin(theta) * cos(arc);
-      float uy = -sin(theta) * sin(arc);
-      float uz = -cos(theta);
+      float arc = umap_index_thetaarc[tmp_index].second;  
+      x0 = rnd.Uniform(x0_range[0],x0_range[1]);
+      y0 = rnd.Uniform(z0_range[0],z0_range[1]);
+      z0 = rnd.Uniform(y0_range[0],y0_range[1]);
+      ux = -sin(theta) * cos(arc);
+      uy = -sin(theta) * sin(arc);
+      uz = -cos(theta);
       float su = sqrt(ux * ux + uy * uy + uz * uz);
       ux /= su; uy /= su; uz /= su;
-      float x = x0 + spec_R * sin(theta) * cos(arc);
-      float y = y0 + spec_R * sin(theta) * sin(arc);
-      float z = z0 + spec_R * cos(theta);
+      x = x0 - spec_R * ux;
+      y = y0 - spec_R * uy;
+      z = z0 - spec_R * uz;
+      //Equivalent xyz at ez=-285
+      float eR = (y0-ey)/uy;
+      ex = x0 - eR * ux;
+      ez = z0 - eR * uz;
+      }
+      float nx = x0-x; float ny = y0-y; float nz = z0-z;
+      float sn = sqrt(nx*nx+ny*ny+nz*nz);
+      nx /= sn; ny /= sn; nz /= sn;
+      // std::cout<<x<<" "<<y<<" "<<z<<" "<<ux<<" "<<uy<<" "<<uz<<" "<<x0<<" "<<y0<<" "<<z0<<std::endl;
+      // std::cout<<nx<<" "<<ny<<" "<<nz<<std::endl;
       double momentum = umap_index_anglehist[tmp_index]->GetRandom(); // GeV
       double energy = sqrt(momentum * momentum + par_mass * par_mass) - par_mass; // GeV
       fCS = fGParticleSource->GetCurrentSource();
-      fCS->GetPosDist()->SetCentreCoords(G4ThreeVector(x*mm,y*mm,z*mm));
-      fCS->GetAngDist()->SetParticleMomentumDirection(G4ThreeVector(ux,uy,uz));
+      fCS->GetPosDist()->SetCentreCoords(G4ThreeVector(x*mm,z*mm,y*mm));
+      fCS->GetAngDist()->SetParticleMomentumDirection(G4ThreeVector(nx,nz,ny));
       fenedist->SetMonoEnergy(energy * GeV);
     }
     fGParticleSource->GeneratePrimaryVertex(anEvent);
@@ -237,5 +255,13 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event *anEvent)
     particleGun->SetParticleCharge(ionCharge);
     particleGun->GeneratePrimaryVertex(anEvent);
   }
+}
+
+double PrimaryGeneratorAction::wrapTo2Pi(double angle) {
+    double result = fmod(angle, 2.*TMath::Pi());
+    if (result < 0) {
+        result += 2.*TMath::Pi();
+    }
+    return 360.*result/(2.*TMath::Pi());
 }
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
