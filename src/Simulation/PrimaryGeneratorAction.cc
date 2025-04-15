@@ -85,6 +85,7 @@ PrimaryGeneratorAction::PrimaryGeneratorAction(DetectorConstruction *det, Config
     G4ParticleTable* particleTable = G4ParticleTable::GetParticleTable();
     G4ParticleDefinition *particle = particleTable->FindParticle(config->conf["Source"]["particle"].as<std::string>());
     par_mass = particle->GetPDGMass()/1000.; // GeV
+    spec_Z = particle->GetPDGCharge() / eplus;
     fCS->SetParticleDefinition(particle);
     fCS->GetEneDist()->SetEnergyDisType("Mono");
     fCS->GetEneDist()->SetMonoEnergy(config->conf["Source"]["energy"].as<double>());
@@ -235,7 +236,7 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event *anEvent)
       nx /= sn; ny /= sn; nz /= sn;
       // std::cout<<x<<" "<<y<<" "<<z<<" "<<ux<<" "<<uy<<" "<<uz<<" "<<x0<<" "<<y0<<" "<<z0<<std::endl;
       // std::cout<<nx<<" "<<ny<<" "<<nz<<std::endl;
-      double momentum = umap_index_anglehist[tmp_index]->GetRandom(); // GeV
+      double momentum = umap_index_anglehist[tmp_index]->GetRandom() * spec_Z ; // GeV
       double energy = sqrt(momentum * momentum + par_mass * par_mass) - par_mass; // GeV
       fCS = fGParticleSource->GetCurrentSource();
       fCS->GetPosDist()->SetCentreCoords(G4ThreeVector(x*mm,z*mm,y*mm));
