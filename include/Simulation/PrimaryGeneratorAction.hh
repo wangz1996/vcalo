@@ -39,6 +39,7 @@
 #include <ctime>
 #include <cmath>
 #include "PointCloud.hh"
+#include "constants.hh"
 #include "G4VUserPrimaryGeneratorAction.hh"
 #include "G4ParticleGun.hh"
 #include "globals.hh"

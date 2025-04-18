@@ -31,7 +31,6 @@
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 #include "PrimaryGeneratorAction.hh"
-
 #include "G4Event.hh"
 #include "G4HEPEvtInterface.hh"
 #include "G4ParticleTable.hh"
@@ -150,22 +149,9 @@ PrimaryGeneratorAction::PrimaryGeneratorAction(DetectorConstruction *det, Config
   use_spherespec = config->conf["Global"]["usespherespec"].as<bool>();
   if(use_spherespec){
     std::cout<<"Using sphere spectrum for inputs"<<std::endl;
-    pc = new PointCloud();
-    spec_anglefile = config->conf["Source"]["spec_anglefile"].as<std::string>();
     spec_anglehist = config->conf["Source"]["spec_anglehist"].as<std::string>();
-    std::ifstream file(spec_anglefile);
-    if(!file){
-      std::cerr<<"Cannot open spectrum angle file: "<<spec_anglefile<<std::endl;
-    }
-    int tmp_index;float tmp_theta,tmp_arc;
-    while(file>>tmp_index>>tmp_theta>>tmp_arc){
-      pc->addPoint(tmp_index,tmp_theta,tmp_arc);
-      umap_index_thetaarc[tmp_index] = std::pair<float,float>(tmp_theta,tmp_arc);
-      sphere_count++;
-    }
-    file.close();
-    pc->buildTree();
-
+    umap_index_thetaarc = get_umap_index_thetaarc();
+    sphere_count = umap_index_thetaarc.size();
 
     TFile *fhist = TFile::Open(TString(spec_anglehist),"READ");
     if(!fhist){
