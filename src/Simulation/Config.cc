@@ -290,6 +290,7 @@ void Config::Print()
 	fout << "    spec_anglefile: /mnt2/VLASTP/cutoff/spectrum/spec_index_thetaarc.txt" << endl;
 	fout << "    spec_anglehist: /mnt2/VLASTP/cutoff/spectrum/spec_-20_-10.root" << endl;
 	fout << "    SphereRadius: 100.0 #mm" << endl;
+	fout << "    use_filter: False" << endl;
 
 	//Using array for random range
 	fout << "    random_center: [1, 1, 1]" << endl;

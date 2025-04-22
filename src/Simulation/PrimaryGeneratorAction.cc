@@ -150,6 +150,7 @@ PrimaryGeneratorAction::PrimaryGeneratorAction(DetectorConstruction *det, Config
   if(use_spherespec){
     std::cout<<"Using sphere spectrum for inputs"<<std::endl;
     spec_anglehist = config->conf["Source"]["spec_anglehist"].as<std::string>();
+    use_filter = config->conf["Source"]["use_filter"].as<bool>();
     umap_index_thetaarc = get_umap_index_thetaarc();
     sphere_count = umap_index_thetaarc.size();
 
@@ -216,6 +217,7 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event *anEvent)
       float eR = (y0-ey)/uy;
       ex = x0 - eR * ux;
       ez = z0 - eR * uz;
+      if(!use_filter)break;
       }
       float nx = x0-x; float ny = y0-y; float nz = z0-z;
       float sn = sqrt(nx*nx+ny*ny+nz*nz);

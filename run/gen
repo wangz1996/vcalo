@@ -8,7 +8,7 @@ mkdir jobs
 for i in ${energy[@]};do
 	cp -r $DIR/temp $DIR/jobs/$i
 	cd $DIR/jobs/$i
-	sed -i "s:EVENTNUMBERHERE:10000:g" $DIR/jobs/$i/default.yaml
+	sed -i "s:NUMBERHERE:10000:g" $DIR/jobs/$i/default.yaml
 	sed -i "s:ENERGYHERE:$i:g" $DIR/jobs/$i/default.yaml
 	condor_submit run.condor
 	cd $DIR

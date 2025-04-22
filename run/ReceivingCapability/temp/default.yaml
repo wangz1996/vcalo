@@ -107,6 +107,7 @@ Source:
     x0: 0.0
     y0: 0.0
     z0: 0.0
+    use_filter: False
 
 
 #Verbose

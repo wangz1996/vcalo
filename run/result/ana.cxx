@@ -14,7 +14,7 @@ void ana(){
 	std::map<int,TH1D*> umap;
 	std::map<int,float> umap_all;
 	std::map<int,float> umap_conv;
-	std::set<int> eset;
+	std::set<int> eset = {20, 50, 100, 200, 300, 500, 800, 1000, 2000, 3000, 4000, 5000};
 	auto theta_bins = createLogBins(20,1e-4,2);
 	auto htemp = new TH1D("theta_temp","theta",20,theta_bins.data());
 	auto dfo = ROOT::RDataFrame("vtree","test.root");
@@ -35,7 +35,7 @@ void ana(){
 		return umap[id]==1;
 	},{"seed_cellid"})
 	.Define("ecal_recoe",[](const int& seed,const std::vector<float>& ecal_celle,const std::vector<int>& ecal_cellid){
-		double ecal_recoe=0.;
+		float ecal_recoe=0.;
 		std::unordered_map<int,float> umap;
 		for(size_t i=0;i<ecal_celle.size();i++)umap[ecal_cellid[i]]=ecal_celle[i];
 		ecal_recoe += (umap[seed-5] + umap[seed-6] + umap[seed-4]
@@ -70,7 +70,20 @@ void ana(){
 		return extra_in;
 	},{"conve_kinematic","convp_kinematic","isconv"})
 	//.Filter("extra_in")
-	.Define("e_total","ecal_recoe+conv_e")
+	.Define("e_total",[](float ecal_recoe,const std::vector<float>& conv_e){
+			float e_total=ecal_recoe;
+			for(auto ce:conv_e){
+				e_total+=ce;
+			}
+			return e_total;
+			},{"ecal_recoe","conv_e"})
+	.Define("conv_etotal",[](std::vector<float>& conv_e){
+			float conv_etotal=0.;
+			for(auto ce:conv_e){
+				conv_etotal+=ce;
+			}
+			return conv_etotal;
+			},{"conv_e"})
 	.Define("epangle",[](const std::vector<float>& conve_kinematic,const std::vector<float>& convp_kinematic,const int& isconv){
 		//Kinematic x y z px py pz E theta phi Ke
 		double epangle=-1.;
@@ -82,13 +95,13 @@ void ana(){
 		return epangle;
 	},{"conve_kinematic","convp_kinematic","isconv"})
 	;
-	df.Foreach([&eset](float value) {
-		eset.insert(int(value));
-	}, {"init_E"});
-	df.Foreach([&umap_all,&umap_conv](const float& e,const int& isconv){
-		umap_all[e]+=1.;
-		umap_conv[e]+=(isconv?1.:0.);
-	},{"init_E","isconv"});
+	//df.Foreach([&eset](float value) {
+	//	eset.insert(int(value));
+	//}, {"init_E"});
+	//df.Foreach([&umap_all,&umap_conv](const float& e,const int& isconv){
+	//	umap_all[e]+=1.;
+	//	umap_conv[e]+=(isconv?1.:0.);
+	//},{"init_E","isconv"});
 	// std::cout<<"Sel: "<<*df.Count()<<" "<<*dfo.Count()<<" eff: "<<double(*df.Count())/double(*dfo.Count())<<std::endl;
 	std::vector<float> x,y;
 	std::vector<float> convx,convy;
@@ -97,7 +110,7 @@ void ana(){
 	for(auto e:eset){
 		auto dff = df.Filter([e=e](float init_E){return int(init_E)==e;},{"init_E"});
 		auto h = dff.Histo1D({"h","test",100,0.,e*1.2},"e_total");
-		auto hconve = dff.Histo1D({"hconve","Conv_E",100,0.,120.},"conv_e");
+		auto hconve = dff.Histo1D({"hconve","Conv_E",100,0.,120.},"conv_etotal");
 		TString hconvname = TString("hconve")+TString(to_string(e));
 		hconve->Write(hconvname);
 		double xmax = h->GetBinCenter(h->GetMaximumBin());
@@ -126,9 +139,9 @@ void ana(){
 		h->Write(TString(name));
 
 		//Converter efficiency
-		convx.emplace_back(e);
-		convy.emplace_back(umap_conv[e]/umap_all[e]);
-		std::cout<<e<<" "<<umap_conv[e]<<" "<<umap_all[e]<<" "<<umap_conv[e]/umap_all[e]<<endl;
+		//convx.emplace_back(e);
+		//convy.emplace_back(umap_conv[e]/umap_all[e]);
+		//std::cout<<e<<" "<<umap_conv[e]<<" "<<umap_all[e]<<" "<<umap_conv[e]/umap_all[e]<<endl;
 	
 		//Angular information
 		//auto df_theta = df.Filter([e=e](const float& init_E){return int(init_E)==e;},{"init_E"})
@@ -143,8 +156,8 @@ void ana(){
 	}
 	TGraph *g=new TGraph(x.size(),&x[0],&y[0]);
 	g->Write("hreso");
-	TGraph *gconv = new TGraph(convx.size(),&convx[0],&convy[0]);
-	gconv->Write("hconv");
+	//TGraph *gconv = new TGraph(convx.size(),&convx[0],&convy[0]);
+	//gconv->Write("hconv");
 	fout->Close();
 	
 }

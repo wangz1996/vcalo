@@ -11,9 +11,9 @@ import math
 # You have to have set it up first (see README for instructions)
 # You can run it without this but it will have an ugly stats box and so on
 # that you'd have to turn off manually.
-import AtlasStyle
+import VPStyle
 ROOT.gROOT.SetBatch(True)
-ROOT.SetAtlasStyle()
+ROOT.SetVPStyle()
 def plot_etotal():
 	# Load some histos from the example file
 	# (Gaussian limits from 2016 TLA conf)
@@ -463,13 +463,14 @@ def plot_reso():
 	
 	  # Label my axes!!
 	  histo.GetXaxis().SetTitle("E_{Reco}[MeV]")
+	  #histo.GetYaxis().SetTitle("#frac{#sigma_{E}}{E}")
 	  histo.GetYaxis().SetTitle("#frac{#sigma_{E}}{E}")
 	  # Move the label around if you want
 	  histo.GetYaxis().SetTitleOffset(1.5)
 	
 	  # Set the limit for the axes
 	  #histo.GetXaxis().SetLimits(xRange[0],xRange[1])
-	  #histo.GetYaxis().SetRangeUser(mini*0.5,maxi*1.4)
+	  histo.GetYaxis().SetRangeUser(0.01,0.15)
 	
 	  if index==0 :
 	    histo.Draw("APL") # Draw data points (you'll get error bars by default)
@@ -495,10 +496,10 @@ def plot_reso():
 	myLatex.SetTextFont(72)
 	# These are the x and y coordinates of the bottom left corner of the text
 	# as fractions of the canvas
-	myLatex.DrawLatex(0.18,0.18,"VLAST-P")
+	myLatex.DrawLatex(0.18,0.20,"VLAST-P")
 	# Now we switch back to normal font for the "Internal"
 	myLatex.SetTextFont(42)
-	myLatex.DrawLatex(0.35,0.18,"Internal")
+	myLatex.DrawLatex(0.35,0.20,"ECAL Simulation")
 	
 	# Update the canvas
 	c.Update()

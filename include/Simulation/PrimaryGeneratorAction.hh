@@ -79,6 +79,7 @@ class PrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
   bool use_gps=true;
   bool use_spectrum=false;
   bool use_spherespec=false;
+  bool use_filter=true;
   int sphere_count=0;
   int Z;
   int A;
