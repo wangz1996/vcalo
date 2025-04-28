@@ -105,7 +105,7 @@ PrimaryGeneratorAction::PrimaryGeneratorAction(DetectorConstruction *det, Config
     else if (postype == "Sphere"){
       fCS->GetPosDist()->SetPosDisType("Surface");
       fCS->GetPosDist()->SetPosDisShape("Sphere");
-      fCS->GetPosDist()->SetRadius(config->conf["Source"]["SphereRadius"].as<float>() * mm);
+      fCS->GetPosDist()->SetRadius(config->conf["Source"]["spec_R"].as<float>() * mm);
     }
     else
     {
@@ -160,6 +160,10 @@ PrimaryGeneratorAction::PrimaryGeneratorAction(DetectorConstruction *det, Config
     }
     for(int i=0;i<sphere_count;i++){
       auto h = (TH1D*)fhist->Get(TString::Format("h%d",i));
+      if(!h){
+        std::cerr<<"Cannot find spectrum angle histogram: h"<<i<<std::endl;
+        exit(1);
+      }
       h->SetDirectory(0);
       umap_index_anglehist[i] = h;
     }

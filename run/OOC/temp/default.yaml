@@ -95,8 +95,7 @@ Source:
     energy: 10000 # Unit is in MeV
     position: [0.0, 0.0, -282.0] # Unit is in mm 
     direction: [0.0, 0.0, 1.0]
-    spec_anglefile: /mnt2/VLASTP/cutoff/spectrum/spec_index_thetaarc.txt
-    spec_anglehist: /mnt2/VLASTP/cutoff/spectrum/spec_-20_-10.root
+    spec_anglehist: /mnt2/VLASTP/cutoff/spectrum/equator_fullangle.root
     random_center: [1,1,1]
     x0_range: [-150.0, 150.0] #Center of sphere
     y0_range: [-150.0, 150.0] #Center of sphere
