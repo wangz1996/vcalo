@@ -9,5 +9,5 @@ for ((i=0;i<100;i++));do
 	sed -i "s:NUMBERHERE:100000:g" $DIR/jobs/job_$i/default.yaml
 	sed -i "s:SEEDHERE:$i:g" $DIR/jobs/job_$i/default.yaml
 	cd $DIR/jobs/job_$i
-	#condor_submit run.condor
+	condor_submit run.condor
 done

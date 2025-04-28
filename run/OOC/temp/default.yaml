@@ -91,7 +91,8 @@ Source:
     type: Point
     size: 31.0 # For Plane type source only (cm)
     angtype: planar
-    particle: alpha
+    particle: proton
+    use_filter: True
     energy: 10000 # Unit is in MeV
     position: [0.0, 0.0, -282.0] # Unit is in mm 
     direction: [0.0, 0.0, 1.0]
