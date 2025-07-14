@@ -1,0 +1,20 @@
+#!/bin/bash
+DIR=$PWD
+if [ -d jobs ];then
+	rm -rf jobs;
+fi
+mkdir jobs
+i=20
+while (( i<2000 ));do
+	cp -r $DIR/temp $DIR/jobs/$i
+	cd $DIR/jobs/$i
+	sed -i "s:NUMBERHERE:10:g" $DIR/jobs/$i/default.yaml
+	sed -i "s:ENERGYHERE:$i:g" $DIR/jobs/$i/default.yaml
+	condor_submit run.condor
+	cd $DIR
+	if (( i<100 ));then
+		i=$(( i+10 ))
+	else
+		i=$(( i+100 ))
+	fi
+done

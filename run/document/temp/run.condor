@@ -1,0 +1,4 @@
+Universe=vanilla
+Executable=run.sh
+getEnv=True
+Queue

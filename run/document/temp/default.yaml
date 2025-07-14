@@ -1,0 +1,118 @@
+# Project information
+Project: Vlast-CALO
+Contact: Zhen Wang < wangz1996@sjtu.edu.cn >
+
+
+Global:
+    vis: False
+    useseed: False # default: system time in nano-second
+    seed: 100
+    usemac: False # Currently not applicable
+    mac: ./primaryproton.mac
+    usespec: False # Use spectrum for incident energy
+    specfile: ./spec.root
+    spechist: hspec
+    usespherespec: False # Use sphere spectrum for simulation
+    optical: False
+    #output: ./priproton.root # Output root file name
+    #output: ./secproton.root # Output root file name
+    output: ./test.root # Output root file name
+    beamon: NUMBERHERE
+    savegeo: False
+    savetrack: 0
+    trackEnergy_threshold: 2.0
+    Abort_direction: 0
+
+
+Parameter:
+    CsI:
+        # Rayleigh in meter
+        Rayleigh: 0.6
+    TiO2:
+        # Reflectivity (0~1)
+        Reflectivity: 0.8
+        # Absorption Length in meter
+        AbsLength: 1.0
+    Surface:
+        # Specular reflection parameter (0~1)
+        SpecularLobe: 0.8
+        # Ideal specular reflection parameter (0~1)
+        SpecularSpike: 0.2
+        # Reflectivity (0~1)
+        Reflectivity: 0.98
+        #dielectric_dielectric dielectric_metal
+        Type: dielectric_dielectric
+        #glisur unified LUT dichroic
+        Model: unified
+        #polished polishedfrontpainted polishedbackpainted ground groundbackpainted polishedtioair groundtioair
+        Finish: ground
+        # Roughness of the surface (0~1)
+        SigmaAlpha: 0.1
+
+
+#Construct Tracker
+Tracker:
+    build: True
+
+
+#Construct ACD
+ACD:
+    build: True
+
+
+#Construct Converter
+Converter:
+    build: True
+    Crystal-Nonuniformity: 0.05
+    light-yield-effect: True
+    E-Noise: True
+
+
+#Construct Calorimeter
+ECAL:
+    nCryX: 5
+    nCryY: 5
+    ECALShield: True
+    build: True
+    Crystal-Nonuniformity: 0.02
+    light-yield-effect: True
+    light-yield: 1500
+    E-Noise: True
+    APD-Ionisation: True
+    APD-distance: 5
+    Digi: True
+
+
+#Particle source setup
+Source:
+    isradio: False
+    radio:
+        Z: 27
+        A: 60
+    type: Point
+    SphereRadius: 1000
+    size: 15.0 # For Plane type source only (cm)
+    angtype: planar
+    particle: gamma
+    energy: ENERGYHERE # Unit is in MeV
+    position: [0.0, 0.0, -289.0] # Unit is in mm #Converter upper plane -287.5 mm
+    direction: [0.0, 0.0, 1.0]
+    spec_anglehist: /mnt2/VLASTP/cutoff/spectrum/spec_-20_-10.root
+    SphereRadius: 100.0 #mm
+    use_filter: False
+    random_center: [1, 1, 1]
+    x0_range: [-150.0, 150.0] #Center of sphere
+    y0_range: [-150.0, 150.0] #Center of sphere
+    z0_range: [-100.0, 100.0] #Center of sphere
+    spec_R: 1000.
+    x0: 0.0
+    y0: 0.0
+    z0: 0.0
+
+
+#Verbose
+Verbose:
+    run: 0
+    control: 0
+    event: 0
+    tracking: 0
