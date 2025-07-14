@@ -138,7 +138,7 @@ void HistoManager::fill(const int &_eventNo)
 		{
 			ecell = ecell * 0.999841;
 		}
-		// ecell = ecell > 3. ? ecell : 0.;
+		ecell = ecell > 3. ? ecell : 0.;
 		ecal_cellid.emplace_back(i.first);
 		ecal_celle.emplace_back(ecell);
 		apd_celle.emplace_back(apdcell);
