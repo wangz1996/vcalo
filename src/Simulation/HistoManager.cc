@@ -138,10 +138,11 @@ void HistoManager::fill(const int &_eventNo)
 		{
 			ecell = ecell * 0.999841;
 		}
-		ecell = ecell > 3. ? ecell : 0.;
+		// ecell = ecell > 3. ? ecell : 0.;
 		ecal_cellid.emplace_back(i.first);
 		ecal_celle.emplace_back(ecell);
 		apd_celle.emplace_back(apdcell);
+		ecal_e += ecell;
 	}
 	if (m_cfg.Conv_NonUniformity != 0.0)
 	{
@@ -280,6 +281,7 @@ void HistoManager::fillTracks(const int &track_id, const G4ThreeVector &pos, con
 void HistoManager::clear()
 {
 	StatusCode = 1;
+	ecal_e=0.;
 	std::vector<int>().swap(ecal_cellid);
 	std::vector<float>().swap(ecal_celle);
 	std::vector<float>().swap(apd_optime);

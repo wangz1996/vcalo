@@ -102,8 +102,8 @@ class DetectorConstruction : public G4VUserDetectorConstruction
 	G4double CsI_MSL = 1.0* cm;
 	G4double APD_MSL = 5.0* um;
 	static constexpr double CsI_Z = 200.*mm;
-	static constexpr double CsI_XY = 60. * mm;
-	static constexpr double TiO2_XY = 61.2 * mm;
+	static constexpr double CsI_XY = 30. * mm;
+	static constexpr double TiO2_XY = 31.2 * mm;
 	static constexpr double TiO2_Z = 201.2 * mm;
 	static constexpr double Polish_XY = 35. * mm;
 	static constexpr double Polish_Z = (TiO2_Z - CsI_Z)/2.;

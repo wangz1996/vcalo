@@ -182,6 +182,7 @@ class HistoManager
 		std::vector<float> tracker_hitz;
 		std::vector<float> tracker_hite;
 		std::vector<int> tracker_trkid;
+		float ecal_e;
 
 	//ACD
 		std::vector<float> acd_e;

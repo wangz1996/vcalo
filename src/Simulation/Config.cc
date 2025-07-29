@@ -157,7 +157,7 @@ int Config::Run()
     }
     
     // 清理资源
-    delete visManager;
+    // delete visManager;
 	// Initialize G4 kernel
 	runManager->Initialize();
 	if (conf["Global"]["usemac"].as<bool>())
