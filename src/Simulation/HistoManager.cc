@@ -144,6 +144,7 @@ void HistoManager::fill(const int &_eventNo)
 		apd_celle.emplace_back(apdcell);
 		ecal_e += ecell;
 	}
+	if(ecal_e )
 	if (m_cfg.Conv_NonUniformity != 0.0)
 	{
 		for(auto index:{0,1,2,3}){
