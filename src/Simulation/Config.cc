@@ -122,14 +122,42 @@ int Config::Run()
 	
 
 	G4VisManager *visManager = new G4VisExecutive();
-	visManager->Initialize();
-	if (conf["Global"]["vis"].as<bool>())
-	{
-		G4UIExecutive *uie = new G4UIExecutive(1, nullptr, "Qt");
-		SetupVisualization();
-		uie->SessionStart();
-		// delete uie;
-	}
+	visManager->SetVerboseLevel(1);  // 设置可视化系统日志级别
+	try {
+        visManager->Initialize();
+    } catch (const std::exception& e) {
+        G4cerr << "Visualization initialization failed: " << e.what() << G4endl;
+        delete visManager;
+        return 1;
+    }
+    // 如果启用可视化界面
+    if (conf["Global"]["vis"].as<bool>()) {
+        // 检查Qt环境是否可用
+			char* argv_ui[] = { (char*)"Vcalo" };
+			G4UIExecutive* uie = new G4UIExecutive(1, argv_ui, "Qt");
+				
+			// 初始化可视化设置
+			SetupVisualization();
+				
+			// 检查场景是否有效
+			if (!visManager->GetCurrentScene()) {
+				G4cout << "Creating default scene..." << G4endl;
+				UI->ApplyCommand("/vis/scene/create");
+				UI->ApplyCommand("/vis/scene/add/volume");
+			}
+				
+			// 启动UI会话
+			try {
+				uie->SessionStart();
+			} catch (const std::exception& e) {
+				G4cerr << "UI session error: " << e.what() << G4endl;
+			}
+			
+			delete uie;
+    }
+    
+    // 清理资源
+    delete visManager;
 	// Initialize G4 kernel
 	runManager->Initialize();
 	if (conf["Global"]["usemac"].as<bool>())
@@ -145,8 +173,8 @@ int Config::Run()
 	else
 	{
 		if(conf["Source"]["isradio"].as<bool>()){
-		UI->ApplyCommand("/process/had/rdm/thresholdForVeryLongDecayTime 1.0e+60 year");
-	}
+			UI->ApplyCommand("/process/had/rdm/thresholdForVeryLongDecayTime 1.0e+60 year");
+		}
 		runManager->BeamOn(conf["Global"]["beamon"].as<int>());
 	}
 	// job termination
@@ -159,22 +187,32 @@ int Config::Run()
 
 void Config::SetupVisualization()
 {
-	UI->ApplyCommand("/vis/viewer/set/autoRefresh false");
+	// 基本可视化设置
+    UI->ApplyCommand("/vis/viewer/set/viewpointThetaPhi 60 150");
+    UI->ApplyCommand("/vis/viewer/zoom 1.5");
+    UI->ApplyCommand("/vis/viewer/set/style surface");
+    
+    // 确保几何已初始化
+    if (!G4RunManager::GetRunManager()->GetCurrentRun()) {
+        UI->ApplyCommand("/run/initialize");
+    }
+    
+    // 绘制几何和轨迹
 	UI->ApplyCommand("/vis/open OGL");
-	UI->ApplyCommand("/vis/drawVolume");
-	UI->ApplyCommand("/vis/viewer/set/viewpointTheta 45");
-	UI->ApplyCommand("/vis/viewer/set/viewpointPhi 45");
-	UI->ApplyCommand("/vis/viewer/set/style wireframe");
-	UI->ApplyCommand("/vis/viewer/set/background white");
-	UI->ApplyCommand("/vis/scene/add/trajectories smooth");
-	UI->ApplyCommand("/vis/scene/add/hits");
-	UI->ApplyCommand("/vis/scene/add/axes 0 0 1 0.2");
-	UI->ApplyCommand("/vis/scene/add/axes 1 0 0 0.2");
-	UI->ApplyCommand("/vis/scene/add/axes 0 1 0 0.2");
-	UI->ApplyCommand("/vis/scene/add/axes 0 0 0 0.2");
-	UI->ApplyCommand("/vis/scene/add/text 0 0 0 0.1 \"Vlast-CALO\" red");
-	UI->ApplyCommand("/vis/scene/add/text 0 0 0 0.1 \"Zhen Wang\" red");
-	UI->ApplyCommand("/vis/scene/add/text 0 0 0 0.1 \"wangz1996@sjtu.edu.cn\" red");
+    UI->ApplyCommand("/vis/drawVolume");
+	UI->ApplyCommand("/vis/viewer/refresh");
+    UI->ApplyCommand("/vis/scene/add/trajectories smooth");
+    UI->ApplyCommand("/vis/scene/add/axes 0 0 0 0.3 m");
+	UI->ApplyCommand("/vis/scene/endOfEventAction accumulate");
+
+
+	// UI->ApplyCommand("/vis/scene/add/text 0 0 0 0.1 \"Vlast-CALO\" red");
+	// UI->ApplyCommand("/vis/scene/add/text 0 0 0 0.1 \"Zhen Wang\" red");
+	// UI->ApplyCommand("/vis/scene/add/text 0 0 0 0.1 \"wangz1996@sjtu.edu.cn\" red");
+    
+    // 刷新显示
+    UI->ApplyCommand("/vis/viewer/flush");
+
 	return;
 }
 

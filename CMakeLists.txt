@@ -22,7 +22,8 @@ include(${Geant4_USE_FILE})
 #----------------------------------------------------------------------------
 # Find ROOT (required package)
 #
-find_package(ROOT REQUIRED COMPONENTS TMVA ROOTVecOps ROOTDataFrame Geom Eve)
+find_package(ROOT REQUIRED COMPONENTS TMVA ROOTVecOps ROOTDataFrame Geom )
+#find_package(ROOT REQUIRED)
 find_package(Boost 1.83.0 REQUIRED COMPONENTS container)
 find_package(Python COMPONENTS Interpreter Development REQUIRED)
 find_package(yaml-cpp REQUIRED)
@@ -42,7 +43,7 @@ include_directories(${PROJECT_SOURCE_DIR}/include
                     ${PROJECT_SOURCE_DIR}/include/Simulation
                     ${PROJECT_SOURCE_DIR}/include/Analysis
                     ${Geant4_INCLUDE_DIR}
-		    ${ROOT_INCLUDE_DIR}
+		    ${ROOT_INCLUDE_DIRS}
 	    	   ${Boost_INCLUDE_DIRS})
 file(GLOB sources ${PROJECT_SOURCE_DIR}/src/Simulation/*.cc)
 file(GLOB headers ${PROJECT_SOURCE_DIR}/include/Simulation/*.hh)
