@@ -1,3 +1,7 @@
+*.png
+*.html
+docs/*
+docs/
 build/
 build/*
 build*/

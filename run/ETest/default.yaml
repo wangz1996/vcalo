@@ -52,12 +52,12 @@ Parameter:
 
 #Construct Tracker
 Tracker:
-    build: True
+    build: False
 
 
 #Construct ACD
 ACD:
-    build: True
+    build: False
 
 
 #Construct Converter
@@ -91,12 +91,12 @@ Source:
         A: 60
     type: Plane
     SphereRadius: 1000
-    size: 1500.0 # For Plane type source only (cm)
-    angtype: iso
+    size: 6.0 # For Plane type source only (cm)
+    angtype: planar
     particle: mu-
     energy: 3000. # Unit is in MeV
-    position: [0.0, 0.0, -288.0] # Unit is in mm #Converter upper plane -287.5 mm
-    direction: [0.0, 0.0, 1.0]
+    position: [0.0, 100.0, 0.0] # Unit is in mm #Converter upper plane -287.5 mm
+    direction: [0.0, -1.0, 0.0]
     spec_anglefile: /mnt2/VLASTP/cutoff/spectrum/spec_index_thetaarc.txt
     spec_anglehist: /mnt2/VLASTP/cutoff/spectrum/spec_-20_-10.root
     SphereRadius: 100.0 #mm

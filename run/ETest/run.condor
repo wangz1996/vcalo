@@ -1,4 +1,5 @@
 Universe=vanilla
 Executable=run.sh
 getEnv=True
+request_memory=3000
 Queue

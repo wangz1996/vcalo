@@ -5,16 +5,18 @@ if [ -d jobs ];then
 fi
 mkdir jobs
 i=20
-while (( i<2000 ));do
+while (( i<5100 ));do
 	cp -r $DIR/temp $DIR/jobs/$i
 	cd $DIR/jobs/$i
-	sed -i "s:NUMBERHERE:10:g" $DIR/jobs/$i/default.yaml
+	sed -i "s:NUMBERHERE:20:g" $DIR/jobs/$i/default.yaml
 	sed -i "s:ENERGYHERE:$i:g" $DIR/jobs/$i/default.yaml
 	condor_submit run.condor
 	cd $DIR
 	if (( i<100 ));then
 		i=$(( i+10 ))
-	else
+	elif (( i<1000 ));then
 		i=$(( i+100 ))
+	else
+		i=$(( i+500 ))
 	fi
 done

@@ -90,8 +90,8 @@ for histo, line in zip(histos,legendLines) :
   histo.SetFillColor(0)
 
   # Label my axes!!
-  histo.GetXaxis().SetTitle("")
-  histo.GetYaxis().SetTitle("Events/bin")
+  histo.GetXaxis().SetTitle("Incident Energy[MeV]")
+  histo.GetYaxis().SetTitle("Energy Deposition[MeV]")
   # Move the label around if you want
   histo.GetYaxis().SetTitleOffset(1.5)
 

@@ -195,8 +195,8 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event *anEvent)
   {
     if(use_spec){
       double momentum = hspec->GetRandom(); // GeV
-    double energy = sqrt(momentum * momentum + par_mass * par_mass) - par_mass; // GeV
-    fenedist->SetMonoEnergy(energy * GeV);
+      double energy = sqrt(momentum * momentum + par_mass * par_mass) - par_mass; // GeV
+    fenedist->SetMonoEnergy(momentum * GeV);
     }
     if(use_spherespec){
       float ex = -999.; float ez = -999.; float ey = -285.;
@@ -217,6 +217,10 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event *anEvent)
       x = x0 - spec_R * ux;
       y = y0 - spec_R * uy;
       z = z0 - spec_R * uz;
+      //Following for inverse east and west test
+      // x = x0 + spec_R * ux;
+      // y = y0 + spec_R * uy;
+      // z = z0 + spec_R * uz;
       //Equivalent xyz at ez=-285
       float eR = (y0-ey)/uy;
       ex = x0 - eR * ux;
