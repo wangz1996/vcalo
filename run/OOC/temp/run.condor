@@ -1,5 +1,0 @@
-Universe=vanilla
-Executable=run.sh
-getEnv=True
-request_memory = 512
-Queue
