@@ -193,7 +193,9 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event *anEvent)
 {
   if (use_gps)
   {
+    std::cout<<"Using GPS"<<std::endl;
     if(use_spec){
+      std::cout<<"Using spectrum for inputs"<<std::endl;
       double momentum = hspec->GetRandom(); // GeV
       double energy = sqrt(momentum * momentum + par_mass * par_mass) - par_mass; // GeV
     fenedist->SetMonoEnergy(momentum * GeV);
