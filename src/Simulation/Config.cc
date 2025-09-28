@@ -119,8 +119,10 @@ int Config::Run()
 	UI->ApplyCommand(G4String("/control/verbose ") + G4String(conf["Verbose"]["control"].as<std::string>()));
 	UI->ApplyCommand(G4String("/tracking/verbose ") + G4String(conf["Verbose"]["tracking"].as<std::string>()));
 	UI->ApplyCommand(G4String("/event/verbose ") + G4String(conf["Verbose"]["event"].as<std::string>()));
-	
 
+	// Initialize G4 kernel
+	runManager->Initialize();
+	
 	G4VisManager *visManager = new G4VisExecutive();
 	visManager->SetVerboseLevel(1);  // 设置可视化系统日志级别
 	try {
@@ -158,8 +160,7 @@ int Config::Run()
     
     // 清理资源
     delete visManager;
-	// Initialize G4 kernel
-	runManager->Initialize();
+	
 	if (conf["Global"]["usemac"].as<bool>())
 	{
 		if (!ifstream(conf["Global"]["mac"].as<std::string>()).good())
